@@ -6,7 +6,7 @@ The SabreTooth XML library is a specialized xml reader and writer.
 I often found myself repeating the same pattern for xml manipulation over and
 over. This library implements that pattern.
 
-At it's hard, the library maps xml elements to PHP value objects.
+At it's heart, the library maps xml elements to PHP value objects.
 
 The following assumptions are made:
 
@@ -45,7 +45,7 @@ Sample XML document
 All the following examples use an Atom xml document.
 The document can be found here:
 
-[samples/atom.xml]
+[atom.xml](samples/atom.xml)
 
 Note that this sample was taken from [wikipedia](https://en.wikipedia.org/wiki/Atom_%28standard%29).
 
@@ -90,7 +90,7 @@ $writer->write(array($output));
 echo $writer->outputMemory();
 ```
 
-The output will look like this: [samples/atom.written1.xml]
+The output will look like this: [atom.written1.xml](samples/atom.written1.xml)
 
 Ugly you say? This library will inline xml namespaces everywhere, unless they
 are specified in advance:
@@ -107,7 +107,7 @@ $writer->write(array($output));
 echo $writer->outputMemory();
 ```
 
-The output looks pretty normal now: [samples/atom.written2.xml]
+The output looks pretty normal now: [atom.written2.xml](samples/atom.written2.xml)
 
 Mapping XML elements
 --------------------
