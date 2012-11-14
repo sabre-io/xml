@@ -65,7 +65,7 @@ class Reader extends XMLReader {
                 case self::ELEMENT :
                     $elements[] = $this->parseCurrentElement();
                     // Skipping the rest of the sub-tree.
-                    $this->next();
+                    //$this->next();
                     break;
                 case self::TEXT :
                     $text .= $this->value;

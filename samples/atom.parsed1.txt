@@ -1,164 +1,201 @@
 Array
 (
-    [name] => {http://www.w3.org/2005/Atom}feed
-    [value] => Array
+    [0] => Array
         (
-            [0] => Array
+            [name] => {http://www.w3.org/2005/Atom}feed
+            [value] => Array
                 (
-                    [name] => {http://www.w3.org/2005/Atom}title
-                    [value] => Example Feed
-                    [attributes] => Array
+                    [0] => Array
                         (
-                        )
-
-                )
-
-            [1] => Array
-                (
-                    [name] => {http://www.w3.org/2005/Atom}subtitle
-                    [value] => A subtitle.
-                    [attributes] => Array
-                        (
-                        )
-
-                )
-
-            [2] => Array
-                (
-                    [name] => {http://www.w3.org/2005/Atom}link
-                    [value] => 
-                    [attributes] => Array
-                        (
-                            [href] => http://example.org/feed/
-                            [rel] => self
-                        )
-
-                )
-
-            [3] => Array
-                (
-                    [name] => {http://www.w3.org/2005/Atom}id
-                    [value] => urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6
-                    [attributes] => Array
-                        (
-                        )
-
-                )
-
-            [4] => Array
-                (
-                    [name] => {http://www.w3.org/2005/Atom}updated
-                    [value] => 2003-12-13T18:30:02Z
-                    [attributes] => Array
-                        (
-                        )
-
-                )
-
-            [5] => Array
-                (
-                    [name] => {http://www.w3.org/2005/Atom}entry
-                    [value] => Array
-                        (
-                            [0] => Array
+                            [name] => {http://www.w3.org/2005/Atom}title
+                            [value] => Example Feed
+                            [attributes] => Array
                                 (
-                                    [name] => {http://www.w3.org/2005/Atom}title
-                                    [value] => Atom-Powered Robots Run Amok
-                                    [attributes] => Array
-                                        (
-                                        )
-
                                 )
 
-                            [1] => Array
-                                (
-                                    [name] => {http://www.w3.org/2005/Atom}link
-                                    [value] => 
-                                    [attributes] => Array
-                                        (
-                                            [href] => http://example.org/2003/12/13/atom03
-                                        )
+                        )
 
+                    [1] => Array
+                        (
+                            [name] => {http://www.w3.org/2005/Atom}subtitle
+                            [value] => A subtitle.
+                            [attributes] => Array
+                                (
                                 )
 
-                            [2] => Array
-                                (
-                                    [name] => {http://www.w3.org/2005/Atom}link
-                                    [value] => 
-                                    [attributes] => Array
-                                        (
-                                            [rel] => edit
-                                            [href] => http://example.org/2003/12/13/atom03/edit
-                                        )
+                        )
 
+                    [2] => Array
+                        (
+                            [name] => {http://www.w3.org/2005/Atom}link
+                            [value] => 
+                            [attributes] => Array
+                                (
+                                    [href] => http://example.org/feed/
+                                    [rel] => self
                                 )
 
-                            [3] => Array
-                                (
-                                    [name] => {http://www.w3.org/2005/Atom}updated
-                                    [value] => 2003-12-13T18:30:02Z
-                                    [attributes] => Array
-                                        (
-                                        )
+                        )
 
+                    [3] => Array
+                        (
+                            [name] => {http://www.w3.org/2005/Atom}link
+                            [value] => 
+                            [attributes] => Array
+                                (
+                                    [href] => http://example.org/
                                 )
 
-                            [4] => Array
-                                (
-                                    [name] => {http://www.w3.org/2005/Atom}summary
-                                    [value] => Some text.
-                                    [attributes] => Array
-                                        (
-                                        )
+                        )
 
+                    [4] => Array
+                        (
+                            [name] => {http://www.w3.org/2005/Atom}id
+                            [value] => urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6
+                            [attributes] => Array
+                                (
                                 )
 
-                            [5] => Array
+                        )
+
+                    [5] => Array
+                        (
+                            [name] => {http://www.w3.org/2005/Atom}updated
+                            [value] => 2003-12-13T18:30:02Z
+                            [attributes] => Array
                                 (
-                                    [name] => {http://www.w3.org/2005/Atom}author
-                                    [value] => Array
+                                )
+
+                        )
+
+                    [6] => Array
+                        (
+                            [name] => {http://www.w3.org/2005/Atom}entry
+                            [value] => Array
+                                (
+                                    [0] => Array
                                         (
-                                            [0] => Array
+                                            [name] => {http://www.w3.org/2005/Atom}title
+                                            [value] => Atom-Powered Robots Run Amok
+                                            [attributes] => Array
                                                 (
-                                                    [name] => {http://www.w3.org/2005/Atom}name
-                                                    [value] => John Doe
-                                                    [attributes] => Array
-                                                        (
-                                                        )
-
-                                                )
-
-                                            [1] => Array
-                                                (
-                                                    [name] => {http://www.w3.org/2005/Atom}email
-                                                    [value] => johndoe@example.com
-                                                    [attributes] => Array
-                                                        (
-                                                        )
-
                                                 )
 
                                         )
 
-                                    [attributes] => Array
+                                    [1] => Array
                                         (
+                                            [name] => {http://www.w3.org/2005/Atom}link
+                                            [value] => 
+                                            [attributes] => Array
+                                                (
+                                                    [href] => http://example.org/2003/12/13/atom03
+                                                )
+
+                                        )
+
+                                    [2] => Array
+                                        (
+                                            [name] => {http://www.w3.org/2005/Atom}link
+                                            [value] => 
+                                            [attributes] => Array
+                                                (
+                                                    [rel] => alternate
+                                                    [type] => text/html
+                                                    [href] => http://example.org/2003/12/13/atom03.html
+                                                )
+
+                                        )
+
+                                    [3] => Array
+                                        (
+                                            [name] => {http://www.w3.org/2005/Atom}link
+                                            [value] => 
+                                            [attributes] => Array
+                                                (
+                                                    [rel] => edit
+                                                    [href] => http://example.org/2003/12/13/atom03/edit
+                                                )
+
+                                        )
+
+                                    [4] => Array
+                                        (
+                                            [name] => {http://www.w3.org/2005/Atom}id
+                                            [value] => urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a
+                                            [attributes] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [5] => Array
+                                        (
+                                            [name] => {http://www.w3.org/2005/Atom}updated
+                                            [value] => 2003-12-13T18:30:02Z
+                                            [attributes] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [6] => Array
+                                        (
+                                            [name] => {http://www.w3.org/2005/Atom}summary
+                                            [value] => Some text.
+                                            [attributes] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [7] => Array
+                                        (
+                                            [name] => {http://www.w3.org/2005/Atom}author
+                                            [value] => Array
+                                                (
+                                                    [0] => Array
+                                                        (
+                                                            [name] => {http://www.w3.org/2005/Atom}name
+                                                            [value] => John Doe
+                                                            [attributes] => Array
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                    [1] => Array
+                                                        (
+                                                            [name] => {http://www.w3.org/2005/Atom}email
+                                                            [value] => johndoe@example.com
+                                                            [attributes] => Array
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [attributes] => Array
+                                                (
+                                                )
+
                                         )
 
                                 )
 
-                        )
+                            [attributes] => Array
+                                (
+                                )
 
-                    [attributes] => Array
-                        (
                         )
 
                 )
 
-        )
+            [attributes] => Array
+                (
+                )
 
-    [attributes] => Array
-        (
-            [{http://www.w3.org/2000/xmlns/}xmlns] => http://www.w3.org/2005/Atom
         )
 
 )

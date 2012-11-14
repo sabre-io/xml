@@ -2,13 +2,16 @@
 <a:feed xmlns:a="http://www.w3.org/2005/Atom">
  <a:title>Example Feed</a:title>
  <a:subtitle>A subtitle.</a:subtitle>
- <a:link/>
+ <a:link href="http://example.org/feed/" rel="self"/>
+ <a:link href="http://example.org/"/>
  <a:id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</a:id>
  <a:updated>2003-12-13T18:30:02Z</a:updated>
  <a:entry>
   <a:title>Atom-Powered Robots Run Amok</a:title>
-  <a:link/>
-  <a:link/>
+  <a:link href="http://example.org/2003/12/13/atom03"/>
+  <a:link rel="alternate" type="text/html" href="http://example.org/2003/12/13/atom03.html"/>
+  <a:link rel="edit" href="http://example.org/2003/12/13/atom03/edit"/>
+  <a:id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</a:id>
   <a:updated>2003-12-13T18:30:02Z</a:updated>
   <a:summary>Some text.</a:summary>
   <a:author>
