@@ -20,7 +20,7 @@
     ],
     "support" : {
         "forum" : "https://groups.google.com/group/sabredav-discuss",
-        "source" : "https://github.com/evert/sabre-vobject"
+        "source" : "https://github.com/evert/sabre-xml"
     },
     "autoload" : {
         "psr-0" : {

@@ -29,11 +29,11 @@ Installation is done using composer.
 
 The general composer instructions can be found on the [composer website](http://getcomposer.org/doc/00-intro.md).
 
-After that, just declare the vobject dependency as follows:
+After that, just declare the sabre-xml dependency as follows:
 
 ```json
 "require" : {
-    "sabre/http" : "master-dev"
+    "sabre/xml" : "master-dev"
 }
 ```
 
@@ -147,7 +147,7 @@ class AtomFeed {
 
 Lets start with a simple one though, that recurs in a bunch of places: `link`.
 
-The `link` element can a `href`, `rel` and `type` attribute. There's actually a
+The `link` element can have a `href`, `rel` and `type` attribute. There's actually a
 bunch more if you're going for a full parser.
 
 We'll just focus on those three though..
