@@ -10,7 +10,7 @@ class Writer extends XMLWriter {
 
     public $namespaceMap = array();
 
-    public $adhodNamespaces = array();
+    public $adhocNamespaces = array();
 
     public $elementMap = array();
 
@@ -33,11 +33,14 @@ class Writer extends XMLWriter {
                 // be an array with a name and a value.
                 foreach($value as $subItem) {
 
-                    print_r($subItem);
-                    if (!isset($subItem['name']) || !isset($subItem['value'])) {
+                    if (!array_key_exists('name', $subItem) || !array_key_exists('value', $subItem)) {
+                        print_r($subItem);
                         throw new InvalidArgumentException('When passing an array to ->write with numeric indices, every item must have a "name" and a "value"');
                     }
                     $this->startElement($subItem['name']);
+                    if (isset($subItem['attributes'])) {
+                        $this->writeAttributes($subItem['attributes']);
+                    }
                     $this->write($subItem['value']);
                     $this->endElement();
 
@@ -95,6 +98,74 @@ class Writer extends XMLWriter {
         }
 
         return $result;
+
+    }
+
+    /**
+     * Writes a list of attributes.
+     *
+     * Attributes are specified as a key->value array.
+     *
+     * The key is an attribute name. If the key is a 'localName', the current
+     * xml namespace is assumed. If it's a 'clark notation key', this namespace
+     * will be used instead.
+     *
+     * @param array $attributes
+     * @return void
+     */
+    public function writeAttributes(array $attributes) {
+
+        foreach($attributes as $name=>$value) {
+            $this->writeAttribute($name, $value);
+        }
+
+    }
+
+    /**
+     * Writes a new attribute.
+     *
+     * The name may be specified in clark-notation.
+     *
+     * Returns true when successful.
+     *
+     * @param string $name
+     * @param string $value
+     * @return bool
+     */
+    public function writeAttribute($name, $value) {
+
+        if ($name[0] === '{') {
+            list(
+                $namespace,
+                $localName
+            ) = Util::parseClarkNotation($name);
+
+            if (isset($this->namespaceMap[$namespace])) {
+
+                // It's an attribute with a namespace we know
+                $this->writeAttributeNS(
+                    $this->namespaceMap[$namespace],
+                    $localName,
+                    null,
+                    $value
+                );
+            } else {
+
+                // We don't know the namespace, we must add it in-line
+                if (!isset($this->adhocNamespaces[$namespace])) {
+                    $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces)+1);
+                }
+                $this->writeAttributeNS(
+                    $this->adhocNamespaces[$namespace],
+                    $localName,
+                    $namespace,
+                    $value
+                );
+
+            }
+        } else {
+            return parent::writeAttribute($name, $value);
+        }
 
     }
 

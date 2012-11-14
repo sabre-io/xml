@@ -18,7 +18,7 @@ class Reader extends XMLReader {
      */
     protected function getClark() {
 
-        if ($this->nodeType !== self::ELEMENT) {
+        if (!$this->namespaceURI) {
             return null;
         }
         return '{' . $this->namespaceURI . '}' . $this->localName;
@@ -35,7 +35,7 @@ class Reader extends XMLReader {
         while($this->nodeType !== self::ELEMENT) {
             $this->read();
         }
-        return $this->parseCurrentElement();
+        return array($this->parseCurrentElement());
 
     }
 
@@ -55,18 +55,15 @@ class Reader extends XMLReader {
 
         $text = null;
         $elements = array();
+        $attributes = array();
 
         $this->read();
 
-        $result = array();
         do {
 
             switch($this->nodeType) {
                 case self::ELEMENT :
-                    $elements[] = array(
-                        'name' => $this->getClark(),
-                        'value' => $this->parseCurrentElement()
-                    );
+                    $elements[] = $this->parseCurrentElement();
                     // Skipping the rest of the sub-tree.
                     $this->next();
                     break;
@@ -91,18 +88,71 @@ class Reader extends XMLReader {
     /**
      * Parses the current XML element.
      *
-     * @return mixed
+     * This method returns arn array with 3 properties:
+     *   * name - A clark-notation xml element name.
+     *   * value - The parsed value.
+     *   * attributes - A key-value list of attributes.
+     *
+     * @return array
      */
     protected function parseCurrentElement() {
 
-        $clark = $this->getClark();
-        if (isset($this->elementMap[$clark])) {
-            $result = call_user_func( array( $this->elementMap[$clark], 'deserialize'), $this);
-        } else {
-            $result = Element::deserialize($this);
+        $name = $this->getClark();
+
+        $attributes = array();
+
+        if ($this->hasAttributes) {
+            $attributes = $this->parseAttributes();
         }
 
-        return $result;
+
+        if (isset($this->elementMap[$name])) {
+            $value = call_user_func( array( $this->elementMap[$name], 'deserialize'), $this);
+        } else {
+            $value = Element::deserialize($this);
+        }
+
+        return array(
+            'name' => $name,
+            'value' => $value,
+            'attributes' => $attributes,
+        );
+    }
+
+    /**
+     * Grabs all the attributes from the current element, and returns them as a
+     * key-value array.
+     *
+     * If the attributes are part of the same namespace, they will simply be
+     * short keys. If they are defined on a different namespace, the attribute
+     * name will be retured in clark-notation.
+     *
+     * @return void
+     */
+    public function parseAttributes() {
+
+        $attributes = array();
+
+        while($this->moveToNextAttribute()) {
+            if ($this->namespaceURI) {
+
+                $name = $this->getClark();
+
+                // Ignoring 'xmlns', it doesn't make any sense.
+                if ($name === '{http://www.w3.org/2000/xmlns/}xmlns') {
+                    continue;
+                }
+
+                $attributes[$name] = $this->value;
+
+            } else {
+                $attributes[$this->localName] = $this->value;
+            }
+        }
+        $this->moveToElement();
+
+        return $attributes;
 
     }
+
 }
