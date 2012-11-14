@@ -29,11 +29,11 @@ Installation is done using composer.
 
 The general composer instructions can be found on the [composer website](http://getcomposer.org/doc/00-intro.md).
 
-After that, just declare the vobject dependency as follows:
+After that, just declare the sabre-xml dependency as follows:
 
 ```json
 "require" : {
-    "sabre/http" : "master-dev"
+    "sabre/xml" : "master-dev"
 }
 ```
 
