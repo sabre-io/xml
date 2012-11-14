@@ -2,17 +2,7 @@
 
 namespace Sabre\XML;
 
-use XMLReader;
-
-class Element {
-
-    protected $value;
-
-    public function __construct($value = null) {
-
-        $this->value = $value;
-
-    }
+class MockElement extends Element {
 
     /**
      * The serialize method is called during xml writing.
@@ -31,7 +21,9 @@ class Element {
      */
     public function serialize(Writer $writer) {
 
-        $writer->write($this->value);
+        $writer->startElement('{http://sabredav.org/ns}elem1');
+        $writer->write('hiiii!');
+        $writer->endElement();
 
     }
 
@@ -58,10 +50,9 @@ class Element {
      */
     static public function deserialize(Reader $reader) {
 
-        $subTree = $reader->parseSubTree();
-        return $subTree['elements']?:$subTree['text'];
+        $reader->next();
+        return 'foobar';
 
     }
 
 }
-

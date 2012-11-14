@@ -136,13 +136,12 @@ class Reader extends XMLReader {
         while($this->moveToNextAttribute()) {
             if ($this->namespaceURI) {
 
-                $name = $this->getClark();
-
                 // Ignoring 'xmlns', it doesn't make any sense.
-                if ($name === '{http://www.w3.org/2000/xmlns/}xmlns') {
+                if ($this->namespaceURI === 'http://www.w3.org/2000/xmlns/') {
                     continue;
                 }
 
+                $name = $this->getClark();
                 $attributes[$name] = $this->value;
 
             } else {

@@ -8,14 +8,79 @@ use
 
 class Writer extends XMLWriter {
 
+    /**
+     * This is a list of namespaces that you want to give default prefixes.
+     *
+     * You must make sure you create this entire list before starting to write.
+     * They should be registered on the root element.
+     *
+     * @var array
+     */
     public $namespaceMap = array();
 
-    public $adhocNamespaces = array();
+    /**
+     * Any namespace that the writer is asked to write, will be added here.
+     *
+     * Any of these elements will get a new namespace definition *every single
+     * time* they are used, but this array allows the writer to make sure that
+     * the prefixes are consistent anyway.
+     *
+     * @var array
+     */
+    protected $adhocNamespaces = array();
 
-    public $elementMap = array();
-
+    /**
+     * When the first element is written, this flag is set to true.
+     *
+     * This ensures that the namespaces in the namespaces map are only written
+     * once.
+     *
+     * @var bool
+     */
     protected $namespacesWritten = false;
 
+    /**
+     * Writes a value to the output stream.
+     *
+     * The following values are supported:
+     *   1. Scalar values will be written as-is, as text.
+     *   2. Null values will be skipped (resulting in a short xml tag).
+     *   3. If a value is an instance of an Element class, writing will be
+     *      delegated to the object.
+     *   4. If a value is an array, two formats are supported.
+     *
+     *  Array format 1:
+     *  [
+     *    "{namespace}name1" => "..",
+     *    "{namespace}name2" => "..",
+     *  ]
+     *
+     *  One element will be created for each key in this array. The values of
+     *  this array support any format this method supports (this method is
+     *  called recursively).
+     *
+     *  Array format 2:
+     *
+     *  [
+     *    [
+     *      "name" => "{namespace}name1"
+     *      "value" => "..",
+     *      "attributes" => [
+     *          "attr" => "attribute value",
+     *      ]
+     *    ],
+     *    [
+     *      "name" => "{namespace}name1"
+     *      "value" => "..",
+     *      "attributes" => [
+     *          "attr" => "attribute value",
+     *      ]
+     *    ]
+     * ]
+     *
+     * @param mixed $value
+     * @return void
+     */
     public function write($value) {
 
         if (is_scalar($value)) {
@@ -34,7 +99,6 @@ class Writer extends XMLWriter {
                 foreach($value as $subItem) {
 
                     if (!array_key_exists('name', $subItem) || !array_key_exists('value', $subItem)) {
-                        print_r($subItem);
                         throw new InvalidArgumentException('When passing an array to ->write with numeric indices, every item must have a "name" and a "value"');
                     }
                     $this->startElement($subItem['name']);
