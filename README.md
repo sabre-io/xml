@@ -107,7 +107,7 @@ $writer->write(array($output));
 echo $writer->outputMemory();
 ```
 
-The output looks pretty normal now: [atom.written2.xml](samples/atom.written2.xml)
+The output looks pretty normal now: [atom.written2.xml](https://github.com/evert/sabre-xml/blob/master/samples/atom.written2.xml)
 
 Mapping XML elements
 --------------------
