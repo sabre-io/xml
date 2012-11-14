@@ -4,61 +4,79 @@ include __DIR__ . '/vendor/autoload.php';
 
 use Sabre\XML;
 
-$input = '<?xml version="1.0" encoding="utf-8" ?>
-     <D:multistatus xmlns:D="DAV:">
-       <D:response>
-         <D:href>http://www.webdav.org/foo.html</D:href>
-         <D:propstat>
-           <D:prop>
-             <D:version-history>
-               <D:response>
-                 <D:href>http://repo.webdav.org/his/23</D:href>
-                 <D:propstat>
-                   <D:prop>
-                     <D:version-set>
-                       <D:response>
-                         <D:href>http://repo.webdav.org/his/23/ver/1</D:href>
-                         <D:propstat>
-                           <D:prop>
-                               <D:creator-displayname>Fred</D:creator-displayname>
-                               <D:activity-set>
-                                    <D:href>http://www.webdav.org/ws/dev/sally</D:href>
-                               </D:activity-set>
-                           </D:prop>
-                           <D:status>HTTP/1.1 200 OK</D:status>
-                         </D:propstat> </D:response>
-                       <D:response>
-                         <D:href>http://repo.webdav.org/his/23/ver/2</D:href>
-                         <D:propstat>
-                           <D:prop>
-                             <D:creator-displayname>Sally</D:creator-displayname>
-                             <D:activity-set>
-                                <D:href>http://repo.webdav.org/act/add-refresh-cmd</D:href>
-                             </D:activity-set>
-                           </D:prop>
-                           <D:status>HTTP/1.1 200 OK</D:status>
-                         </D:propstat> </D:response>
-                     </D:version-set> </D:prop>
-                   <D:status>HTTP/1.1 200 OK</D:status>
-                 </D:propstat> </D:response>
-             </D:version-history> </D:prop>
-           <D:status>HTTP/1.1 200 OK</D:status>
-         </D:propstat> </D:response>
-     </D:multistatus>';
+class AtomLink extends XML\Element {
+
+    public $href;
+    public $rel;
+    public $type;
+
+    /**
+     * The serialize method is called during xml writing.
+     *
+     * It should use the $writer argument to encode this object into XML.
+     *
+     * Important note: it is not needed to create the parent element. The
+     * parent element is already created, and we only have to worry about
+     * attributes, child elements and text (if any).
+     *
+     * @param XML\Writer $reader
+     * @return void
+     */
+    public function serialize(XML\Writer $writer) {
+
+        $writer->writeAttribute('href', $this->href);
+        $writer->writeAttribute('rel', $this->rel);
+        $writer->writeAttribute('type', $this->type);
+
+    }
+
+    /**
+     * The deserialize method is called during xml parsing.
+     *
+     * This method is called statictly, this is because in theory this method
+     * may be used as a type of constructor, or factory method.
+     *
+     * Often you want to return an instance of the current class, but you are
+     * free to return other data as well.
+     *
+     * @param XML\Reader $reader
+     * @return mixed
+     */
+    static public function deserialize(XML\Reader $reader) {
+
+        $attributes = $reader->parseAttributes();
+
+        $link = new self();
+        foreach($attributes as $name=>$value) {
+            if (property_exists($link,$name)) {
+                $link->$name = $value;
+            }
+        }
+
+        return $link;
+
+    }
+
+}
 
 $reader = new XML\Reader();
-$reader->xml($input);
+$reader->elementMap = array(
+    '{http://www.w3.org/2005/Atom}link' => 'AtomLink'
+);
+$reader->open('samples/atom.xml');
 
-$value = $reader->parse();
-print_r($value);
+$output = $reader->parse();
+
+print_r($output);
 
 $writer = new XML\Writer();
 $writer->namespaceMap = array(
-    'DAV:' => 'd',
+    'http://www.w3.org/2005/Atom' => 'a',
 );
 $writer->openMemory();
-$writer->setIndent(true);
-$writer->startElement('{DAV:}multistatus');
-$writer->write($value);
+$writer->setIndent(true); // for pretty indentation
+$writer->startDocument();
+$writer->write($output);
+
 echo $writer->outputMemory();
 

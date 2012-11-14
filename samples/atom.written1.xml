@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<x1:feed xmlns:x1="http://www.w3.org/2005/Atom">
+ <x1:title xmlns:x1="http://www.w3.org/2005/Atom">Example Feed</x1:title>
+ <x1:subtitle xmlns:x1="http://www.w3.org/2005/Atom">A subtitle.</x1:subtitle>
+ <x1:link xmlns:x1="http://www.w3.org/2005/Atom"/>
+ <x1:id xmlns:x1="http://www.w3.org/2005/Atom">urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</x1:id>
+ <x1:updated xmlns:x1="http://www.w3.org/2005/Atom">2003-12-13T18:30:02Z</x1:updated>
+ <x1:entry xmlns:x1="http://www.w3.org/2005/Atom">
+  <x1:title xmlns:x1="http://www.w3.org/2005/Atom">Atom-Powered Robots Run Amok</x1:title>
+  <x1:link xmlns:x1="http://www.w3.org/2005/Atom"/>
+  <x1:link xmlns:x1="http://www.w3.org/2005/Atom"/>
+  <x1:updated xmlns:x1="http://www.w3.org/2005/Atom">2003-12-13T18:30:02Z</x1:updated>
+  <x1:summary xmlns:x1="http://www.w3.org/2005/Atom">Some text.</x1:summary>
+  <x1:author xmlns:x1="http://www.w3.org/2005/Atom">
+   <x1:name xmlns:x1="http://www.w3.org/2005/Atom">John Doe</x1:name>
+   <x1:email xmlns:x1="http://www.w3.org/2005/Atom">johndoe@example.com</x1:email>
+  </x1:author>
+ </x1:entry>
+</x1:feed>
