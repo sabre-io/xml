@@ -147,7 +147,7 @@ class AtomFeed {
 
 Lets start with a simple one though, that recurs in a bunch of places: `link`.
 
-The `link` element can a `href`, `rel` and `type` attribute. There's actually a
+The `link` element can have a `href`, `rel` and `type` attribute. There's actually a
 bunch more if you're going for a full parser.
 
 We'll just focus on those three though..
