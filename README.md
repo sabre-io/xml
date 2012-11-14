@@ -31,7 +31,7 @@ The general composer instructions can be found on the [composer website](http://
 
 After that, just declare the vobject dependency as follows:
 
-```
+```json
 "require" : {
     "sabre/http" : "master-dev"
 }
@@ -67,7 +67,6 @@ $reader->open('atom.xml');
 
 $output = $reader->parse();
 var_dump($output);
-
 ```
 
 The `parse` method reads the entire file, and the resulting data is returned
@@ -119,7 +118,6 @@ elements that make sense to create using classes for.
 A great example would be the `entry` element:
 
 ```php
-
 class AtomEntry {
 
   public $title;
@@ -131,13 +129,11 @@ class AtomEntry {
   /* etc.. */
 
 }
-
 ```
 
 Similarly we'd also create an element for the entire feed:
 
 ```php
-
 class AtomFeed {
 
     public $title;
@@ -159,7 +155,6 @@ We'll just focus on those three though..
 Our base class:
 
 ```php
-
 class AtomLink {
 
     public $href;
@@ -167,13 +162,11 @@ class AtomLink {
     public $type;
 
 }
-
 ```
 
 Now the SabreXML additions:
 
-```
-
+```php
 use Sabre\XML;
 
 class AtomLink implements XML\Element {
@@ -235,7 +228,7 @@ class AtomLink implements XML\Element {
 To automatically map all `link` elements to the new `AtomLink` class, register
 it on the reader:
 
-```
+```php
 $reader = new XML\Reader();
 $reader->elementMap = array(
     '{http://www.w3.org/2005/Atom}link' => 'AtomLink'
