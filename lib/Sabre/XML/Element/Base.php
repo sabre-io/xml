@@ -1,10 +1,18 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\XML\Element;
 
-use XMLReader;
+use Sabre\XML;
 
-interface Element {
+class Base implements XML\Element {
+
+    protected $value;
+
+    public function __construct($value = null) {
+
+        $this->value = $value;
+
+    }
 
     /**
      * The serialize method is called during xml writing.
@@ -18,10 +26,14 @@ interface Element {
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param Writer $writer
+     * @param XML\Writer $writer
      * @return void
      */
-    public function serializeXml(Writer $writer);
+    public function serializeXml(XML\Writer $writer) {
+
+        $writer->write($this->value);
+
+    }
 
     /**
      * The deserialize method is called during xml parsing.
@@ -41,9 +53,15 @@ interface Element {
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param Reader $reader
+     * @param XML\Reader $reader
      * @return mixed
      */
-    static public function deserializeXml(Reader $reader);
+    static public function deserializeXml(XML\Reader $reader) {
+
+        $subTree = $reader->parseSubTree();
+        return $subTree['elements']?:$subTree['text'];
+
+    }
 
 }
+

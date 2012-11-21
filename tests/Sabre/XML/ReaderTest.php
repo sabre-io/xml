@@ -101,7 +101,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = array(
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\MockElement'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Mock'
         );
         $reader->xml($input);
 

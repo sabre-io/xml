@@ -1,8 +1,10 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\XML\Element;
 
-class MockElement extends Element {
+use Sabre\XML;
+
+class Mock implements XML\Element {
 
     /**
      * The serialize method is called during xml writing.
@@ -16,10 +18,10 @@ class MockElement extends Element {
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param Writer $writer
+     * @param XML\Writer $writer
      * @return void
      */
-    public function serialize(Writer $writer) {
+    public function serializeXml(XML\Writer $writer) {
 
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');
@@ -45,10 +47,10 @@ class MockElement extends Element {
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param Reader $reader
+     * @param XML\Reader $reader
      * @return mixed
      */
-    static public function deserialize(Reader $reader) {
+    static public function deserializeXml(XML\Reader $reader) {
 
         $reader->next();
         return 'foobar';

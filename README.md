@@ -16,8 +16,8 @@ The following assumptions are made:
 * XML is written and read sequentially.
 * All XML elements map to PHP classes and scalars.
 * Elements generally contain either just text, just sub-elements or nothing all.
-* Elements are represented by classes. A class has a serialize() and a
-  deserialize() method.
+* Elements are represented by classes. A class has a serializeXml() and a
+  deserializeXml() method.
 * Namespace prefixes must be completely ignored by an xml reader.
 
 This is not your average XML library. The intention is not to make this super
@@ -189,7 +189,7 @@ class AtomLink implements XML\Element {
      * @param XML\Writer $reader
      * @return void
      */
-    public function serialize(XML\Writer $writer) {
+    public function serializeXml(XML\Writer $writer) {
 
         $writer->writeAttribute('href', $this->href);
         $writer->writeAttribute('rel', $this->rel);
@@ -209,7 +209,7 @@ class AtomLink implements XML\Element {
      * @param XML\Reader $reader
      * @return mixed
      */
-    static public function deserialize(XML\Reader $reader) {
+    static public function deserializeXml(XML\Reader $reader) {
 
         $attributes = $reader->parseAttributes();
 

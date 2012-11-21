@@ -86,7 +86,7 @@ class Writer extends XMLWriter {
         if (is_scalar($value)) {
             $this->text($value);
         } elseif ($value instanceof Element) {
-            $value->serialize($this);
+            $value->serializeXml($this);
         } elseif (is_null($value)) {
             // noop
         } elseif (is_array($value)) {

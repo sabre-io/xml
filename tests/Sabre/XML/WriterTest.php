@@ -133,7 +133,7 @@ HI
     function testWriteElement() {
 
         $this->compare(array(
-            '{http://sabredav.org/ns}root' => new MockElement()
+            '{http://sabredav.org/ns}root' => new Element\Mock()
         ), <<<HI
 <?xml version="1.0"?>
 <s:root xmlns:s="http://sabredav.org/ns">

@@ -107,9 +107,9 @@ class Reader extends XMLReader {
 
 
         if (isset($this->elementMap[$name])) {
-            $value = call_user_func( array( $this->elementMap[$name], 'deserialize'), $this);
+            $value = call_user_func( array( $this->elementMap[$name], 'deserializeXml'), $this);
         } else {
-            $value = Element::deserialize($this);
+            $value = Element\Base::deserializeXml($this);
         }
 
         return array(
