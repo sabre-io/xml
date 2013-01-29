@@ -16,7 +16,7 @@ class Reader extends XMLReader {
      *
      * @return string|null
      */
-    protected function getClark() {
+    public function getClark() {
 
         if (!$this->namespaceURI) {
             return null;
