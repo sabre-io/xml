@@ -155,7 +155,7 @@ class Writer extends XMLWriter {
         if (!$this->namespacesWritten) {
 
             foreach($this->namespaceMap as $namespace => $prefix) {
-                $this->writeAttributeNS('xmlns',$prefix,null,$namespace);
+                $this->writeAttribute(($prefix?'xmlns:' . $prefix:'xmlns'),$namespace);
             }
             $this->namespacesWritten = true;
 
