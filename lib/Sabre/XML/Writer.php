@@ -166,6 +166,24 @@ class Writer extends XMLWriter {
     }
 
     /**
+     * Write a full element tag.
+     *
+     * This method automatically closes the element as well.
+     *
+     * @param string $name
+     * @param string $content
+     * @return bool
+     */
+    public function writeElement($name, $content = null) {
+
+        $this->startElement($name);
+        if (!is_null($content)) {
+            $this->text($content);
+        }
+        $this->endElement();
+
+    }
+    /**
      * Writes a list of attributes.
      *
      * Attributes are specified as a key->value array.
