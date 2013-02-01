@@ -140,7 +140,7 @@ class Writer extends XMLWriter {
             list($namespace, $localName) =
                 Util::parseClarkNotation($name);
 
-            if (isset($this->namespaceMap[$namespace])) {
+            if (array_key_exists($namespace, $this->namespaceMap)) {
                 $result = $this->startElementNS($this->namespaceMap[$namespace], $localName, null);
             } else {
 
@@ -204,7 +204,7 @@ class Writer extends XMLWriter {
                 $localName
             ) = Util::parseClarkNotation($name);
 
-            if (isset($this->namespaceMap[$namespace])) {
+            if (array_key_exists($namespace,$this->namespaceMap)) {
 
                 // It's an attribute with a namespace we know
                 $this->writeAttributeNS(
