@@ -122,7 +122,7 @@ class Writer extends XMLWriter {
                 // be an array with a name and a value.
                 foreach($value as $subItem) {
 
-                    if (!array_key_exists('name', $subItem) || !array_key_exists('value', $subItem)) {
+                    if (!is_array($subItem) || !array_key_exists('name', $subItem) || !array_key_exists('value', $subItem)) {
                         throw new InvalidArgumentException('When passing an array to ->write with numeric indices, every item must have a "name" and a "value"');
                     }
                     $this->startElement($subItem['name']);
