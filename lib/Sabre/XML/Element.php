@@ -4,6 +4,16 @@ namespace Sabre\XML;
 
 use XMLReader;
 
+/**
+ * This is the XML element interface.
+ *
+ * Elements are responsible for serializing and deserializing part of an XML
+ * document into PHP values.
+ *
+ * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
+ * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
+ */
 interface Element {
 
     /**

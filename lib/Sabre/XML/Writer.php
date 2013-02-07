@@ -6,6 +6,30 @@ use
     XMLWriter,
     InvalidArgumentException;
 
+/**
+ * The XML Writer class.
+ *
+ * This class works exactly as PHP's built-in XMLWriter, with a few additions.
+ *
+ * Namespaces can be registered beforehand, globally. When the first element is
+ * written, namespaces will automatically be declared.
+ *
+ * The writeAttribute, startElement and writeElement can now take a
+ * clark-notation element name (example: {http://www.w3.org/2005/Atom}link).
+ *
+ * If, when writing the namespace is a known one a prefix will automatically be
+ * selected, otherwise a random prefix will be generated.
+ *
+ * Instead of standard string values, the writer can take Element classes (as
+ * defined by this library) to delegate the serialization.
+ *
+ * The write() method can take array structures to quickly write out simple xml
+ * trees.
+ *
+ * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
+ * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
+ */
 class Writer extends XMLWriter {
 
     /**

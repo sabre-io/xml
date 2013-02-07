@@ -4,10 +4,31 @@ namespace Sabre\XML\Element;
 
 use Sabre\XML;
 
+/**
+ * The Base XML element is the standard parser & generator that's used by the
+ * XML reader and writer.
+ *
+ * It spits out a simply PHP array structure during deserialization, that can
+ * also be directly injected back into Writer::write.
+ *
+ * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
+ * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
+ */
 class Base implements XML\Element {
 
+    /**
+     * PHP value to serialize.
+     *
+     * @var mixed
+     */
     protected $value;
 
+    /**
+     * Constructor
+     *
+     * @param mixed $value
+     */
     public function __construct($value = null) {
 
         $this->value = $value;

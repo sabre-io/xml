@@ -4,8 +4,29 @@ namespace Sabre\XML;
 
 use XMLReader;
 
+/**
+ * The Reader class expands upon PHP's built-in XMLReader.
+ *
+ * The intended usage, is to assign certain xml elements to PHP classes. These
+ * need to be registered using the $elementMap public property.
+ *
+ * After this is done, a single call to parse() will parse the entire document,
+ * and delegate sub-sections of the document to element classes.
+ *
+ * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
+ * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
+ */
 class Reader extends XMLReader {
 
+    /**
+     * This is the element map. It contains a list of xml elements (in clark
+     * notation) as keys and PHP class names as values.
+     *
+     * The PHP class names must implement Sabre\XML\Element.
+     *
+     * @var array
+     */
     public $elementMap = array();
 
     /**
