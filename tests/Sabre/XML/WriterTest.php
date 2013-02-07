@@ -130,7 +130,20 @@ HI
 
     }
 
-    function testWriteElement() {
+    function testBaseElement() {
+
+        $this->compare(array(
+            '{http://sabredav.org/ns}root' => new Element\Base('hello')
+        ), <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">hello</s:root>
+
+HI
+        );
+
+    }
+
+    function testElementObj() {
 
         $this->compare(array(
             '{http://sabredav.org/ns}root' => new Element\Mock()
@@ -158,6 +171,37 @@ HI
 
 HI
         );
+
+    }
+
+    function testWriteElement() {
+
+        $this->writer->writeElement("{http://sabredav.org/ns}foo", 'content');
+
+        $output = <<<HI
+<?xml version="1.0"?>
+<s:foo xmlns:s="http://sabredav.org/ns">content</s:foo>
+
+HI;
+
+        $this->assertEquals($output, $this->writer->outputMemory());
+
+
+    }
+
+    function testStartElementSimple() {
+
+        $this->writer->startElement("foo");
+        $this->writer->endElement();
+
+        $output = <<<HI
+<?xml version="1.0"?>
+<foo xmlns:s="http://sabredav.org/ns"/>
+
+HI;
+
+        $this->assertEquals($output, $this->writer->outputMemory());
+
 
     }
 }
