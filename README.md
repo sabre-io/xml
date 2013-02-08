@@ -87,7 +87,7 @@ To write that same XML document, we use the Writer class.
 $writer = new XML\Writer();
 $writer->openMemory();
 $writer->setIndent(true); // for pretty indentation
-$writer->write(array($output));
+$writer->write( [$output] );
 
 echo $writer->outputMemory();
 ```
@@ -99,12 +99,12 @@ are specified in advance:
 
 ```php
 $writer = new XML\Writer();
-$writer->namespaceMap = array(
+$writer->namespaceMap = [
     'http://www.w3.org/2005/Atom' => 'a',
-);
+];
 $writer->openMemory();
 $writer->setIndent(true); // for pretty indentation
-$writer->write(array($output));
+$writer->write([$output]);
 
 echo $writer->outputMemory();
 ```
@@ -232,9 +232,9 @@ it on the reader:
 
 ```php
 $reader = new XML\Reader();
-$reader->elementMap = array(
+$reader->elementMap = [
     '{http://www.w3.org/2005/Atom}link' => 'AtomLink'
-);
+];
 $reader->open('samples/atom.xml');
 
 $output = $reader->parse();
