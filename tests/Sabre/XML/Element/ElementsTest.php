@@ -6,7 +6,7 @@ use
     Sabre\XML\Reader,
     Sabre\XML\Writer;
 
-class ElementListTest extends \PHPUnit_Framework_TestCase {
+class ElementsTest extends \PHPUnit_Framework_TestCase {
 
     function testDeserialize() {
 
@@ -32,7 +32,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}listThingy' => 'Sabre\\XML\\Element\\ElementList',
+            '{http://sabredav.org/ns}listThingy' => 'Sabre\\XML\\Element\\Elements',
         ];
         $reader->xml($input);
 
@@ -106,7 +106,7 @@ BLA;
         $writer->startDocument('1.0');
         $writer->setIndent(true);
         $writer->write([
-            '{http://sabredav.org/ns}root' => new ElementList($value),
+            '{http://sabredav.org/ns}root' => new Elements($value),
         ]);
 
         $output = $writer->outputMemory();

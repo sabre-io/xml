@@ -5,8 +5,8 @@ namespace Sabre\XML\Element;
 use Sabre\XML;
 
 /**
- * The ElementList is a simple list of elements, without values or attributes.
- * For example, the ElementList will parse:
+ * 'Elements' is a simple list of elements, without values or attributes.
+ * For example, Elements will parse:
  *
  * <?xml version="1.0"?>
  * <s:root xmlns:s="http://sabredav.org/ns">
@@ -31,7 +31,7 @@ use Sabre\XML;
  * @author Evert Pot (http://www.rooftopsolutions.nl/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class ElementList implements XML\Element {
+class Elements implements XML\Element {
 
     /**
      * Value to serialize
