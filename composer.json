@@ -5,7 +5,7 @@
     "homepage" : "https://github.com/evert/sabre-xml",
     "license" : "BSD-3-Clause",
     "require" : {
-        "php" : ">=5.3.1",
+        "php" : ">=5.4.1",
         "ext-xmlwriter" : "*",
         "ext-xmlreader" : "*",
         "ext-dom" : "*"

@@ -6,10 +6,10 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
 
     function testParseClarkNotation() {
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'http://sabredav.org/ns',
             'elem',
-        ), Util::parseClarkNotation('{http://sabredav.org/ns}elem'));
+        ], Util::parseClarkNotation('{http://sabredav.org/ns}elem'));
 
     }
 

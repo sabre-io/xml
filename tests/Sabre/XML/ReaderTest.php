@@ -51,35 +51,35 @@ BLA;
 
         $output = $reader->parse();
 
-        $expected = array(
-            array(
+        $expected = [
+            [
                 'name' => '{http://sabredav.org/ns}root',
-                'value' => array(
-                    array(
+                'value' => [
+                    [
                         'name' => '{http://sabredav.org/ns}elem1',
                         'value' => null,
-                        'attributes' => array(
+                        'attributes' => [
                             'attr' => 'val',
-                        ),
-                    ),
-                    array(
+                        ],
+                    ],
+                    [
                         'name' => '{http://sabredav.org/ns}elem2',
-                        'value' => array(
-                            array(
+                        'value' => [
+                            [
                                 'name' => '{http://sabredav.org/ns}elem3',
                                 'value' => 'Hi!',
-                                'attributes' => array(),
-                            ),
-                        ),
-                        'attributes' => array(),
-                    ),
+                                'attributes' => [],
+                            ],
+                        ],
+                        'attributes' => [],
+                    ],
 
-                ),
-                'attributes' => array(),
+                ],
+                'attributes' => [],
 
-            ),
+            ],
 
-        );
+        ];
 
         $this->assertEquals($expected, $output);
 
@@ -99,22 +99,22 @@ BLA;
 
         $output = $reader->parse();
 
-        $expected = array(
-            array(
+        $expected = [
+            [
                 'name' => '{http://sabredav.org/ns}root',
-                'value' => array(
-                    array(
+                'value' => [
+                    [
                         'name' => '{http://sabredav.org/ns}elem1',
                         'value' => null,
-                        'attributes' => array(
+                        'attributes' => [
                             '{urn:foo}attr' => 'val',
-                        ),
-                    ),
-                ),
-                'attributes' => array(),
-            ),
+                        ],
+                    ],
+                ],
+                'attributes' => [],
+            ],
 
-        );
+        ];
 
         $this->assertEquals($expected, $output);
 
@@ -130,27 +130,27 @@ BLA;
 BLA;
 
         $reader = new Reader();
-        $reader->elementMap = array(
+        $reader->elementMap = [
             '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Mock'
-        );
+        ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
-        $expected = array(
-            array(
+        $expected = [
+            [
                 'name' => '{http://sabredav.org/ns}root',
-                'value' => array(
-                    array(
+                'value' => [
+                    [
                         'name' => '{http://sabredav.org/ns}elem1',
                         'value' => 'foobar',
-                        'attributes' => array(),
-                    ),
-                ),
-                'attributes' => array(),
-            ),
+                        'attributes' => [],
+                    ],
+                ],
+                'attributes' => [],
+            ],
 
-        );
+        ];
 
         $this->assertEquals($expected, $output);
 

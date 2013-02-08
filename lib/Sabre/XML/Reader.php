@@ -27,7 +27,7 @@ class Reader extends XMLReader {
      *
      * @var array
      */
-    public $elementMap = array();
+    public $elementMap = [];
 
     /**
      * Returns the current nodename in clark-notation.
@@ -56,7 +56,7 @@ class Reader extends XMLReader {
         while($this->nodeType !== self::ELEMENT) {
             $this->read();
         }
-        return array($this->parseCurrentElement());
+        return [$this->parseCurrentElement()];
 
     }
 
@@ -75,8 +75,8 @@ class Reader extends XMLReader {
         $previousDepth = $this->depth;
 
         $text = null;
-        $elements = array();
-        $attributes = array();
+        $elements = [];
+        $attributes = [];
 
         $this->read();
 
@@ -99,10 +99,10 @@ class Reader extends XMLReader {
 
         } while ($this->depth > $previousDepth);
 
-        return array(
+        return [
             'elements' => $elements,
             'text' => $text,
-        );
+        ];
 
     }
 
@@ -120,7 +120,7 @@ class Reader extends XMLReader {
 
         $name = $this->getClark();
 
-        $attributes = array();
+        $attributes = [];
 
         if ($this->hasAttributes) {
             $attributes = $this->parseAttributes();
@@ -128,16 +128,16 @@ class Reader extends XMLReader {
 
 
         if (isset($this->elementMap[$name])) {
-            $value = call_user_func( array( $this->elementMap[$name], 'deserializeXml'), $this);
+            $value = call_user_func( [ $this->elementMap[$name], 'deserializeXml' ], $this);
         } else {
             $value = Element\Base::deserializeXml($this);
         }
 
-        return array(
+        return [
             'name' => $name,
             'value' => $value,
             'attributes' => $attributes,
-        );
+        ];
     }
 
     /**
@@ -152,7 +152,7 @@ class Reader extends XMLReader {
      */
     public function parseAttributes() {
 
-        $attributes = array();
+        $attributes = [];
 
         while($this->moveToNextAttribute()) {
             if ($this->namespaceURI) {

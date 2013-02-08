@@ -27,10 +27,10 @@ class Util {
             throw new \InvalidArgumentException('\'' . $str . '\' is not a valid clark-notation formatted string');
         }
 
-        return array(
+        return [
             $matches[1],
             $matches[2]
-        );
+        ];
 
     }
 

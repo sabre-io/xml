@@ -40,7 +40,7 @@ class Writer extends XMLWriter {
      *
      * @var array
      */
-    public $namespaceMap = array();
+    public $namespaceMap = [];
 
     /**
      * Any namespace that the writer is asked to write, will be added here.
@@ -51,7 +51,7 @@ class Writer extends XMLWriter {
      *
      * @var array
      */
-    protected $adhocNamespaces = array();
+    protected $adhocNamespaces = [];
 
     /**
      * When the first element is written, this flag is set to true.
