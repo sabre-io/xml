@@ -114,7 +114,7 @@ class KeyValue implements XML\Element {
                 if ($reader->isEmptyElement) {
                     $values[$clark] = null;
                 } else {
-                    $values[$clark] = $reader->parseInnerTree();
+                    $values[$clark] = $reader->parseCurrentElement()['value'];
                 }
 
             }
