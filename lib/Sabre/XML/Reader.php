@@ -70,7 +70,7 @@ class Reader extends XMLReader {
      *
      * @return array|string
      */
-    public function parseSubTree() {
+    public function parseInnerTree() {
 
         $previousDepth = $this->depth;
 
