@@ -118,7 +118,7 @@ class Reader extends XMLReader {
      *
      * @return array
      */
-    protected function parseCurrentElement() {
+    public function parseCurrentElement() {
 
         $name = $this->getClark();
 
