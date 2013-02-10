@@ -80,7 +80,7 @@ class Base implements XML\Element {
     static public function deserializeXml(XML\Reader $reader) {
 
         $subTree = $reader->parseSubTree();
-        return $subTree['elements']?:$subTree['text'];
+        return $subTree;
 
     }
 

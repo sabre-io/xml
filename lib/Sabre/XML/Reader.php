@@ -63,12 +63,12 @@ class Reader extends XMLReader {
     /**
      * Parses all elements below the current element.
      *
-     * This method will return an array. The array has the following properties:
-     *   * text - All text node, concatenated
-     *   * elements - an array of elements. Every element is an array with a
-     *                nodename, and the parsed value.
+     * This method will return a string if this was a text-node, or an array if
+     * there were sub-elements.
      *
-     * @return array
+     * If there's both text and sub-elements, the text will be discarded.
+     *
+     * @return array|string
      */
     public function parseSubTree() {
 
@@ -99,10 +99,12 @@ class Reader extends XMLReader {
 
         } while ($this->depth > $previousDepth);
 
-        return [
-            'elements' => $elements,
-            'text' => $text,
-        ];
+        if ($this->nodeType === self::END_ELEMENT) {
+            // Advancing one more after the last END_ELEMENT.
+            $this->read();
+        }
+
+        return ($elements?$elements:$text);
 
     }
 

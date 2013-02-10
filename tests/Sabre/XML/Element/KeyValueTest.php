@@ -6,7 +6,7 @@ use
     Sabre\XML\Reader,
     Sabre\XML\Writer;
 
-class StructTest extends \PHPUnit_Framework_TestCase {
+class KeyValueTest extends \PHPUnit_Framework_TestCase {
 
     function testDeserialize() {
 
@@ -31,7 +31,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}struct' => 'Sabre\\XML\\Element\\Struct',
+            '{http://sabredav.org/ns}struct' => 'Sabre\\XML\\Element\\KeyValue',
         ];
         $reader->xml($input);
 
@@ -47,8 +47,16 @@ BLA;
                             '{http://sabredav.org/ns}elem1' => null,
                             '{http://sabredav.org/ns}elem2' => 'hi',
                             '{http://sabredav.org/ns}elem3' => [
-                                '{http://sabredav.org/ns}elem4' => 'foo',
-                                '{http://sabredav.org/ns}elem5' => 'foo & bar',
+                                [
+                                    'name' => '{http://sabredav.org/ns}elem4',
+                                    'value' => 'foo',
+                                    'attributes' => [],
+                                ],
+                                [
+                                    'name' => '{http://sabredav.org/ns}elem5',
+                                    'value' => 'foo & bar',
+                                    'attributes' => [],
+                                ],
                             ],
                             '{http://sabredav.org/ns}elem6' => 'Hithere',
                         ],
@@ -97,7 +105,7 @@ BLA;
         $writer->startDocument('1.0');
         $writer->setIndent(true);
         $writer->write([
-            '{http://sabredav.org/ns}root' => new Struct($value),
+            '{http://sabredav.org/ns}root' => new KeyValue($value),
         ]);
 
         $output = $writer->outputMemory();
