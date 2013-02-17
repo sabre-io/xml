@@ -52,16 +52,30 @@ class Reader extends XMLReader {
      * This function returns an array with the following three elements:
      *    * name - The root element name.
      *    * value - The value for the root element.
-     *    * attributs - An array of attributes.
+     *    * attributes - An array of attributes.
+     *
+     * This function will also disable the standard libxml error handler (which
+     * usually just results in PHP errors), and throw exceptions instead.
      *
      * @return array
      */
     public function parse() {
 
+        $previousSetting = libxml_use_internal_errors(true);
+
         while($this->nodeType !== self::ELEMENT) {
             $this->read();
         }
-        return $this->parseCurrentElement();
+        $result = $this->parseCurrentElement();
+
+        $errors = libxml_get_errors();
+        libxml_use_internal_errors($previousSetting);
+
+        if ($errors) {
+            throw new ParseException($errors);
+        } else {
+            return $result;
+        }
 
     }
 
