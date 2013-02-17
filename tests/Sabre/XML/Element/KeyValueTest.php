@@ -38,49 +38,47 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            [
-                'name' => '{http://sabredav.org/ns}root',
-                'value' => [
-                    [
-                        'name' => '{http://sabredav.org/ns}struct',
-                        'value' => [
-                            '{http://sabredav.org/ns}elem1' => null,
-                            '{http://sabredav.org/ns}elem2' => 'hi',
-                            '{http://sabredav.org/ns}elem3' => [
-                                [
-                                    'name' => '{http://sabredav.org/ns}elem4',
-                                    'value' => 'foo',
-                                    'attributes' => [],
-                                ],
-                                [
-                                    'name' => '{http://sabredav.org/ns}elem5',
-                                    'value' => 'foo & bar',
-                                    'attributes' => [],
-                                ],
-                            ],
-                            '{http://sabredav.org/ns}elem6' => 'Hithere',
-                        ],
-                        'attributes' => [],
-                    ],
-                    [
-                        'name' => '{http://sabredav.org/ns}struct',
-                        'value' => [],
-                        'attributes' => [],
-                    ],
-                    [
-                        'name' => '{http://sabredav.org/ns}otherThing',
-                        'value' => [
+            'name' => '{http://sabredav.org/ns}root',
+            'value' => [
+                [
+                    'name' => '{http://sabredav.org/ns}struct',
+                    'value' => [
+                        '{http://sabredav.org/ns}elem1' => null,
+                        '{http://sabredav.org/ns}elem2' => 'hi',
+                        '{http://sabredav.org/ns}elem3' => [
                             [
-                                'name' => '{http://sabredav.org/ns}elem1',
-                                'value' => null,
+                                'name' => '{http://sabredav.org/ns}elem4',
+                                'value' => 'foo',
+                                'attributes' => [],
+                            ],
+                            [
+                                'name' => '{http://sabredav.org/ns}elem5',
+                                'value' => 'foo & bar',
                                 'attributes' => [],
                             ],
                         ],
-                        'attributes' => [],
+                        '{http://sabredav.org/ns}elem6' => 'Hithere',
                     ],
+                    'attributes' => [],
                 ],
-                'attributes' => [],
+                [
+                    'name' => '{http://sabredav.org/ns}struct',
+                    'value' => [],
+                    'attributes' => [],
+                ],
+                [
+                    'name' => '{http://sabredav.org/ns}otherThing',
+                    'value' => [
+                        [
+                            'name' => '{http://sabredav.org/ns}elem1',
+                            'value' => null,
+                            'attributes' => [],
+                        ],
+                    ],
+                    'attributes' => [],
+                ],
             ],
+            'attributes' => [],
         ], $output);
 
     }

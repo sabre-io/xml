@@ -49,6 +49,11 @@ class Reader extends XMLReader {
     /**
      * Reads the entire document.
      *
+     * This function returns an array with the following three elements:
+     *    * name - The root element name.
+     *    * value - The value for the root element.
+     *    * attributs - An array of attributes.
+     *
      * @return array
      */
     public function parse() {
@@ -56,7 +61,7 @@ class Reader extends XMLReader {
         while($this->nodeType !== self::ELEMENT) {
             $this->read();
         }
-        return [$this->parseCurrentElement()];
+        return $this->parseCurrentElement();
 
     }
 
