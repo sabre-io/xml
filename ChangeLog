@@ -1,4 +1,4 @@
-0.0.2-alpha (2013-??-??)
+0.0.2-alpha (2013-02-17)
 	* Added: Elements parser.
 	* Added: KeyValue parser.
 	* Change: Reader::parseSubTree is now named parseInnerTree, and returns
