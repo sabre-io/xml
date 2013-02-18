@@ -2,6 +2,8 @@
 	* Changed: Reader::parse returns an array with 1 level less depth.
 	* Added: A ParseException is now thrown if the XMLReader comes across an
 	  error.
+	* Fixed: Both the Elements and KeyValue parsers had severe issues with
+	  nesting.
 
 0.0.2-alpha (2013-02-17)
 	* Added: Elements parser.
