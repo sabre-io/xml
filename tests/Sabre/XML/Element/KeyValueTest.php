@@ -83,6 +83,56 @@ BLA;
 
     }
 
+    /**
+     * This test was added to find out why an element gets eaten by the
+     * SabreDAV MKCOL parser.
+     */
+    function testElementEater() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<mkcol xmlns="DAV:">
+  <set>
+    <prop>
+        <resourcetype><collection /></resourcetype>
+        <displayname>bla</displayname>
+    </prop>
+  </set>
+</mkcol>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{DAV:}set'          => 'Sabre\\XML\\Element\\KeyValue',
+            '{DAV:}prop'         => 'Sabre\\XML\\Element\\KeyValue',
+            '{DAV:}resourcetype' => 'Sabre\\XML\\Element\\KeyValue',
+        ];
+        $reader->xml($input);
+
+        $expected = [
+            'name' => '{DAV:}mkcol',
+            'value' => [
+                [
+                    'name' => '{DAV:}set',
+                    'value' => [
+                        '{DAV:}prop' => [
+                            '{DAV:}resourcetype' => [
+                                '{DAV:}collection' => null,
+                            ],
+                            '{DAV:}displayname' => 'bla',
+                        ],
+                    ],
+                    'attributes' => [],
+                ],
+            ],
+            'attributes' => [],
+        ];
+
+        $this->assertEquals($expected, $reader->parse());
+
+    }
+
+
     function testSerialize() {
 
         $value = [

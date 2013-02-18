@@ -121,6 +121,8 @@ class KeyValue implements XML\Element {
 
         } while ($reader->nodeType !== XML\Reader::END_ELEMENT);
 
+        $reader->next();
+
         return $values;
 
     }
