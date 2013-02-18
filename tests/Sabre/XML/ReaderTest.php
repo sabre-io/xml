@@ -148,6 +148,23 @@ BLA;
 
     }
 
+    /*
+    function testParseProblem() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Mock'
+        ];
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+    }*/
 
 }
 

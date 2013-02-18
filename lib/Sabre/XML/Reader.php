@@ -61,21 +61,23 @@ class Reader extends XMLReader {
      */
     public function parse() {
 
-        $previousSetting = libxml_use_internal_errors(true);
+        // $previousSetting = libxml_use_internal_errors(true);
 
-        while($this->nodeType !== self::ELEMENT) {
-            $this->read();
+        while($this->nodeType !== self::ELEMENT && $this->read()) {
+            // This will always feel odd to me
+            //
+            // noop
         }
         $result = $this->parseCurrentElement();
 
-        $errors = libxml_get_errors();
-        libxml_use_internal_errors($previousSetting);
+        // $errors = libxml_get_errors();
+        // libxml_use_internal_errors($previousSetting);
 
-        if ($errors) {
-            throw new ParseException($errors);
-        } else {
+        //if ($errors) {
+        //    throw new ParseException($errors);
+        //} else {
             return $result;
-        }
+        //}
 
     }
 
