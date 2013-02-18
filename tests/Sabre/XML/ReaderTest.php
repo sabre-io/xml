@@ -148,7 +148,6 @@ BLA;
 
     }
 
-    /*
     function testParseProblem() {
 
         $input = <<<BLA
@@ -162,9 +161,16 @@ BLA;
         ];
         $reader->xml($input);
 
-        $output = $reader->parse();
+        try {
+            $output = $reader->parse();
+            $this->fail('We expected a ParseException to be thrown');
+        } catch (ParseException $e) {
 
-    }*/
+            $this->assertInternalType('array', $e->getErrors());
+
+        }
+
+    }
 
 }
 

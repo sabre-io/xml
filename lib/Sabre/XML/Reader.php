@@ -61,23 +61,25 @@ class Reader extends XMLReader {
      */
     public function parse() {
 
-        // $previousSetting = libxml_use_internal_errors(true);
+        $previousSetting = libxml_use_internal_errors(true);
 
-        while($this->nodeType !== self::ELEMENT && $this->read()) {
-            // This will always feel odd to me
-            //
+        // Really sorry about the silence operator, seems like I have no
+        // choice. See:
+        //
+        // https://bugs.php.net/bug.php?id=64230
+        while($this->nodeType !== self::ELEMENT && @$this->read()) {
             // noop
         }
         $result = $this->parseCurrentElement();
 
-        // $errors = libxml_get_errors();
-        // libxml_use_internal_errors($previousSetting);
+        $errors = libxml_get_errors();
+        libxml_use_internal_errors($previousSetting);
 
-        //if ($errors) {
-        //    throw new ParseException($errors);
-        //} else {
+        if ($errors) {
+            throw new ParseException($errors);
+        } else {
             return $result;
-        //}
+        }
 
     }
 
@@ -99,7 +101,11 @@ class Reader extends XMLReader {
         $elements = [];
         $attributes = [];
 
-        $this->read();
+        // Really sorry about the silence operator, seems like I have no
+        // choice. See:
+        //
+        // https://bugs.php.net/bug.php?id=64230
+        if (!@$this->read()) return false;
 
         do {
 

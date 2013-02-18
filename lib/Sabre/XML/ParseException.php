@@ -30,11 +30,13 @@ class ParseException extends Exception {
      * You should pass a list of LibXMLError objects in its constructor.
      * 
      * @param LibXMLError[] $errors
+     * @param int $code
+     * @param Exception $previousException
      */
-    public function __construct(array $errors, $node = null, Exception $previousException = null) {
+    public function __construct(array $errors, $code = null, Exception $previousException = null) {
 
         $this->errors = $errors;
-        parent::__construct($error[0]->message . ' on line ' . $error[0]->line . ', column ' . $error[0]->column, $code, $previousException);
+        parent::__construct($errors[0]->message . ' on line ' . $errors[0]->line . ', column ' . $errors[0]->column, $code, $previousException);
 
     }
 
