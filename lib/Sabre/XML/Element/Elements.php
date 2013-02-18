@@ -112,8 +112,9 @@ class Elements implements XML\Element {
                 $values[] = $reader->getClark();
             }
 
-        } while($reader->next() && $reader->depth >= $currentDepth);
+        } while($reader->depth >= $currentDepth && $reader->next());
 
+        $reader->next();
         return $values;
 
     }

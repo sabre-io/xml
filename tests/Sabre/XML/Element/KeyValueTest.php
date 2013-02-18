@@ -105,7 +105,7 @@ BLA;
         $reader->elementMap = [
             '{DAV:}set'          => 'Sabre\\XML\\Element\\KeyValue',
             '{DAV:}prop'         => 'Sabre\\XML\\Element\\KeyValue',
-            '{DAV:}resourcetype' => 'Sabre\\XML\\Element\\KeyValue',
+            '{DAV:}resourcetype' => 'Sabre\\XML\\Element\\Elements',
         ];
         $reader->xml($input);
 
@@ -117,7 +117,7 @@ BLA;
                     'value' => [
                         '{DAV:}prop' => [
                             '{DAV:}resourcetype' => [
-                                '{DAV:}collection' => null,
+                                '{DAV:}collection',
                             ],
                             '{DAV:}displayname' => 'bla',
                         ],
