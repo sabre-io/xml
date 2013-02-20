@@ -76,7 +76,7 @@ class Reader extends XMLReader {
         libxml_use_internal_errors($previousSetting);
 
         if ($errors) {
-            throw new ParseException($errors);
+            throw new LibXMLException($errors);
         } else {
             return $result;
         }
@@ -101,34 +101,40 @@ class Reader extends XMLReader {
         $elements = [];
         $attributes = [];
 
+        if ($this->nodeType === self::ELEMENT && $this->isEmptyElement) {
+            // Easy!
+            $this->next();
+            return null;
+        }
+
         // Really sorry about the silence operator, seems like I have no
         // choice. See:
         //
         // https://bugs.php.net/bug.php?id=64230
         if (!@$this->read()) return false;
 
-        do {
+        while(true) {
 
             switch($this->nodeType) {
                 case self::ELEMENT :
                     $elements[] = $this->parseCurrentElement();
-                    // Skipping the rest of the sub-tree.
-                    //$this->next();
                     break;
                 case self::TEXT :
                     $text .= $this->value;
                     $this->read();
+                    break;
+                case self::END_ELEMENT :
+                    // Ensuring we are moving the cursor after the end element.
+                    $this->read();
+                    break 2;
+                case self::NONE :
+                    throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements.');
                 default :
                     // Advance to the next element
                     $this->read();
                     break;
             }
 
-        } while ($this->depth > $previousDepth);
-
-        if ($this->nodeType === self::END_ELEMENT) {
-            // Advancing one more after the last END_ELEMENT.
-            $this->read();
         }
 
         return ($elements?$elements:$text);

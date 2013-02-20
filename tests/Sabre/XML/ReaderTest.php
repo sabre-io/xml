@@ -164,7 +164,7 @@ BLA;
         try {
             $output = $reader->parse();
             $this->fail('We expected a ParseException to be thrown');
-        } catch (ParseException $e) {
+        } catch (LibXMLException $e) {
 
             $this->assertInternalType('array', $e->getErrors());
 
