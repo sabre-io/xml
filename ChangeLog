@@ -1,4 +1,4 @@
-0.0.3-alpha (2013-??-??)
+0.0.3-alpha (2013-02-22)
 	* Changed: Reader::parse returns an array with 1 level less depth.
 	* Added: A LibXMLException is now thrown if the XMLReader comes across an
 	  error.
