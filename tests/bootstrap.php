@@ -5,3 +5,4 @@ include __DIR__ . '/../vendor/autoload.php';
 
 // Some extra classes
 include __DIR__ . '/Sabre/XML/Element/Mock.php';
+include __DIR__ . '/Sabre/XML/Element/Eater.php';

@@ -172,5 +172,27 @@ BLA;
 
     }
 
+    /**
+     * @expectedException \Sabre\XML\ParseException
+     */
+    function testBrokenParserClass() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+<elem1 />
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Eater'
+        ];
+        $reader->xml($input);
+        $reader->parse();
+
+
+    }
+
 }
 
