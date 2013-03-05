@@ -26,7 +26,7 @@ simple, but rather very powerful for complex XML applications.
 Installation
 ------------
 
-This library requires PHP 5.3 and the XMLReader and XMLWriter extensions.
+This library requires PHP 5.4 and the XMLReader and XMLWriter extensions.
 Installation is done using composer.
 
 The general composer instructions can be found on the [composer website](http://getcomposer.org/doc/00-intro.md).
