@@ -176,5 +176,37 @@ XML;
 
     }
 
+    /**
+     * I discovered that when there's no whitespace between elements, elements
+     * can get skipped.
+     */
+    function testElementSkipProblem() {
+
+        $input = <<<BLA
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="http://sabredav.org/ns">
+<elem3>val3</elem3><elem4>val4</elem4><elem5>val5</elem5></root>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}root' => 'Sabre\\XML\\Element\\KeyValue',
+        ];
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+        $this->assertEquals([
+            'name' => '{http://sabredav.org/ns}root',
+            'value' => [
+                '{http://sabredav.org/ns}elem3' => 'val3',
+                '{http://sabredav.org/ns}elem4' => 'val4',
+                '{http://sabredav.org/ns}elem5' => 'val5',
+            ],
+            'attributes' => [],
+        ], $output);
+
+    }
+
 }
 

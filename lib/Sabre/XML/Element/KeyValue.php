@@ -104,15 +104,16 @@ class KeyValue implements XML\Element {
 
         $values = [];
 
+        $reader->read();
         do {
-
-            $reader->read();
 
             if ($reader->nodeType === XML\Reader::ELEMENT) {
 
                 $clark = $reader->getClark();
                 $values[$clark] = $reader->parseCurrentElement()['value'];
 
+            } else {
+                $reader->read();
             }
 
         } while ($reader->nodeType !== XML\Reader::END_ELEMENT);
