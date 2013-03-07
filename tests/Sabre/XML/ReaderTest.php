@@ -82,6 +82,38 @@ BLA;
 
     }
 
+    function testCDATA() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+  <foo><![CDATA[bar]]></foo>
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+        $expected = [
+            'name' => '{http://sabredav.org/ns}root',
+            'value' => [
+                [
+                    'name' => '{http://sabredav.org/ns}foo',
+                    'value' => 'bar',
+                    'attributes' => [],
+                ],
+
+            ],
+            'attributes' => [],
+
+        ];
+
+        $this->assertEquals($expected, $output);
+
+    }
+
     function testSimpleNamespacedAttribute() {
 
         $input = <<<BLA

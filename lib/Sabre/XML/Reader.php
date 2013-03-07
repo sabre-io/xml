@@ -121,6 +121,7 @@ class Reader extends XMLReader {
                     $elements[] = $this->parseCurrentElement();
                     break;
                 case self::TEXT :
+                case self::CDATA :
                     $text .= $this->value;
                     $this->read();
                     break;
