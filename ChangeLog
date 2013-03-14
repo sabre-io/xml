@@ -1,8 +1,9 @@
-0.0.4-alpha (2013-??-??)
+0.0.4-alpha (2013-03-14)
 	* Fixed: The KeyValue parser was skipping over elements when there was no
 	  whitespace between them.
 	* Fixed: Clearing libxml errors after parsing.
 	* Added: Support for CDATA.
+	* Added: Context properties.
 
 0.0.3-alpha (2013-02-22)
 	* Changed: Reader::parse returns an array with 1 level less depth.
