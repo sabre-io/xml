@@ -43,6 +43,19 @@ class Writer extends XMLWriter {
     public $namespaceMap = [];
 
     /**
+     * Context information.
+     *
+     * This array has no pre-defined meaning. It can be used by the the user to
+     * store arbitrary information.
+     *
+     * This is handy when a Property class needs access to this data. The only
+     * direct relation they have back to other objects is the Writer itself.
+     *
+     * @var array
+     */
+    public $context = [];
+
+    /**
      * Any namespace that the writer is asked to write, will be added here.
      *
      * Any of these elements will get a new namespace definition *every single

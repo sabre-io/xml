@@ -30,6 +30,19 @@ class Reader extends XMLReader {
     public $elementMap = [];
 
     /**
+     * Context information.
+     *
+     * This array has no pre-defined meaning. It can be used by the the user to
+     * store arbitrary information.
+     *
+     * This is handy when a Property class needs access to this data. The only
+     * direct relation they have back to other objects is the Reader itself.
+     *
+     * @var array
+     */
+    public $context = [];
+
+    /**
      * Returns the current nodename in clark-notation.
      *
      * For example: "{http://www.w3.org/2005/Atom}feed".
