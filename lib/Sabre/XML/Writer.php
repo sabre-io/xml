@@ -56,6 +56,15 @@ class Writer extends XMLWriter {
     public $context = [];
 
     /**
+     * This is used as a base uri.
+     *
+     * Serializers can optionally leverage this to expand relative urls.
+     *
+     * @var string
+     */
+    public $baseUri;
+
+    /**
      * Any namespace that the writer is asked to write, will be added here.
      *
      * Any of these elements will get a new namespace definition *every single
