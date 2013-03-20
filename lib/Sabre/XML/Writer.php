@@ -224,7 +224,7 @@ class Writer extends XMLWriter {
 
         $this->startElement($name);
         if (!is_null($content)) {
-            $this->text($content);
+            $this->write($content);
         }
         $this->endElement();
 

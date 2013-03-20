@@ -189,6 +189,22 @@ HI;
 
     }
 
+    function testWriteElementComplex() {
+
+        $this->writer->writeElement("{http://sabredav.org/ns}foo", new Element\KeyValue(['{http://sabredav.org/ns}bar' => 'test']));
+
+        $output = <<<HI
+<?xml version="1.0"?>
+<s:foo xmlns:s="http://sabredav.org/ns">
+ <s:bar>test</s:bar>
+</s:foo>
+
+HI;
+
+        $this->assertEquals($output, $this->writer->outputMemory());
+
+    }
+
     function testStartElementSimple() {
 
         $this->writer->startElement("foo");
