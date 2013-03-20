@@ -210,7 +210,7 @@ HI;
      */
     function testWriteBadObject() {
 
-        $this->writer->write(new StdClass());
+        $this->writer->write(new \StdClass());
 
     }
 

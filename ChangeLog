@@ -1,6 +1,7 @@
 0.0.5-alpha (2013-??-??)
 	* Added: baseUri property to the Writer class.
 	* Added: The writeElement method can now write complex elements.
+	* Added: Throwing exception when invalid objects are written.
 
 0.0.4-alpha (2013-03-14)
 	* Fixed: The KeyValue parser was skipping over elements when there was no
