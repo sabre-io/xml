@@ -170,6 +170,10 @@ class Writer extends XMLWriter {
 
             }
 
+        } elseif (is_object($value)) {
+
+            throw new InvalidArgumentException('The writer cannot serialize objects of type: ' . get_class($value));
+
         }
 
     }

@@ -205,6 +205,15 @@ HI;
 
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    function testWriteBadObject() {
+
+        $this->writer->write(new StdClass());
+
+    }
+
     function testStartElementSimple() {
 
         $this->writer->startElement("foo");
