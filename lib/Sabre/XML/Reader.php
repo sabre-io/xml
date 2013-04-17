@@ -13,8 +13,8 @@ use XMLReader;
  * After this is done, a single call to parse() will parse the entire document,
  * and delegate sub-sections of the document to element classes.
  *
- * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
- * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @copyright Copyright (C) 2007-2013 fruux GmbH (https://fruux.com/).
+ * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
 class Reader extends XMLReader {

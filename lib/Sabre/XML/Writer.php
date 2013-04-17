@@ -26,8 +26,8 @@ use
  * The write() method can take array structures to quickly write out simple xml
  * trees.
  *
- * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
- * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @copyright Copyright (C) 2007-2013 fruux GmbH (https://fruux.com/).
+ * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
 class Writer extends XMLWriter {

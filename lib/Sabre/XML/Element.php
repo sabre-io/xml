@@ -10,8 +10,8 @@ use XMLReader;
  * Elements are responsible for serializing and deserializing part of an XML
  * document into PHP values.
  *
- * @copyright Copyright (C) 2012-2013 Rooftop Solutions. All rights reserved.
- * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @copyright Copyright (C) 2007-2013 fruux GmbH (https://fruux.com/).
+ * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
 interface Element {
