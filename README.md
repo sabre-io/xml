@@ -244,3 +244,12 @@ When inspecting the output, the `link` element will now properly be replaced
 with our newly created object, and sending this back to the `Writer` will also
 work as expected.
 
+Support
+-------
+
+Head over to the [SabreDAV mailing list](http://groups.google.com/group/sabredav-discuss) for any questions.
+
+Made at fruux
+-------------
+
+This library is being developed by [fruux](https://fruux.com/). Drop us a line for commercial services or enterprise support.
