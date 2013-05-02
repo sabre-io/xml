@@ -47,7 +47,7 @@ Sample XML document
 All the following examples use an Atom xml document.
 The document can be found here:
 
-[atom.xml](https://github.com/evert/sabre-xml/blob/master/samples/atom.xml)
+[atom.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.xml)
 
 Note that this sample was taken from [wikipedia](https://en.wikipedia.org/wiki/Atom_%28standard%29).
 
@@ -74,7 +74,7 @@ var_dump($output);
 The `parse` method reads the entire file, and the resulting data is returned
 from that method.
 
-The result will look like this: [atom.parsed1.txt](https://github.com/evert/sabre-xml/blob/master/samples/atom.parsed1.txt)
+The result will look like this: [atom.parsed1.txt](https://github.com/fruux/sabre-xml/blob/master/samples/atom.parsed1.txt)
 
 Quite ugly indeed, but we'll get to cleaning that up later.
 
@@ -92,7 +92,7 @@ $writer->write( [$output] );
 echo $writer->outputMemory();
 ```
 
-The output will look like this: [atom.written1.xml](https://github.com/evert/sabre-xml/blob/master/samples/atom.written1.xml)
+The output will look like this: [atom.written1.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.written1.xml)
 
 Ugly you say? This library will inline xml namespaces everywhere, unless they
 are specified in advance:
@@ -109,7 +109,7 @@ $writer->write([$output]);
 echo $writer->outputMemory();
 ```
 
-The output looks pretty normal now: [atom.written2.xml](https://github.com/evert/sabre-xml/blob/master/samples/atom.written2.xml)
+The output looks pretty normal now: [atom.written2.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.written2.xml)
 
 Mapping XML elements
 --------------------
