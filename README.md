@@ -219,6 +219,7 @@ class AtomLink implements XML\Element {
                 $link->$name = $value;
             }
         }
+        $reader->next();
 
         return $link;
 
