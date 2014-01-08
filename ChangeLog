@@ -1,3 +1,6 @@
+0.0.6-alpha (2014-??-??)
+	* Added: CData element.
+
 0.0.5-alpha (2013-03-27)
 	* Added: baseUri property to the Writer class.
 	* Added: The writeElement method can now write complex elements.
