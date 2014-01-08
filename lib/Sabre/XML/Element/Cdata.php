@@ -19,7 +19,7 @@ use
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class CData implements XML\Element
+class Cdata implements XML\Element
 {
     /**
      * CDATA element value.
