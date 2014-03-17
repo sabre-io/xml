@@ -138,36 +138,31 @@ class Writer extends XMLWriter {
         } elseif (is_array($value)) {
 
             reset($value);
-            if (is_int(key($value))) {
-
-                // It's an array with numeric indices. We expect every item to
-                // be an array with a name and a value.
-                foreach($value as $subItem) {
-
-                    if (!is_array($subItem) || !array_key_exists('name', $subItem) || !array_key_exists('value', $subItem)) {
+            foreach ($value as $name => $item) {
+                if (is_int($name)) {
+                    // This item has a numeric index. We expect to be an array with a name and a value.
+                    if (!array_key_exists('name', $item) || !array_key_exists('value', $item)) {
                         throw new InvalidArgumentException('When passing an array to ->write with numeric indices, every item must have a "name" and a "value"');
                     }
-                    $this->startElement($subItem['name']);
-                    if (isset($subItem['attributes'])) {
-                        $this->writeAttributes($subItem['attributes']);
-                    }
-                    $this->write($subItem['value']);
-                    $this->endElement();
 
+                    $attributes = isset($item['attributes']) ? $item['attributes'] : [];
+                    $name = $item['name'];
+                    $item = $item['value'];
+                } elseif (is_array($item) && array_key_exists('value', $item)) {
+                    // This item has a text index. We expect to be an array with a value and optional attributes.
+                    $attributes = isset($item['attributes']) ? $item['attributes'] : [];
+                    $item = $item['value'];
+                } else {
+                    // If it's an array with text-indices, we expect every item's
+                    // key to be an xml element name in clark notation.
+                    // No attributes can be passed.
+                    $attributes = [];
                 }
 
-            } else {
-
-                // If it's an array with text-indices, we expect every item's
-                // key to be an xml element name in clark notation.
-                foreach($value as $name=>$subValue) {
-
-                    $this->startElement($name);
-                    $this->write($subValue);
-                    $this->endElement();
-
-                }
-
+                $this->startElement($name);
+                $this->writeAttributes($attributes);
+                $this->write($item);
+                $this->endElement();
             }
 
         } elseif (is_object($value)) {
