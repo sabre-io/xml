@@ -39,6 +39,68 @@ HI
 
     }
 
+    function testSimpleAttributes() {
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => [
+                'value' => 'text',
+                'attributes' => [
+                    'attr1' => 'attribute value',
+                ],
+            ],
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns" attr1="attribute value">text</s:root>
+
+HI
+        );
+
+    }
+
+    function testMixedSyntax() {
+        $this->compare([
+            '{http://sabredav.org/ns}root' => [
+                'single' => 'value',
+                'multiple' => [
+                    [
+                        'name' => 'foo',
+                        'value' => 'bar',
+                    ],
+                    [
+                        'name' => 'foo',
+                        'value' => 'foobar',
+                    ],
+                ],
+                'attributes' => [
+                    'value' => null,
+                    'attributes' => [
+                        'foo' => 'bar',
+                    ],
+                ],
+                [
+                    'name' => 'verbose',
+                    'value' => 'syntax',
+                    'attributes' => [
+                        'foo' => 'bar',
+                    ],
+                ],
+            ],
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">
+ <single>value</single>
+ <multiple>
+  <foo>bar</foo>
+  <foo>foobar</foo>
+ </multiple>
+ <attributes foo="bar"/>
+ <verbose foo="bar">syntax</verbose>
+</s:root>
+
+HI
+        );
+    }
+
     function testNull() {
 
         $this->compare([
