@@ -226,5 +226,23 @@ BLA;
 
     }
 
+    /**
+     * Test was added for Issue #10.
+     */
+    function testBrokenXML() {
+
+        $input = <<<BLA
+<test>
+<hello>
+</hello>
+</sffsdf>
+BLA;
+
+        $reader = new Reader();
+        $reader->xml($input);
+        $reader->parse();
+
+    }
+
 }
 
