@@ -228,6 +228,8 @@ BLA;
 
     /**
      * Test was added for Issue #10.
+     *
+     * @expectedException Sabre\XML\LibXMLException
      */
     function testBrokenXML() {
 
