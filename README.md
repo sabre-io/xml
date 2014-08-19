@@ -1,9 +1,9 @@
-SabreTooth XML library
-======================
+sabre/xml
+=========
 
 [![Build Status](https://secure.travis-ci.org/fruux/sabre-xml.png?branch=master)](http://travis-ci.org/fruux/sabre-xml)
 
-The SabreTooth XML library is a specialized xml reader and writer.
+The sabre/xml library is a specialized xml reader and writer.
 
 I often found myself repeating the same pattern for xml manipulation over and
 over. This library implements that pattern.
