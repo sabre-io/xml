@@ -30,8 +30,20 @@ BLA;
 
         $reader->next();
 
-        $this->assertNull($reader->getClark());
+        $this->assertEquals('{}root', $reader->getClark());
 
+    }
+
+    function testGetClarkNotOnAnElement() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root />
+BLA;
+        $reader = new Reader();
+        $reader->xml($input);
+
+        $this->assertNull($reader->getClark());
     }
 
     function testSimple() {

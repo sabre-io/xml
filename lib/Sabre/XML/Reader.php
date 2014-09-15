@@ -46,15 +46,18 @@ class Reader extends XMLReader {
      * Returns the current nodename in clark-notation.
      *
      * For example: "{http://www.w3.org/2005/Atom}feed".
+     * Or if no namespace is defined: "{}feed".
+     *
      * This method returns null if we're not currently on an element.
      *
      * @return string|null
      */
     public function getClark() {
 
-        if (!$this->namespaceURI) {
+        if (! $this->localName) {
             return null;
         }
+
         return '{' . $this->namespaceURI . '}' . $this->localName;
 
     }
