@@ -6,7 +6,7 @@ ChangeLog
 
 * Added: `CData` element.
 * #13: Better support for xml with no namespaces. (@kalmas)
-
+* Switched to PSR-4 directory structure.
 
 0.0.5 (2013-03-27)
 ------------------

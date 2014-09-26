@@ -23,8 +23,8 @@
         "source" : "https://github.com/fruux/sabre-xml"
     },
     "autoload" : {
-        "psr-0" : {
-            "Sabre\\XML" : "lib/"
+        "psr-4" : {
+            "Sabre\\XML\\" : "lib/"
         }
     },
     "bin" : [
