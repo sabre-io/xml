@@ -11,6 +11,8 @@ matrix:
     - php: hhvm
     - php: hhvm-nightly
 
-script: phpunit --configuration tests/phpunit.xml
+script:
+    - phpunit --configuration tests/phpunit.xml
+    - ./vendor/bin/phpcs  -p --standard=tests/phpcs/ruleset.xml lib/
 
 before_script: composer install
