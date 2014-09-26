@@ -52,7 +52,7 @@ class Reader extends XMLReader {
      *
      * @return string|null
      */
-    public function getClark() {
+    function getClark() {
 
         if (! $this->localName) {
             return null;
@@ -75,7 +75,7 @@ class Reader extends XMLReader {
      *
      * @return array
      */
-    public function parse() {
+    function parse() {
 
         $previousSetting = libxml_use_internal_errors(true);
 
@@ -110,7 +110,7 @@ class Reader extends XMLReader {
      *
      * @return array|string
      */
-    public function parseInnerTree() {
+    function parseInnerTree() {
 
         $previousDepth = $this->depth;
 
@@ -169,7 +169,7 @@ class Reader extends XMLReader {
      *
      * @return array
      */
-    public function parseCurrentElement() {
+    function parseCurrentElement() {
 
         $name = $this->getClark();
 
@@ -203,7 +203,7 @@ class Reader extends XMLReader {
      *
      * @return void
      */
-    public function parseAttributes() {
+    function parseAttributes() {
 
         $attributes = [];
 

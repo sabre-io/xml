@@ -31,7 +31,7 @@ interface Element {
      * @param Writer $writer
      * @return void
      */
-    public function serializeXml(Writer $writer);
+    function serializeXml(Writer $writer);
 
     /**
      * The deserialize method is called during xml parsing.
@@ -54,6 +54,6 @@ interface Element {
      * @param Reader $reader
      * @return mixed
      */
-    static public function deserializeXml(Reader $reader);
+    static function deserializeXml(Reader $reader);
 
 }

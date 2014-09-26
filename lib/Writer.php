@@ -127,7 +127,7 @@ class Writer extends XMLWriter {
      * @param mixed $value
      * @return void
      */
-    public function write($value) {
+    function write($value) {
 
         if (is_scalar($value)) {
             $this->text($value);
@@ -179,7 +179,7 @@ class Writer extends XMLWriter {
      * @param string $name
      * @return bool
      */
-    public function startElement($name) {
+    function startElement($name) {
 
         if ($name[0]==='{') {
             list($namespace, $localName) =
@@ -219,7 +219,7 @@ class Writer extends XMLWriter {
      * @param string $content
      * @return bool
      */
-    public function writeElement($name, $content = null) {
+    function writeElement($name, $content = null) {
 
         $this->startElement($name);
         if (!is_null($content)) {
@@ -240,7 +240,7 @@ class Writer extends XMLWriter {
      * @param array $attributes
      * @return void
      */
-    public function writeAttributes(array $attributes) {
+    function writeAttributes(array $attributes) {
 
         foreach($attributes as $name=>$value) {
             $this->writeAttribute($name, $value);
@@ -259,7 +259,7 @@ class Writer extends XMLWriter {
      * @param string $value
      * @return bool
      */
-    public function writeAttribute($name, $value) {
+    function writeAttribute($name, $value) {
 
         if ($name[0] === '{') {
             list(

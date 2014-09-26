@@ -45,7 +45,7 @@ class Elements implements XML\Element {
      *
      * @param array $value
      */
-    public function __construct(array $value = []) {
+    function __construct(array $value = []) {
 
         $this->value = $value;
 
@@ -66,7 +66,7 @@ class Elements implements XML\Element {
      * @param XML\Writer $writer
      * @return void
      */
-    public function serializeXml(XML\Writer $writer) {
+    function serializeXml(XML\Writer $writer) {
 
         foreach($this->value as $val) {
             $writer->writeElement($val);
@@ -95,7 +95,7 @@ class Elements implements XML\Element {
      * @param XML\Reader $reader
      * @return mixed
      */
-    static public function deserializeXml(XML\Reader $reader) {
+    static function deserializeXml(XML\Reader $reader) {
 
         // If there's no children, we don't do anything.
         if ($reader->isEmptyElement) {

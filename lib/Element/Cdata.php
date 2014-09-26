@@ -33,7 +33,7 @@ class Cdata implements XML\Element
      *
      * @param string $value
      */
-    public function __construct($value)
+    function __construct($value)
     {
         $this->value = $value;
     }
@@ -53,7 +53,7 @@ class Cdata implements XML\Element
      * @param XML\Writer $writer
      * @return void
      */
-    public function serializeXml(XML\Writer $writer) {
+    function serializeXml(XML\Writer $writer) {
 
         $writer->writeCData($this->value);
 

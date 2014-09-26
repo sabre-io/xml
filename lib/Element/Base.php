@@ -29,7 +29,7 @@ class Base implements XML\Element {
      *
      * @param mixed $value
      */
-    public function __construct($value = null) {
+    function __construct($value = null) {
 
         $this->value = $value;
 
@@ -50,7 +50,7 @@ class Base implements XML\Element {
      * @param XML\Writer $writer
      * @return void
      */
-    public function serializeXml(XML\Writer $writer) {
+    function serializeXml(XML\Writer $writer) {
 
         $writer->write($this->value);
 
@@ -77,7 +77,7 @@ class Base implements XML\Element {
      * @param XML\Reader $reader
      * @return mixed
      */
-    static public function deserializeXml(XML\Reader $reader) {
+    static function deserializeXml(XML\Reader $reader) {
 
         $subTree = $reader->parseInnerTree();
         return $subTree;
