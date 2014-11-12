@@ -3,22 +3,22 @@ sabre/xml
 
 [![Build Status](https://secure.travis-ci.org/fruux/sabre-xml.png?branch=master)](http://travis-ci.org/fruux/sabre-xml)
 
-The sabre/xml library is a specialized xml reader and writer.
+The sabre/xml library is a specialized XML reader and writer.
 
-I often found myself repeating the same pattern for xml manipulation over and
+I often found myself repeating the same pattern for XML manipulation over and
 over. This library implements that pattern.
 
-At it's heart, the library maps xml elements to PHP value objects.
+At it's heart, the library maps XML elements to PHP value objects.
 
 The following assumptions are made:
 
-* XML namespaces are used everywhere.
-* XML is written and read sequentially.
-* All XML elements map to PHP classes and scalars.
-* Elements generally contain either just text, just sub-elements or nothing all.
-* Elements are represented by classes. A class has a serializeXml() and a
-  deserializeXml() method.
-* Namespace prefixes must be completely ignored by an xml reader.
+* XML namespaces are used everywhere,
+* XML is written and read sequentially,
+* All XML elements map to PHP classes and scalars,
+* Elements generally contain either just text, just sub-elements or nothing all,
+* Elements are represented by classes. A class has a `serializeXml` and a
+  `deserializeXml` method,
+* Namespace prefixes must be completely ignored by an XML reader.
 
 This is not your average XML library. The intention is not to make this super
 simple, but rather very powerful for complex XML applications.
@@ -26,10 +26,10 @@ simple, but rather very powerful for complex XML applications.
 Installation
 ------------
 
-This library requires PHP 5.4 and the XMLReader and XMLWriter extensions.
-Installation is done using composer.
+This library requires PHP 5.4 and the XMLReader and XMLWriter extensions.
+Installation is done using Composer.
 
-The general composer instructions can be found on the [composer website](http://getcomposer.org/doc/00-intro.md).
+The general Composer instructions can be found on the [Composer's website](http://getcomposer.org/doc/00-intro.md).
 
 After that, just declare the sabre-xml dependency as follows:
 
@@ -44,12 +44,10 @@ Then, run `composer.phar update` and you should be good.
 Sample XML document
 -------------------
 
-All the following examples use an Atom xml document.
-The document can be found here:
+All the following examples use an Atom XML document.
+The document can be found here: [atom.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.xml).
 
-[atom.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.xml)
-
-Note that this sample was taken from [wikipedia](https://en.wikipedia.org/wiki/Atom_%28standard%29).
+Note that this sample was taken from [Wikipedia](https://en.wikipedia.org/wiki/Atom_%28standard%29).
 
 Reading XML documents
 ---------------------
@@ -81,7 +79,7 @@ Quite ugly indeed, but we'll get to cleaning that up later.
 Writing XML documents
 ---------------------
 
-To write that same XML document, we use the Writer class.
+To write that same XML document, we use the writer class.
 
 ```php
 $writer = new XML\Writer();
@@ -92,9 +90,9 @@ $writer->write( [$output] );
 echo $writer->outputMemory();
 ```
 
-The output will look like this: [atom.written1.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.written1.xml)
+The output will look like this: [atom.written1.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.written1.xml).
 
-Ugly you say? This library will inline xml namespaces everywhere, unless they
+Ugly you say? This library will inline XML namespaces everywhere, unless they
 are specified in advance:
 
 ```php
@@ -109,7 +107,7 @@ $writer->write([$output]);
 echo $writer->outputMemory();
 ```
 
-The output looks pretty normal now: [atom.written2.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.written2.xml)
+The output looks pretty normal now: [atom.written2.xml](https://github.com/fruux/sabre-xml/blob/master/samples/atom.written2.xml).
 
 Mapping XML elements
 --------------------
@@ -128,7 +126,7 @@ class AtomEntry {
   public $updated;
   public $summary;
 
-  /* etc.. */
+  /* etc. */
 
 }
 ```
@@ -149,10 +147,9 @@ class AtomFeed {
 
 Lets start with a simple one though, that recurs in a bunch of places: `link`.
 
-The `link` element can have a `href`, `rel` and `type` attribute. There's actually a
-bunch more if you're going for a full parser.
-
-We'll just focus on those three though..
+The `link` element can have a `href`, `rel` and `type` attribute. There's
+actually a bunch more if you're going for a full parser. We'll just focus on
+those three though.
 
 Our base class:
 
@@ -166,7 +163,7 @@ class AtomLink {
 }
 ```
 
-Now the SabreXML additions:
+Now the sabre/xml additions:
 
 ```php
 use Sabre\XML;
@@ -242,7 +239,7 @@ $output = $reader->parse();
 ```
 
 When inspecting the output, the `link` element will now properly be replaced
-with our newly created object, and sending this back to the `Writer` will also
+with our newly created object, and sending this back to the writer will also
 work as expected.
 
 Support
