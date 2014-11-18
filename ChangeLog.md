@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+0.1.0 (????-??-??)
+------------------
+
+* Removed: `Writer::$context` and `Reader::$context`.
+* Added: `Reader::$baseUri` to match `Writer::$baseUri`.
+
+
 0.0.6 (2014-09-26)
 ------------------
 

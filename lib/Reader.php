@@ -30,17 +30,17 @@ class Reader extends XMLReader {
     public $elementMap = [];
 
     /**
-     * Context information.
+     * A baseUri pointing to the document being parsed.
+     * This uri may be used to resolve relative urls that may appear in the
+     * document.
      *
-     * This array has no pre-defined meaning. It can be used by the the user to
-     * store arbitrary information.
+     * The reader itself does not use this property, but as it's an extremely
+     * common use-case for parsing xml documents, it's added here as a
+     * convenience.
      *
-     * This is handy when a Property class needs access to this data. The only
-     * direct relation they have back to other objects is the Reader itself.
-     *
-     * @var array
+     * @var string
      */
-    public $context = [];
+    public $baseUri;
 
     /**
      * Returns the current nodename in clark-notation.

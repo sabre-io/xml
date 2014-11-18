@@ -9,7 +9,8 @@
         "ext-xmlwriter" : "*",
         "ext-xmlreader" : "*",
         "ext-dom" : "*",
-        "lib-libxml" : ">=2.6.20"
+        "lib-libxml" : ">=2.6.20",
+        "sabre/uri" : "~0.0.1"
     },
     "authors" : [
         {
