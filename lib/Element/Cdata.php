@@ -86,4 +86,16 @@ class Cdata implements XML\Element
 
     }
 
+    /**
+     * Get element name.
+     *
+     * @param XML\Reader $reader
+     * @return null
+     */
+    static function getElementName(XML\Reader $reader) {
+
+        return null;
+
+    }
+
 }

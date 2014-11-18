@@ -84,5 +84,17 @@ class Base implements XML\Element {
 
     }
 
+    /**
+     * Get element name.
+     *
+     * @param XML\Reader $reader
+     * @return string|null
+     */
+    static function getElementName(Xml\Reader $reader) {
+
+        return $reader->getClark();
+
+    }
+
 }
 
