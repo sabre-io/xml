@@ -3,8 +3,6 @@
 namespace Sabre\XML;
 
 use XMLReader;
-use SplStack;
-use ArrayObject;
 
 /**
  * The Reader class expands upon PHP's built-in XMLReader.
