@@ -21,12 +21,15 @@ use ArrayObject;
  */
 class Reader extends XMLReader {
 
+    const STACK_ELEMENT_MAP = 0;
+    const STACK_BASE_URI    = 1;
+
     /**
      * Stack of contexts (map of elements and context informations).
      *
      * @var SplStack
      */
-    protected $stack = null;
+    protected $stack;
 
     /**
      * This is the element map. It contains a list of XML elements (in clark
@@ -36,7 +39,7 @@ class Reader extends XMLReader {
      *
      * @var ArrayObject
      */
-    public $elementMap = null;
+    public $elementMap;
 
     /**
      * A baseUri pointing to the document being parsed.
@@ -71,7 +74,10 @@ class Reader extends XMLReader {
      */
     public function pushContext() {
 
-        $this->stack->push(new ArrayObject());
+        $this->stack->push([
+            self::STACK_ELEMENT_MAP => new ArrayObject(),
+            self::STACK_BASE_URI    => new ArrayObject()
+        ]);
         $this->updateContext();
 
     }
@@ -95,8 +101,9 @@ class Reader extends XMLReader {
      */
     protected function updateContext() {
 
-        $lastElement = $this->stack->top();
-        $this->elementMap = &$lastElement;
+        $lastElement      = $this->stack->top();
+        $this->elementMap = &$lastElement[self::STACK_ELEMENT_MAP];
+        $this->baseUri    = &$lastElement[self::STACK_BASE_URI];
 
     }
 
