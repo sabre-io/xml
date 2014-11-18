@@ -70,14 +70,30 @@ class Reader extends XMLReader {
      * Create a new “context”, a new map of elements and a new context
      * information bucket.
      *
+     * @param bool $inherit  Whether we inherit from the previous context or
+     *                       not.
      * @return null
      */
-    public function pushContext() {
+    public function pushContext($inherit=true) {
 
-        $this->stack->push([
-            self::STACK_ELEMENT_MAP => new ArrayObject(),
-            self::STACK_BASE_URI    => new ArrayObject()
-        ]);
+        if($this->stack->isEmpty() || false===$inherit) {
+
+            $this->stack->push([
+                self::STACK_ELEMENT_MAP => new ArrayObject(),
+                self::STACK_BASE_URI    => new ArrayObject()
+            ]);
+
+        }
+        else {
+
+            $lastElement = $this->stack->pop();
+            $this->stack->push([
+                self::STACK_ELEMENT_MAP => clone $lastElement[self::STACK_ELEMENT_MAP],
+                self::STACK_BASE_URI    => clone $lastElement[self::STACK_BASE_URI]
+            ]);
+
+        }
+
         $this->updateContext();
 
     }
