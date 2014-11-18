@@ -43,22 +43,13 @@ class Writer extends XMLWriter {
     public $namespaceMap = [];
 
     /**
-     * Context information.
+     * A baseUri pointing to the document being generated.
      *
-     * This array has no pre-defined meaning. It can be used by the the user to
-     * store arbitrary information.
+     * The writer itself does not use this, but it may be used by implementors
+     * to automatically calculate absolute paths.
      *
-     * This is handy when a Property class needs access to this data. The only
-     * direct relation they have back to other objects is the Writer itself.
-     *
-     * @var array
-     */
-    public $context = [];
-
-    /**
-     * This is used as a base uri.
-     *
-     * Serializers can optionally leverage this to expand relative urls.
+     * The baseUri itself may also be relative, and could for instance simply
+     * point to the root where a REST application is running.
      *
      * @var string
      */
