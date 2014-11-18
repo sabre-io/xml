@@ -109,8 +109,8 @@ class KeyValue implements XML\Element {
 
             if ($reader->nodeType === XML\Reader::ELEMENT) {
 
-                $clark = $reader->getClark();
-                $values[$clark] = $reader->parseCurrentElement()['value'];
+                $name = static::getElementName($reader);
+                $values[$name] = $reader->parseCurrentElement()['value'];
 
             } else {
                 $reader->read();
@@ -121,6 +121,18 @@ class KeyValue implements XML\Element {
         $reader->read();
 
         return $values;
+
+    }
+
+    /**
+     * Get element name.
+     *
+     * @param XML\Reader $reader
+     * @return string|null
+     */
+    static function getElementName(XML\Reader $reader) {
+
+        return $reader->getClark();
 
     }
 

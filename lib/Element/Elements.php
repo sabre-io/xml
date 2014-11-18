@@ -109,13 +109,25 @@ class Elements implements XML\Element {
         do {
 
             if ($reader->nodeType === XML\Reader::ELEMENT) {
-                $values[] = $reader->getClark();
+                $values[] = static::getElementName($reader);
             }
 
         } while($reader->depth >= $currentDepth && $reader->next());
 
         $reader->next();
         return $values;
+
+    }
+
+    /**
+     * Get element name.
+     *
+     * @param XML\Reader $reader
+     * @return string|null
+     */
+    static function getElementName(XML\Reader $reader) {
+
+        return $reader->getClark();
 
     }
 

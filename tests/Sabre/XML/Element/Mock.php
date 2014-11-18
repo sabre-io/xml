@@ -57,4 +57,16 @@ class Mock implements XML\Element {
 
     }
 
+    /**
+     * Get element name.
+     *
+     * @param XML\Reader $reader
+     * @return string|null
+     */
+    static function getElementName(XML\Reader $reader) {
+
+        return $reader->getClark();
+
+    }
+
 }

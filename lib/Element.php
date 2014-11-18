@@ -56,4 +56,12 @@ interface Element {
      */
     static function deserializeXml(Reader $reader);
 
+    /**
+     * Get element name.
+     *
+     * @param Reader $reader
+     * @return string|null
+     */
+    static function getElementName(Reader $reader);
+
 }
