@@ -3,11 +3,13 @@
 namespace Sabre\XML;
 
 use XMLReader;
+use SplStack;
+use ArrayObject;
 
 /**
  * The Reader class expands upon PHP's built-in XMLReader.
  *
- * The intended usage, is to assign certain xml elements to PHP classes. These
+ * The intended usage, is to assign certain XML elements to PHP classes. These
  * need to be registered using the $elementMap public property.
  *
  * After this is done, a single call to parse() will parse the entire document,
@@ -20,14 +22,21 @@ use XMLReader;
 class Reader extends XMLReader {
 
     /**
-     * This is the element map. It contains a list of xml elements (in clark
+     * Stack of contexts (map of elements and context informations).
+     *
+     * @var SplStack
+     */
+    protected $stack = null;
+
+    /**
+     * This is the element map. It contains a list of XML elements (in clark
      * notation) as keys and PHP class names as values.
      *
      * The PHP class names must implement Sabre\XML\Element.
      *
-     * @var array
+     * @var ArrayObject
      */
-    public $elementMap = [];
+    public $elementMap = null;
 
     /**
      * A baseUri pointing to the document being parsed.
@@ -35,12 +44,61 @@ class Reader extends XMLReader {
      * document.
      *
      * The reader itself does not use this property, but as it's an extremely
-     * common use-case for parsing xml documents, it's added here as a
+     * common use-case for parsing XML documents, it's added here as a
      * convenience.
      *
      * @var string
      */
     public $baseUri;
+
+    /**
+     * Constructor.
+     *
+     * @return null
+     */
+    public function __construct() {
+
+        $this->stack = new SplStack();
+        $this->pushContext();
+
+    }
+
+    /**
+     * Create a new “context”, a new map of elements and a new context
+     * information bucket.
+     *
+     * @return null
+     */
+    public function pushContext() {
+
+        $this->stack->push(new ArrayObject());
+        $this->updateContext();
+
+    }
+
+    /**
+     * Restore the previous “context”.
+     *
+     * @return null
+     */
+    public function popContext() {
+
+        $this->stack->pop();
+        $this->updateContext();
+
+    }
+
+    /**
+     * Update the context.
+     *
+     * @return null
+     */
+    protected function updateContext() {
+
+        $lastElement = $this->stack->top();
+        $this->elementMap = &$lastElement;
+
+    }
 
     /**
      * Returns the current nodename in clark-notation.
@@ -163,7 +221,7 @@ class Reader extends XMLReader {
      * Parses the current XML element.
      *
      * This method returns arn array with 3 properties:
-     *   * name - A clark-notation xml element name.
+     *   * name - A clark-notation XML element name.
      *   * value - The parsed value.
      *   * attributes - A key-value list of attributes.
      *
@@ -179,8 +237,7 @@ class Reader extends XMLReader {
             $attributes = $this->parseAttributes();
         }
 
-
-        if (isset($this->elementMap[$name])) {
+        if (array_key_exists($name, $this->elementMap)) {
             $value = call_user_func( [ $this->elementMap[$name], 'deserializeXml' ], $this);
         } else {
             $value = Element\Base::deserializeXml($this);
