@@ -32,28 +32,7 @@ use
  */
 class Writer extends XMLWriter {
 
-    /**
-     * This is a list of namespaces that you want to give default prefixes.
-     *
-     * You must make sure you create this entire list before starting to write.
-     * They should be registered on the root element.
-     *
-     * @var array
-     */
-    public $namespaceMap = [];
-
-    /**
-     * A baseUri pointing to the document being generated.
-     *
-     * The writer itself does not use this, but it may be used by implementors
-     * to automatically calculate absolute paths.
-     *
-     * The baseUri itself may also be relative, and could for instance simply
-     * point to the root where a REST application is running.
-     *
-     * @var string
-     */
-    public $baseUri;
+    use ContextStackTrait;
 
     /**
      * Any namespace that the writer is asked to write, will be added here.
