@@ -81,7 +81,7 @@ trait ContextStackTrait {
     }
 
     /**
-     * Restore the previous “context”.
+     * Restore the previous "context".
      *
      * @return null
      */
