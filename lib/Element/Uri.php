@@ -67,7 +67,7 @@ class Uri implements XML\Element {
     }
 
     /**
-     * The deserialize method is called during xml parsing.
+     * This method is called during xml parsing.
      *
      * This method is called statically, this is because in theory this method
      * may be used as a type of constructor, or factory method.
