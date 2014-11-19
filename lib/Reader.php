@@ -139,6 +139,25 @@ class Reader extends XMLReader {
     }
 
     /**
+     * Reads all text below the current element, and returns this as a string.
+     *
+     * @return string
+     */
+    function readText() {
+
+        $result = '';
+        $previousDepth = $this->depth;
+
+        while($this->read() && $this->depth != $previousDepth) {
+            if (in_array($this->nodeType, [XMLReader::TEXT, XMLReader::CDATA, XMLReader::WHITESPACE])) {
+                $result.=$this->value;
+            }
+        }
+        return $result;
+
+    }
+
+    /**
      * Parses the current XML element.
      *
      * This method returns arn array with 3 properties:

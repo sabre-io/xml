@@ -10,6 +10,8 @@ ChangeLog
 * Removed: `Writer::$context` and `Reader::$context`.
 * #15: Added `Reader::$baseUri` to match `Writer::$baseUri`.
 * #20: Allow callbacks to be used instead of `Element` classes in the `Reader`.
+* #25: Added `readText` to quickly grab all text from a node and advance the
+  reader to the next node.
 
 
 0.0.6 (2014-09-26)
