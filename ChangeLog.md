@@ -9,6 +9,7 @@ ChangeLog
   `popContext`.
 * Removed: `Writer::$context` and `Reader::$context`.
 * #15: Added `Reader::$baseUri` to match `Writer::$baseUri`.
+* #20: Allow callbacks to be used instead of `Element` classes in the `Reader`.
 
 
 0.0.6 (2014-09-26)
@@ -17,6 +18,7 @@ ChangeLog
 * Added: `CData` element.
 * #13: Better support for xml with no namespaces. (@kalmas)
 * Switched to PSR-4 directory structure.
+
 
 0.0.5 (2013-03-27)
 ------------------
