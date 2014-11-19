@@ -15,7 +15,7 @@ use LogicException;
  *
  * If the uri is relative, it will be automatically expanded to an absolute
  * url during writing and reading, if the baseUri property is set on the
- * reader and/or writer. 
+ * reader and/or writer.
  *
  * @copyright Copyright (C) 2013-2014 fruux GmbH. All rights reserved.
  * @author Evert Pot (http://evertpot.com/)
@@ -94,7 +94,7 @@ class Uri implements XML\Element {
                 $reader->baseUri,
                 $reader->readText()
             )
-        ); 
+        );
 
     }
 
