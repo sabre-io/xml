@@ -1,0 +1,78 @@
+<?php
+
+namespace Sabre\XML\Element;
+
+use
+    Sabre\XML\Reader,
+    Sabre\XML\Writer;
+
+class UriTest extends \PHPUnit_Framework_TestCase {
+
+    function testDeserialize() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+  <uri>/foo/bar</uri>
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->baseUri = 'http://example.org/';
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}uri' => 'Sabre\\XML\\Element\\Uri',
+        ];
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+        $this->assertEquals(
+            [
+                'name' => '{http://sabredav.org/ns}root',
+                'value' => [
+                    [
+                        'name' => '{http://sabredav.org/ns}uri',
+                        'value' => new Uri('http://example.org/foo/bar'),
+                        'attributes' => [],
+                    ]
+                ],
+                'attributes' => [],
+            ],
+            $output
+        );
+
+    }
+
+    function testSerialize() {
+
+        $writer = new Writer();
+        $writer->namespaceMap = [
+            'http://sabredav.org/ns' => null
+        ];
+        $writer->openMemory();
+        $writer->startDocument('1.0');
+        $writer->setIndent(true);
+        $writer->baseUri = 'http://example.org/';
+        $writer->write([
+            '{http://sabredav.org/ns}root' => [
+                '{http://sabredav.org/ns}uri' => new Uri('/foo/bar'),
+            ]
+        ]);
+
+        $output = $writer->outputMemory();
+
+        $expected = <<<XML
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+ <uri>http://example.org/foo/bar</uri>
+</root>
+
+XML;
+
+        $this->assertEquals($expected, $output);
+
+
+    }
+
+}
+
