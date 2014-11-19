@@ -159,7 +159,11 @@ class Reader extends XMLReader {
         }
 
         if (array_key_exists($name, $this->elementMap)) {
-            $value = call_user_func( [ $this->elementMap[$name], 'deserializeXml' ], $this);
+            if (is_callable($this->elementMap[$name])) {
+                $value = call_user_func($this->elementMap[$name], $this);
+            } else {
+                $value = call_user_func( [ $this->elementMap[$name], 'deserializeXml' ], $this);
+            }
         } else {
             $value = Element\Base::deserializeXml($this);
         }
