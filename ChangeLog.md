@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-0.1.0 (????-??-??)
+0.1.0 (2014-11-24)
 ------------------
 
 * #16: Added ability to override `elementMap`, `namespaceMap` and `baseUri` for
