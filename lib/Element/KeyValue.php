@@ -67,7 +67,7 @@ class KeyValue implements Xml\Element {
      * @param Xml\Writer $writer
      * @return void
      */
-    function XmlSerialize(Xml\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer) {
 
         $writer->write($this->value);
 
@@ -94,7 +94,7 @@ class KeyValue implements Xml\Element {
      * @param Xml\Reader $reader
      * @return mixed
      */
-    static function XmlDeserialize(Xml\Reader $reader) {
+    static function xmlDeserialize(Xml\Reader $reader) {
 
         // If there's no children, we don't do anything.
         if ($reader->isEmptyElement) {
