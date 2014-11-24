@@ -240,10 +240,8 @@ class Writer extends XMLWriter {
             if (array_key_exists($namespace,$this->namespaceMap)) {
 
                 // It's an attribute with a namespace we know
-                $this->writeAttributeNS(
-                    $this->namespaceMap[$namespace],
-                    $localName,
-                    null,
+                $this->writeAttribute(
+                    $this->namespaceMap[$namespace] . ':' . $localName,
                     $value
                 );
             } else {
