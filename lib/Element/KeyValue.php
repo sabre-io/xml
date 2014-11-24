@@ -1,8 +1,8 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
-use Sabre\XML;
+use Sabre\Xml;
 
 /**
  * 'KeyValue' parses out all child elements from a single node, and outputs a
@@ -32,7 +32,7 @@ use Sabre\XML;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class KeyValue implements XML\Element {
+class KeyValue implements Xml\Element {
 
     /**
      * Value to serialize
@@ -64,10 +64,10 @@ class KeyValue implements XML\Element {
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param XML\Writer $writer
+     * @param Xml\Writer $writer
      * @return void
      */
-    function XmlSerialize(XML\Writer $writer) {
+    function XmlSerialize(Xml\Writer $writer) {
 
         $writer->write($this->value);
 
@@ -91,10 +91,10 @@ class KeyValue implements XML\Element {
      * $reader->parseInnerTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param XML\Reader $reader
+     * @param Xml\Reader $reader
      * @return mixed
      */
-    static function XmlDeserialize(XML\Reader $reader) {
+    static function XmlDeserialize(Xml\Reader $reader) {
 
         // If there's no children, we don't do anything.
         if ($reader->isEmptyElement) {
@@ -107,7 +107,7 @@ class KeyValue implements XML\Element {
         $reader->read();
         do {
 
-            if ($reader->nodeType === XML\Reader::ELEMENT) {
+            if ($reader->nodeType === Xml\Reader::ELEMENT) {
 
                 $clark = $reader->getClark();
                 $values[$clark] = $reader->parseCurrentElement()['value'];
@@ -116,7 +116,7 @@ class KeyValue implements XML\Element {
                 $reader->read();
             }
 
-        } while ($reader->nodeType !== XML\Reader::END_ELEMENT);
+        } while ($reader->nodeType !== Xml\Reader::END_ELEMENT);
 
         $reader->read();
 

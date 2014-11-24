@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 use XMLReader;
 
@@ -179,7 +179,7 @@ class Reader extends XMLReader {
 
         if (array_key_exists($name, $this->elementMap)) {
             $deserializer = $this->elementMap[$name];
-            if (is_subclass_of($deserializer, 'Sabre\\XML\\Element')) {
+            if (is_subclass_of($deserializer, 'Sabre\\Xml\\Element')) {
                 $value = call_user_func( [ $deserializer, 'xmlDeserialize' ], $this);
             } elseif (is_callable($deserializer)) {
                 $value = call_user_func($deserializer, $this);

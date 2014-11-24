@@ -1,8 +1,8 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
-use Sabre\XML;
+use Sabre\Xml;
 
 /**
  * 'Elements' is a simple list of elements, without values or attributes.
@@ -31,7 +31,7 @@ use Sabre\XML;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class Elements implements XML\Element {
+class Elements implements Xml\Element {
 
     /**
      * Value to serialize
@@ -63,10 +63,10 @@ class Elements implements XML\Element {
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param XML\Writer $writer
+     * @param Xml\Writer $writer
      * @return void
      */
-    function xmlSerialize(XML\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer) {
 
         foreach($this->value as $val) {
             $writer->writeElement($val);
@@ -92,10 +92,10 @@ class Elements implements XML\Element {
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param XML\Reader $reader
+     * @param Xml\Reader $reader
      * @return mixed
      */
-    static function xmlDeserialize(XML\Reader $reader) {
+    static function xmlDeserialize(Xml\Reader $reader) {
 
         // If there's no children, we don't do anything.
         if ($reader->isEmptyElement) {
@@ -108,7 +108,7 @@ class Elements implements XML\Element {
         $values = [];
         do {
 
-            if ($reader->nodeType === XML\Reader::ELEMENT) {
+            if ($reader->nodeType === Xml\Reader::ELEMENT) {
                 $values[] = $reader->getClark();
             }
 

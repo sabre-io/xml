@@ -1,9 +1,9 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
 use
-    Sabre\XML,
+    Sabre\Xml,
     LogicException;
 
 /**
@@ -19,7 +19,7 @@ use
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class Cdata implements XML\XmlSerializable
+class Cdata implements Xml\XmlSerializable
 {
     /**
      * CDATA element value.
@@ -50,10 +50,10 @@ class Cdata implements XML\XmlSerializable
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param XML\Writer $writer
+     * @param Xml\Writer $writer
      * @return void
      */
-    function xmlSerialize(XML\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer) {
 
         $writer->writeCData($this->value);
 

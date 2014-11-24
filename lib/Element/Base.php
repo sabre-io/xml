@@ -1,8 +1,8 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
-use Sabre\XML;
+use Sabre\Xml;
 
 /**
  * The Base XML element is the standard parser & generator that's used by the
@@ -15,7 +15,7 @@ use Sabre\XML;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class Base implements XML\Element {
+class Base implements Xml\Element {
 
     /**
      * PHP value to serialize.
@@ -47,10 +47,10 @@ class Base implements XML\Element {
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param XML\Writer $writer
+     * @param Xml\Writer $writer
      * @return void
      */
-    function xmlSerialize(XML\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer) {
 
         $writer->write($this->value);
 
@@ -74,10 +74,10 @@ class Base implements XML\Element {
      * $reader->parseInnerTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param XML\Reader $reader
+     * @param Xml\Reader $reader
      * @return mixed
      */
-    static function xmlDeserialize(XML\Reader $reader) {
+    static function xmlDeserialize(Xml\Reader $reader) {
 
         $subTree = $reader->parseInnerTree();
         return $subTree;

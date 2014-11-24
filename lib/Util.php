@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 /**
  * Utility methods for XML parsing and writing

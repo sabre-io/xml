@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 /**
  * This class contains the version number for this package.
