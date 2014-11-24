@@ -111,7 +111,7 @@ class Writer extends XMLWriter {
             foreach ($value as $name => $item) {
                 if (is_int($name)) {
                     // This item has a numeric index. We expect to be an array with a name and a value.
-                    if (!array_key_exists('name', $item) || !array_key_exists('value', $item)) {
+                    if (!is_array($item) || !array_key_exists('name', $item) || !array_key_exists('value', $item)) {
                         throw new InvalidArgumentException('When passing an array to ->write with numeric indices, every item must have a "name" and a "value"');
                     }
 
