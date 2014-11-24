@@ -21,7 +21,7 @@ class Mock implements XML\Element {
      * @param XML\Writer $writer
      * @return void
      */
-    function serializeXml(XML\Writer $writer) {
+    function xmlSerialize(XML\Writer $writer) {
 
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');
@@ -50,7 +50,7 @@ class Mock implements XML\Element {
      * @param XML\Reader $reader
      * @return mixed
      */
-    static function deserializeXml(XML\Reader $reader) {
+    static function xmlDeserialize(XML\Reader $reader) {
 
         $reader->next();
         return 'foobar';

@@ -19,7 +19,7 @@ use
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class Cdata implements XML\Element
+class Cdata implements XML\XmlSerializable
 {
     /**
      * CDATA element value.
@@ -53,36 +53,9 @@ class Cdata implements XML\Element
      * @param XML\Writer $writer
      * @return void
      */
-    function serializeXml(XML\Writer $writer) {
+    function xmlSerialize(XML\Writer $writer) {
 
         $writer->writeCData($this->value);
-
-    }
-
-    /**
-     * The deserialize method is called during xml parsing.
-     *
-     * This method is called statictly, this is because in theory this method
-     * may be used as a type of constructor, or factory method.
-     *
-     * Often you want to return an instance of the current class, but you are
-     * free to return other data as well.
-     *
-     * Important note 2: You are responsible for advancing the reader to the
-     * next element. Not doing anything will result in a never-ending loop.
-     *
-     * If you just want to skip parsing for this element altogether, you can
-     * just call $reader->next();
-     *
-     * $reader->parseSubTree() will parse the entire sub-tree, and advance to
-     * the next element.
-     *
-     * @param XML\Reader $reader
-     * @return mixed
-     */
-    public static function deserializeXml(XML\Reader $reader) {
-
-        throw new \LogicException('This deserializer should normally not be called.');
 
     }
 

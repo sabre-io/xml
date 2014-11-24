@@ -55,7 +55,7 @@ class Uri implements XML\Element {
      * @param XML\Writer $writer
      * @return void
      */
-    function serializeXml(XML\Writer $writer) {
+    function xmlSerialize(XML\Writer $writer) {
 
         $writer->text(
             \Sabre\Uri\resolve(
@@ -87,7 +87,7 @@ class Uri implements XML\Element {
      * @param XML\Reader $reader
      * @return mixed
      */
-    static function deserializeXml(XML\Reader $reader) {
+    static function xmlDeserialize(XML\Reader $reader) {
 
         return new self(
             \Sabre\Uri\resolve(

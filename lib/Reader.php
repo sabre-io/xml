@@ -178,13 +178,22 @@ class Reader extends XMLReader {
         }
 
         if (array_key_exists($name, $this->elementMap)) {
-            if (is_callable($this->elementMap[$name])) {
-                $value = call_user_func($this->elementMap[$name], $this);
+            $deserializer = $this->elementMap[$name];
+            if (is_subclass_of($deserializer, 'Sabre\\XML\\Element')) {
+                $value = call_user_func( [ $deserializer, 'xmlDeserialize' ], $this);
+            } elseif (is_callable($deserializer)) {
+                $value = call_user_func($deserializer, $this);
             } else {
-                $value = call_user_func( [ $this->elementMap[$name], 'deserializeXml' ], $this);
+                $type = gettype($deserializer);
+                if ($type==='string') {
+                    $type.=' (' . $deserializer . ')';
+                } elseif ($type==='object') {
+                    $type.=' (' . get_class($deserializer) . ')';
+                }
+                throw new \LogicException('Could not use this type as a deserializer: ' . $type );
             }
         } else {
-            $value = Element\Base::deserializeXml($this);
+            $value = Element\Base::xmlDeserialize($this);
         }
 
         return [
