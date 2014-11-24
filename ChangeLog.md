@@ -82,4 +82,4 @@ ChangeLog
 
 * First alpha release
 
-Project started: 2012-11-13
+Project started: 2012-11-13. First experiments in June 2009.
