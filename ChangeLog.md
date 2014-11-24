@@ -1,6 +1,17 @@
 ChangeLog
 =========
 
+0.2.0 (201?-??-??)
+------------------
+
+* Major BC Break: method names for the Element interface have been renamed
+  from `serializeXml` and `deserializeXml` to `xmlSerialize` and
+  `xmlDeserialize`. This is so that it matches PHP's `JsonSerializable`
+  interface.
+* #25: Added `XmlSerializable` to allow people to write serializers without
+  having to implement a deserializer in the same class.
+
+
 0.1.0 (2014-11-24)
 ------------------
 
