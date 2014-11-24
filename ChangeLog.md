@@ -10,6 +10,9 @@ ChangeLog
   interface.
 * #25: Added `XmlSerializable` to allow people to write serializers without
   having to implement a deserializer in the same class.
+* #26: Renamed the `Sabre\XML` namespace to `Sabre\Xml`. Due to composer magic
+  and the fact that PHP namespace are case-insensitive, this should not affect
+  anyone, unless you are doing exact string matches on class names.
 
 
 0.1.0 (2014-11-24)
