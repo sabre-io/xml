@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 class ReaderTest extends \PHPUnit_Framework_TestCase {
 
@@ -169,7 +169,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Mock'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock'
         ];
         $reader->xml($input);
 
@@ -283,7 +283,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Mock'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock'
         ];
         $reader->xml($input);
 
@@ -299,7 +299,7 @@ BLA;
     }
 
     /**
-     * @expectedException \Sabre\XML\ParseException
+     * @expectedException \Sabre\Xml\ParseException
      */
     function testBrokenParserClass() {
 
@@ -312,7 +312,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\XML\\Element\\Eater'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Eater'
         ];
         $reader->xml($input);
         $reader->parse();
@@ -323,7 +323,7 @@ BLA;
     /**
      * Test was added for Issue #10.
      *
-     * @expectedException Sabre\XML\LibXMLException
+     * @expectedException Sabre\Xml\LibXMLException
      */
     function testBrokenXML() {
 

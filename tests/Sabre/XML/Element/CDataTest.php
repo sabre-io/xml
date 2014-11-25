@@ -22,7 +22,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}blabla' => 'Sabre\\XML\\Element\\Cdata',
+            '{http://sabredav.org/ns}blabla' => 'Sabre\\Xml\\Element\\Cdata',
         ];
         $reader->xml($input);
 

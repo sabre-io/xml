@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 /**
  * Test for the ContextStackTrait
@@ -13,7 +13,7 @@ class ContextStackTest extends \PHPUnit_Framework_TestCase {
 
     function setUp() {
 
-        $this->stack = $this->getMockForTrait('Sabre\\XML\\ContextStackTrait');
+        $this->stack = $this->getMockForTrait('Sabre\\Xml\\ContextStackTrait');
 
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 class InfiteLoopTest extends \PHPUnit_Framework_TestCase {
 
@@ -18,7 +18,7 @@ class InfiteLoopTest extends \PHPUnit_Framework_TestCase {
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{DAV:}set' => 'Sabre\\XML\\Element\\KeyValue',
+            '{DAV:}set' => 'Sabre\\Xml\\Element\\KeyValue',
         ];
         $reader->xml($body);
 

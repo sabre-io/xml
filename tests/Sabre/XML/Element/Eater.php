@@ -1,8 +1,8 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
-use Sabre\XML;
+use Sabre\Xml;
 
 /**
  * The intention for this reader class, is to read past the end element. This
@@ -12,12 +12,12 @@ use Sabre\XML;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class Eater implements XML\Element {
+class Eater implements Xml\Element {
 
     /**
      * The serialize method is called during xml writing.
      *
-     * It should use the $writer argument to encode this object into XML.
+     * It should use the $writer argument to encode this object into Xml.
      *
      * Important note: it is not needed to create the parent element. The
      * parent element is already created, and we only have to worry about
@@ -26,10 +26,10 @@ class Eater implements XML\Element {
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      *
-     * @param XML\Writer $writer
+     * @param Xml\Writer $writer
      * @return void
      */
-    function xmlSerialize(XML\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer) {
 
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');
@@ -55,10 +55,10 @@ class Eater implements XML\Element {
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param XML\Reader $reader
+     * @param Xml\Reader $reader
      * @return mixed
      */
-    static function xmlDeserialize(XML\Reader $reader) {
+    static function xmlDeserialize(Xml\Reader $reader) {
 
         $reader->next();
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
 use
-    Sabre\XML\Reader,
-    Sabre\XML\Writer;
+    Sabre\Xml\Reader,
+    Sabre\Xml\Writer;
 
 class UriTest extends \PHPUnit_Framework_TestCase {
 
@@ -20,7 +20,7 @@ BLA;
         $reader = new Reader();
         $reader->baseUri = 'http://example.org/';
         $reader->elementMap = [
-            '{http://sabredav.org/ns}uri' => 'Sabre\\XML\\Element\\Uri',
+            '{http://sabredav.org/ns}uri' => 'Sabre\\Xml\\Element\\Uri',
         ];
         $reader->xml($input);
 

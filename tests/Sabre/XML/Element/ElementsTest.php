@@ -1,10 +1,10 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
 use
-    Sabre\XML\Reader,
-    Sabre\XML\Writer;
+    Sabre\Xml\Reader,
+    Sabre\Xml\Writer;
 
 class ElementsTest extends \PHPUnit_Framework_TestCase {
 
@@ -32,7 +32,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}listThingy' => 'Sabre\\XML\\Element\\Elements',
+            '{http://sabredav.org/ns}listThingy' => 'Sabre\\Xml\\Element\\Elements',
         ];
         $reader->xml($input);
 

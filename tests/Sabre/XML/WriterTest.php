@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\XML;
+namespace Sabre\Xml;
 
 class WriterTest extends \PHPUnit_Framework_TestCase {
 

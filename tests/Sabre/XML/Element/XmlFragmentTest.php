@@ -21,7 +21,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}fragment' => 'Sabre\\XML\\Element\\XmlFragment',
+            '{http://sabredav.org/ns}fragment' => 'Sabre\\Xml\\Element\\XmlFragment',
         ];
         $reader->xml($input);
 
