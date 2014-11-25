@@ -1,10 +1,9 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
-use
-    Sabre\XML\Reader,
-    Sabre\XML\Writer;
+use Sabre\Xml\Reader;
+use Sabre\Xml\Writer;
 
 class KeyValueTest extends \PHPUnit_Framework_TestCase {
 
