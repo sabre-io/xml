@@ -13,6 +13,8 @@ ChangeLog
 * #26: Renamed the `Sabre\XML` namespace to `Sabre\Xml`. Due to composer magic
   and the fact that PHP namespace are case-insensitive, this should not affect
   anyone, unless you are doing exact string matches on class names.
+* #23: It's not possible to automatically extract or serialize Xml fragments
+  from documents using `Sabre\Xml\Element\XmlFragment`.
 
 
 0.1.0 (2014-11-24)
