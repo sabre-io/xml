@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-0.2.0 (201?-??-??)
+0.2.0 (2014-12-05)
 ------------------
 
 * Major BC Break: method names for the Element interface have been renamed
