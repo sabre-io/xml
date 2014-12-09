@@ -2,7 +2,7 @@
     "name": "sabre/xml",
     "description" : "The Sabre XML parser is the only XML library that you may not hate.",
     "keywords" : [ "XML", "XMLReader", "XMLWriter", "DOM" ],
-    "homepage" : "https://github.com/fruux/sabre-xml",
+    "homepage" : "https://sabre.io/xml/",
     "license" : "BSD-3-Clause",
     "require" : {
         "php" : ">=5.4.1",
