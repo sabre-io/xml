@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+0.2.1 (2014-12-17)
+------------------
+
+* LibXMLException now inherits from ParseException, so it's easy for users to
+  catch any exception thrown by the parser.
+
+
 0.2.0 (2014-12-05)
 ------------------
 

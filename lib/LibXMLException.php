@@ -3,7 +3,6 @@
 namespace Sabre\Xml;
 
 use
-    Exception,
     LibXMLError;
 
 /**
@@ -15,7 +14,7 @@ use
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class LibXMLException extends Exception {
+class LibXMLException extends ParseException {
 
     /**
      * The error list.

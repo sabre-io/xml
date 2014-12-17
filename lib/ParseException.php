@@ -6,10 +6,7 @@ use
     Exception;
 
 /**
- * This exception is thrown when the Readers runs into a logical error.
- *
- * This means that there was no problem with the xml body, but rather one of
- * the element parser classes.
+ * This exception is thrown when the Readers runs into any error.
  *
  * @copyright Copyright (C) 2013-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
