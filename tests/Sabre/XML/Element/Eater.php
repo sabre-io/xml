@@ -8,7 +8,7 @@ use Sabre\Xml;
  * The intention for this reader class, is to read past the end element. This
  * should trigger a ParseException
  *
- * @copyright Copyright (C) 2007-2013 fruux GmbH (https://fruux.com/).
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */

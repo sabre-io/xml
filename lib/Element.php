@@ -13,7 +13,7 @@ use XMLReader;
  * It's a superset of XmlSerializable. It just adds a static method that allows
  * values to be deserialized as well.
  *
- * @copyright Copyright (C) 2013-2014 fruux GmbH (https://fruux.com/).
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
