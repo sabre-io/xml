@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+0.3.0 (2015-02-06)
+------------------
+
+* Added `$elementMap` argument to parseInnerTree, for quickly overriding
+  parsing rules within an element.
+
+
 0.2.2 (2015-02-05)
 ------------------
 
