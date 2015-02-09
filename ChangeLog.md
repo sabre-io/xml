@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+0.3.1 (2015-02-08)
+------------------
+
+* Added `XmlDeserializable` to match `XmlSerializable`.
+
+
 0.3.0 (2015-02-06)
 ------------------
 
