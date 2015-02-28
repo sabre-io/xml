@@ -13,7 +13,7 @@ use XMLReader;
  * After this is done, a single call to parse() will parse the entire document,
  * and delegate sub-sections of the document to element classes.
  *
- * @copyright Copyright (C) 2013-2014 fruux GmbH (https://fruux.com/).
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
@@ -87,9 +87,13 @@ class Reader extends XMLReader {
      *
      * If there's both text and sub-elements, the text will be discarded.
      *
+     * If the $elementMap argument is specified, the existing elementMap will
+     * be overridden while parsing the tree, and restored after this process.
+     *
+     * @param array $elementMap
      * @return array|string
      */
-    function parseInnerTree() {
+    function parseInnerTree(array $elementMap = null) {
 
         $previousDepth = $this->depth;
 
@@ -102,6 +106,12 @@ class Reader extends XMLReader {
             $this->next();
             return null;
         }
+
+        if (!is_null($elementMap)) {
+            $this->pushContext();
+            $this->elementMap = $elementMap;
+        }
+
 
         // Really sorry about the silence operator, seems like I have no
         // choice. See:
@@ -125,7 +135,7 @@ class Reader extends XMLReader {
                     $this->read();
                     break 2;
                 case self::NONE :
-                    throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements.');
+                    throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
                     // Advance to the next element
                     $this->read();
@@ -134,6 +144,9 @@ class Reader extends XMLReader {
 
         }
 
+        if (!is_null($elementMap)) {
+            $this->popContext();
+        }
         return ($elements?$elements:$text);
 
     }
@@ -179,7 +192,7 @@ class Reader extends XMLReader {
 
         if (array_key_exists($name, $this->elementMap)) {
             $deserializer = $this->elementMap[$name];
-            if (is_subclass_of($deserializer, 'Sabre\\Xml\\Element')) {
+            if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
                 $value = call_user_func( [ $deserializer, 'xmlDeserialize' ], $this);
             } elseif (is_callable($deserializer)) {
                 $value = call_user_func($deserializer, $this);

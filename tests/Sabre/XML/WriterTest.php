@@ -154,6 +154,24 @@ HI
 
     }
 
+    function testEmptyNamespace() {
+
+        // Empty namespaces are allowed, so we should support this.
+        $this->compare([
+            '{http://sabredav.org/ns}root' => [
+                '{}elem1' => 'bar',
+            ],
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">
+ <x1:elem1 xmlns:x1="">bar</x1:elem1>
+</s:root>
+
+HI
+        );
+
+    }
+
     function testAttributes() {
 
         $this->compare([

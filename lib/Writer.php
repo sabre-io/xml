@@ -26,7 +26,7 @@ use
  * The write() method can take array structures to quickly write out simple xml
  * trees.
  *
- * @copyright Copyright (C) 2013-2014 fruux GmbH (https://fruux.com/).
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
@@ -109,7 +109,9 @@ class Writer extends XMLWriter {
 
             reset($value);
             foreach ($value as $name => $item) {
+
                 if (is_int($name)) {
+
                     // This item has a numeric index. We expect to be an array with a name and a value.
                     if (!is_array($item) || !array_key_exists('name', $item) || !array_key_exists('value', $item)) {
                         throw new InvalidArgumentException('When passing an array to ->write with numeric indices, every item must be an array containing the "name" and "value" key');
@@ -118,10 +120,13 @@ class Writer extends XMLWriter {
                     $attributes = isset($item['attributes']) ? $item['attributes'] : [];
                     $name = $item['name'];
                     $item = $item['value'];
+
                 } elseif (is_array($item) && array_key_exists('value', $item)) {
+
                     // This item has a text index. We expect to be an array with a value and optional attributes.
                     $attributes = isset($item['attributes']) ? $item['attributes'] : [];
                     $item = $item['value'];
+
                 } else {
                     // If it's an array with text-indices, we expect every item's
                     // key to be an xml element name in clark notation.
@@ -133,6 +138,7 @@ class Writer extends XMLWriter {
                 $this->writeAttributes($attributes);
                 $this->write($item);
                 $this->endElement();
+
             }
 
         } elseif (is_object($value)) {
@@ -152,6 +158,7 @@ class Writer extends XMLWriter {
     function startElement($name) {
 
         if ($name[0]==='{') {
+
             list($namespace, $localName) =
                 Util::parseClarkNotation($name);
 
@@ -164,9 +171,11 @@ class Writer extends XMLWriter {
                 }
                 $result = $this->startElementNS($this->adhocNamespaces[$namespace], $localName, $namespace);
             }
+
         } else {
             $result = parent::startElement($name);
         }
+
         if (!$this->namespacesWritten) {
 
             foreach($this->namespaceMap as $namespace => $prefix) {
@@ -198,6 +207,7 @@ class Writer extends XMLWriter {
         $this->endElement();
 
     }
+
     /**
      * Writes a list of attributes.
      *
@@ -232,13 +242,13 @@ class Writer extends XMLWriter {
     function writeAttribute($name, $value) {
 
         if ($name[0] === '{') {
+
             list(
                 $namespace,
                 $localName
             ) = Util::parseClarkNotation($name);
 
             if (array_key_exists($namespace,$this->namespaceMap)) {
-
                 // It's an attribute with a namespace we know
                 $this->writeAttribute(
                     $this->namespaceMap[$namespace] . ':' . $localName,
@@ -258,6 +268,7 @@ class Writer extends XMLWriter {
                 );
 
             }
+
         } else {
             return parent::writeAttribute($name, $value);
         }

@@ -1,6 +1,25 @@
 ChangeLog
 =========
 
+0.3.1 (2015-02-08)
+------------------
+
+* Added `XmlDeserializable` to match `XmlSerializable`.
+
+
+0.3.0 (2015-02-06)
+------------------
+
+* Added `$elementMap` argument to parseInnerTree, for quickly overriding
+  parsing rules within an element.
+
+
+0.2.2 (2015-02-05)
+------------------
+
+* Now depends on sabre/uri 1.0.
+
+
 0.2.1 (2014-12-17)
 ------------------
 

@@ -27,7 +27,7 @@ use Sabre\Xml;
  *   "{http://sabredav.org/ns}elem5",
  * ];
  *
- * @copyright Copyright (C) 2013-2014 fruux GmbH (https://fruux.com/).
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
