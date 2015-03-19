@@ -2,7 +2,7 @@
 
 namespace Sabre\Xml;
 
-class UtilTest extends \PHPUnit_Framework_TestCase {
+class ServiceTest extends \PHPUnit_Framework_TestCase {
 
     function testGetReader() {
 
@@ -10,7 +10,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
             '{http://sabre.io/ns}test' => 'Test!',
         ];
 
-        $util = new Util();
+        $util = new Service();
         $util->elementMap = $elems;
 
         $reader = $util->getReader();
@@ -25,7 +25,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
             'http://sabre.io/ns' => 's',
         ];
 
-        $util = new Util();
+        $util = new Service();
         $util->namespaceMap = $ns;
 
         $writer = $util->getWriter();
@@ -44,7 +44,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
   <child>value</child>
 </root>
 XML;
-        $util = new Util();
+        $util = new Service();
         $result = $util->parse($xml, null, $rootElement);
         $this->assertEquals('{http://sabre.io/ns}root', $rootElement);
 
@@ -73,7 +73,7 @@ XML;
   <child>value</child>
 </root>
 XML;
-        $util = new Util();
+        $util = new Service();
         $result = $util->expect('{http://sabre.io/ns}root', $xml);
 
         $expected = [
@@ -101,7 +101,7 @@ XML;
   <child>value</child>
 </root>
 XML;
-        $util = new Util();
+        $util = new Service();
         $util->expect('{http://sabre.io/ns}error', $xml);
 
     }
@@ -111,7 +111,7 @@ XML;
      */
     function testWrite() {
 
-        $util = new Util();
+        $util = new Service();
         $util->namespaceMap = [
             'http://sabre.io/ns' => 's',
         ];
@@ -138,7 +138,7 @@ XML;
         $this->assertEquals([
             'http://sabredav.org/ns',
             'elem',
-        ], Util::parseClarkNotation('{http://sabredav.org/ns}elem'));
+        ], Service::parseClarkNotation('{http://sabredav.org/ns}elem'));
 
     }
 
@@ -147,7 +147,7 @@ XML;
      */
     function testParseClarkNotationFail() {
 
-        Util::parseClarkNotation('http://sabredav.org/ns}elem');
+        Service::parseClarkNotation('http://sabredav.org/ns}elem');
 
     }
 

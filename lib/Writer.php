@@ -160,7 +160,7 @@ class Writer extends XMLWriter {
         if ($name[0]==='{') {
 
             list($namespace, $localName) =
-                Util::parseClarkNotation($name);
+                Service::parseClarkNotation($name);
 
             if (array_key_exists($namespace, $this->namespaceMap)) {
                 $result = $this->startElementNS($this->namespaceMap[$namespace], $localName, null);
@@ -246,7 +246,7 @@ class Writer extends XMLWriter {
             list(
                 $namespace,
                 $localName
-            ) = Util::parseClarkNotation($name);
+            ) = Service::parseClarkNotation($name);
 
             if (array_key_exists($namespace,$this->namespaceMap)) {
                 // It's an attribute with a namespace we know

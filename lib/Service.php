@@ -3,16 +3,17 @@
 namespace Sabre\Xml;
 
 /**
- * Utility for easy parsing and writing XML.
+ * XML parsing and writing service.
  *
  * You are encouraged to make a instance of this for your application and
- * potentially extend it, as a central API point for dealing with xml.
+ * potentially extend it, as a central API point for dealing with xml and
+ * configuring the reader and writer.
  *
  * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
-class Util {
+class Service {
 
     /**
      * This is the element map. It contains a list of XML elements (in clark
