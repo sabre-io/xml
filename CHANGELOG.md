@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-0.4.0 (2015-??-??)
+0.4.0 (2015-03-18)
 ------------------
 
 * Added `Sabre\Xml\Service`. This is intended as a simple way to centrally
