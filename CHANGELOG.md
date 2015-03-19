@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+0.4.0 (2015-??-??)
+------------------
+
+* #36: Added a few convenience constants to `lib/constants.php`.
+
+
 0.3.1 (2015-02-08)
 ------------------
 
