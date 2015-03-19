@@ -1,10 +1,10 @@
 <?php
 
-namespace Sabre\XML\Element;
+namespace Sabre\Xml\Element;
 
 use
-    Sabre\XML\Reader,
-    Sabre\XML\Writer;
+    Sabre\Xml\Reader,
+    Sabre\Xml\Writer;
 
 class CDataTest extends \PHPUnit_Framework_TestCase {
 
