@@ -66,6 +66,39 @@ XML;
     /**
      * @depends testGetReader
      */
+    function testParseStream() {
+
+        $xml = <<<XML
+<root xmlns="http://sabre.io/ns">
+  <child>value</child>
+</root>
+XML;
+        $stream = fopen('php://memory','r+');
+        fwrite($stream, $xml);
+        rewind($stream);
+
+        $util = new Service();
+        $result = $util->parse($stream, null, $rootElement);
+        $this->assertEquals('{http://sabre.io/ns}root', $rootElement);
+
+        $expected = [
+            [
+                'name' => '{http://sabre.io/ns}child',
+                'value' => 'value',
+                'attributes' => [],
+            ]
+        ];
+
+        $this->assertEquals(
+            $expected,
+            $result
+        );
+
+    }
+
+    /**
+     * @depends testGetReader
+     */
     function testExpect() {
 
         $xml = <<<XML
@@ -75,6 +108,38 @@ XML;
 XML;
         $util = new Service();
         $result = $util->expect('{http://sabre.io/ns}root', $xml);
+
+        $expected = [
+            [
+                'name' => '{http://sabre.io/ns}child',
+                'value' => 'value',
+                'attributes' => [],
+            ]
+        ];
+
+        $this->assertEquals(
+            $expected,
+            $result
+        );
+    }
+
+    /**
+     * @depends testGetReader
+     */
+    function testExpectStream() {
+
+        $xml = <<<XML
+<root xmlns="http://sabre.io/ns">
+  <child>value</child>
+</root>
+XML;
+
+        $stream = fopen('php://memory','r+');
+        fwrite($stream, $xml);
+        rewind($stream);
+
+        $util = new Service();
+        $result = $util->expect('{http://sabre.io/ns}root', $stream);
 
         $expected = [
             [
