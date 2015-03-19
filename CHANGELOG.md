@@ -8,6 +8,7 @@ ChangeLog
   configure xml applications and easily parse/write things from there. #35, #38.
 * Renamed 'baseUri' to 'contextUri' everywhere.
 * #36: Added a few convenience constants to `lib/constants.php`.
+* `Sabre\Xml\Util::parseClarkNotation` is now in the `Sabre\Xml\Service` class.
 
 
 0.3.1 (2015-02-08)
