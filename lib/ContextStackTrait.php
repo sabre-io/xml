@@ -27,22 +27,25 @@ trait ContextStackTrait {
      *
      * The PHP class names must implement Sabre\Xml\Element.
      *
+     * Values may also be a callable. In that case the function will be called
+     * directly.
+     *
      * @var array
      */
     public $elementMap = [];
 
     /**
-     * A baseUri pointing to the document being parsed.
+     * A contextUri pointing to the document being parsed / written.
      * This uri may be used to resolve relative urls that may appear in the
      * document.
      *
-     * The reader itself does not use this property, but as it's an extremely
+     * The reader and writer don't use this property, but as it's an extremely
      * common use-case for parsing XML documents, it's added here as a
      * convenience.
      *
      * @var string
      */
-    public $baseUri;
+    public $contextUri;
 
     /**
      * This is a list of namespaces that you want to give default prefixes.
@@ -64,7 +67,7 @@ trait ContextStackTrait {
     /**
      * Create a new "context".
      *
-     * This allows you to safely modify the elementMap, baseUri or
+     * This allows you to safely modify the elementMap, contextUri or
      * namespaceMap. After you're done, you can restore the old data again
      * with popContext.
      *
@@ -74,7 +77,7 @@ trait ContextStackTrait {
 
         $this->contextStack[] = [
             $this->elementMap,
-            $this->baseUri,
+            $this->contextUri,
             $this->namespaceMap
         ];
 
@@ -89,7 +92,7 @@ trait ContextStackTrait {
 
         list(
             $this->elementMap,
-            $this->baseUri,
+            $this->contextUri,
             $this->namespaceMap
         ) = array_pop($this->contextStack);
 

@@ -18,7 +18,7 @@ class UriTest extends \PHPUnit_Framework_TestCase {
 BLA;
 
         $reader = new Reader();
-        $reader->baseUri = 'http://example.org/';
+        $reader->contextUri = 'http://example.org/';
         $reader->elementMap = [
             '{http://sabredav.org/ns}uri' => 'Sabre\\Xml\\Element\\Uri',
         ];
@@ -52,7 +52,7 @@ BLA;
         $writer->openMemory();
         $writer->startDocument('1.0');
         $writer->setIndent(true);
-        $writer->baseUri = 'http://example.org/';
+        $writer->contextUri = 'http://example.org/';
         $writer->write([
             '{http://sabredav.org/ns}root' => [
                 '{http://sabredav.org/ns}uri' => new Uri('/foo/bar'),

@@ -14,7 +14,7 @@ use LogicException;
  *    <d:href xmlns:d="DAV:">http://example.org/hi</d:href>
  *
  * If the uri is relative, it will be automatically expanded to an absolute
- * url during writing and reading, if the baseUri property is set on the
+ * url during writing and reading, if the contextUri property is set on the
  * reader and/or writer.
  *
  * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
@@ -63,7 +63,7 @@ class Uri implements Xml\Element {
 
         $writer->text(
             \Sabre\Uri\resolve(
-                $writer->baseUri,
+                $writer->contextUri,
                 $this->value
             )
         );
@@ -95,7 +95,7 @@ class Uri implements Xml\Element {
 
         return new self(
             \Sabre\Uri\resolve(
-                $reader->baseUri,
+                $reader->contextUri,
                 $reader->readText()
             )
         );

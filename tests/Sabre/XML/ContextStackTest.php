@@ -19,23 +19,23 @@ class ContextStackTest extends \PHPUnit_Framework_TestCase {
 
     function testPushAndPull() {
 
-        $this->stack->baseUri = '/foo/bar';
+        $this->stack->contextUri = '/foo/bar';
         $this->stack->elementMap['{DAV:}foo'] = 'Bar';
         $this->stack->namespaceMap['DAV:'] = 'd';
 
         $this->stack->pushContext();
 
-        $this->assertEquals('/foo/bar', $this->stack->baseUri);
+        $this->assertEquals('/foo/bar', $this->stack->contextUri);
         $this->assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
         $this->assertEquals('d', $this->stack->namespaceMap['DAV:']);
 
-        $this->stack->baseUri = '/gir/zim';
+        $this->stack->contextUri = '/gir/zim';
         $this->stack->elementMap['{DAV:}foo'] = 'newBar';
         $this->stack->namespaceMap['DAV:'] = 'dd';
 
         $this->stack->popContext();
 
-        $this->assertEquals('/foo/bar', $this->stack->baseUri);
+        $this->assertEquals('/foo/bar', $this->stack->contextUri);
         $this->assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
         $this->assertEquals('d', $this->stack->namespaceMap['DAV:']);
 
