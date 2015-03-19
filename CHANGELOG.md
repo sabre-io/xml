@@ -4,6 +4,10 @@ ChangeLog
 0.4.0 (2015-??-??)
 ------------------
 
+* Added `Sabre\Xml\Util`. Not a great name, but this is intended as a simple
+  way to centrally configure xml applications and easily parse/write things
+  from there. #35, #38.
+* Renamed 'baseUri' to 'contextUri' everywhere.
 * #36: Added a few convenience constants to `lib/constants.php`.
 
 
