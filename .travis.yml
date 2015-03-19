@@ -13,6 +13,9 @@ matrix:
 
 sudo: false
 
+cache: vendor
+
+
 script:
     - phpunit --configuration tests/phpunit.xml
     - ./vendor/bin/phpcs  -p --standard=tests/phpcs/ruleset.xml lib/
