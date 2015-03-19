@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+0.4.1 (2015-03-19)
+-----------------
+
+* #40: An element with an empty namespace (xmlns="") is not allowed to have a
+  prefix. This is now fixed.
+
+
 0.4.0 (2015-03-18)
 ------------------
 

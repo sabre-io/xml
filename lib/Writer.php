@@ -166,10 +166,17 @@ class Writer extends XMLWriter {
                 $result = $this->startElementNS($this->namespaceMap[$namespace], $localName, null);
             } else {
 
-                if (!isset($this->adhocNamespaces[$namespace])) {
-                    $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces)+1);
+                // An empty namespace means it's the global namespace. This is
+                // allowed, but it mustn't get a prefix.
+                if ($namespace==="") {
+                    $result = $this->startElement($localName);
+                    $this->writeAttribute('xmlns', '');
+                } else {
+                    if (!isset($this->adhocNamespaces[$namespace])) {
+                        $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces)+1);
+                    }
+                    $result = $this->startElementNS($this->adhocNamespaces[$namespace], $localName, $namespace);
                 }
-                $result = $this->startElementNS($this->adhocNamespaces[$namespace], $localName, $namespace);
             }
 
         } else {

@@ -164,7 +164,7 @@ HI
         ], <<<HI
 <?xml version="1.0"?>
 <s:root xmlns:s="http://sabredav.org/ns">
- <x1:elem1 xmlns:x1="">bar</x1:elem1>
+ <elem1 xmlns="">bar</elem1>
 </s:root>
 
 HI
