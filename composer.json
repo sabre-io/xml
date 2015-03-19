@@ -26,8 +26,7 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Sabre\\Xml\\" : "lib/",
-            "Sabre\\XML\\" : "lib/"
+            "Sabre\\Xml\\" : "lib/"
         }
     },
     "bin" : [
