@@ -28,9 +28,9 @@
         "psr-4" : {
             "Sabre\\Xml\\" : "lib/"
         },
-        "files" : {
+        "files" : [
             "lib/constants.php"
-        }
+        ]
     },
     "bin" : [
     ],
