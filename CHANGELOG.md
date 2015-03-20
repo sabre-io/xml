@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+0.4.2 (2015-??-??)
+-----------------
+
+* Removed `constants.php` again. They messed with PHPUnit and don't really
+  provide a great benefit.
+
+
 0.4.1 (2015-03-19)
 -----------------
 
