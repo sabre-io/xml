@@ -8,7 +8,7 @@ use Sabre\Xml;
  * The Base XML element is the standard parser & generator that's used by the
  * XML reader and writer.
  *
- * It spits out a simply PHP array structure during deserialization, that can
+ * It spits out a simple PHP array structure during deserialization, that can
  * also be directly injected back into Writer::write.
  *
  * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
@@ -41,7 +41,7 @@ class Base implements Xml\Element {
      * Use the $writer argument to write its own xml serialization.
      *
      * An important note: do _not_ create a parent element. Any element
-     * implementing XmlSerializble should only ever write what's considered
+     * implementing XmlSerializable should only ever write what's considered
      * its 'inner xml'.
      *
      * The parent of the current element is responsible for writing a
