@@ -83,6 +83,7 @@ XML;
                     $writer->startElement(
                         $reader->getClark()
                     );
+                    $empty = $reader->isEmptyElement;
                     while ($reader->moveToNextAttribute()) {
                         switch($reader->namespaceURI) {
                             case '' :
@@ -96,7 +97,7 @@ XML;
                                 break;
                         }
                     }
-                    if ($reader->isEmptyElement) {
+                    if ($empty) {
                         $writer->endElement();
                     }
                     break;
