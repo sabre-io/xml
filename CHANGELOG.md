@@ -1,15 +1,16 @@
 ChangeLog
 =========
 
-0.4.2 (2015-??-??)
------------------
+0.4.2 (2015-03-20)
+------------------
 
 * Removed `constants.php` again. They messed with PHPUnit and don't really
   provide a great benefit.
+* #41: Correctly handle self-closing xml elements.
 
 
 0.4.1 (2015-03-19)
------------------
+------------------
 
 * #40: An element with an empty namespace (xmlns="") is not allowed to have a
   prefix. This is now fixed.

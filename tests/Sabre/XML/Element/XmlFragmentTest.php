@@ -93,6 +93,11 @@ BLA;
                 '<foo:element xmlns:foo="http://example.org/ns" xmlns="http://sabredav.org/ns"><child>hello</child></foo:element>',
                 '<x1:element xmlns:x1="http://example.org/ns"><child>hello</child></x1:element>',
             ],
+            [
+                '<foo:element xmlns:foo="http://example.org/ns"><child/></foo:element>',
+                '<foo:element xmlns:foo="http://example.org/ns" xmlns="http://sabredav.org/ns"><child/></foo:element>',
+                '<x1:element xmlns:x1="http://example.org/ns"><child/></x1:element>',
+            ],
         ];
 
     }

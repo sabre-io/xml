@@ -96,6 +96,9 @@ XML;
                                 break;
                         }
                     }
+                    if ($reader->isEmptyElement) {
+                        $writer->endElement();
+                    }
                     break;
                 case Reader::CDATA :
                 case Reader::TEXT :
