@@ -1,7 +1,7 @@
 sabre/xml
 =========
 
-[![Build Status](https://secure.travis-ci.org/fruux/sabre-xml.png?branch=master)](http://travis-ci.org/fruux/sabre-xml)
+[![Build Status](https://secure.travis-ci.org/fruux/sabre-xml.svg?branch=master)](http://travis-ci.org/fruux/sabre-xml)
 
 The sabre/xml library is a specialized XML reader and writer.
 
