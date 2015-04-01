@@ -39,6 +39,22 @@ HI
 
     }
 
+    /**
+     * @depends testSimple
+     */
+    function testSimpleQuotes() {
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => '"text"',
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">&quot;text&quot;</s:root>
+
+HI
+        );
+
+    }
+
     function testSimpleAttributes() {
 
         $this->compare([

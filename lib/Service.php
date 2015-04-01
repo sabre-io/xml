@@ -76,14 +76,7 @@ class Service {
      *
      * The $rootElementName is specified by reference and will be populated
      * with the root element name of the document.
-     *
-     * If a non-null value was set to $rootElementName when calling this
-     * function, the parse function will compare it to the actual root element
-     * name and throw an exception if they didn't match.
-     *
-     * This is useful in cases where you expected a specific document to be
-     * passed, and reduces the amount of if statements.
-     *
+
      * @param string|resource $input
      * @param string|null $contextUri
      * @param string|null $rootElementName
