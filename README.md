@@ -5,24 +5,6 @@ sabre/xml
 
 The sabre/xml library is a specialized XML reader and writer.
 
-I often found myself repeating the same pattern for XML manipulation over and
-over. This library implements that pattern.
-
-At it's heart, the library maps XML elements to PHP value objects.
-
-The following assumptions are made:
-
-* XML namespaces are used everywhere,
-* XML is written and read sequentially,
-* All XML elements map to PHP classes and scalars,
-* Elements generally contain either just text, just sub-elements or nothing all,
-* Elements are represented by classes. A class has a `serializeXml` and a
-  `deserializeXml` method,
-* Namespace prefixes must be completely ignored by an XML reader.
-
-This is not your average XML library. The intention is not to make this super
-simple, but rather very powerful for complex XML applications.
-
 Documentation
 -------------
 
