@@ -50,8 +50,8 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
             ]
         ];
@@ -73,7 +73,7 @@ XML;
   <child>value</child>
 </root>
 XML;
-        $stream = fopen('php://memory','r+');
+        $stream = fopen('php://memory', 'r+');
         fwrite($stream, $xml);
         rewind($stream);
 
@@ -83,8 +83,8 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
             ]
         ];
@@ -111,8 +111,8 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
             ]
         ];
@@ -134,7 +134,7 @@ XML;
 </root>
 XML;
 
-        $stream = fopen('php://memory','r+');
+        $stream = fopen('php://memory', 'r+');
         fwrite($stream, $xml);
         rewind($stream);
 
@@ -143,8 +143,8 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
             ]
         ];

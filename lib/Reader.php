@@ -62,7 +62,7 @@ class Reader extends XMLReader {
         // choice. See:
         //
         // https://bugs.php.net/bug.php?id=64230
-        while($this->nodeType !== self::ELEMENT && @$this->read()) {
+        while ($this->nodeType !== self::ELEMENT && @$this->read()) {
             // noop
         }
         $result = $this->parseCurrentElement();
@@ -119,9 +119,9 @@ class Reader extends XMLReader {
         // https://bugs.php.net/bug.php?id=64230
         if (!@$this->read()) return false;
 
-        while(true) {
+        while (true) {
 
-            switch($this->nodeType) {
+            switch ($this->nodeType) {
                 case self::ELEMENT :
                     $elements[] = $this->parseCurrentElement();
                     break;
@@ -147,7 +147,7 @@ class Reader extends XMLReader {
         if (!is_null($elementMap)) {
             $this->popContext();
         }
-        return ($elements?$elements:$text);
+        return ($elements ? $elements : $text);
 
     }
 
@@ -161,9 +161,9 @@ class Reader extends XMLReader {
         $result = '';
         $previousDepth = $this->depth;
 
-        while($this->read() && $this->depth != $previousDepth) {
+        while ($this->read() && $this->depth != $previousDepth) {
             if (in_array($this->nodeType, [XMLReader::TEXT, XMLReader::CDATA, XMLReader::WHITESPACE])) {
-                $result.=$this->value;
+                $result .= $this->value;
             }
         }
         return $result;
@@ -193,25 +193,25 @@ class Reader extends XMLReader {
         if (array_key_exists($name, $this->elementMap)) {
             $deserializer = $this->elementMap[$name];
             if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
-                $value = call_user_func( [ $deserializer, 'xmlDeserialize' ], $this);
+                $value = call_user_func([ $deserializer, 'xmlDeserialize' ], $this);
             } elseif (is_callable($deserializer)) {
                 $value = call_user_func($deserializer, $this);
             } else {
                 $type = gettype($deserializer);
-                if ($type==='string') {
-                    $type.=' (' . $deserializer . ')';
-                } elseif ($type==='object') {
-                    $type.=' (' . get_class($deserializer) . ')';
+                if ($type === 'string') {
+                    $type .= ' (' . $deserializer . ')';
+                } elseif ($type === 'object') {
+                    $type .= ' (' . get_class($deserializer) . ')';
                 }
-                throw new \LogicException('Could not use this type as a deserializer: ' . $type );
+                throw new \LogicException('Could not use this type as a deserializer: ' . $type);
             }
         } else {
             $value = Element\Base::xmlDeserialize($this);
         }
 
         return [
-            'name' => $name,
-            'value' => $value,
+            'name'       => $name,
+            'value'      => $value,
             'attributes' => $attributes,
         ];
     }
@@ -230,7 +230,7 @@ class Reader extends XMLReader {
 
         $attributes = [];
 
-        while($this->moveToNextAttribute()) {
+        while ($this->moveToNextAttribute()) {
             if ($this->namespaceURI) {
 
                 // Ignoring 'xmlns', it doesn't make any sense.

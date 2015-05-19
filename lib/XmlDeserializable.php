@@ -2,8 +2,6 @@
 
 namespace Sabre\Xml;
 
-use XMLReader;
-
 /**
  * Implementing the XmlDeserializable interface allows you to use a class as a
  * deserializer for a specific element.

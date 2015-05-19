@@ -2,9 +2,8 @@
 
 namespace Sabre\Xml\Element;
 
-use
-    Sabre\Xml\Reader,
-    Sabre\Xml\Writer;
+use Sabre\Xml\Reader;
+use Sabre\Xml\Writer;
 
 class CDataTest extends \PHPUnit_Framework_TestCase {
 
@@ -57,4 +56,3 @@ XML;
     }
 
 }
-

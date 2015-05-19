@@ -2,9 +2,7 @@
 
 namespace Sabre\Xml\Element;
 
-use
-    Sabre\Xml,
-    LogicException;
+use Sabre\Xml;
 
 /**
  * CDATA element.

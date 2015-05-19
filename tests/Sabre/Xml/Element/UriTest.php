@@ -2,9 +2,8 @@
 
 namespace Sabre\Xml\Element;
 
-use
-    Sabre\Xml\Reader,
-    Sabre\Xml\Writer;
+use Sabre\Xml\Reader;
+use Sabre\Xml\Writer;
 
 class UriTest extends \PHPUnit_Framework_TestCase {
 
@@ -28,11 +27,11 @@ BLA;
 
         $this->assertEquals(
             [
-                'name' => '{http://sabredav.org/ns}root',
+                'name'  => '{http://sabredav.org/ns}root',
                 'value' => [
                     [
-                        'name' => '{http://sabredav.org/ns}uri',
-                        'value' => new Uri('http://example.org/foo/bar'),
+                        'name'       => '{http://sabredav.org/ns}uri',
+                        'value'      => new Uri('http://example.org/foo/bar'),
                         'attributes' => [],
                     ]
                 ],
@@ -75,4 +74,3 @@ XML;
     }
 
 }
-

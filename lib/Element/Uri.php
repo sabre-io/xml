@@ -3,7 +3,6 @@
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
-use LogicException;
 
 /**
  * Uri element.

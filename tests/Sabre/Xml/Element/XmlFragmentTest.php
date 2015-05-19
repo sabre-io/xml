@@ -28,11 +28,11 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}fragment',
-                    'value' => new XmlFragment($expected),
+                    'name'       => '{http://sabredav.org/ns}fragment',
+                    'value'      => new XmlFragment($expected),
                     'attributes' => [],
                 ],
             ],

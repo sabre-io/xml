@@ -37,22 +37,22 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}struct',
+                    'name'  => '{http://sabredav.org/ns}struct',
                     'value' => [
                         '{http://sabredav.org/ns}elem1' => null,
                         '{http://sabredav.org/ns}elem2' => 'hi',
                         '{http://sabredav.org/ns}elem3' => [
                             [
-                                'name' => '{http://sabredav.org/ns}elem4',
-                                'value' => 'foo',
+                                'name'       => '{http://sabredav.org/ns}elem4',
+                                'value'      => 'foo',
                                 'attributes' => [],
                             ],
                             [
-                                'name' => '{http://sabredav.org/ns}elem5',
-                                'value' => 'foo & bar',
+                                'name'       => '{http://sabredav.org/ns}elem5',
+                                'value'      => 'foo & bar',
                                 'attributes' => [],
                             ],
                         ],
@@ -61,16 +61,16 @@ BLA;
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}struct',
-                    'value' => [],
+                    'name'       => '{http://sabredav.org/ns}struct',
+                    'value'      => [],
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}otherThing',
+                    'name'  => '{http://sabredav.org/ns}otherThing',
                     'value' => [
                         [
-                            'name' => '{http://sabredav.org/ns}elem1',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem1',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                     ],
@@ -109,10 +109,10 @@ BLA;
         $reader->xml($input);
 
         $expected = [
-            'name' => '{DAV:}mkcol',
+            'name'  => '{DAV:}mkcol',
             'value' => [
                 [
-                    'name' => '{DAV:}set',
+                    'name'  => '{DAV:}set',
                     'value' => [
                         '{DAV:}prop' => [
                             '{DAV:}resourcetype' => [
@@ -139,7 +139,7 @@ BLA;
             '{http://sabredav.org/ns}elem2' => 'textValue',
             '{http://sabredav.org/ns}elem3' => [
                 '{http://sabredav.org/ns}elem4' => 'text2',
-                '{http://sabredav.org/ns}elem5' =>  null,
+                '{http://sabredav.org/ns}elem5' => null,
             ],
             '{http://sabredav.org/ns}elem6' => 'text3',
         ];
@@ -196,7 +196,7 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 '{http://sabredav.org/ns}elem3' => 'val3',
                 '{http://sabredav.org/ns}elem4' => 'val4',
@@ -208,4 +208,3 @@ BLA;
     }
 
 }
-

@@ -64,21 +64,21 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => null,
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => null,
                     'attributes' => [
                         'attr' => 'val',
                     ],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}elem2',
+                    'name'  => '{http://sabredav.org/ns}elem2',
                     'value' => [
                         [
-                            'name' => '{http://sabredav.org/ns}elem3',
-                            'value' => 'Hi!',
+                            'name'       => '{http://sabredav.org/ns}elem3',
+                            'value'      => 'Hi!',
                             'attributes' => [],
                         ],
                     ],
@@ -109,11 +109,11 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}foo',
-                    'value' => 'bar',
+                    'name'       => '{http://sabredav.org/ns}foo',
+                    'value'      => 'bar',
                     'attributes' => [],
                 ],
 
@@ -141,11 +141,11 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => null,
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => null,
                     'attributes' => [
                         '{urn:foo}attr' => 'val',
                     ],
@@ -176,11 +176,11 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => 'foobar',
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => 'foobar',
                     'attributes' => [],
                 ],
             ],
@@ -216,11 +216,11 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => 'foobar',
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => 'foobar',
                     'attributes' => [],
                 ],
             ],
@@ -258,11 +258,11 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => 'hello world',
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => 'hello world',
                     'attributes' => [],
                 ],
             ],
@@ -371,14 +371,14 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
+                    'name'  => '{http://sabredav.org/ns}elem1',
                     'value' => [
                         [
-                            'name' => '{http://sabredav.org/ns}elem1',
-                            'value' => 'foobar',
+                            'name'       => '{http://sabredav.org/ns}elem1',
+                            'value'      => 'foobar',
                             'attributes' => [],
                         ]
                     ],
@@ -394,4 +394,3 @@ BLA;
     }
 
 }
-

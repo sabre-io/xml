@@ -76,7 +76,7 @@ class Service {
      *
      * The $rootElementName is specified by reference and will be populated
      * with the root element name of the document.
-
+     *
      * @param string|resource $input
      * @param string|null $contextUri
      * @param string|null $rootElementName
@@ -178,7 +178,7 @@ class Service {
      */
     static function parseClarkNotation($str) {
 
-        if (!preg_match('/^{([^}]*)}(.*)$/',$str,$matches)) {
+        if (!preg_match('/^{([^}]*)}(.*)$/', $str, $matches)) {
             throw new \InvalidArgumentException('\'' . $str . '\' is not a valid clark-notation formatted string');
         }
 

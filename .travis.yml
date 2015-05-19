@@ -17,6 +17,6 @@ cache: vendor
 
 script:
   - ./bin/phpunit --configuration tests/phpunit.xml.dist
-  - ./bin/sabre-cs-fixer fix lib/ --dry-run --diff
+  - ./bin/sabre-cs-fixer fix . --dry-run --diff
 
 before_script: composer install

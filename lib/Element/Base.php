@@ -89,4 +89,3 @@ class Base implements Xml\Element {
     }
 
 }
-

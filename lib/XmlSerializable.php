@@ -2,8 +2,6 @@
 
 namespace Sabre\Xml;
 
-use XMLReader;
-
 /**
  * Objects implementing XmlSerializable can control how they are represented in
  * Xml.

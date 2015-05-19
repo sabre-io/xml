@@ -10,7 +10,7 @@ use Sabre\Xml;
  *
  * Attributes will be removed, and duplicate child elements are discarded.
  * Complex values within the elements will be parsed by the 'standard' parser.
-
+ *
  * For example, KeyValue will parse:
  *
  * <?xml version="1.0"?>
@@ -129,4 +129,3 @@ class KeyValue implements Xml\Element {
     }
 
 }
-

@@ -72,7 +72,7 @@ class Elements implements Xml\Element {
      */
     function xmlSerialize(Xml\Writer $writer) {
 
-        foreach($this->value as $val) {
+        foreach ($this->value as $val) {
             $writer->writeElement($val);
         }
 
@@ -116,7 +116,7 @@ class Elements implements Xml\Element {
                 $values[] = $reader->getClark();
             }
 
-        } while($reader->depth >= $currentDepth && $reader->next());
+        } while ($reader->depth >= $currentDepth && $reader->next());
 
         $reader->next();
         return $values;
@@ -124,4 +124,3 @@ class Elements implements Xml\Element {
     }
 
 }
-

@@ -1,11 +1,11 @@
 <?php
 
-$try = array(
+$try = [
     __DIR__ . '/../vendor/autoload.php',
     __DIR__ . '/../../../autoload.php',
-);
+];
 
-foreach($try as $path) {
+foreach ($try as $path) {
     if (file_exists($path)) {
         include $path;
         break;
@@ -13,5 +13,5 @@ foreach($try as $path) {
 }
 
 // Some extra classes
-include __DIR__ . '/Sabre/XML/Element/Mock.php';
-include __DIR__ . '/Sabre/XML/Element/Eater.php';
+include __DIR__ . '/Sabre/Xml/Element/Mock.php';
+include __DIR__ . '/Sabre/Xml/Element/Eater.php';

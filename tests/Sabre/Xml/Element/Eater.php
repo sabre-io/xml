@@ -63,7 +63,7 @@ class Eater implements Xml\Element {
         $reader->next();
 
         $count = 1;
-        while($count) {
+        while ($count) {
 
             $reader->read();
             if ($reader->nodeType === $reader::END_ELEMENT) {

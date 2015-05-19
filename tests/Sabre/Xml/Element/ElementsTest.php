@@ -2,9 +2,8 @@
 
 namespace Sabre\Xml\Element;
 
-use
-    Sabre\Xml\Reader,
-    Sabre\Xml\Writer;
+use Sabre\Xml\Reader;
+use Sabre\Xml\Writer;
 
 class ElementsTest extends \PHPUnit_Framework_TestCase {
 
@@ -39,10 +38,10 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}listThingy',
+                    'name'  => '{http://sabredav.org/ns}listThingy',
                     'value' => [
                         '{http://sabredav.org/ns}elem1',
                         '{http://sabredav.org/ns}elem2',
@@ -54,26 +53,26 @@ BLA;
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}listThingy',
-                    'value' => [],
+                    'name'       => '{http://sabredav.org/ns}listThingy',
+                    'value'      => [],
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}otherThing',
+                    'name'  => '{http://sabredav.org/ns}otherThing',
                     'value' => [
                         [
-                            'name' => '{http://sabredav.org/ns}elem1',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem1',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                         [
-                            'name' => '{http://sabredav.org/ns}elem2',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem2',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                         [
-                            'name' => '{http://sabredav.org/ns}elem3',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem3',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                     ],
@@ -128,4 +127,3 @@ XML;
     }
 
 }
-

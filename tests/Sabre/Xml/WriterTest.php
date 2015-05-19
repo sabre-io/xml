@@ -59,7 +59,7 @@ HI
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
-                'value' => 'text',
+                'value'      => 'text',
                 'attributes' => [
                     'attr1' => 'attribute value',
                 ],
@@ -76,26 +76,26 @@ HI
     function testMixedSyntax() {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
-                'single' => 'value',
+                'single'   => 'value',
                 'multiple' => [
                     [
-                        'name' => 'foo',
+                        'name'  => 'foo',
                         'value' => 'bar',
                     ],
                     [
-                        'name' => 'foo',
+                        'name'  => 'foo',
                         'value' => 'foobar',
                     ],
                 ],
                 'attributes' => [
-                    'value' => null,
+                    'value'      => null,
                     'attributes' => [
                         'foo' => 'bar',
                     ],
                 ],
                 [
-                    'name' => 'verbose',
-                    'value' => 'syntax',
+                    'name'       => 'verbose',
+                    'value'      => 'syntax',
                     'attributes' => [
                         'foo' => 'bar',
                     ],
@@ -135,8 +135,8 @@ HI
         $this->compare([
             '{http://sabredav.org/ns}root' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => 'text',
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => 'text',
                     'attributes' => [
                         'attr1' => 'attribute value',
                     ],
@@ -193,12 +193,12 @@ HI
         $this->compare([
             '{http://sabredav.org/ns}root' => [
                 [
-                    'name' => '{http://sabredav.org/ns}elem1',
-                    'value' => 'text',
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => 'text',
                     'attributes' => [
-                        'attr1' => 'val1',
+                        'attr1'                         => 'val1',
                         '{http://sabredav.org/ns}attr2' => 'val2',
-                        '{urn:foo}attr3' => 'val3',
+                        '{urn:foo}attr3'                => 'val3',
                     ],
                 ],
             ],
@@ -326,4 +326,3 @@ HI;
 
     }
 }
-

@@ -70,14 +70,14 @@ XML;
 
         $elementNamespace = null;
 
-        while($reader->read()) {
+        while ($reader->read()) {
 
             if ($reader->depth < 1) {
                 // Skipping the root node.
                 continue;
             }
 
-            switch($reader->nodeType) {
+            switch ($reader->nodeType) {
 
                 case Reader::ELEMENT :
                     $writer->startElement(
@@ -85,7 +85,7 @@ XML;
                     );
                     $empty = $reader->isEmptyElement;
                     while ($reader->moveToNextAttribute()) {
-                        switch($reader->namespaceURI) {
+                        switch ($reader->namespaceURI) {
                             case '' :
                                 $writer->writeAttribute($reader->localName, $reader->value);
                                 break;

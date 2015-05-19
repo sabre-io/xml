@@ -2,8 +2,6 @@
 
 namespace Sabre\Xml;
 
-use XMLReader;
-
 /**
  * This is the XML element interface.
  *
