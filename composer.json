@@ -32,7 +32,10 @@
     "bin" : [
     ],
     "require-dev": {
-        "squizlabs/php_codesniffer": "*",
+        "sabre/cs": "~0.0.2",
         "phpunit/phpunit" : "*"
+    },
+    "config" : {
+        "bin-dir" : "bin/"
     }
 }

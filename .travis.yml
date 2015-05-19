@@ -15,9 +15,8 @@ sudo: false
 
 cache: vendor
 
-
 script:
-    - phpunit --configuration tests/phpunit.xml
-    - ./vendor/bin/phpcs  -p --standard=tests/phpcs/ruleset.xml lib/
+  - ./bin/phpunit --configuration tests/phpunit.xml.dist
+  - ./bin/sabre-cs-fixer fix lib/ --dry-run --diff
 
 before_script: composer install
