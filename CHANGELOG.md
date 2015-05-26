@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+1.0.0 (2015-05-25)
+------------------
+
+* No functional changes since 0.4.3. Marking it as 1.0.0 as a promise for
+  API stability.
+* Using php-cs-fixer for automated CS enforcement.
+
+
 0.4.3 (2015-04-01)
 -----------------
 
