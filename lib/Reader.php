@@ -21,6 +21,9 @@ class Reader extends XMLReader {
 
     use ContextStackTrait;
 
+    /** @var bool  */
+    protected $validationEnabled = false;
+
     /**
      * Returns the current nodename in clark-notation.
      *
@@ -123,8 +126,15 @@ class Reader extends XMLReader {
 
             switch ($this->nodeType) {
                 case self::ELEMENT :
-                    $elements[] = $this->parseCurrentElement();
-                    break;
+                    // I have encountered a situation where the document was deemed valid while there was a syntax issue with a given end tag. An eternal loop was the result.
+                    // XMLReader will never validate the entire tree. Exclusively the node that is processed. Each node should be individually validated to make sure that the parser ends processing unexpected (syntax)
+                    // errors occur. This validation should be  optional and disabled by default for backward compatibility. I'm did not test every
+                    // use case I could think of, but it seems like the validation will always fail without the proper schema (or DTD) in place.
+                    if(!$this->isValidationEnabled() or $this->isValid()) {
+                        $elements[] = $this->parseCurrentElement();
+                        break;
+                    }
+                    throw new ParseException("Unable to parse invalid '{$this->localName}' node. The XML document is not valid.");
                 case self::TEXT :
                 case self::CDATA :
                     $text .= $this->value;
@@ -250,5 +260,24 @@ class Reader extends XMLReader {
         return $attributes;
 
     }
+
+    /**
+     * @return boolean
+     */
+    public function isValidationEnabled()
+    {
+        return $this->validationEnabled;
+    }
+
+    /**
+     * @param boolean $enable
+     * @return $this
+     */
+    public function setValidationEnabled($enable = true)
+    {
+        $this->validationEnabled = $enable;
+        return $this;
+    }
+
 
 }
