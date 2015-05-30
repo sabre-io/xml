@@ -2,6 +2,20 @@
 
 namespace Sabre\Xml;
 
+/**
+ * Test the XML reader.
+ * -Test with valid document
+ * -Test XML schema validation
+ * -Test invalid documents (missing start and end tag, malformed start and end tag and malformed quotes)
+ *
+ *
+ * PHP version 5
+ *
+ * Class ParserTest
+ * @author     Daan Biesterbos <daanbiesterbos@gmail.com>
+ * @license http://sabre.io/license/ Modified BSD License
+ * @since     1.0.0
+ */
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     /**

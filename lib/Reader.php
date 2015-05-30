@@ -38,7 +38,6 @@ class Reader extends XMLReader {
         }
 
         return '{' . $this->namespaceURI . '}' . $this->localName;
-
     }
 
     /**
@@ -111,12 +110,13 @@ class Reader extends XMLReader {
         }
 
 
-        // Really sorry about the silence operator, seems like I have no
-        // choice. See:
+        // Really sorry about the silence operator, seems like I have no choice. See:
         //
         // https://bugs.php.net/bug.php?id=64230
         if (!@$this->read()) return false;
 
+        // Check for internal libxml errors. We must abort when a fatal libxml error occurs.
+        // Not doing so will result in a eternal loop.
         while ($this->canContinue()) {
 
             switch ($this->nodeType) {
@@ -144,8 +144,8 @@ class Reader extends XMLReader {
         if (!is_null($elementMap)) {
             $this->popContext();
         }
-        return ($elements ? $elements : $text);
 
+        return ($elements ? $elements : $text);
     }
 
     /**
@@ -188,8 +188,8 @@ class Reader extends XMLReader {
                 $result .= $this->value;
             }
         }
-        return $result;
 
+        return $result;
     }
 
     /**
