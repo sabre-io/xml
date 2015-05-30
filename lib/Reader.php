@@ -122,19 +122,12 @@ class Reader extends XMLReader {
         // https://bugs.php.net/bug.php?id=64230
         if (!@$this->read()) return false;
 
-        while (true) {
+        while ($this->canContinue()) {
 
             switch ($this->nodeType) {
                 case self::ELEMENT :
-                    // I have encountered a situation where the document was deemed valid while there was a syntax issue with a given end tag. An eternal loop was the result.
-                    // XMLReader will never validate the entire tree. Exclusively the node that is processed. Each node should be individually validated to make sure that the parser ends processing unexpected (syntax)
-                    // errors occur. This validation should be  optional and disabled by default for backward compatibility. I'm did not test every
-                    // use case I could think of, but it seems like the validation will always fail without the proper schema (or DTD) in place.
-                    if(!$this->isValidationEnabled() or $this->isValid()) {
-                        $elements[] = $this->parseCurrentElement();
-                        break;
-                    }
-                    throw new ParseException("Unable to parse invalid '{$this->localName}' node. The XML document is not valid.");
+                    $elements[] = $this->parseCurrentElement();
+                    break;
                 case self::TEXT :
                 case self::CDATA :
                     $text .= $this->value;
@@ -147,8 +140,11 @@ class Reader extends XMLReader {
                 case self::NONE :
                     throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
-                    // Advance to the next element
-                    $this->read();
+                    // This prevents an eternal loop in case of a missing open tag.
+                    if(!$this->read()) {
+                        throw new ParseException("Unable to parse invalid '{$this->localName}' node. The XML document is not valid.");
+                        break 2; // Break out of invalid element
+                    }
                     break;
             }
 
@@ -159,6 +155,31 @@ class Reader extends XMLReader {
         }
         return ($elements ? $elements : $text);
 
+    }
+
+    /**
+     * Check internal (libxml) errors. Throw an exception if needed.
+     * We need to do this for every node or won't be able to recognize malformed XML.
+     * This would lead to an eternal loop.
+     *
+     * @throws ParseException
+     * @return bool
+     */
+    protected function canContinue()
+    {
+        // Check for errors. Normally there will be no error, so this should not have a big impact on performance.
+        $errors = libxml_get_errors();
+        if(count($errors)) {
+            /** @var \LibXMLError $error */
+            foreach($errors as $e) {
+                if ($e->level === LIBXML_ERR_FATAL){
+                    libxml_clear_errors();
+                    throw new LibXMLException($errors);
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -262,21 +283,19 @@ class Reader extends XMLReader {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isValidationEnabled()
+    function isValidationEnabled()
     {
         return $this->validationEnabled;
     }
 
     /**
-     * @param boolean $enable
-     * @return $this
+     * @param bool $enable
      */
-    public function setValidationEnabled($enable = true)
+    function setValidationEnabled($enable = true)
     {
         $this->validationEnabled = $enable;
-        return $this;
     }
 
 
