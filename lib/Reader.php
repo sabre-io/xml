@@ -135,11 +135,7 @@ class Reader extends XMLReader {
                 case self::NONE :
                     throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
-                    // This prevents an eternal loop in case of a missing open tag.
-                    if (!$this->read()) {
-                        throw new ParseException("Unable to parse invalid '{$this->localName}' node. The XML document is not valid.");
-                        break 2; // Break out of invalid element
-                    }
+                    $this->read();
                     break;
             }
 
