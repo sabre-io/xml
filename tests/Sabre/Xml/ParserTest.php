@@ -98,9 +98,8 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             $reader->parse();
         } catch (LibXMLException $e) {
             $failed = true;
-        } finally {
-            $this->assertTrue($failed, 'The parser should have failed. The element "name3" is invalid.');
         }
+        $this->assertTrue($failed, 'The parser should have failed. The element "name3" is invalid.');
     }
 
     /**
@@ -117,10 +116,8 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         } catch (LibXMLException $e) {
             echo $e->getMessage() . PHP_EOL;
             $failed = true;
-        } finally {
-            $this->assertFalse($failed, 'The parser should not have failed. The given XML is valid.');
         }
-
+        $this->assertFalse($failed, 'The parser should not have failed. The given XML is valid.');
     }
 
     /**
@@ -173,10 +170,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             $trappedInEternalLoop = false;
         } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
-        } finally {
-            $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
-            $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
         }
+        $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
+        $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
     }
 
     /**
@@ -201,10 +197,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             $trappedInEternalLoop = false;
         } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
-        } finally {
-            $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
-            $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
         }
+        $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
+        $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
     }
 
     /**
@@ -229,10 +224,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             $trappedInEternalLoop = false;
         } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
-        } finally {
-            $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
-            $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
         }
+        $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
+        $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
     }
 
     /**
@@ -257,10 +251,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             $trappedInEternalLoop = false;
         } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
-        } finally {
-            $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
-            $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
         }
+        $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
+        $this->assertFalse($trappedInEternalLoop, "Eternal loop detected!");
     }
 
 
