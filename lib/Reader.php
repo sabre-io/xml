@@ -21,9 +21,6 @@ class Reader extends XMLReader {
 
     use ContextStackTrait;
 
-    /** @var bool  */
-    protected $validationEnabled = false;
-
     /**
      * Returns the current nodename in clark-notation.
      *
