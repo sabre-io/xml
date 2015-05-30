@@ -55,6 +55,7 @@ class Reader extends XMLReader {
      * This function will also disable the standard libxml error handler (which
      * usually just results in PHP errors), and throw exceptions instead.
      *
+     * @throws LibXMLException
      * @return array
      */
     function parse() {
@@ -76,10 +77,9 @@ class Reader extends XMLReader {
 
         if ($errors) {
             throw new LibXMLException($errors);
-        } else {
-            return $result;
         }
 
+        return $result;
     }
 
     /**
@@ -93,16 +93,14 @@ class Reader extends XMLReader {
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
+     * @throws ParseException
      * @param array $elementMap
      * @return array|string
      */
     function parseInnerTree(array $elementMap = null) {
 
-        $previousDepth = $this->depth;
-
         $text = null;
         $elements = [];
-        $attributes = [];
 
         if ($this->nodeType === self::ELEMENT && $this->isEmptyElement) {
             // Easy!
@@ -255,7 +253,7 @@ class Reader extends XMLReader {
      * short keys. If they are defined on a different namespace, the attribute
      * name will be retured in clark-notation.
      *
-     * @return void
+     * @return array
      */
     function parseAttributes() {
 
@@ -281,22 +279,5 @@ class Reader extends XMLReader {
         return $attributes;
 
     }
-
-    /**
-     * @return bool
-     */
-    function isValidationEnabled()
-    {
-        return $this->validationEnabled;
-    }
-
-    /**
-     * @param bool $enable
-     */
-    function setValidationEnabled($enable = true)
-    {
-        $this->validationEnabled = $enable;
-    }
-
 
 }
