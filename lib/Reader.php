@@ -136,7 +136,7 @@ class Reader extends XMLReader {
                     throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
                     // This prevents an eternal loop in case of a missing open tag.
-                    if(!$this->read()) {
+                    if (!$this->read()) {
                         throw new ParseException("Unable to parse invalid '{$this->localName}' node. The XML document is not valid.");
                         break 2; // Break out of invalid element
                     }
@@ -164,9 +164,9 @@ class Reader extends XMLReader {
     {
         // Check for errors. Normally there will be no error, so this should not have a big impact on performance.
         $errors = libxml_get_errors();
-        if(count($errors)) {
+        if (count($errors)) {
             /** @var \LibXMLError $error */
-            foreach($errors as $e) {
+            foreach ($errors as $e) {
                 if ($e->level === LIBXML_ERR_FATAL){
                     libxml_clear_errors();
                     throw new LibXMLException($errors);

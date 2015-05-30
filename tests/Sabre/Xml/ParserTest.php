@@ -1,6 +1,6 @@
 <?php
-namespace Sabre\Xml;
 
+namespace Sabre\Xml;
 
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      * - Test elements with child nodes
      * - Test element without child nodes and attributes ( <movie:bestseller /> )
      */
-    public function testParserShouldSucceed()
+    function testParserShouldSucceed()
     {
         $reader = new Reader();
         $reader->XML($this->xmlValidDocument);
@@ -74,7 +74,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      * Test if the schema validation works. When enabled each node is validated on the fly.
      * By calling the parse method the whole tree processed and thus we should get an exception.
      */
-    public function testParserShouldFailSchemaValidation()
+    function testParserShouldFailSchemaValidation()
     {
         $reader = new Reader();
         $reader->XML($this->xmlWithInvalidNodes);
@@ -82,7 +82,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $failed = false;
         try{
             $reader->parse();
-        } catch(LibXMLException $e) {
+        } catch (LibXMLException $e) {
             $failed = true;
         } finally {
             $this->assertTrue($failed, 'The parser should have failed. The element "name3" is invalid.');
@@ -92,7 +92,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Ensure that the validation works for valid documents
      */
-    public function testParserShouldPassSchemaValidation()
+    function testParserShouldPassSchemaValidation()
     {
         $reader = new Reader();
         $reader->XML($this->xmlValidDocument);
@@ -100,7 +100,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $failed = false;
         try{
             $reader->parse();
-        } catch(LibXMLException $e) {
+        } catch (LibXMLException $e) {
             echo $e->getMessage() . PHP_EOL;
             $failed = true;
         } finally {
@@ -112,24 +112,24 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if the parser can handle missing start tags.
      */
-    public function testParserShouldHandleMissingStartTag()
+    function testParserShouldHandleMissingStartTag()
     {
         // Register a tick function
-        register_tick_function(function(){
+        register_tick_function(function() {
             throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed node...");
         });
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
-        declare(ticks=10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
+        declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
         $reader = new Reader();
         $reader->XML($this->xmlMissingStartNode);
         $reader->setSchema(__DIR__ . '/../../schema/Store.xsd');
         $trappedInEternalLoop = null;
         try{
             $reader->parse();
-        } catch(ParseException $e) {
+        } catch (ParseException $e) {
             $trappedInEternalLoop = false;
-        } catch(\LogicException $e) {
+        } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
         }
 
@@ -140,24 +140,24 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if the parser can handle missing end tags
      */
-    public function testParserShouldHandleMissingEndTag()
+    function testParserShouldHandleMissingEndTag()
     {
         // Register a tick function
-        register_tick_function(function(){
+        register_tick_function(function() {
             throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed node...");
         });
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
-        declare(ticks=10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
+        declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
         $reader = new Reader();
         $reader->XML($this->xmlMissingEndNode);
         $reader->setSchema(__DIR__ . '/../../schema/Store.xsd');
         $trappedInEternalLoop = null;
         try{
             $reader->parse();
-        } catch(ParseException $e) {
+        } catch (ParseException $e) {
             $trappedInEternalLoop = false;
-        } catch(\LogicException $e) {
+        } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
         } finally {
             $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
@@ -168,24 +168,24 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if the parser can handle malformed start tags
      */
-    public function testParserShouldHandleMalformedStartTag()
+    function testParserShouldHandleMalformedStartTag()
     {
         // Register a tick function
-        register_tick_function(function(){
+        register_tick_function(function() {
             throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed start tag...");
         });
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
-        declare(ticks=10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
+        declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
         $reader = new Reader();
         $reader->XML($this->xmlMalformedStartTag);
         $reader->setSchema(__DIR__ . '/../../schema/Store.xsd');
         $trappedInEternalLoop = null;
         try{
             $reader->parse();
-        } catch(ParseException $e) {
+        } catch (ParseException $e) {
             $trappedInEternalLoop = false;
-        } catch(\LogicException $e) {
+        } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
         } finally {
             $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
@@ -196,25 +196,24 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if the parser can handle malformed end tags
      */
-    public function testParserShouldHandleMalformedEndTag()
+    function testParserShouldHandleMalformedEndTag()
     {
         // Register a tick function
-        register_tick_function(function(){
+        register_tick_function(function() {
             throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed end tag...");
         });
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
-        declare(ticks=10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
+        declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
         $reader = new Reader();
-        //$reader->setValidationEnabled(true);
         $reader->XML($this->xmlMalformedEndTag);
         $reader->setSchema(__DIR__ . '/../../schema/Store.xsd');
         $trappedInEternalLoop = null;
         try{
             $reader->parse();
-        } catch(ParseException $e) {
+        } catch (ParseException $e) {
             $trappedInEternalLoop = false;
-        } catch(\LogicException $e) {
+        } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
         } finally {
             $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
@@ -225,24 +224,24 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if the parser can handle malformed end tags
      */
-    public function testParserShouldHandleMalformedQuotes()
+    function testParserShouldHandleMalformedQuotes()
     {
         // Register a tick function
-        register_tick_function(function(){
+        register_tick_function(function() {
             throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed quotes...");
         });
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
-        declare(ticks=10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
+        declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
         $reader = new Reader();
         $reader->XML($this->xmlMalformedQuotes);
         $reader->setSchema(__DIR__ . '/../../schema/Store.xsd');
         $trappedInEternalLoop = null;
         try{
             $reader->parse();
-        } catch(ParseException $e) {
+        } catch (ParseException $e) {
             $trappedInEternalLoop = false;
-        } catch(\LogicException $e) {
+        } catch (\LogicException $e) {
             $trappedInEternalLoop = true;
         } finally {
             $this->assertNotNull($trappedInEternalLoop, "That's not good. The parser should have failed!");
