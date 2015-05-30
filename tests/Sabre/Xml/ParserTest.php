@@ -125,10 +125,15 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     function testParserShouldHandleMissingStartTag()
     {
-        // Register a tick function
-        register_tick_function(function() {
-            throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed node...");
-        });
+        // Not supported on HHVM. Not registering the tick function will lead to an eternal loop on HHVM if the test fails.
+        // But at least the test will run as long as they succeed. That's better than nothing or an exception.
+        if (function_exists('register_tick_function')) {
+            // Register tick function
+            register_tick_function(function() {
+                throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the missing start tag...");
+            });
+        }
+
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
         declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
@@ -153,10 +158,14 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     function testParserShouldHandleMissingEndTag()
     {
-        // Register a tick function
-        register_tick_function(function() {
-            throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed node...");
-        });
+        // Not supported on HHVM. Not registering the tick function will lead to an eternal loop on HHVM if the test fails.
+        // But at least the test will run as long as they succeed. That's better than nothing or an exception.
+        if (function_exists('register_tick_function')) {
+            // Register tick function
+            register_tick_function(function() {
+                throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the missing end tag...");
+            });
+        }
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
         declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
@@ -180,10 +189,14 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     function testParserShouldHandleMalformedStartTag()
     {
-        // Register a tick function
-        register_tick_function(function() {
-            throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed start tag...");
-        });
+        // Not supported on HHVM. Not registering the tick function will lead to an eternal loop on HHVM if the test fails.
+        // But at least the test will run as long as they succeed. That's better than nothing or an exception.
+        if (function_exists('register_tick_function')) {
+            // Register tick function
+            register_tick_function(function() {
+                throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed start tag...");
+            });
+        }
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
         declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
@@ -207,10 +220,14 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     function testParserShouldHandleMalformedEndTag()
     {
-        // Register a tick function
-        register_tick_function(function() {
-            throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed end tag...");
-        });
+        // Not supported on HHVM. Not registering the tick function will lead to an eternal loop on HHVM if the test fails.
+        // But at least the test will run as long as they succeed. That's better than nothing or an exception.
+        if (function_exists('register_tick_function')) {
+            // Register tick function
+            register_tick_function(function() {
+                throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed end tag...");
+            });
+        }
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
         declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
@@ -234,10 +251,14 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     function testParserShouldHandleMalformedQuotes()
     {
-        // Register a tick function
-        register_tick_function(function() {
-            throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed quotes...");
-        });
+        // Not supported on HHVM. Not registering the tick function will lead to an eternal loop on HHVM if the test fails.
+        // But at least the test will run as long as they succeed. That's better than nothing or an exception.
+        if (function_exists('register_tick_function')) {
+            // Register tick function
+            register_tick_function(function() {
+                throw new \LogicException("Test failed. The reader seems to be trapped in a eternal loop. Failed to recognize the malformed quotes...");
+            });
+        }
 
         // Parse elements, use tick counter to break out of eternal loop and throw an exception
         declare (ticks = 10000000); // Don't use low values, apparently phpunit is also using ticks and will collide with low values)
