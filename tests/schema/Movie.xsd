@@ -1,0 +1,66 @@
+<xs:schema targetNamespace="http://sabre-test-set.com/Movie"
+           xmlns:movie="http://sabre-test-set.com/Movie"
+           xmlns:person="http://sabre-test-set.com/Person"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:import schemaLocation="Book.xsd" namespace="http://sabre-test-set.com/Book" />
+    <xs:import schemaLocation="Person.xsd" namespace="http://sabre-test-set.com/Person" />
+
+
+    <!--+====================================================================================================+-->
+    <!--+ Simple types                                                                                       +-->
+    <!--+====================================================================================================+-->
+
+    <xs:simpleType name="YearType">
+        <xs:restriction base="xs:unsignedInt">
+            <xs:minInclusive value="1900" />
+            <xs:maxExclusive value="2100" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GenreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="thriller" />
+            <xs:enumeration value="comedy" />
+            <xs:enumeration value="action" />
+            <xs:enumeration value="horror" />
+            <xs:enumeration value="detective" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--+====================================================================================================+-->
+    <!--+ Complex types                                                                                      +-->
+    <!--+====================================================================================================+-->
+
+    <xs:complexType name="MovieType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element ref="movie:title" />
+            <xs:element ref="movie:year"  />
+            <xs:element ref="movie:genre" />
+            <xs:element ref="movie:actors" />
+            <xs:element ref="movie:bestseller" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MovieCollection">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="movie:movie" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+    <!--+====================================================================================================+-->
+    <!--+ Elements                                                                                           +-->
+    <!--+====================================================================================================+-->
+    <xs:element name="movie" type="movie:MovieType" nillable="false" />
+    <xs:element name="title" type="xs:string" nillable="false" />
+    <xs:element name="year" type="movie:YearType" />
+    <xs:element name="bestseller" type="xs:anyType" nillable="true" />
+    <xs:element name="genre" type="movie:GenreType" />
+    <xs:element name="actors" type="person:ActorCollection" />
+
+
+
+</xs:schema>

@@ -1,0 +1,66 @@
+<xs:schema targetNamespace="http://sabre-test-set.com/Book"
+           xmlns:book="http://sabre-test-set.com/Book"
+           xmlns:person="http://sabre-test-set.com/Person"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+
+    <xs:import schemaLocation="Movie.xsd" namespace="http://sabre-test-set.com/Movie" />
+    <xs:import schemaLocation="Person.xsd" namespace="http://sabre-test-set.com/Person" />
+
+    <!--+====================================================================================================+-->
+    <!--+ Simple types                                                                                       +-->
+    <!--+====================================================================================================+-->
+
+    <xs:simpleType name="YearType">
+        <xs:restriction base="xs:unsignedInt">
+            <xs:minInclusive value="1900" />
+            <xs:maxExclusive value="2100" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GenreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="thriller" />
+            <xs:enumeration value="roman" />
+            <xs:enumeration value="art" />
+            <xs:enumeration value="history" />
+            <xs:enumeration value="detective" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--+====================================================================================================+-->
+    <!--+ Complex types                                                                                      +-->
+    <!--+====================================================================================================+-->
+
+    <xs:complexType name="BookType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element ref="book:title" minOccurs="0" />
+            <xs:element ref="book:year" minOccurs="0" />
+            <xs:element ref="book:genre" minOccurs="0" />
+            <xs:element ref="book:author" minOccurs="0" />
+            <xs:element ref="book:publisher" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="BookCollection">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="book:book" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!--+====================================================================================================+-->
+    <!--+ Elements                                                                                           +-->
+    <!--+====================================================================================================+-->
+    <xs:element name="book" type="book:BookType" nillable="false" />
+    <xs:element name="publisher" type="person:PublisherType" nillable="false" />
+    <xs:element name="title" type="xs:string" nillable="false" />
+    <xs:element name="year" type="book:YearType" />
+    <xs:element name="genre" type="book:GenreType" />
+    <xs:element name="author" type="person:AuthorType" />
+
+
+
+</xs:schema>

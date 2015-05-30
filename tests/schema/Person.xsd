@@ -1,0 +1,117 @@
+<xs:schema targetNamespace="http://sabre-test-set.com/Person"
+           xmlns:person="http://sabre-test-set.com/Person"
+           xmlns:movie="http://sabre-test-set.com/Movie"
+           xmlns:book="http://sabre-test-set.com/Book"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:import schemaLocation="Book.xsd" namespace="http://sabre-test-set.com/Book" />
+    <xs:import schemaLocation="Movie.xsd" namespace="http://sabre-test-set.com/Movie" />
+
+
+    <!--+====================================================================================================+-->
+    <!--+ Simple types                                                                                       +-->
+    <!--+====================================================================================================+-->
+
+    <xs:simpleType name="AgeType">
+        <xs:restriction base="xs:unsignedInt">
+            <xs:minInclusive value="0" />
+            <xs:maxExclusive value="200" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GenderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="male" />
+            <xs:enumeration value="female" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--+====================================================================================================+-->
+    <!--+ Complex types                                                                                      +-->
+    <!--+====================================================================================================+-->
+
+    <xs:complexType name="PersonType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element ref="person:name" />
+            <xs:element ref="person:age"  minOccurs="0" />
+            <xs:element ref="person:gender" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="AuthorType">
+        <xs:complexContent>
+            <xs:extension base="person:PersonType">
+                <xs:sequence>
+                    <xs:element ref="person:publishers" minOccurs="0" />
+                    <xs:element ref="person:books" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PublisherType">
+        <xs:complexContent>
+            <xs:extension base="person:PersonType">
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ActorType">
+        <xs:complexContent>
+            <xs:extension base="person:PersonType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="person:movies" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CustomerType">
+        <xs:complexContent>
+            <xs:extension base="person:PersonType">
+                <xs:sequence>
+                    <xs:element ref="person:movies" minOccurs="0" />
+                    <xs:element ref="person:books" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PublisherCollection">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="person:publisher" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="ActorCollection">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="person:actor" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="CustomerCollection">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="person:customer" />
+        </xs:choice>
+    </xs:complexType>
+
+
+    <!--+====================================================================================================+-->
+    <!--+ Elements                                                                                           +-->
+    <!--+====================================================================================================+-->
+    <xs:element name="name" type="xs:string" nillable="false" />
+    <xs:element name="age" type="person:AgeType" />
+    <xs:element name="gender" type="person:GenderType" />
+    <xs:element name="actor" type="person:ActorType" />
+    <xs:element name="customer" type="person:CustomerType" />
+    <xs:element name="books" type="book:BookCollection" />
+    <xs:element name="publishers" type="person:PublisherCollection" />
+    <xs:element name="publisher" type="person:PublisherType" />
+    <xs:element name="movies" type="movie:MovieCollection" />
+
+
+
+</xs:schema>

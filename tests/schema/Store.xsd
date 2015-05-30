@@ -1,0 +1,31 @@
+<xs:schema targetNamespace="http://sabre-test-set.com/Store"
+           xmlns:store="http://sabre-test-set.com/Store"
+           xmlns:person="http://sabre-test-set.com/Person"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:import schemaLocation="Book.xsd" namespace="http://sabre-test-set.com/Book" />
+    <xs:import schemaLocation="Person.xsd" namespace="http://sabre-test-set.com/Person" />
+    <xs:import schemaLocation="Movie.xsd" namespace="http://sabre-test-set.com/Movie" />
+
+    <!--+====================================================================================================+-->
+    <!--+ Complex types                                                                                      +-->
+    <!--+====================================================================================================+-->
+
+    <xs:complexType name="StoreType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element ref="store:name" />
+            <xs:element ref="store:customers" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--+====================================================================================================+-->
+    <!--+ Elements                                                                                           +-->
+    <!--+====================================================================================================+-->
+    <xs:element name="name" type="xs:string" />
+    <xs:element name="customers" type="person:CustomerCollection" />
+    <xs:element name="store" type="store:StoreType" />
+
+
+
+</xs:schema>

@@ -38,7 +38,6 @@ class Reader extends XMLReader {
         }
 
         return '{' . $this->namespaceURI . '}' . $this->localName;
-
     }
 
     /**
@@ -52,6 +51,7 @@ class Reader extends XMLReader {
      * This function will also disable the standard libxml error handler (which
      * usually just results in PHP errors), and throw exceptions instead.
      *
+     * @throws LibXMLException
      * @return array
      */
     function parse() {
@@ -73,10 +73,9 @@ class Reader extends XMLReader {
 
         if ($errors) {
             throw new LibXMLException($errors);
-        } else {
-            return $result;
         }
 
+        return $result;
     }
 
     /**
@@ -90,16 +89,14 @@ class Reader extends XMLReader {
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
+     * @throws ParseException
      * @param array $elementMap
      * @return array|string
      */
     function parseInnerTree(array $elementMap = null) {
 
-        $previousDepth = $this->depth;
-
         $text = null;
         $elements = [];
-        $attributes = [];
 
         if ($this->nodeType === self::ELEMENT && $this->isEmptyElement) {
             // Easy!
@@ -113,13 +110,14 @@ class Reader extends XMLReader {
         }
 
 
-        // Really sorry about the silence operator, seems like I have no
-        // choice. See:
+        // Really sorry about the silence operator, seems like I have no choice. See:
         //
         // https://bugs.php.net/bug.php?id=64230
         if (!@$this->read()) return false;
 
-        while (true) {
+        // Check for internal libxml errors. We must abort when a fatal libxml error occurs.
+        // Not doing so will result in a eternal loop.
+        while ($this->canContinue()) {
 
             switch ($this->nodeType) {
                 case self::ELEMENT :
@@ -137,7 +135,6 @@ class Reader extends XMLReader {
                 case self::NONE :
                     throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
-                    // Advance to the next element
                     $this->read();
                     break;
             }
@@ -147,8 +144,33 @@ class Reader extends XMLReader {
         if (!is_null($elementMap)) {
             $this->popContext();
         }
-        return ($elements ? $elements : $text);
 
+        return ($elements ? $elements : $text);
+    }
+
+    /**
+     * Check internal (libxml) errors. Throw an exception if needed.
+     * We need to do this for every node or won't be able to recognize malformed XML.
+     * This would lead to an eternal loop.
+     *
+     * @throws ParseException
+     * @return bool
+     */
+    protected function canContinue()
+    {
+        // Check for errors. Normally there will be no error, so this should not have a big impact on performance.
+        $errors = libxml_get_errors();
+        if (count($errors)) {
+            /** @var \LibXMLError $error */
+            foreach ($errors as $e) {
+                if ($e->level === LIBXML_ERR_FATAL){
+                    libxml_clear_errors();
+                    throw new LibXMLException($errors);
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -166,8 +188,8 @@ class Reader extends XMLReader {
                 $result .= $this->value;
             }
         }
-        return $result;
 
+        return $result;
     }
 
     /**
@@ -224,7 +246,7 @@ class Reader extends XMLReader {
      * short keys. If they are defined on a different namespace, the attribute
      * name will be retured in clark-notation.
      *
-     * @return void
+     * @return array
      */
     function parseAttributes() {
 
