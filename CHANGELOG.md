@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+1.1.0 (2015-06-29)
+------------------
+
+* #44, #45: Catching broken and invalid XML better and throwing
+  `Sabre\Xml\LibXMLException` whenever we encounter errors. (@stefanmajoor,
+   @DaanBiesterbos)
+
+
 1.0.0 (2015-05-25)
 ------------------
 
