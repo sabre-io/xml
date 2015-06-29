@@ -112,7 +112,6 @@ class Reader extends XMLReader {
             $this->elementMap = $elementMap;
         }
 
-
         // Really sorry about the silence operator, seems like I have no
         // choice. See:
         //
@@ -120,6 +119,16 @@ class Reader extends XMLReader {
         if (!@$this->read()) return false;
 
         while (true) {
+
+            if (!$this->isValid()) {
+
+                $errors = libxml_get_errors();
+
+                if ($errors) {
+                    libxml_clear_errors();
+                    throw new LibXMLException($errors);
+                }
+            }
 
             switch ($this->nodeType) {
                 case self::ELEMENT :

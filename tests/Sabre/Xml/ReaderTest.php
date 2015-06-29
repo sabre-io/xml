@@ -325,7 +325,7 @@ BLA;
      *
      * @expectedException Sabre\Xml\LibXMLException
      */
-    function testBrokenXML() {
+    function testBrokenXml() {
 
         $input = <<<BLA
 <test>
@@ -339,6 +339,33 @@ BLA;
         $reader->parse();
 
     }
+
+    /**
+     * Test was added for Issue #45.
+     *
+     * @expectedException Sabre\Xml\LibXMLException
+     */
+    function testBrokenXml2() {
+
+        $input = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions>
+    <collaboration>
+        <participant id="sid-A33D08EB-A2DE-448F-86FE-A2B62E98818" name="Company" processRef="sid-A0A6A196-3C9A-4C69-88F6-7ED7DDFDD264">
+            <extensionElements>
+                <signavio:signavioMetaData metaKey="bgcolor" />
+                ""Administrative w">
+                <extensionElements>
+                    <signavio:signavioMetaData metaKey="bgcolor" metaValue=""/>
+                </extensionElements>
+                </lan
+XML;
+        $reader = new Reader();
+        $reader->xml($input);
+        $reader->parse();
+
+    }
+
 
     /**
      * @depends testMappedElement
