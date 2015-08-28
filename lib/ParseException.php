@@ -6,7 +6,7 @@ use
     Exception;
 
 /**
- * This exception is thrown when the Readers runs into any error.
+ * This is a base exception for any exception related to parsing xml files.
  *
  * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
