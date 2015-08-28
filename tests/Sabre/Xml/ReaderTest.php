@@ -420,4 +420,105 @@ BLA;
 
     }
 
+    /**
+     * @depends testParseInnerTree
+     */
+    function testParseGetElements() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+  <elem1>
+     <elem1 />
+  </elem1>
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+
+                $innerTree = $reader->parseGetElements(['{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+                    $reader->next();
+                    return "foobar";
+                }]);
+
+                return $innerTree;
+            }
+        ];
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+        $expected = [
+            'name'  => '{http://sabredav.org/ns}root',
+            'value' => [
+                [
+                    'name'  => '{http://sabredav.org/ns}elem1',
+                    'value' => [
+                        [
+                            'name'       => '{http://sabredav.org/ns}elem1',
+                            'value'      => 'foobar',
+                            'attributes' => [],
+                        ]
+                    ],
+                    'attributes' => [],
+                ],
+            ],
+            'attributes' => [],
+
+        ];
+
+        $this->assertEquals($expected, $output);
+
+    }
+
+    /**
+     * @depends testParseInnerTree
+     */
+    function testParseGetElementsNoElements() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+  <elem1>
+    hi
+  </elem1>
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+
+                $innerTree = $reader->parseGetElements(['{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+                    $reader->next();
+                    return "foobar";
+                }]);
+
+                return $innerTree;
+            }
+        ];
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+        $expected = [
+            'name'  => '{http://sabredav.org/ns}root',
+            'value' => [
+                [
+                    'name'  => '{http://sabredav.org/ns}elem1',
+                    'value' => [],
+                    'attributes' => [],
+                ],
+            ],
+            'attributes' => [],
+
+        ];
+
+        $this->assertEquals($expected, $output);
+
+    }
+
+
 }

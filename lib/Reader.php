@@ -81,6 +81,34 @@ class Reader extends XMLReader {
 
     }
 
+
+
+    /**
+     * parseGetElements parses everything in the current sub-tree,
+     * and returns a an array of elements.
+     *
+     * Each element has a 'name', 'value' and 'attributes' key.
+     *
+     * If the the element didn't contain sub-elements, an empty array is always
+     * returned. If there was any text inside the element, it will be
+     * discarded.
+     *
+     * If the $elementMap argument is specified, the existing elementMap will
+     * be overridden while parsing the tree, and restored after this process.
+     *
+     * @param array $elementMap
+     * @return array
+     */
+    function parseGetElements(array $elementMap = null) {
+
+        $result = $this->parseInnerTree($elementMap);
+        if (!is_array($result)) {
+            return [];
+        }
+        return $result;
+
+    }
+
     /**
      * Parses all elements below the current element.
      *

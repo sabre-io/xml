@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+1.2.0 (????-??-??)
+-----------------
+
+* #53: Added `parseGetElements`, a function like `parseInnerTree`, except
+  that it always returns an array of elements, or an empty array.
+
+
 1.1.0 (2015-06-29)
 ------------------
 
