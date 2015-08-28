@@ -75,10 +75,9 @@ class Reader extends XMLReader {
 
         if ($errors) {
             throw new LibXMLException($errors);
-        } else {
-            return $result;
         }
 
+        return $result;
     }
 
 
