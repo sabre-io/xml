@@ -507,8 +507,8 @@ BLA;
             'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'  => '{http://sabredav.org/ns}elem1',
-                    'value' => [],
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => [],
                     'attributes' => [],
                 ],
             ],
