@@ -262,7 +262,7 @@ class Reader extends XMLReader {
      * short keys. If they are defined on a different namespace, the attribute
      * name will be retured in clark-notation.
      *
-     * @return void
+     * @return array
      */
     function parseAttributes() {
 
