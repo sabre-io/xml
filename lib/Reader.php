@@ -128,7 +128,6 @@ class Reader extends XMLReader {
 
         $text = null;
         $elements = [];
-        $attributes = [];
 
         if ($this->nodeType === self::ELEMENT && $this->isEmptyElement) {
             // Easy!
