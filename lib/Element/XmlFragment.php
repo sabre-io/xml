@@ -68,8 +68,6 @@ XML;
 
         $reader->xml($xml);
 
-        $elementNamespace = null;
-
         while ($reader->read()) {
 
             if ($reader->depth < 1) {

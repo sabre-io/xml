@@ -124,11 +124,8 @@ class Reader extends XMLReader {
      */
     function parseInnerTree(array $elementMap = null) {
 
-        $previousDepth = $this->depth;
-
         $text = null;
         $elements = [];
-        $attributes = [];
 
         if ($this->nodeType === self::ELEMENT && $this->isEmptyElement) {
             // Easy!
