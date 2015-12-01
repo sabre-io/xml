@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+1.2.1 (????-??-??)
+------------------
+
+* It's now possible to pass an array of possible root elements to
+  `Sabre\Xml\Service::expect()`.
+
+
 1.2.0 (2015-08-30)
 ------------------
 

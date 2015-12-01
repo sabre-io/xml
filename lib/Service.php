@@ -111,7 +111,10 @@ class Service {
      * This is useful in cases where you expected a specific document to be
      * passed, and reduces the amount of if statements.
      *
-     * @param string $rootElementName
+     * It's also possible to pass an array of expected rootElements if your
+     * code may expect more than one document type.
+     *
+     * @param string|string[] $rootElementName
      * @param string|resource $input
      * @param string|null $contextUri
      * @return void
@@ -128,8 +131,8 @@ class Service {
         $r->xml($input);
 
         $result = $r->parse();
-        if ($rootElementName !== $result['name']) {
-            throw new ParseException('Expected ' . $rootElementName . ' but received ' . $result['name'] . ' as the root element');
+        if (!in_array($result['name'], (array)$rootElementName, true)) {
+            throw new ParseException('Expected ' . implode(' or ', (array)$rootElementName) . ' but received ' . $result['name'] . ' as the root element');
         }
         return $result['value'];
 
