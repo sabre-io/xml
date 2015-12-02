@@ -100,8 +100,14 @@ class Writer extends XMLWriter {
 
         if (is_scalar($value)) {
             $this->text($value);
-        } elseif ($value instanceof XmlSerializable) {
+        } elseif (is_object($value) && $value instanceof XmlSerializable) {
+
             $value->xmlSerialize($this);
+
+        } elseif (is_object($value) && isset($this->classMap[get_class($value)])) {
+            $this->classMap[get_class($value)]($this, $value);
+        } elseif (is_callable($value)) {
+            $value($this);
         } elseif (is_null($value)) {
             // noop
         } elseif (is_array($value)) {
@@ -142,7 +148,11 @@ class Writer extends XMLWriter {
 
         } elseif (is_object($value)) {
 
-            throw new InvalidArgumentException('The writer cannot serialize objects of type: ' . get_class($value));
+            throw new InvalidArgumentException('The writer cannot serialize objects of class: ' . get_class($value));
+
+        } else {
+
+            throw new InvalidArgumentException('The writer cannot serialize values of type: ' . gettype($value));
 
         }
 
