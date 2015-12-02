@@ -225,30 +225,48 @@ class Reader extends XMLReader {
             $attributes = $this->parseAttributes();
         }
 
-        if (array_key_exists($name, $this->elementMap)) {
-            $deserializer = $this->elementMap[$name];
-            if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
-                $value = call_user_func([ $deserializer, 'xmlDeserialize' ], $this);
-            } elseif (is_callable($deserializer)) {
-                $value = call_user_func($deserializer, $this);
-            } else {
-                $type = gettype($deserializer);
-                if ($type === 'string') {
-                    $type .= ' (' . $deserializer . ')';
-                } elseif ($type === 'object') {
-                    $type .= ' (' . get_class($deserializer) . ')';
-                }
-                throw new \LogicException('Could not use this type as a deserializer: ' . $type);
-            }
-        } else {
-            $value = Element\Base::xmlDeserialize($this);
-        }
+        $value = call_user_func(
+            $this->getParserForElementName($name),
+            $this
+        );
 
         return [
             'name'       => $name,
             'value'      => $value,
             'attributes' => $attributes,
         ];
+    }
+
+    /**
+     * Returns the function that should be used to parse the element identied
+     * by it's clark-notation name.
+     *
+     * @param string $name
+     * @return callable
+     */
+    function getParserForElementName($name) {
+
+        if (!array_key_exists($name, $this->elementMap)) {
+            return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
+        }
+
+        $deserializer = $this->elementMap[$name];
+        if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
+            return [ $deserializer, 'xmlDeserialize' ];
+        }
+
+        if (is_callable($deserializer)) {
+            return $deserializer;
+        }
+
+        $type = gettype($deserializer);
+        if ($type === 'string') {
+            $type .= ' (' . $deserializer . ')';
+        } elseif ($type === 'object') {
+            $type .= ' (' . get_class($deserializer) . ')';
+        }
+        throw new \LogicException('Could not use this type as a deserializer: ' . $type . ' for element: ' . $name);
+
     }
 
     /**
