@@ -6,7 +6,7 @@ ChangeLog
 
 * It's now possible to pass an array of possible root elements to
   `Sabre\Xml\Service::expect()`.
-* Moved some parsing logic to `Sabre\Xml\Reader::getParserForElementName()`,
+* Moved some parsing logic to `Reader::getDeserializerForElementName()`,
   so people with more advanced use-cases can implement their own logic there.
 
 
