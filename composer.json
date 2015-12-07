@@ -27,7 +27,8 @@
     "autoload" : {
         "psr-4" : {
             "Sabre\\Xml\\" : "lib/"
-        }
+        },
+        "files": ["lib/functions.php"]
     },
     "bin" : [
     ],
