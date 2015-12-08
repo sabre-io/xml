@@ -72,7 +72,6 @@ HI
         );
 
     }
-
     function testMixedSyntax() {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -146,6 +145,31 @@ HI
 <?xml version="1.0"?>
 <s:root xmlns:s="http://sabredav.org/ns">
  <s:elem1 attr1="attribute value">text</s:elem1>
+</s:root>
+
+HI
+        );
+
+    }
+
+    /**
+     * @depends testArrayFormat2
+     */
+    function testArrayFormat2NoValue() {
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => [
+                [
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'attributes' => [
+                        'attr1' => 'attribute value',
+                    ],
+                ],
+            ],
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">
+ <s:elem1 attr1="attribute value"/>
 </s:root>
 
 HI
