@@ -122,16 +122,16 @@ function keyValue(Reader $reader, $namespace = null) {
  * would return:
  *
  * [
- *   "{http://sabredav.org/ns}elem1",
- *   "{http://sabredav.org/ns}elem2",
- *   "{http://sabredav.org/ns}elem3",
- *   "{http://sabredav.org/ns}elem4",
- *   "{http://sabredav.org/ns}elem5",
+ *   "elem1",
+ *   "elem2",
+ *   "elem3",
+ *   "elem4",
+ *   "elem5",
  * ];
  *
  * @param Reader $reader
  * @param string $namespace
- * @return array
+ * @return string[]
  */
 function elementList(Reader $reader, $namespace = null) {
 
