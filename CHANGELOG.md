@@ -6,7 +6,7 @@ ChangeLog
 
 * #61: You can now specify serializers for specific classes, allowing you
   separate the object you want to serialize from the serializer. This uses the
-  `$classMap` property which is defined on both the `Service` and `Serializer`.
+  `$classMap` property which is defined on both the `Service` and `Writer`.
 * It's now possible to pass an array of possible root elements to
   `Sabre\Xml\Service::expect()`.
 * Moved some parsing logic to `Reader::getDeserializerForElementName()`,
