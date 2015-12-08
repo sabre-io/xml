@@ -8,6 +8,8 @@ ChangeLog
   `Sabre\Xml\Service::expect()`.
 * Moved some parsing logic to `Reader::getDeserializerForElementName()`,
   so people with more advanced use-cases can implement their own logic there.
+* When serializing elements using arrays, the `value` key in the array is now
+  optional.
 
 
 1.2.0 (2015-08-30)
