@@ -58,6 +58,26 @@ trait ContextStackTrait {
     public $namespaceMap = [];
 
     /**
+     * This is a list of custom serializers for specific classes.
+     *
+     * The writer may use this if you attempt to serialize an object with a
+     * class that does not implement XmlSerializable.
+     *
+     * Instead it will look at this classmap to see if there is a custom
+     * serializer here. This is useful if you don't want your value objects
+     * to be responsible for serializing themselves.
+     *
+     * The keys in this classmap need to be fully qualified PHP class names,
+     * the values must be callbacks. The callbacks take two arguments. The
+     * writer class, and the value that must be written.
+     *
+     * function (Writer $writer, object $value)
+     *
+     * @var array
+     */
+    public $classMap = [];
+
+    /**
      * Backups of previous contexts.
      *
      * @var array
@@ -78,7 +98,8 @@ trait ContextStackTrait {
         $this->contextStack[] = [
             $this->elementMap,
             $this->contextUri,
-            $this->namespaceMap
+            $this->namespaceMap,
+            $this->classMap
         ];
 
     }
@@ -93,7 +114,8 @@ trait ContextStackTrait {
         list(
             $this->elementMap,
             $this->contextUri,
-            $this->namespaceMap
+            $this->namespaceMap,
+            $this->classMap
         ) = array_pop($this->contextStack);
 
     }

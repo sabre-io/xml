@@ -323,6 +323,49 @@ HI;
 
         $this->assertEquals($output, $this->writer->outputMemory());
 
+    }
+
+    function testCallback() {
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => function(Writer $writer) {
+                $writer->text('deferred writer');
+            },
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">deferred writer</s:root>
+
+HI
+        );
+
+    }
+
+    function testClassMap() {
+
+        $obj = (object)[
+            'key1' => 'value1',
+            'key2' => 'value2',
+        ];
+
+        $this->writer->classMap['stdClass'] = function(Writer $writer, $value) {
+
+            foreach (get_object_vars($value) as $key => $val) {
+                $writer->writeElement('{http://sabredav.org/ns}' . $key, $val);
+            }
+
+        };
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => $obj
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">
+ <s:key1>value1</s:key1>
+ <s:key2>value2</s:key2>
+</s:root>
+
+HI
+        );
 
     }
 }
