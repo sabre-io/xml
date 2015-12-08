@@ -172,12 +172,16 @@ class Writer extends XMLWriter {
                 Service::parseClarkNotation($name);
 
             if (array_key_exists($namespace, $this->namespaceMap)) {
-                $result = $this->startElementNS($this->namespaceMap[$namespace], $localName, null);
+                $result = $this->startElementNS(
+                    $this->namespaceMap[$namespace] === '' ?  null : $this->namespaceMap[$namespace],
+                    $localName,
+                    null
+                );
             } else {
 
                 // An empty namespace means it's the global namespace. This is
                 // allowed, but it mustn't get a prefix.
-                if ($namespace === "") {
+                if ($namespace === "" || $namespace === null) {
                     $result = $this->startElement($localName);
                     $this->writeAttribute('xmlns', '');
                 } else {

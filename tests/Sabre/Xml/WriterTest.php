@@ -294,6 +294,22 @@ HI
 
     }
 
+    function testEmptyNamespacePrefixEmptyString() {
+
+        $this->writer->namespaceMap['http://sabredav.org/ns'] = '';
+        $this->compare([
+            '{http://sabredav.org/ns}root' => new Element\Mock()
+        ], <<<HI
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+ <elem1>hiiii!</elem1>
+</root>
+
+HI
+        );
+
+    }
+
     function testWriteElement() {
 
         $this->writer->writeElement("{http://sabredav.org/ns}foo", 'content');
