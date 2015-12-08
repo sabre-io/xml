@@ -3,6 +3,7 @@
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
+use Sabre\Xml\Deserializer;
 
 /**
  * 'Elements' is a simple list of elements, without values or attributes.
@@ -101,25 +102,7 @@ class Elements implements Xml\Element {
      */
     static function xmlDeserialize(Xml\Reader $reader) {
 
-        // If there's no children, we don't do anything.
-        if ($reader->isEmptyElement) {
-            $reader->next();
-            return [];
-        }
-        $reader->read();
-        $currentDepth = $reader->depth;
-
-        $values = [];
-        do {
-
-            if ($reader->nodeType === Xml\Reader::ELEMENT) {
-                $values[] = $reader->getClark();
-            }
-
-        } while ($reader->depth >= $currentDepth && $reader->next());
-
-        $reader->next();
-        return $values;
+        return Deserializer\elementList($reader);
 
     }
 

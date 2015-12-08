@@ -50,7 +50,7 @@ use Sabre\Xml\Reader;
  * the same name appear twice in the list, only the last one will be kept.
  *
  *
- * @param Xml\Reader $reader
+ * @param Reader $reader
  * @param string $namespace
  * @return array
  */
@@ -81,6 +81,83 @@ function keyValue(Reader $reader, $namespace = null) {
 
     $reader->read();
 
+    return $values;
+
+}
+
+/**
+ * The 'elementList' deserializer parses elements into a simple list
+ * without values or attributes.
+ *
+ * For example, Elements will parse:
+ *
+ * <?xml version="1.0"?>
+ * <s:root xmlns:s="http://sabredav.org/ns">
+ *   <s:elem1 />
+ *   <s:elem2 />
+ *   <s:elem3 />
+ *   <s:elem4>content</s:elem4>
+ *   <s:elem5 attr="val" />
+ * </s:root>
+ *
+ * Into:
+ *
+ * [
+ *   "{http://sabredav.org/ns}elem1",
+ *   "{http://sabredav.org/ns}elem2",
+ *   "{http://sabredav.org/ns}elem3",
+ *   "{http://sabredav.org/ns}elem4",
+ *   "{http://sabredav.org/ns}elem5",
+ * ];
+ *
+ * This is useful for 'enum'-like structures.
+ *
+ * If the $namespace argument is specified, it will strip the namespace
+ * for all elements that match that.
+ *
+ * For example,
+ *
+ * elementList($reader, 'http://sabredav.org/ns')
+ *
+ * would return:
+ *
+ * [
+ *   "{http://sabredav.org/ns}elem1",
+ *   "{http://sabredav.org/ns}elem2",
+ *   "{http://sabredav.org/ns}elem3",
+ *   "{http://sabredav.org/ns}elem4",
+ *   "{http://sabredav.org/ns}elem5",
+ * ];
+ *
+ * @param Reader $reader
+ * @param string $namespace
+ * @return array
+ */
+function elementList(Reader $reader, $namespace = null) {
+
+    // If there's no children, we don't do anything.
+    if ($reader->isEmptyElement) {
+        $reader->next();
+        return [];
+    }
+    $reader->read();
+    $currentDepth = $reader->depth;
+
+    $values = [];
+    do {
+
+        if ($reader->nodeType !== Reader::ELEMENT) {
+            continue;
+        }
+        if (!is_null($namespace) && $namespace === $reader->namespaceURI) {
+            $values[] = $reader->localName;
+        } else {
+            $values[] = $reader->getClark();
+        }
+
+    } while ($reader->depth >= $currentDepth && $reader->next());
+
+    $reader->next();
     return $values;
 
 }
