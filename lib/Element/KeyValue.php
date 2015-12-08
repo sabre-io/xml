@@ -3,6 +3,7 @@
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
+use Sabre\Xml\Deserializer;
 
 /**
  * 'KeyValue' parses out all child elements from a single node, and outputs a
@@ -100,31 +101,7 @@ class KeyValue implements Xml\Element {
      */
     static function xmlDeserialize(Xml\Reader $reader) {
 
-        // If there's no children, we don't do anything.
-        if ($reader->isEmptyElement) {
-            $reader->next();
-            return [];
-        }
-
-        $values = [];
-
-        $reader->read();
-        do {
-
-            if ($reader->nodeType === Xml\Reader::ELEMENT) {
-
-                $clark = $reader->getClark();
-                $values[$clark] = $reader->parseCurrentElement()['value'];
-
-            } else {
-                $reader->read();
-            }
-
-        } while ($reader->nodeType !== Xml\Reader::END_ELEMENT);
-
-        $reader->read();
-
-        return $values;
+        return Deserializer\keyValue($reader);
 
     }
 

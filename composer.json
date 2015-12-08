@@ -28,7 +28,7 @@
         "psr-4" : {
             "Sabre\\Xml\\" : "lib/"
         },
-        "files": ["lib/functions.php"]
+        "files": ["lib/deserializers.php"]
     },
     "bin" : [
     ],

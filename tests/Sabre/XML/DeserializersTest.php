@@ -1,13 +1,13 @@
 <?php
 
-namespace Sabre\XML\Deserialize;
+namespace Sabre\XML\Deserializer;
 
 use
     Sabre\Xml\Reader;
 
-class FunctionsTest extends \PHPUnit_Framework_TestCase
-{
-    function testNamespaceAware()
+class DeserializersTest extends \PHPUnit_Framework_TestCase {
+
+    function testKeyValue()
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -26,7 +26,7 @@ BLA;
         $reader = new Reader();
         $reader->elementMap = [
             '{http://sabredav.org/ns}struct' => function(Reader $reader) {
-                return namespaceAware($reader, 'http://sabredav.org/ns');
+                return keyValue($reader, 'http://sabredav.org/ns');
             }
         ];
         $reader->xml($input);

@@ -13,6 +13,8 @@ ChangeLog
   so people with more advanced use-cases can implement their own logic there.
 * #63: When serializing elements using arrays, the `value` key in the array is
   now optional.
+* #62: Added a `keyValue` deserializer function. This can be used instead of
+  the `Element\KeyValue` class and is a lot more flexible. (@staabm)
 
 
 1.2.0 (2015-08-30)
