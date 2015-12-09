@@ -159,7 +159,18 @@ class Writer extends XMLWriter {
     }
 
     /**
-     * Starts an element.
+     * Opens a new element.
+     *
+     * You can either just use a local elementname, or you can use clark-
+     * notation to start a new element.
+     *
+     * Example:
+     *
+     *     $writer->startElement('{http://www.w3.org/2005/Atom}entry');
+     *
+     * Would result in something like:
+     *
+     *     <entry xmlns="http://w3.org/2005/Atom">
      *
      * @param string $name
      * @return bool
@@ -210,9 +221,23 @@ class Writer extends XMLWriter {
     }
 
     /**
-     * Write a full element tag.
+     * Write a full element tag and it's contents.
      *
      * This method automatically closes the element as well.
+     *
+     * The element name may be specified in clark-notation.
+     *
+     * Examples:
+     *
+     *    $writer->writeElement('{http://www.w3.org/2005/Atom}author',null);
+     *    becomes:
+     *    <author xmlns="http://www.w3.org/2005" />
+     *
+     *    $writer->writeElement('{http://www.w3.org/2005/Atom}author', [
+     *       '{http://www.w3.org/2005/Atom}name' => 'Evert Pot',
+     *    ]);
+     *    becomes:
+     *    <author xmlns="http://www.w3.org/2005" /><name>Evert Pot</name></author>
      *
      * @param string $name
      * @param string $content
