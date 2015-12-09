@@ -161,3 +161,31 @@ function elementList(Reader $reader, $namespace = null) {
     return $values;
 
 }
+
+/**
+ * @param Reader $reader
+ * @param object $valueObject
+ * @param string $namespace
+ * @return null|$valueObject
+ */
+function valueObject(Reader $reader, $valueObject, $namespace) {
+    if ($reader->isEmptyElement) {
+        $reader->next();
+        return null;
+    }
+
+    $reader->read();
+    do {
+
+        if ($reader->nodeType === Reader::ELEMENT && $reader->namespaceURI == $namespace) {
+
+            $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
+        } else {
+            $reader->read();
+        }
+    } while ($reader->nodeType !== Reader::END_ELEMENT);
+
+    $reader->read();
+
+    return $valueObject;
+}

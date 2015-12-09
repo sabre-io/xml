@@ -4,6 +4,8 @@ ChangeLog
 1.3.0 (????-??-??)
 ------------------
 
+* The `Service` class adds a new `mapValueObject` method which provides basic
+  capabilities to map between ValueObjects and XML.
 * #61: You can now specify serializers for specific classes, allowing you
   separate the object you want to serialize from the serializer. This uses the
   `$classMap` property which is defined on both the `Service` and `Writer`.

@@ -198,6 +198,41 @@ XML;
 
     }
 
+    function testMapValueObject() {
+
+        $input = <<<XML
+<?xml version="1.0"?>
+<order xmlns="http://sabredav.org/ns">
+ <id>1234</id>
+ <amount>99.99</amount>
+ <description>black friday deal</description>
+ <status>
+  <id>5</id>
+  <label>processed</label>
+ </status>
+</order>
+
+XML;
+
+        $orderService = new \Sabre\Xml\Service();
+        $orderService->mapValueObject('order', 'Sabre\Xml\Order', 'http://sabredav.org/ns');
+        $orderService->mapValueObject('status', 'Sabre\Xml\OrderStatus', 'http://sabredav.org/ns');
+
+        $order = $orderService->parse($input);
+        $expected = new Order();
+        $expected->id = 1234;
+        $expected->amount = 99.99;
+        $expected->description = 'black friday deal';
+        $expected->status = new OrderStatus();
+        $expected->status->id = 5;
+        $expected->status->label = 'processed';
+
+        $this->assertEquals($expected, $order);
+
+        $writtenXml = $orderService->write('{http://sabredav.org/ns}order', $order);
+        $this->assertEquals($input, $writtenXml);
+    }
+
     function testParseClarkNotation() {
 
         $this->assertEquals([
@@ -216,4 +251,24 @@ XML;
 
     }
 
+}
+
+/**
+ * asset for testMapValueObject()
+ * @internal
+ */
+class Order {
+    public $id;
+    public $amount;
+    public $description;
+    public $status;
+}
+
+/**
+ * asset for testMapValueObject()
+ * @internal
+ */
+class OrderStatus {
+    public $id;
+    public $label;
 }
