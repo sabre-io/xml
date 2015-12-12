@@ -8,6 +8,10 @@ use Sabre\Xml\Reader;
  * This class provides a number of 'deserializer' helper functions.
  * These can be used to easily specify custom deserializers for specific
  * XML elements.
+ *
+ * You can either use these functions from within the $elementMap in the
+ * Service or Reader class, or you can call them from within your own
+ * deserializer functions.
  */
 
 /*
@@ -197,4 +201,44 @@ function valueObject(Reader $reader, $className, $namespace) {
 
     $reader->read();
     return $valueObject;
+
+}
+
+/*
+ * This deserializer helps you deserialize xml structures that look like
+ * this:
+ *
+ * <collection>
+ *    <item>...</item>
+ *    <item>...</item>
+ *    <item>...</item>
+ * </collection>
+ *
+ * Many XML documents use  patterns like that, and this deserializer
+ * allow you to get all the 'items' as an array.
+ *
+ * In that previous example, you would register the deserializer as such:
+ *
+ * $reader->elementMap['{}collection'] = function($reader) {
+ *     return repeatingElements($reader, '{}item');
+ * }
+ *
+ * The repeatingElements deserializer simply returns everything as an array.
+ *
+ * @param Reader $reader
+ * @param string $childElementName Element name in clark-notation
+ * @return array
+ */
+function repeatingElements(Reader $reader, $childElementName) {
+
+    $result = [];
+
+    foreach ($reader->parseGetElements() as $element) {
+
+        if ($element['name'] === $childElementName) {
+            $result[] = $element['value'];
+        }
+
+    }
+
 }
