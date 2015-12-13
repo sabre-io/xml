@@ -205,7 +205,7 @@ class Service {
         if (!class_exists($className)) {
             throw new \InvalidArgumentException('class "' . $className . '" does not exist');
         }
-        $this->namespaceMap[$namespace] = null;
+ 
         $this->elementMap['{' . $namespace . '}' . $rootElementName] = function(Reader $reader) use ($className, $namespace) {
             return \Sabre\Xml\Deserializer\valueObject($reader, new $className(), $namespace);
         };
