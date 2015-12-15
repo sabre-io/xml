@@ -189,6 +189,30 @@ class Service {
 
     }
 
+    /**
+     * Maps the given value-object to the given rootElementName within the given namespace.
+     *
+     * The $rootElement must be specified in clark notation.
+     *
+     * The $className refernces a regular php class which must provide a __construct() without arguments.
+     * This methods creates instances of this class which later on picks up all xml child elements as public properties.
+     *
+     * @param string $rootElementName
+     * @param object $className
+     * @param string $namespace
+     */
+    function mapValueObject($rootElementName, $className, $namespace) {
+        if (!class_exists($className)) {
+            throw new \InvalidArgumentException('class "' . $className . '" does not exist');
+        }
+ 
+        $this->elementMap['{' . $namespace . '}' . $rootElementName] = function(Reader $reader) use ($className, $namespace) {
+            return \Sabre\Xml\Deserializer\valueObject($reader, new $className(), $namespace);
+        };
+        $this->classMap[$className] = function(Writer $writer, $valueObject) use ($namespace) {
+            return \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);
+        };
+    }
 
     /**
      * Parses a clark-notation string, and returns the namespace and element
@@ -212,6 +236,4 @@ class Service {
         ];
 
     }
-
-
 }
