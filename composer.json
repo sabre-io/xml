@@ -1,6 +1,6 @@
 {
     "name": "sabre/xml",
-    "description" : "The Sabre XML parser is an XML library that you may not hate.",
+    "description" : "sabre/xml is an XML library that you may not hate.",
     "keywords" : [ "XML", "XMLReader", "XMLWriter", "DOM" ],
     "homepage" : "https://sabre.io/xml/",
     "license" : "BSD-3-Clause",
