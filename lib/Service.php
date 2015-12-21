@@ -190,24 +190,42 @@ class Service {
     }
 
     /**
-     * Maps the given value-object to the given rootElementName within the given namespace.
+     * Map an xml element to a PHP class.
      *
-     * The $rootElement must be specified in clark notation.
+     * Calling this function will automatically setup the Reader and Writer
+     * classes to turn a specific XML element to a PHP class.
      *
-     * The $className refernces a regular php class which must provide a __construct() without arguments.
-     * This methods creates instances of this class which later on picks up all xml child elements as public properties.
+     * For example, given a class such as :
      *
-     * @param string $rootElementName
+     * class Author {
+     *   public $firstName;
+     *   public $lastName;
+     * }
+     *
+     * and an XML element such as:
+     *
+     * <author xmlns="http://example.org/ns">
+     *   <firstName>...</firstName>
+     *   <lastName>...</lastName>
+     * </author>
+     *
+     * These can easily be mapped by calling:
+     *
+     * $service->mapValueObject('{http://example.org}author', 'Author');
+     *
+     * @param string $elementName
      * @param object $className
-     * @param string $namespace
+     * @return void
      */
-    function mapValueObject($rootElementName, $className, $namespace) {
+    function mapValueObject($elementName, $className) {
         if (!class_exists($className)) {
             throw new \InvalidArgumentException('class "' . $className . '" does not exist');
         }
- 
-        $this->elementMap['{' . $namespace . '}' . $rootElementName] = function(Reader $reader) use ($className, $namespace) {
-            return \Sabre\Xml\Deserializer\valueObject($reader, new $className(), $namespace);
+
+        list($namespace) = self::parseClarkNotation($elementName);
+
+        $this->elementMap[$elementName] = function(Reader $reader) use ($className, $namespace) {
+            return \Sabre\Xml\Deserializer\valueObject($reader, $className, $namespace);
         };
         $this->classMap[$className] = function(Writer $writer, $valueObject) use ($namespace) {
             return \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);

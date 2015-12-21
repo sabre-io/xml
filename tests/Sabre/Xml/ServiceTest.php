@@ -216,8 +216,8 @@ XML;
 
         $ns = 'http://sabredav.org/ns';
         $orderService = new \Sabre\Xml\Service();
-        $orderService->mapValueObject('order', 'Sabre\Xml\Order', $ns);
-        $orderService->mapValueObject('status', 'Sabre\Xml\OrderStatus', $ns);
+        $orderService->mapValueObject('{' . $ns . '}order', 'Sabre\Xml\Order');
+        $orderService->mapValueObject('{' . $ns . '}status', 'Sabre\Xml\OrderStatus');
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
