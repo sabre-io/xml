@@ -11,6 +11,11 @@ use Sabre\Xml\Writer;
  */
 
 /**
+ * The valueObject serializer turns a simple PHP object into a classname.
+ *
+ * Every public property will be encoded as an xml element with the same
+ * name, in the XML namespace as specified.
+ *
  * @param Writer $writer
  * @param object $valueObject
  * @param string $namespace

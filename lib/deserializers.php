@@ -91,7 +91,7 @@ function keyValue(Reader $reader, $namespace = null) {
  *
  * For example, Elements will parse:
  *
- * <?xml version="1.0"?>
+ * <?xml version="1.0"? >
  * <s:root xmlns:s="http://sabredav.org/ns">
  *   <s:elem1 />
  *   <s:elem2 />
@@ -163,15 +163,23 @@ function elementList(Reader $reader, $namespace = null) {
 }
 
 /**
+ * The valueObject deserializer turns an xml element into a PHP object of
+ * a specific class.
+ *
+ * This is primarily used by the mapValueObject function from the Service
+ * class, but it can also easily be used for more specific situations.
+ *
  * @param Reader $reader
- * @param object $valueObject
+ * @param string $className
  * @param string $namespace
- * @return null|$valueObject
+ * @return object
  */
-function valueObject(Reader $reader, $valueObject, $namespace) {
+function valueObject(Reader $reader, $className, $namespace) {
+
+    $valueObject = new $className();
     if ($reader->isEmptyElement) {
         $reader->next();
-        return null;
+        return $valueObject;
     }
 
     $reader->read();
@@ -179,13 +187,14 @@ function valueObject(Reader $reader, $valueObject, $namespace) {
 
         if ($reader->nodeType === Reader::ELEMENT && $reader->namespaceURI == $namespace) {
 
-            $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
+            if (property_exists($valueObject, $reader->localName)) {
+                $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
+            }
         } else {
             $reader->read();
         }
     } while ($reader->nodeType !== Reader::END_ELEMENT);
 
     $reader->read();
-
     return $valueObject;
 }
