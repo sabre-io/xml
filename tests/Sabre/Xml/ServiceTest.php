@@ -241,7 +241,7 @@ XML;
     function testWriteVoNotFound() {
 
         $service = new Service();
-        $server->writeVO(new \StdClass());
+        $service->writeValueObject(new \StdClass());
 
     }
 
