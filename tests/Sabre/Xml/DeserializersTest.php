@@ -74,7 +74,7 @@ XML;
         $reader->xml($input);
         $reader->elementMap = [
             '{urn:foo}foo' => function(Reader $reader) {
-                return valueObject($reader, TestVo::class, 'urn:foo');
+                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
             }
         ];
 
