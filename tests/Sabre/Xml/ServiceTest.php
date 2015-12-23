@@ -235,6 +235,16 @@ XML;
         $this->assertEquals($input, $writtenXml);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    function testWriteVoNotFound() {
+
+        $service = new Service();
+        $server->writeVO(new \StdClass());
+
+    }
+
     function testParseClarkNotation() {
 
         $this->assertEquals([
