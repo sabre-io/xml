@@ -189,6 +189,9 @@ function valueObject(Reader $reader, $className, $namespace) {
 
             if (property_exists($valueObject, $reader->localName)) {
                 $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
+            } else {
+                // Ignore property
+                $reader->next();
             }
         } else {
             $reader->read();
