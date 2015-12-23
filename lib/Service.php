@@ -233,6 +233,32 @@ class Service {
     }
 
     /**
+     * Writes a value object.
+     *
+     * This function largely behaves similar to write(), except that it's
+     * intended specifically to serialize a Value Object into an XML document.
+     *
+     * The ValueObject must have been previously registered using either
+     * mapValueObject() or the $classMap property.
+     *
+     * @param object $object
+     * @param string $contextUri
+     * @return void
+     */
+    function writeValueObject(object $object, $contextUri = null) {
+
+        if (!isset($this->classMap[get_class($object)]))
+            throw new \InvalidArgumentException('"'. get_class($object) .'" is not a registered value object class. Register your class with either mapValueObject or $classMap.');
+        }
+        return $this->write(
+            $this->classMap[get_class($object)],
+            $object,
+            $contextUri
+        );
+
+    }
+
+    /**
      * Parses a clark-notation string, and returns the namespace and element
      * name components.
      *
