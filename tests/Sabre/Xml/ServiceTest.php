@@ -231,7 +231,7 @@ XML;
 
         $this->assertEquals($expected, $order);
 
-        $writtenXml = $orderService->write('{http://sabredav.org/ns}order', $order);
+        $writtenXml = $orderService->writeValueObject($order);
         $this->assertEquals($input, $writtenXml);
     }
 
