@@ -182,13 +182,19 @@ function valueObject(Reader $reader, $className, $namespace) {
         return $valueObject;
     }
 
+    $defaultProperties = get_class_vars($className);
+
     $reader->read();
     do {
 
         if ($reader->nodeType === Reader::ELEMENT && $reader->namespaceURI == $namespace) {
 
             if (property_exists($valueObject, $reader->localName)) {
-                $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
+                if (is_array($defaultProperties[$reader->localName])) {
+                    $valueObject->{$reader->localName}[] = $reader->parseCurrentElement()['value'];
+                } else {
+                    $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
+                }
             } else {
                 // Ignore property
                 $reader->next();
