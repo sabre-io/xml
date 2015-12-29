@@ -177,7 +177,6 @@ function standardSerializer(Writer $writer, $value) {
 
     } elseif (is_array($value)) {
 
-        reset($value);
         foreach ($value as $name => $item) {
 
             if (is_int($name)) {
