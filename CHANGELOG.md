@@ -17,7 +17,7 @@ ChangeLog
   now optional.
 * #62: Added a `keyValue` deserializer function. This can be used instead of
   the `Element\KeyValue` class and is a lot more flexible. (@staabm)
-* Also added an `elementList` deserializer function to replace
+* Also added an `enum` deserializer function to replace
   `Element\Elements`.
 * Using an empty string for a namespace prefix now has the same effect as
   `null`.
