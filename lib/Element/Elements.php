@@ -4,6 +4,7 @@ namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
 use Sabre\Xml\Deserializer;
+use Sabre\Xml\Serializer;
 
 /**
  * 'Elements' is a simple list of elements, without values or attributes.
@@ -73,9 +74,7 @@ class Elements implements Xml\Element {
      */
     function xmlSerialize(Xml\Writer $writer) {
 
-        foreach ($this->value as $val) {
-            $writer->writeElement($val);
-        }
+        Serializer\enum($writer, $this->value);
 
     }
 
@@ -102,7 +101,7 @@ class Elements implements Xml\Element {
      */
     static function xmlDeserialize(Xml\Reader $reader) {
 
-        return Deserializer\elementList($reader);
+        return Deserializer\enum($reader);
 
     }
 

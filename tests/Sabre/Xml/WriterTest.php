@@ -380,6 +380,22 @@ HI
 
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    function testResource() {
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => fopen('php://memory', 'r'),
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">deferred writer</s:root>
+
+HI
+        );
+
+    }
+
     function testClassMap() {
 
         $obj = (object)[
