@@ -29,8 +29,8 @@
             "Sabre\\Xml\\" : "lib/"
         },
         "files": [
-            "lib/deserializers.php",
-            "lib/serializers.php"
+            "lib/Deserializer/functions.php",
+            "lib/Serializer/functions.php"
         ]
     },
     "bin" : [
