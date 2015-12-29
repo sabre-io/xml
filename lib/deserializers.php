@@ -90,7 +90,7 @@ function keyValue(Reader $reader, $namespace = null) {
 }
 
 /**
- * The 'elementList' deserializer parses elements into a simple list
+ * The 'enum' deserializer parses elements into a simple list
  * without values or attributes.
  *
  * For example, Elements will parse:
@@ -121,7 +121,7 @@ function keyValue(Reader $reader, $namespace = null) {
  *
  * For example,
  *
- * elementList($reader, 'http://sabredav.org/ns')
+ * enum($reader, 'http://sabredav.org/ns')
  *
  * would return:
  *
@@ -137,7 +137,7 @@ function keyValue(Reader $reader, $namespace = null) {
  * @param string $namespace
  * @return string[]
  */
-function elementList(Reader $reader, $namespace = null) {
+function enum(Reader $reader, $namespace = null) {
 
     // If there's no children, we don't do anything.
     if ($reader->isEmptyElement) {
@@ -249,5 +249,7 @@ function repeatingElements(Reader $reader, $childElementName) {
         }
 
     }
+
+    return $result;
 
 }

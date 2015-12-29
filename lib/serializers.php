@@ -14,6 +14,38 @@ use Sabre\Xml\XmlSerializable;
  */
 
 /**
+ * The 'enum' serializer writes simple list of elements.
+ *
+ * For example, calling:
+ *
+ * enum($writer, [
+ *   "{http://sabredav.org/ns}elem1",
+ *   "{http://sabredav.org/ns}elem2",
+ *   "{http://sabredav.org/ns}elem3",
+ *   "{http://sabredav.org/ns}elem4",
+ *   "{http://sabredav.org/ns}elem5",
+ * ]);
+ *
+ * Will generate something like this (if the correct namespace is declared):
+ *
+ * <s:elem1 />
+ * <s:elem2 />
+ * <s:elem3 />
+ * <s:elem4>content</s:elem4>
+ * <s:elem5 attr="val" />
+ *
+ * @param Writer $writer
+ * @param string[] $values
+ * @return void
+ */
+function enum(Writer $writer, array $values) {
+
+    foreach ($values as $value) {
+        $writer->writeElement($value);
+    }
+}
+
+/**
  * The valueObject serializer turns a simple PHP object into a classname.
  *
  * Every public property will be encoded as an xml element with the same
