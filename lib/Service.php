@@ -230,6 +230,33 @@ class Service {
         $this->classMap[$className] = function(Writer $writer, $valueObject) use ($namespace) {
             return \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);
         };
+        $this->valueObjectMap[$className] = $elementName;
+    }
+
+    /**
+     * Writes a value object.
+     *
+     * This function largely behaves similar to write(), except that it's
+     * intended specifically to serialize a Value Object into an XML document.
+     *
+     * The ValueObject must have been previously registered using
+     * mapValueObject().
+     *
+     * @param object $object
+     * @param string $contextUri
+     * @return void
+     */
+    function writeValueObject($object, $contextUri = null) {
+
+        if (!isset($this->valueObjectMap[get_class($object)])) {
+            throw new \InvalidArgumentException('"' . get_class($object) . '" is not a registered value object class. Register your class with mapValueObject.');
+        }
+        return $this->write(
+            $this->valueObjectMap[get_class($object)],
+            $object,
+            $contextUri
+        );
+
     }
 
     /**
@@ -254,4 +281,10 @@ class Service {
         ];
 
     }
+
+    /**
+     * A list of classes and which XML elements they map to.
+     */
+    protected $valueObjectMap = [];
+
 }
