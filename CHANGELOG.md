@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-1.3.0 (????-??-??)
+1.3.0 (2015-12-29)
 ------------------
 
 * The `Service` class adds a new `mapValueObject` method which provides basic
