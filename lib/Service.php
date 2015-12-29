@@ -218,10 +218,6 @@ class Service {
      * @return void
      */
     function mapValueObject($elementName, $className) {
-        if (!class_exists($className)) {
-            throw new \InvalidArgumentException('class "' . $className . '" does not exist');
-        }
-
         list($namespace) = self::parseClarkNotation($elementName);
 
         $this->elementMap[$elementName] = function(Reader $reader) use ($className, $namespace) {
