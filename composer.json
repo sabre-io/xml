@@ -18,6 +18,11 @@
             "email" : "me@evertpot.com",
             "homepage" : "http://evertpot.com/",
             "role" : "Developer"
+        },
+        {
+            "name": "Markus Staab",
+            "email": "markus.staab@redaxo.de",
+            "role" : "Developer"
         }
     ],
     "support" : {
