@@ -80,7 +80,7 @@ function valueObject(Writer $writer, $valueObject, $namespace) {
  * @param Writer $writer
  * @param array $items A list of items sabre/xml can serialize.
  * @param string $childElementName Element name in clark-notation
- * @return array
+ * @return void
  */
 function repeatingElements(Writer $writer, array $items, $childElementName) {
 
