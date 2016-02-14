@@ -10,6 +10,7 @@ ChangeLog
 * When serializing value objects, properties that have a null value or an
   empty array are now skipped. We believe this to be the saner default, but
   does constitute a BC break for those depending on this.
+* Serializing array properties in value objects was broken.
 
 
 1.3.0 (2015-12-29)
