@@ -75,25 +75,26 @@ HI
     function testMixedSyntax() {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
-                'single'   => 'value',
-                'multiple' => [
+                '{http://sabredav.org/ns}single'   => 'value',
+                '{http://sabredav.org/ns}multiple' => [
                     [
-                        'name'  => 'foo',
+                        'name'  => '{http://sabredav.org/ns}foo',
                         'value' => 'bar',
                     ],
                     [
-                        'name'  => 'foo',
+                        'name'  => '{http://sabredav.org/ns}foo',
                         'value' => 'foobar',
                     ],
                 ],
-                'attributes' => [
+                [
+                    'name' => '{http://sabredav.org/ns}attributes',
                     'value'      => null,
                     'attributes' => [
                         'foo' => 'bar',
                     ],
                 ],
                 [
-                    'name'       => 'verbose',
+                    'name'       => '{http://sabredav.org/ns}verbose',
                     'value'      => 'syntax',
                     'attributes' => [
                         'foo' => 'bar',
@@ -103,13 +104,13 @@ HI
         ], <<<HI
 <?xml version="1.0"?>
 <s:root xmlns:s="http://sabredav.org/ns">
- <single>value</single>
- <multiple>
-  <foo>bar</foo>
-  <foo>foobar</foo>
- </multiple>
- <attributes foo="bar"/>
- <verbose foo="bar">syntax</verbose>
+ <s:single>value</s:single>
+ <s:multiple>
+  <s:foo>bar</s:foo>
+  <s:foo>foobar</s:foo>
+ </s:multiple>
+ <s:attributes foo="bar"/>
+ <s:verbose foo="bar">syntax</s:verbose>
 </s:root>
 
 HI
@@ -145,6 +146,30 @@ HI
 <?xml version="1.0"?>
 <s:root xmlns:s="http://sabredav.org/ns">
  <s:elem1 attr1="attribute value">text</s:elem1>
+</s:root>
+
+HI
+        );
+
+    }
+
+    function testArrayOfValues() {
+
+        $this->compare([
+            '{http://sabredav.org/ns}root' => [
+                [
+                    'name'       => '{http://sabredav.org/ns}elem1',
+                    'value'      => [
+                        'foo',
+                        'bar',
+                        'baz',
+                    ],
+                ],
+            ],
+        ], <<<HI
+<?xml version="1.0"?>
+<s:root xmlns:s="http://sabredav.org/ns">
+ <s:elem1>foobarbaz</s:elem1>
 </s:root>
 
 HI
@@ -234,19 +259,6 @@ HI
 
 HI
         );
-
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    function testInvalidFormat() {
-
-        $this->compare([
-            '{http://sabredav.org/ns}root' => [
-                ['incorrect' => '0', 'keynames' => 1]
-            ],
-        ], "");
 
     }
 

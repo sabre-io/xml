@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+1.3.1 (2016-02-14)
+------------------
+
+* Any array thrown into the serializer with numeric keys is now simply
+  traversed and each individual item is serialized. This fixes an issue
+  related to serializing value objects with array children.
+
+
 1.3.0 (2015-12-29)
 ------------------
 
