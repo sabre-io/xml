@@ -7,9 +7,9 @@ ChangeLog
 * Any array thrown into the serializer with numeric keys is now simply
   traversed and each individual item is serialized. This fixes an issue
   related to serializing value objects with array children.
-* When serializing value objects, properties that have a null value are now
-  skipped. We believe this to be the saner default, but does constitute a
-  minor BC break.
+* When serializing value objects, properties that have a null value or an
+  empty array are now skipped. We believe this to be the saner default, but
+  does constitute a BC break for those depending on this.
 
 
 1.3.0 (2015-12-29)
