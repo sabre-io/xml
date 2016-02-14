@@ -51,8 +51,8 @@ function enum(Writer $writer, array $values) {
  * Every public property will be encoded as an xml element with the same
  * name, in the XML namespace as specified.
  *
- * Values that are set to null are not serialized. To serialize empty
- * properties, you must specify them as an empty string.
+ * Values that are set to null or an empty array are not serialized. To
+ * serialize empty properties, you must specify them as an empty string.
  *
  * @param Writer $writer
  * @param object $valueObject
@@ -60,7 +60,7 @@ function enum(Writer $writer, array $values) {
  */
 function valueObject(Writer $writer, $valueObject, $namespace) {
     foreach (get_object_vars($valueObject) as $key => $val) {
-        if ($val !== null) {
+        if ($val !== null && $val !== []) {
             $writer->writeElement('{' . $namespace . '}' . $key, $val);
         }
     }
