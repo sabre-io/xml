@@ -60,7 +60,14 @@ function enum(Writer $writer, array $values) {
  */
 function valueObject(Writer $writer, $valueObject, $namespace) {
     foreach (get_object_vars($valueObject) as $key => $val) {
-        if ($val !== null && $val !== []) {
+        if (is_array($val)) {
+            // If $val is an array, it has a special meaning. We need to
+            // generate one child element for each item in $val
+            foreach($val as $child) {
+                $writer->writeElement('{' . $namespace . '}' . $key, $child);
+            }
+
+        } elseif ($val !== null) {
             $writer->writeElement('{' . $namespace . '}' . $key, $val);
         }
     }
