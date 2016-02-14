@@ -274,6 +274,7 @@ class Order {
     public $amount;
     public $description;
     public $status;
+    public $empty;
 }
 
 /**
