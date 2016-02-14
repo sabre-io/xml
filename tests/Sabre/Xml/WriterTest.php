@@ -87,7 +87,7 @@ HI
                     ],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}attributes',
+                    'name'       => '{http://sabredav.org/ns}attributes',
                     'value'      => null,
                     'attributes' => [
                         'foo' => 'bar',
