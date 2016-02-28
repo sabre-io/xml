@@ -59,11 +59,7 @@ class Reader extends XMLReader {
         $previousEntityState = libxml_disable_entity_loader(true);
         $previousSetting = libxml_use_internal_errors(true);
 
-        // Really sorry about the silence operator, seems like I have no
-        // choice. See:
-        //
-        // https://bugs.php.net/bug.php?id=64230
-        while ($this->nodeType !== self::ELEMENT && @$this->read()) {
+        while ($this->nodeType !== self::ELEMENT && $this->read()) {
             // noop
         }
         $result = $this->parseCurrentElement();
@@ -138,11 +134,7 @@ class Reader extends XMLReader {
             $this->elementMap = $elementMap;
         }
 
-        // Really sorry about the silence operator, seems like I have no
-        // choice. See:
-        //
-        // https://bugs.php.net/bug.php?id=64230
-        if (!@$this->read()) return false;
+        if (!$this->read()) return false;
 
         while (true) {
 
