@@ -266,8 +266,8 @@ XML;
         $reqId->name = "request_id";
         $orderId = new XsdElement();
         $orderId->name = "order_id";
-        $expected->complexType->sequence->element[] = $reqId
-        $expected->complexType->sequence->element[] = $orderId
+        $expected->complexType->sequence->element[] = $reqId;
+        $expected->complexType->sequence->element[] = $orderId;
         
         $this->assertEquals($expected, $order);
 
