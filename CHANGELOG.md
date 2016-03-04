@@ -6,6 +6,9 @@ ChangeLog
 
 * Minimum PHP versions are now 5.4.22, 5.5.5 and 5.6.0.
 * #88 No longer using the silence operator to supress a buggy PHP error.
+* #82 We're now caching parsing of clark-notation element names. This can save
+  a fair bit of time with xml documents that contains lots of repeating
+  element names. (@icewind1991)
 
 
 1.4.0 (2016-02-14)
