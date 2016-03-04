@@ -266,16 +266,21 @@ class Service {
      * @return array
      */
     static function parseClarkNotation($str) {
+        static $cache = [];
 
-        if (!preg_match('/^{([^}]*)}(.*)$/', $str, $matches)) {
-            throw new \InvalidArgumentException('\'' . $str . '\' is not a valid clark-notation formatted string');
+        if (!isset($cache[$str])) {
+
+            if (!preg_match('/^{([^}]*)}(.*)$/', $str, $matches)) {
+                throw new \InvalidArgumentException('\'' . $str . '\' is not a valid clark-notation formatted string');
+            }
+
+            $cache[$str] = [
+                $matches[1],
+                $matches[2]
+            ];
         }
 
-        return [
-            $matches[1],
-            $matches[2]
-        ];
-
+        return $cache[$str];
     }
 
     /**
