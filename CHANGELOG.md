@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+1.5.0 (????-??-??)
+------------------
+
+* Minimum PHP versions are now 5.4.22, 5.5.5 and 5.6.0.
+* #88 No longer using the silence operator to supress a buggy PHP error.
+
+
 1.4.0 (2016-02-14)
 ------------------
 
