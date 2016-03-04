@@ -258,6 +258,7 @@ XML;
 
         $order = $xsdService->parse($input);
         $expected = new XsdElement();
+        $expected->name = "order_request";
         $expected->complexType = new XsdComplexType();
         $expected->complexType->sequence = new XsdSequence();
         
