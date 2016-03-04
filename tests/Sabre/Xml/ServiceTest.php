@@ -383,7 +383,7 @@ class XsdComplexType {
  */
 class XsdSequence {
     /** @var XsdElement[] */
-    public $element = array();
+    public $element = [];
 }
 
 /**
