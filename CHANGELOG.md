@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+1.4.1 (2016-03-12)
+-----------------
+
+* Parsing clark-notation is now cached. This can speed up parsing large
+  documents with lots of repeating elements a fair bit. (@icewind1991).
+
+
 1.4.0 (2016-02-14)
 ------------------
 
