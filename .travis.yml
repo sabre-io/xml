@@ -11,7 +11,9 @@ matrix:
 
 sudo: false
 
-cache: $HOME/.composer/cache
+cache:
+  directories:
+    - $HOME/.composer/cache
 
 script:
   - ./bin/phpunit --configuration tests/phpunit.xml.dist
