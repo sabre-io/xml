@@ -14,7 +14,7 @@ use Sabre\Xml\Reader;
  * deserializer functions.
  */
 
-/*
+/**
  * The 'keyValue' deserializer parses all child elements, and outputs them as
  * a "key=>value" array.
  *
@@ -213,7 +213,7 @@ function valueObject(Reader $reader, $className, $namespace) {
 
 }
 
-/*
+/**
  * This deserializer helps you deserialize xml structures that look like
  * this:
  *
