@@ -142,7 +142,12 @@ class Reader extends XMLReader {
         // choice. See:
         //
         // https://bugs.php.net/bug.php?id=64230
-        if (!@$this->read()) return false;
+        if (!@$this->read()) {
+            if (!is_null($elementMap)) {
+                $this->popContext();
+            }
+            return false;
+        }
 
         while (true) {
 
@@ -152,6 +157,9 @@ class Reader extends XMLReader {
 
                 if ($errors) {
                     libxml_clear_errors();
+                    if (!is_null($elementMap)) {
+                        $this->popContext();
+                    }
                     throw new LibXMLException($errors);
                 }
             }
@@ -170,6 +178,9 @@ class Reader extends XMLReader {
                     $this->read();
                     break 2;
                 case self::NONE :
+                    if (!is_null($elementMap)) {
+                        $this->popContext();
+                    }
                     throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
                     // Advance to the next element
