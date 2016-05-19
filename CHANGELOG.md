@@ -1,6 +1,17 @@
 ChangeLog
 =========
 
+1.4.2 (????-??-??)
+------------------
+
+* The `contextStack` in the Reader object is now correctly rolled back in
+  error conditions (@staabm).
+* repeatingElements deserializer now still parses if a bare element name
+  without clark notation was given.
+* `$elementMap` in the Reader now also supports bare element names.
+* `Service::expect()` can now also work with bare element names.
+
+
 1.4.1 (2016-03-12)
 -----------------
 
