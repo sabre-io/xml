@@ -240,6 +240,9 @@ function valueObject(Reader $reader, $className, $namespace) {
  */
 function repeatingElements(Reader $reader, $childElementName) {
 
+    if ($childElementName[0]!=='{') {
+        $childElementName = '{}' . $childElementName;
+    }
     $result = [];
 
     foreach ($reader->parseGetElements() as $element) {

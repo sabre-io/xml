@@ -293,8 +293,13 @@ class Reader extends XMLReader {
      */
     function getDeserializerForElementName($name) {
 
+
         if (!array_key_exists($name, $this->elementMap)) {
-            return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
+            if (substr($name,0,2)=='{}' && array_key_exists(substr($name,2), $this->elementMap)) {
+                $name = substr($name,2);
+            } else {
+                return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
+            }
         }
 
         $deserializer = $this->elementMap[$name];
