@@ -16,12 +16,13 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-script:
-  - ./bin/phpunit --configuration tests/phpunit.xml.dist
-  - ./bin/sabre-cs-fixer fix . --dry-run --diff
-
 before_install:
   - phpenv config-rm xdebug.ini; true
 
 install:
   - composer install
+
+script:
+  - ./bin/phpunit --configuration tests/phpunit.xml.dist
+  - ./bin/sabre-cs-fixer fix . --dry-run --diff
+
