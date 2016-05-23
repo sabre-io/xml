@@ -43,8 +43,6 @@
             "Sabre\\Xml\\" : "tests/Sabre/Xml/"
         }
     },
-    "bin" : [
-    ],
     "require-dev": {
         "sabre/cs": "~0.0.2",
         "phpunit/phpunit" : "*"
