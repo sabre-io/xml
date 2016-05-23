@@ -295,8 +295,8 @@ class Reader extends XMLReader {
 
 
         if (!array_key_exists($name, $this->elementMap)) {
-            if (substr($name,0,2)=='{}' && array_key_exists(substr($name,2), $this->elementMap)) {
-                $name = substr($name,2);
+            if (substr($name, 0, 2) == '{}' && array_key_exists(substr($name, 2), $this->elementMap)) {
+                $name = substr($name, 2);
             } else {
                 return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
             }

@@ -153,8 +153,8 @@ class Service {
 
         $rootElementName = (array)$rootElementName;
 
-        foreach($rootElementName as &$rEl) {
-            if ($rEl[0]!=='{') $rEl = '{}' . $rEl;
+        foreach ($rootElementName as &$rEl) {
+            if ($rEl[0] !== '{') $rEl = '{}' . $rEl;
         }
 
         $result = $r->parse();
