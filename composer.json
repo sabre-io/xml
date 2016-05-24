@@ -38,6 +38,11 @@
             "lib/Serializer/functions.php"
         ]
     },
+    "autoload-dev" : {
+        "psr-4" : {
+            "Sabre\\Xml\\" : "tests/Sabre/Xml/"
+        }
+    },
     "bin" : [
     ],
     "require-dev": {

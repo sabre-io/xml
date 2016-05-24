@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-1.4.2 (????-??-??)
+1.4.2 (2016-05-19)
 ------------------
 
 * The `contextStack` in the Reader object is now correctly rolled back in
