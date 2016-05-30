@@ -256,6 +256,46 @@ BLA;
     /**
      * @depends testMappedElementCallBack
      */
+    function testMappedElementCallBackNoNamespace() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root>
+  <elem1 />
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            'elem1' => function(Reader $reader) {
+                $reader->next();
+                return 'foobar';
+            }
+        ];
+        $reader->xml($input);
+
+        $output = $reader->parse();
+
+        $expected = [
+            'name'  => '{}root',
+            'value' => [
+                [
+                    'name'       => '{}elem1',
+                    'value'      => 'foobar',
+                    'attributes' => [],
+                ],
+            ],
+            'attributes' => [],
+
+        ];
+
+        $this->assertEquals($expected, $output);
+
+    }
+
+    /**
+     * @depends testMappedElementCallBack
+     */
     function testReadText() {
 
         $input = <<<BLA
