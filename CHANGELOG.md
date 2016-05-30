@@ -1,11 +1,22 @@
 ChangeLog
 =========
 
-1.5.0 (????-??-??)
+1.4.2 (2016-05-19)
 ------------------
 
-* Minimum PHP versions are now 5.4.22, 5.5.5 and 5.6.0.
-* #88 No longer using the silence operator to supress a buggy PHP error.
+* The `contextStack` in the Reader object is now correctly rolled back in
+  error conditions (@staabm).
+* repeatingElements deserializer now still parses if a bare element name
+  without clark notation was given.
+* `$elementMap` in the Reader now also supports bare element names.
+* `Service::expect()` can now also work with bare element names.
+
+
+1.4.1 (2016-03-12)
+-----------------
+
+* Parsing clark-notation is now cached. This can speed up parsing large
+  documents with lots of repeating elements a fair bit. (@icewind1991).
 
 
 1.4.0 (2016-02-14)

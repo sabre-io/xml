@@ -59,7 +59,11 @@ class Reader extends XMLReader {
         $previousEntityState = libxml_disable_entity_loader(true);
         $previousSetting = libxml_use_internal_errors(true);
 
-        while ($this->nodeType !== self::ELEMENT && $this->read()) {
+        // Really sorry about the silence operator, seems like I have no
+        // choice. See:
+        //
+        // https://bugs.php.net/bug.php?id=64230
+        while ($this->nodeType !== self::ELEMENT && @$this->read()) {
             // noop
         }
         $result = $this->parseCurrentElement();
@@ -134,7 +138,16 @@ class Reader extends XMLReader {
             $this->elementMap = $elementMap;
         }
 
-        if (!$this->read()) return false;
+        // Really sorry about the silence operator, seems like I have no
+        // choice. See:
+        //
+        // https://bugs.php.net/bug.php?id=64230
+        if (!@$this->read()) {
+            if (!is_null($elementMap)) {
+                $this->popContext();
+            }
+            return false;
+        }
 
         while (true) {
 
@@ -144,6 +157,9 @@ class Reader extends XMLReader {
 
                 if ($errors) {
                     libxml_clear_errors();
+                    if (!is_null($elementMap)) {
+                        $this->popContext();
+                    }
                     throw new LibXMLException($errors);
                 }
             }
@@ -162,6 +178,9 @@ class Reader extends XMLReader {
                     $this->read();
                     break 2;
                 case self::NONE :
+                    if (!is_null($elementMap)) {
+                        $this->popContext();
+                    }
                     throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                 default :
                     // Advance to the next element
@@ -274,8 +293,13 @@ class Reader extends XMLReader {
      */
     function getDeserializerForElementName($name) {
 
+
         if (!array_key_exists($name, $this->elementMap)) {
-            return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
+            if (substr($name, 0, 2) == '{}' && array_key_exists(substr($name, 2), $this->elementMap)) {
+                $name = substr($name, 2);
+            } else {
+                return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
+            }
         }
 
         $deserializer = $this->elementMap[$name];
