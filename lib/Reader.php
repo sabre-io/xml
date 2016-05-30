@@ -59,22 +59,26 @@ class Reader extends XMLReader {
         $previousEntityState = libxml_disable_entity_loader(true);
         $previousSetting = libxml_use_internal_errors(true);
 
-        // Really sorry about the silence operator, seems like I have no
-        // choice. See:
-        //
-        // https://bugs.php.net/bug.php?id=64230
-        while ($this->nodeType !== self::ELEMENT && @$this->read()) {
-            // noop
-        }
-        $result = $this->parseCurrentElement();
+        try {
 
-        $errors = libxml_get_errors();
-        libxml_clear_errors();
-        libxml_use_internal_errors($previousSetting);
-        libxml_disable_entity_loader($previousEntityState);
+            // Really sorry about the silence operator, seems like I have no
+            // choice. See:
+            //
+            // https://bugs.php.net/bug.php?id=64230
+            while ($this->nodeType !== self::ELEMENT && @$this->read()) {
+                // noop
+            }
+            $result = $this->parseCurrentElement();
 
-        if ($errors) {
-            throw new LibXMLException($errors);
+            $errors = libxml_get_errors();
+            libxml_clear_errors();
+            if ($errors) {
+                throw new LibXMLException($errors);
+            }
+
+        } finally {
+            libxml_use_internal_errors($previousSetting);
+            libxml_disable_entity_loader($previousEntityState);
         }
 
         return $result;
@@ -138,60 +142,57 @@ class Reader extends XMLReader {
             $this->elementMap = $elementMap;
         }
 
-        // Really sorry about the silence operator, seems like I have no
-        // choice. See:
-        //
-        // https://bugs.php.net/bug.php?id=64230
-        if (!@$this->read()) {
+        try {
+
+            // Really sorry about the silence operator, seems like I have no
+            // choice. See:
+            //
+            // https://bugs.php.net/bug.php?id=64230
+            if (!@$this->read()) {
+                return false;
+            }
+
+            while (true) {
+
+                if (!$this->isValid()) {
+
+                    $errors = libxml_get_errors();
+
+                    if ($errors) {
+                        libxml_clear_errors();
+                        throw new LibXMLException($errors);
+                    }
+                }
+
+                switch ($this->nodeType) {
+                    case self::ELEMENT :
+                        $elements[] = $this->parseCurrentElement();
+                        break;
+                    case self::TEXT :
+                    case self::CDATA :
+                        $text .= $this->value;
+                        $this->read();
+                        break;
+                    case self::END_ELEMENT :
+                        // Ensuring we are moving the cursor after the end element.
+                        $this->read();
+                        break 2;
+                    case self::NONE :
+                        throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
+                    default :
+                        // Advance to the next element
+                        $this->read();
+                        break;
+                }
+
+            }
+
+        } finally {
+
             if (!is_null($elementMap)) {
                 $this->popContext();
             }
-            return false;
-        }
 
-        while (true) {
-
-            if (!$this->isValid()) {
-
-                $errors = libxml_get_errors();
-
-                if ($errors) {
-                    libxml_clear_errors();
-                    if (!is_null($elementMap)) {
-                        $this->popContext();
-                    }
-                    throw new LibXMLException($errors);
-                }
-            }
-
-            switch ($this->nodeType) {
-                case self::ELEMENT :
-                    $elements[] = $this->parseCurrentElement();
-                    break;
-                case self::TEXT :
-                case self::CDATA :
-                    $text .= $this->value;
-                    $this->read();
-                    break;
-                case self::END_ELEMENT :
-                    // Ensuring we are moving the cursor after the end element.
-                    $this->read();
-                    break 2;
-                case self::NONE :
-                    if (!is_null($elementMap)) {
-                        $this->popContext();
-                    }
-                    throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
-                default :
-                    // Advance to the next element
-                    $this->read();
-                    break;
-            }
-
-        }
-
-        if (!is_null($elementMap)) {
-            $this->popContext();
         }
         return ($elements ? $elements : $text);
 
