@@ -81,15 +81,16 @@ function keyValue(Reader $reader, $namespace = null) {
                 $value = $reader->parseCurrentElement()['value'];
             }
 
-            if (is_array($values[$key])) {
-                $values[$key][] = $value;
-            }
-            elseif (array_key_exists($key, $values)) {
-                $tmp = $values[$key];
-                $values[$key] = [$tmp, $value];
+            if (!isset($values[$key])) {
+                $values[$key] = $value;
             }
             else {
-                $values[$key] = $value;
+                if (!is_array($values[$key])) {
+                    $tmp = $values[$key];
+                    $values[$key] = [$tmp];
+                }
+
+                $values[$key][] = $value;
             }
         } else {
             $reader->read();
