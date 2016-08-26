@@ -51,7 +51,8 @@ use Sabre\Xml\Reader;
  * ];
  *
  * Attributes will be removed from the top-level elements. If elements with
- * the same name appear twice in the list, only the last one will be kept.
+ * the same name appear twice in the list, an array of those elements are
+ * returned.
  *
  *
  * @param Reader $reader
@@ -73,10 +74,22 @@ function keyValue(Reader $reader, $namespace = null) {
 
         if ($reader->nodeType === Reader::ELEMENT) {
             if ($namespace !== null && $reader->namespaceURI === $namespace) {
-                $values[$reader->localName] = $reader->parseCurrentElement()['value'];
+                $key   = $reader->localName;
+                $value = $reader->parseCurrentElement()['value'];
             } else {
-                $clark = $reader->getClark();
-                $values[$clark] = $reader->parseCurrentElement()['value'];
+                $key   = $reader->getClark();
+                $value = $reader->parseCurrentElement()['value'];
+            }
+
+            if (is_array($values[$key])) {
+                $values[$key][] = $value;
+            }
+            elseif (array_key_exists($key, $values)) {
+                $tmp = $values[$key];
+                $values[$key] = [$tmp, $value];
+            }
+            else {
+                $values[$key] = $value;
             }
         } else {
             $reader->read();
