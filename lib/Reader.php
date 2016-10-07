@@ -336,11 +336,7 @@ class Reader extends XMLReader {
      * @return bool            Returns TRUE on success or FALSE on failure
      */
     function open($uri, $encoding = null, $options = 0) {
-        if (parent::open($uri, $encoding, $options)) {
-            $this->reading = true;
-        }
-
-        return $this->reading;
+        return $this->reading = parent::open($uri, $encoding, $options);
     }
 
     /**
@@ -351,11 +347,7 @@ class Reader extends XMLReader {
      * @return bool            Returns TRUE on success or FALSE on failure
      */
     function xml($source, $encoding = null, $options = 0) {
-        if (parent::xml($source, $encoding, $options)) {
-            $this->reading = true;
-        }
-
-        return $this->reading;
+        return $this->reading = parent::xml($source, $encoding, $options);
     }
 
     /**
@@ -363,11 +355,7 @@ class Reader extends XMLReader {
      * @return bool             Returns TRUE on success or FALSE on failure.
      */
     function close() {
-        if (parent::close()) {
-            $this->reading = false;
-        }
-
-        return $this->reading;
+        return $this->reading = !parent::close();
     }
 
 }
