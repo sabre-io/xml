@@ -344,6 +344,21 @@ class Reader extends XMLReader {
     }
 
     /**
+     * Set the data containing the XML to parse
+     * @param  string  $source
+     * @param  string  $encoding
+     * @param  integer $options
+     * @return bool            Returns TRUE on success or FALSE on failure
+     */
+    function xml($source, $encoding = null, $options = 0) {
+        if (parent::xml($source, $encoding, $options)) {
+            $this->reading = true;
+        }
+
+        return $this->reading;
+    }
+
+    /**
      * Close the XMLReader input
      * @return bool             Returns TRUE on success or FALSE on failure.
      */
