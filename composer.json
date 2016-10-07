@@ -10,7 +10,7 @@
         "ext-xmlreader" : "*",
         "ext-dom" : "*",
         "lib-libxml" : ">=2.6.20",
-        "sabre/uri" : "~1.0"
+        "sabre/uri" : ">=1.0,<3.0.0"
     },
     "authors" : [
         {
@@ -46,7 +46,7 @@
     "bin" : [
     ],
     "require-dev": {
-        "sabre/cs": "~0.0.2",
+        "sabre/cs": "~1.0.0",
         "phpunit/phpunit" : "*"
     },
     "config" : {
