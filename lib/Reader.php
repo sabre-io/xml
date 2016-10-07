@@ -22,6 +22,12 @@ class Reader extends XMLReader {
     use ContextStackTrait;
 
     /**
+     * Reading indicator
+     * @var bool
+     */
+    public $reading = false;
+
+    /**
      * Returns the current nodename in clark-notation.
      *
      * For example: "{http://www.w3.org/2005/Atom}feed".
@@ -152,7 +158,7 @@ class Reader extends XMLReader {
                 return false;
             }
 
-            while (true) {
+            while ($this->reading) {
 
                 if (!$this->isValid()) {
 
@@ -320,6 +326,33 @@ class Reader extends XMLReader {
         }
         throw new \LogicException('Could not use this type as a deserializer: ' . $type . ' for element: ' . $name);
 
+    }
+
+    /**
+     * Set the URI containing the XML to parse
+     * @param  string  $uri
+     * @param  string  $encoding
+     * @param  integer $options
+     * @return bool            Returns TRUE on success or FALSE on failure
+     */
+    function open($uri, $encoding = null, $options = 0) {
+        if (parent::open($uri, $encoding, $options)) {
+            $this->reading = true;
+        }
+
+        return $this->reading;
+    }
+
+    /**
+     * Close the XMLReader input
+     * @return bool             Returns TRUE on success or FALSE on failure.
+     */
+    function close() {
+        if (parent::close()) {
+            $this->reading = false;
+        }
+
+        return $this->reading;
     }
 
 }
