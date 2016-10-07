@@ -332,7 +332,7 @@ class Reader extends XMLReader {
      * Set the URI containing the XML to parse
      * @param  string  $uri
      * @param  string  $encoding
-     * @param  integer $options
+     * @param  int $options
      * @return bool            Returns TRUE on success or FALSE on failure
      */
     function open($uri, $encoding = null, $options = 0) {
@@ -347,7 +347,7 @@ class Reader extends XMLReader {
      * Set the data containing the XML to parse
      * @param  string  $source
      * @param  string  $encoding
-     * @param  integer $options
+     * @param  int $options
      * @return bool            Returns TRUE on success or FALSE on failure
      */
     function xml($source, $encoding = null, $options = 0) {
