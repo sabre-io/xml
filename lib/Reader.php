@@ -355,7 +355,8 @@ class Reader extends XMLReader {
      * @return bool             Returns TRUE on success or FALSE on failure.
      */
     function close() {
-        return $this->reading = !parent::close();
+        $this->reading = false;
+        return parent::close();
     }
 
 }
