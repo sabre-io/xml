@@ -2,9 +2,9 @@
 
 namespace Sabre\Xml\Element;
 
+use Sabre\Xml\Element;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
-use Sabre\Xml\Element;
 
 /**
  * The XmlFragment element allows you to extract a portion of your xml tree,

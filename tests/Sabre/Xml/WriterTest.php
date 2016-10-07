@@ -158,8 +158,8 @@ HI
         $this->compare([
             '{http://sabredav.org/ns}root' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => [
+                    'name'  => '{http://sabredav.org/ns}elem1',
+                    'value' => [
                         'foo',
                         'bar',
                         'baz',

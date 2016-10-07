@@ -127,7 +127,7 @@ class Writer extends XMLWriter {
 
             if (array_key_exists($namespace, $this->namespaceMap)) {
                 $result = $this->startElementNS(
-                    $this->namespaceMap[$namespace] === '' ?  null : $this->namespaceMap[$namespace],
+                    $this->namespaceMap[$namespace] === '' ? null : $this->namespaceMap[$namespace],
                     $localName,
                     null
                 );

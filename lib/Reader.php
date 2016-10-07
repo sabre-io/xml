@@ -305,7 +305,7 @@ class Reader extends XMLReader {
 
         $deserializer = $this->elementMap[$name];
         if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
-            return [ $deserializer, 'xmlDeserialize' ];
+            return [$deserializer, 'xmlDeserialize'];
         }
 
         if (is_callable($deserializer)) {
