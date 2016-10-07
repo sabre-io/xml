@@ -25,7 +25,7 @@ class Reader extends XMLReader {
      * Reading indicator
      * @var bool
      */
-    public $reading = false;
+    protected $reading = false;
 
     /**
      * Returns the current nodename in clark-notation.
