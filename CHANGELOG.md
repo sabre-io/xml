@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+2.0.0 (????-??-??)
+------------------
+
+* Now requires PHP 7.
+* Uses typehints everywhere.
+
+
 1.5.0 (2016-10-09)
 ------------------
 

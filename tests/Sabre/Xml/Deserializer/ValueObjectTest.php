@@ -1,6 +1,6 @@
-<?php
+<?php declare (strict_types=1);
 
-namespace Sabre\XML\Deserializer;
+namespace Sabre\Xml\Deserializer;
 
 use
     Sabre\Xml\Reader;
