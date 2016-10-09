@@ -61,11 +61,7 @@ class Reader extends XMLReader {
 
         try {
 
-            // Really sorry about the silence operator, seems like I have no
-            // choice. See:
-            //
-            // https://bugs.php.net/bug.php?id=64230
-            while ($this->nodeType !== self::ELEMENT && @$this->read()) {
+            while ($this->nodeType !== self::ELEMENT && $this->read()) {
                 // noop
             }
             $result = $this->parseCurrentElement();
@@ -144,11 +140,7 @@ class Reader extends XMLReader {
 
         try {
 
-            // Really sorry about the silence operator, seems like I have no
-            // choice. See:
-            //
-            // https://bugs.php.net/bug.php?id=64230
-            if (!@$this->read()) {
+            if (!$this->read()) {
                 $errors = libxml_get_errors();
                 libxml_clear_errors();
                 if ($errors) {
@@ -298,7 +290,6 @@ class Reader extends XMLReader {
      * @return callable
      */
     function getDeserializerForElementName($name) {
-
 
         if (!array_key_exists($name, $this->elementMap)) {
             if (substr($name, 0, 2) == '{}' && array_key_exists(substr($name, 2), $this->elementMap)) {
