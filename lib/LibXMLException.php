@@ -32,7 +32,7 @@ class LibXMLException extends ParseException {
      * @param int $code
      * @param Throwable $previousException
      */
-    function __construct(array $errors, $code = 0, Throwable $previousException = null) {
+    function __construct(array $errors, int $code = 0, Throwable $previousException = null) {
 
         $this->errors = $errors;
         parent::__construct($errors[0]->message . ' on line ' . $errors[0]->line . ', column ' . $errors[0]->column, $code, $previousException);
@@ -41,10 +41,8 @@ class LibXMLException extends ParseException {
 
     /**
      * Returns the LibXML errors
-     *
-     * @return void
      */
-    function getErrors() {
+    function getErrors() : array {
 
         return $this->errors;
 

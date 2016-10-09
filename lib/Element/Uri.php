@@ -34,8 +34,7 @@ class Uri implements Xml\Element {
      *
      * @param string $value
      */
-    function __construct($value)
-    {
+    function __construct($value) {
         $this->value = $value;
     }
 
@@ -55,7 +54,6 @@ class Uri implements Xml\Element {
      *
      * If you are opening new elements, you must also close them again.
      *
-     * @param Writer $writer
      * @return void
      */
     function xmlSerialize(Xml\Writer $writer) {
@@ -87,7 +85,6 @@ class Uri implements Xml\Element {
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param Xml\Reader $reader
      * @return mixed
      */
     static function xmlDeserialize(Xml\Reader $reader) {

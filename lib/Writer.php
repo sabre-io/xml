@@ -115,10 +115,12 @@ class Writer extends XMLWriter {
      *
      *     <entry xmlns="http://w3.org/2005/Atom">
      *
+     * Note: this function doesn't have the string typehint, because PHP's
+     * XMLWriter::startElement doesn't either.
+     *
      * @param string $name
-     * @return bool
      */
-    function startElement($name) {
+    function startElement($name) : bool {
 
         if ($name[0] === '{') {
 
@@ -182,17 +184,21 @@ class Writer extends XMLWriter {
      *    becomes:
      *    <author xmlns="http://www.w3.org/2005" /><name>Evert Pot</name></author>
      *
-     * @param string $name
-     * @param string $content
+     * Note: this function doesn't have the string typehint, because PHP's
+     * XMLWriter::startElement doesn't either.
+     *
+     * @param array|string|object|null $content
      * @return bool
      */
-    function writeElement($name, $content = null) {
+    function writeElement($name, $content = null) : bool {
 
         $this->startElement($name);
         if (!is_null($content)) {
             $this->write($content);
         }
         $this->endElement();
+
+        return true;
 
     }
 
@@ -205,7 +211,6 @@ class Writer extends XMLWriter {
      * xml namespace is assumed. If it's a 'clark notation key', this namespace
      * will be used instead.
      *
-     * @param array $attributes
      * @return void
      */
     function writeAttributes(array $attributes) {
@@ -223,43 +228,42 @@ class Writer extends XMLWriter {
      *
      * Returns true when successful.
      *
+     * Note: this function doesn't have typehints, because for some reason
+     * PHP's XMLWriter::writeAttribute doesn't either.
+     *
      * @param string $name
      * @param string $value
-     * @return bool
      */
-    function writeAttribute($name, $value) {
+    function writeAttribute($name, $value) : bool {
 
-        if ($name[0] === '{') {
-
-            list(
-                $namespace,
-                $localName
-            ) = Service::parseClarkNotation($name);
-
-            if (array_key_exists($namespace, $this->namespaceMap)) {
-                // It's an attribute with a namespace we know
-                $this->writeAttribute(
-                    $this->namespaceMap[$namespace] . ':' . $localName,
-                    $value
-                );
-            } else {
-
-                // We don't know the namespace, we must add it in-line
-                if (!isset($this->adhocNamespaces[$namespace])) {
-                    $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces) + 1);
-                }
-                $this->writeAttributeNS(
-                    $this->adhocNamespaces[$namespace],
-                    $localName,
-                    $namespace,
-                    $value
-                );
-
-            }
-
-        } else {
+        if ($name[0] !== '{') {
             return parent::writeAttribute($name, $value);
         }
+
+        list(
+            $namespace,
+            $localName
+        ) = Service::parseClarkNotation($name);
+
+        if (array_key_exists($namespace, $this->namespaceMap)) {
+            // It's an attribute with a namespace we know
+            return $this->writeAttribute(
+                $this->namespaceMap[$namespace] . ':' . $localName,
+                $value
+            );
+
+        }
+
+        // We don't know the namespace, we must add it in-line
+        if (!isset($this->adhocNamespaces[$namespace])) {
+            $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces) + 1);
+        }
+        return $this->writeAttributeNS(
+            $this->adhocNamespaces[$namespace],
+            $localName,
+            $namespace,
+            $value
+        );
 
     }
 

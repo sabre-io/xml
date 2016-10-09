@@ -52,13 +52,8 @@ use Sabre\Xml\Reader;
  *
  * Attributes will be removed from the top-level elements. If elements with
  * the same name appear twice in the list, only the last one will be kept.
- *
- *
- * @param Reader $reader
- * @param string $namespace
- * @return array
  */
-function keyValue(Reader $reader, $namespace = null) {
+function keyValue(Reader $reader, string $namespace = null) : array {
 
     // If there's no children, we don't do anything.
     if ($reader->isEmptyElement) {
@@ -133,11 +128,9 @@ function keyValue(Reader $reader, $namespace = null) {
  *   "elem5",
  * ];
  *
- * @param Reader $reader
- * @param string $namespace
  * @return string[]
  */
-function enum(Reader $reader, $namespace = null) {
+function enum(Reader $reader, string $namespace = null) : array {
 
     // If there's no children, we don't do anything.
     if ($reader->isEmptyElement) {
@@ -173,12 +166,9 @@ function enum(Reader $reader, $namespace = null) {
  * This is primarily used by the mapValueObject function from the Service
  * class, but it can also easily be used for more specific situations.
  *
- * @param Reader $reader
- * @param string $className
- * @param string $namespace
  * @return object
  */
-function valueObject(Reader $reader, $className, $namespace) {
+function valueObject(Reader $reader, string $className, string $namespace) {
 
     $valueObject = new $className();
     if ($reader->isEmptyElement) {
@@ -234,11 +224,10 @@ function valueObject(Reader $reader, $className, $namespace) {
  *
  * The repeatingElements deserializer simply returns everything as an array.
  *
- * @param Reader $reader
- * @param string $childElementName Element name in clark-notation
- * @return array
+ * $childElementName must either be a a clark-notation element name, or if no
+ * namespace is used, the bare element name.
  */
-function repeatingElements(Reader $reader, $childElementName) {
+function repeatingElements(Reader $reader, string $childElementName) : array {
 
     if ($childElementName[0] !== '{') {
         $childElementName = '{}' . $childElementName;

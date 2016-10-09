@@ -60,10 +60,8 @@ class Service {
 
     /**
      * Returns a fresh XML Reader
-     *
-     * @return Reader
      */
-    function getReader() {
+    function getReader() : Reader {
 
         $r = new Reader();
         $r->elementMap = $this->elementMap;
@@ -73,10 +71,8 @@ class Service {
 
     /**
      * Returns a fresh xml writer
-     *
-     * @return Writer
      */
-    function getWriter() {
+    function getWriter() : Writer {
 
         $w = new Writer();
         $w->namespaceMap = $this->namespaceMap;
@@ -99,12 +95,10 @@ class Service {
      * with the root element name of the document.
      *
      * @param string|resource $input
-     * @param string|null $contextUri
-     * @param string|null $rootElementName
      * @throws ParseException
      * @return array|object|string
      */
-    function parse($input, $contextUri = null, &$rootElementName = null) {
+    function parse($input, string $contextUri = null, string &$rootElementName = null) {
 
         if (is_resource($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
@@ -137,10 +131,9 @@ class Service {
      *
      * @param string|string[] $rootElementName
      * @param string|resource $input
-     * @param string|null $contextUri
      * @return void
      */
-    function expect($rootElementName, $input, $contextUri = null) {
+    function expect($rootElementName, $input, string $contextUri = null) {
 
         if (is_resource($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
@@ -179,11 +172,10 @@ class Service {
      * This allows an implementor to easily create URI's relative to the root
      * of the domain.
      *
-     * @param string $rootElementName
      * @param string|array|XmlSerializable $value
-     * @param string|null $contextUri
+     * @return void
      */
-    function write($rootElementName, $value, $contextUri = null) {
+    function write(string $rootElementName, $value, string $contextUri = null) {
 
         $w = $this->getWriter();
         $w->openMemory();
@@ -219,11 +211,9 @@ class Service {
      *
      * $service->mapValueObject('{http://example.org}author', 'Author');
      *
-     * @param string $elementName
-     * @param object $className
      * @return void
      */
-    function mapValueObject($elementName, $className) {
+    function mapValueObject(string $elementName, string $className) {
         list($namespace) = self::parseClarkNotation($elementName);
 
         $this->elementMap[$elementName] = function(Reader $reader) use ($className, $namespace) {
@@ -245,10 +235,9 @@ class Service {
      * mapValueObject().
      *
      * @param object $object
-     * @param string $contextUri
      * @return void
      */
-    function writeValueObject($object, $contextUri = null) {
+    function writeValueObject($object, string $contextUri = null) {
 
         if (!isset($this->valueObjectMap[get_class($object)])) {
             throw new \InvalidArgumentException('"' . get_class($object) . '" is not a registered value object class. Register your class with mapValueObject.');
@@ -267,11 +256,9 @@ class Service {
      *
      * If the string was invalid, it will throw an InvalidArgumentException.
      *
-     * @param string $str
      * @throws InvalidArgumentException
-     * @return array
      */
-    static function parseClarkNotation($str) {
+    static function parseClarkNotation(string $str) : array {
         static $cache = [];
 
         if (!isset($cache[$str])) {

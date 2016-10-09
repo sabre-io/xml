@@ -91,7 +91,7 @@ trait ContextStackTrait {
      * namespaceMap. After you're done, you can restore the old data again
      * with popContext.
      *
-     * @return null
+     * @return void
      */
     function pushContext() {
 
@@ -107,7 +107,7 @@ trait ContextStackTrait {
     /**
      * Restore the previous "context".
      *
-     * @return null
+     * @return void
      */
     function popContext() {
 

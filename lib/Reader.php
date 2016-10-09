@@ -51,10 +51,8 @@ class Reader extends XMLReader {
      *
      * This function will also disable the standard libxml error handler (which
      * usually just results in PHP errors), and throw exceptions instead.
-     *
-     * @return array
      */
-    function parse() {
+    function parse() : array {
 
         $previousEntityState = libxml_disable_entity_loader(true);
         $previousSetting = libxml_use_internal_errors(true);
@@ -95,11 +93,8 @@ class Reader extends XMLReader {
      *
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
-     *
-     * @param array $elementMap
-     * @return array
      */
-    function parseGetElements(array $elementMap = null) {
+    function parseGetElements(array $elementMap = null) : array {
 
         $result = $this->parseInnerTree($elementMap);
         if (!is_array($result)) {
@@ -120,7 +115,6 @@ class Reader extends XMLReader {
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @param array $elementMap
      * @return array|string
      */
     function parseInnerTree(array $elementMap = null) {
@@ -198,10 +192,8 @@ class Reader extends XMLReader {
 
     /**
      * Reads all text below the current element, and returns this as a string.
-     *
-     * @return string
      */
-    function readText() {
+    function readText() : string {
 
         $result = '';
         $previousDepth = $this->depth;
@@ -222,10 +214,8 @@ class Reader extends XMLReader {
      *   * name - A clark-notation XML element name.
      *   * value - The parsed value.
      *   * attributes - A key-value list of attributes.
-     *
-     * @return array
      */
-    function parseCurrentElement() {
+    function parseCurrentElement() : array {
 
         $name = $this->getClark();
 
@@ -255,10 +245,8 @@ class Reader extends XMLReader {
      * If the attributes are part of the same namespace, they will simply be
      * short keys. If they are defined on a different namespace, the attribute
      * name will be retured in clark-notation.
-     *
-     * @return array
      */
-    function parseAttributes() {
+    function parseAttributes() : array {
 
         $attributes = [];
 
@@ -286,11 +274,8 @@ class Reader extends XMLReader {
     /**
      * Returns the function that should be used to parse the element identified
      * by it's clark-notation name.
-     *
-     * @param string $name
-     * @return callable
      */
-    function getDeserializerForElementName($name) {
+    function getDeserializerForElementName(string $name) : callable {
 
         if (!array_key_exists($name, $this->elementMap)) {
             if (substr($name, 0, 2) == '{}' && array_key_exists(substr($name, 2), $this->elementMap)) {
