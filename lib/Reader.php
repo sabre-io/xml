@@ -61,16 +61,17 @@ class Reader extends XMLReader {
 
         try {
 
-            while ($this->nodeType !== self::ELEMENT && $this->read()) {
-                // noop
+            while ($this->nodeType !== self::ELEMENT) {
+                if (!$this->read()) {
+                    $errors = libxml_get_errors();
+                    libxml_clear_errors();
+                    if ($errors) {
+                        throw new LibXMLException($errors);
+                    }
+                }
             }
             $result = $this->parseCurrentElement();
 
-            $errors = libxml_get_errors();
-            libxml_clear_errors();
-            if ($errors) {
-                throw new LibXMLException($errors);
-            }
 
         } finally {
             libxml_use_internal_errors($previousSetting);

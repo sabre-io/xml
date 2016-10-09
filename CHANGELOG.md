@@ -6,6 +6,8 @@ ChangeLog
 
 * Now requires PHP 7.
 * Uses typehints everywhere.
+* Fixed some minor strict typing-related issues.
+* Removed workaround for PHP bug [64230](https://bugs.php.net/bug.php?id=64230).
 
 
 1.5.0 (2016-10-09)
