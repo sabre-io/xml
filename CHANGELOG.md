@@ -6,7 +6,8 @@ ChangeLog
 
 * Now requires PHP 5.5.
 * Using `finally` to always roll back the context stack when serializing.
-
+* #94: Fixed an infinite loop condition when reading some invalid XML
+  documents.
 
 1.4.2 (2016-05-19)
 ------------------

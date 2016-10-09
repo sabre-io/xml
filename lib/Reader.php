@@ -149,7 +149,12 @@ class Reader extends XMLReader {
             //
             // https://bugs.php.net/bug.php?id=64230
             if (!@$this->read()) {
-                return false;
+                $errors = libxml_get_errors();
+                libxml_clear_errors();
+                if ($errors) {
+                    throw new LibXMLException($errors);
+                }
+                throw new ParseException('This should never happen (famous last words)');
             }
 
             while (true) {
