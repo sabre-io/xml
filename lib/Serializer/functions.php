@@ -160,7 +160,7 @@ function standardSerializer(Writer $writer, $value) {
     if (is_scalar($value)) {
 
         // String, integer, float, boolean
-        $writer->text($value);
+        $writer->text((string)$value);
 
     } elseif ($value instanceof XmlSerializable) {
 
