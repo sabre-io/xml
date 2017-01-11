@@ -173,7 +173,7 @@ class Service {
      * of the domain.
      *
      * @param string|array|XmlSerializable $value
-     * @return void
+     * @return string
      */
     function write(string $rootElementName, $value, string $contextUri = null) {
 
