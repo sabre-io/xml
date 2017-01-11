@@ -175,7 +175,7 @@ class Service {
      * @param string|array|XmlSerializable $value
      * @return string
      */
-    function write(string $rootElementName, $value, string $contextUri = null) {
+    function write($rootElementName, $value, string $contextUri = null) {
 
         $w = $this->getWriter();
         $w->openMemory();
