@@ -213,7 +213,7 @@ function valueObject(Reader $reader, string $className, string $namespace) {
  *    <item>...</item>
  * </collection>
  *
- * Many XML documents use  patterns like that, and this deserializer
+ * Many XML documents use patterns like that, and this deserializer
  * allow you to get all the 'items' as an array.
  *
  * In that previous example, you would register the deserializer as such:
@@ -243,5 +243,51 @@ function repeatingElements(Reader $reader, string $childElementName) : array {
     }
 
     return $result;
+
+}
+
+/**
+ * This deserializer helps you to deserialize structures which contain mixed content like this:
+ * 
+ * <p>some text <extref href="..">and a inline tag</extref>and even more text</p>
+ *
+ * The above example will return
+ *
+ * [
+ *     'some text',
+ *     'and a inline tag',
+ *     'and even more text'
+ * ]
+ *
+ * In strict XML documents you wont find this kind of markup but in html this is a quite common pattern.
+ */
+function mixedContent(Reader $reader) : array {
+
+    // If there's no children, we don't do anything.
+    if ($reader->isEmptyElement) {
+        $reader->next();
+        return [];
+    }
+
+    $previousDepth = $reader->depth;
+
+    $content = [];
+    $reader->read();
+    while (true) {
+        if ($reader->nodeType == Reader::ELEMENT) {
+            $content[] = $reader->parseCurrentElement();
+        } elseif ($reader->depth >= $previousDepth && in_array($reader->nodeType, [Reader::TEXT, Reader::CDATA, Reader::WHITESPACE])) {
+            $content[] = $reader->value;
+            $reader->read();
+        } elseif ($reader->nodeType == Reader::END_ELEMENT) {
+            // Ensuring we are moving the cursor after the end element.
+            $reader->read();
+            break;
+        } else {
+            $reader->read();
+        }
+    }
+
+    return $content;
 
 }
