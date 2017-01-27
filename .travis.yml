@@ -12,9 +12,6 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-before_install:
-  - phpenv config-rm xdebug.ini; true
-
 install:
   - composer install
 
