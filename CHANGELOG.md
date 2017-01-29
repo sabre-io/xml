@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-2.0.1 (????-??-??)
+2.1.0 (????-??-??)
 ------------------
 
 * #112: Added a `mixedContent` deserializer function, which might be useful
