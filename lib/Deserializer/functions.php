@@ -249,13 +249,17 @@ function repeatingElements(Reader $reader, string $childElementName) : array {
 /**
  * This deserializer helps you to deserialize structures which contain mixed content like this:
  * 
- * <p>some text <extref href="..">and a inline tag</extref>and even more text</p>
+ * <p>some text <extref>and a inline tag</extref>and even more text</p>
  *
  * The above example will return
  *
  * [
  *     'some text',
- *     'and a inline tag',
+ *     [
+ *         'name'       => '{}extref',
+ *         'value'      => 'and a inline tag',
+ *         'attributes' => []
+ *     ],
  *     'and even more text'
  * ]
  *
