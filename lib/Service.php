@@ -172,16 +172,20 @@ class Service {
      * This allows an implementor to easily create URI's relative to the root
      * of the domain.
      *
+     * @param string $rootElementName
      * @param string|array|XmlSerializable $value
+     * @param string $contextUri
+     * @param null $encoding
+     *
      * @return string
      */
-    function write(string $rootElementName, $value, string $contextUri = null) {
+    function write(string $rootElementName, $value, string $contextUri = null, $encoding = null) {
 
         $w = $this->getWriter();
         $w->openMemory();
         $w->contextUri = $contextUri;
         $w->setIndent(true);
-        $w->startDocument();
+        $w->startDocument('1.0', $encoding);
         $w->writeElement($rootElementName, $value);
         return $w->outputMemory();
 
