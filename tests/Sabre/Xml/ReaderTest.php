@@ -2,7 +2,7 @@
 
 namespace Sabre\Xml;
 
-class ReaderTest extends \PHPUnit_Framework_TestCase {
+class ReaderTest extends \PHPUnit\Framework\TestCase {
 
     function testGetClark() {
 
