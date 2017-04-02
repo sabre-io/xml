@@ -5,7 +5,7 @@ namespace Sabre\Xml\Element;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class CDataTest extends \PHPUnit_Framework_TestCase {
+class CDataTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @expectedException \LogicException

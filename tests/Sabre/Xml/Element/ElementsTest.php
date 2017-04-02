@@ -5,7 +5,7 @@ namespace Sabre\Xml\Element;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class ElementsTest extends \PHPUnit_Framework_TestCase {
+class ElementsTest extends \PHPUnit\Framework\TestCase {
 
     function testDeserialize() {
 

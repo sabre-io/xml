@@ -4,7 +4,7 @@ namespace Sabre\Xml\Deserializer;
 
 use Sabre\Xml\Service;
 
-class MixedContentTest extends \PHPUnit_Framework_TestCase {
+class MixedContentTest extends \PHPUnit\Framework\TestCase {
     function testDeserialize() {
 
         $service = new Service();

@@ -2,7 +2,7 @@
 
 namespace Sabre\Xml;
 
-class ServiceTest extends \PHPUnit_Framework_TestCase {
+class ServiceTest extends \PHPUnit\Framework\TestCase {
 
     function testGetReader() {
 
