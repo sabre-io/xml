@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+2.1.0 (????-??-??)
+------------------
+
+* #112: Added a `mixedContent` deserializer function, which might be useful
+  if you're parsing HTML-like documents with elements that contain both text
+  and other elements as siblings. (@staabm).
+
+
 2.0.0 (2016-11-15)
 ------------------
 
