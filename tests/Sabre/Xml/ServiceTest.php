@@ -234,6 +234,46 @@ XML;
         $writtenXml = $orderService->writeValueObject($order);
         $this->assertEquals($input, $writtenXml);
     }
+    
+    function testCircularMapValueObjects() {
+
+        $input = <<<XML
+<?xml version="1.0"?>
+  <element name="order_request" xmlns="http://www.w3.org/2001/XMLSchema">
+    <complexType>
+      <sequence>
+        <element name="request_id" />
+        <element name="order_id" />
+      </sequence>
+    </complexType>
+  </element>
+XML;
+
+        $ns = 'http://www.w3.org/2001/XMLSchema';
+        $xsdService = new \Sabre\Xml\Service();
+        $xsdService->mapValueObject('{' . $ns . '}element', 'Sabre\Xml\XsdElement');
+        $xsdService->mapValueObject('{' . $ns . '}complexType', 'Sabre\Xml\XsdComplexType');
+        $xsdService->mapValueObject('{' . $ns . '}sequence', 'Sabre\Xml\XsdSequence');
+        $xsdService->namespaceMap[$ns] = null;
+
+        $order = $xsdService->parse($input);
+        $expected = new XsdElement();
+        $expected->name = "order_request";
+        $expected->complexType = new XsdComplexType();
+        $expected->complexType->sequence = new XsdSequence();
+        
+        $reqId = new XsdElement();
+        $reqId->name = "request_id";
+        $orderId = new XsdElement();
+        $orderId->name = "order_id";
+        $expected->complexType->sequence->element[] = $reqId;
+        $expected->complexType->sequence->element[] = $orderId;
+        
+        $this->assertEquals($expected, $order);
+
+        $writtenXml = $xsdService->writeValueObject($order);
+        $this->assertEquals($input, $writtenXml);
+    }    
 
     function testMapValueObjectArrayProperty() {
 
@@ -325,4 +365,33 @@ class Order {
 class OrderStatus {
     public $id;
     public $label;
+}
+
+/**
+ * asset for testCircularMapValueObjects()
+ * @internal
+ */
+class XsdComplexType {
+    public $name;
+    /** @var XsdSequence */
+    public $sequence;
+}
+
+/**
+ * asset for testCircularMapValueObjects()
+ * @internal
+ */
+class XsdSequence {
+    /** @var XsdElement[] */
+    public $element = [];
+}
+
+/**
+ * asset for testCircularMapValueObjects()
+ * @internal
+ */
+class XsdElement {
+    public $name;
+    /** @var XsdComplexType|null */
+    public $complexType;
 }
