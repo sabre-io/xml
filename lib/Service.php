@@ -131,7 +131,9 @@ class Service {
      *
      * @param string|string[] $rootElementName
      * @param string|resource $input
-     * @return void
+     * @param string|null $contextUri
+     * @throws ParseException
+     * @return array|object|string
      */
     function expect($rootElementName, $input, string $contextUri = null) {
 
