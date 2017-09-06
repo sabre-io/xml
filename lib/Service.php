@@ -220,7 +220,7 @@ class Service {
      * $service->mapValueObject('{http://example.org}author', 'Author');
      *
      * @param string $elementName
-     * @param object $className
+     * @param string $className
      * @return void
      */
     function mapValueObject($elementName, $className) {
