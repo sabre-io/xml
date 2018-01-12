@@ -237,6 +237,7 @@ class Service {
      * mapValueObject().
      *
      * @param object $object
+     * @throws \InvalidArgumentException
      * @return void
      */
     function writeValueObject($object, string $contextUri = null) {
@@ -258,7 +259,7 @@ class Service {
      *
      * If the string was invalid, it will throw an InvalidArgumentException.
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     static function parseClarkNotation(string $str) : array {
         static $cache = [];
