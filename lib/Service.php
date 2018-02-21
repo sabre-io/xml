@@ -186,7 +186,6 @@ class Service {
         $w->startDocument();
         $w->writeElement($rootElementName, $value);
         return $w->outputMemory();
-
     }
 
     /**
@@ -238,7 +237,7 @@ class Service {
      *
      * @param object $object
      * @throws \InvalidArgumentException
-     * @return void
+     * @return string
      */
     function writeValueObject($object, string $contextUri = null) {
 
