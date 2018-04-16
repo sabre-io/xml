@@ -1,7 +1,13 @@
 ChangeLog
 =========
 
-2.1.0 (????-??-??)
+2.1.1 (????-??-??)
+------------------
+
+*
+
+
+2.1.0 (2018-02-08)
 ------------------
 
 * #112: Added a `mixedContent` deserializer function, which might be useful
