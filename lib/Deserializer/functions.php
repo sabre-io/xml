@@ -328,5 +328,5 @@ function functionCaller(Reader $reader, callable $func, string $namespace) {
     } while ($reader->nodeType !== Reader::END_ELEMENT);
     $reader->read();
 
-    return call_user_func_array($func, array_values($funcArgs));
+    return $func(...array_values($funcArgs));
 }
