@@ -291,3 +291,42 @@ function mixedContent(Reader $reader): array
 
     return $content;
 }
+
+/**
+ * The functionCaller deserializer turns an xml element into whatever your callable return.
+ *
+ * You can use, e.g., a named constructor (factory method) to create an object using
+ * this function.
+ *
+ * @return mixed
+ */
+function functionCaller(Reader $reader, callable $func, string $namespace) {
+    if ($reader->isEmptyElement) {
+        $reader->next();
+        return [];
+    }
+
+    $funcArgs = [];
+    $func = is_string($func) && false !== strpos($func, '::') ? explode('::', $func) : $func;
+    $ref = is_array($func) ? new \ReflectionMethod($func[0], $func[1]) : new \ReflectionFunction($func);
+    foreach ($ref->getParameters() as $parameter) {
+        $funcArgs[$parameter->getName()] = null;
+    }
+
+    $reader->read();
+    do {
+        if ($reader->nodeType === Reader::ELEMENT && $reader->namespaceURI == $namespace) {
+            if (array_key_exists($reader->localName, $funcArgs)) {
+                $funcArgs[$reader->localName] = $reader->parseCurrentElement()['value'];
+            } else {
+                // Ignore property
+                $reader->next();
+            }
+        } else {
+            $reader->read();
+        }
+    } while ($reader->nodeType !== Reader::END_ELEMENT);
+    $reader->read();
+
+    return call_user_func_array($func, array_values($funcArgs));
+}
