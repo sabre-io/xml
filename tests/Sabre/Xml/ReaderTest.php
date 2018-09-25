@@ -192,6 +192,33 @@ BLA;
 
     }
 
+    function testEmptyProps() {
+
+        $input = <<<BLA
+<?xml version="1.0"?>
+<a:propfind xmlns:a="DAV:">
+  <a:prop></a:prop>
+</a:propfind>
+BLA;
+        $reader = new Reader();
+        $reader->xml($input);
+
+        $reader->next();
+
+        $this->assertEquals([
+            'name'  => '{DAV:}propfind',
+            'value' => [
+                [
+                    'name'       => '{DAV:}prop',
+                    'value'      => null,
+                    'attributes' => []
+                ]
+            ],
+            'attributes' => []
+        ], $reader->parse());
+
+    }
+
     /**
      * @expectedException \LogicException
      */
