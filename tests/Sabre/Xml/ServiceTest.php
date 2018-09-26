@@ -155,6 +155,25 @@ XML;
         );
     }
 
+    function testEmptyProps() {
+
+        $xml = <<<XML
+<?xml version="1.0"?>
+<a:propfind xmlns:a="DAV:">
+  <a:prop></a:prop>
+</a:propfind>
+XML;
+        $util = new Service();
+        $result = $util->expect('{DAV:}propfind', $xml);
+
+        $this->assertEquals([[
+            'name'       => '{DAV:}prop',
+            'value'      => null,
+            'attributes' => []
+        ]], $result);
+
+    }
+
     /**
      * @depends testGetReader
      * @expectedException \Sabre\Xml\ParseException
