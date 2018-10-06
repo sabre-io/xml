@@ -24,6 +24,9 @@ install:
   - composer install
 
 script:
-  - ./bin/phpunit --configuration tests/phpunit.xml.dist
+  - ./bin/phpunit --configuration tests/phpunit.xml.dist  --coverage-clover=coverage.xml
   - ./bin/sabre-cs-fixer fix . --dry-run --diff
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
 
