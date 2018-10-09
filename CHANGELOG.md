@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+2.0.1 (2018-10-09)
+------------------
+
+* #149: Properly detect xml parse errors in `parseCurrentElement()` edge-cases
+
+
 2.0.0 (2016-11-15)
 ------------------
 
