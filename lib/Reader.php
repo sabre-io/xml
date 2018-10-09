@@ -70,6 +70,12 @@ class Reader extends XMLReader {
             }
             $result = $this->parseCurrentElement();
 
+            // last line of defense in case errors did occur above
+            $errors = libxml_get_errors();
+            libxml_clear_errors();
+            if ($errors) {
+                throw new LibXMLException($errors);
+            }
 
         } finally {
             libxml_use_internal_errors($previousSetting);
