@@ -44,7 +44,6 @@
         }
     },
     "require-dev": {
-        "sabre/cs": "~1.0.0",
         "phpunit/phpunit" : "*"
     },
     "config" : {
