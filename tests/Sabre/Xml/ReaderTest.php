@@ -1,11 +1,13 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml;
 
-class ReaderTest extends \PHPUnit\Framework\TestCase {
-
-    function testGetClark() {
-
+class ReaderTest extends \PHPUnit\Framework\TestCase
+{
+    public function testGetClark()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns" />
@@ -16,11 +18,10 @@ BLA;
         $reader->next();
 
         $this->assertEquals('{http://sabredav.org/ns}root', $reader->getClark());
-
     }
 
-    function testGetClarkNoNS() {
-
+    public function testGetClarkNoNS()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root />
@@ -31,11 +32,10 @@ BLA;
         $reader->next();
 
         $this->assertEquals('{}root', $reader->getClark());
-
     }
 
-    function testGetClarkNotOnAnElement() {
-
+    public function testGetClarkNotOnAnElement()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root />
@@ -46,8 +46,8 @@ BLA;
         $this->assertNull($reader->getClark());
     }
 
-    function testSimple() {
-
+    public function testSimple()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -64,38 +64,35 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => null,
+                    'name' => '{http://sabredav.org/ns}elem1',
+                    'value' => null,
                     'attributes' => [
                         'attr' => 'val',
                     ],
                 ],
                 [
-                    'name'  => '{http://sabredav.org/ns}elem2',
+                    'name' => '{http://sabredav.org/ns}elem2',
                     'value' => [
                         [
-                            'name'       => '{http://sabredav.org/ns}elem3',
-                            'value'      => 'Hi!',
+                            'name' => '{http://sabredav.org/ns}elem3',
+                            'value' => 'Hi!',
                             'attributes' => [],
                         ],
                     ],
                     'attributes' => [],
                 ],
-
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
-    function testCDATA() {
-
+    public function testCDATA()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -109,25 +106,22 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}foo',
-                    'value'      => 'bar',
+                    'name' => '{http://sabredav.org/ns}foo',
+                    'value' => 'bar',
                     'attributes' => [],
                 ],
-
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
-    function testSimpleNamespacedAttribute() {
-
+    public function testSimpleNamespacedAttribute()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns" xmlns:foo="urn:foo">
@@ -141,11 +135,11 @@ BLA;
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => null,
+                    'name' => '{http://sabredav.org/ns}elem1',
+                    'value' => null,
                     'attributes' => [
                         '{urn:foo}attr' => 'val',
                     ],
@@ -155,11 +149,10 @@ BLA;
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
-    function testMappedElement() {
-
+    public function testMappedElement()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -169,34 +162,32 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock',
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => 'foobar',
+                    'name' => '{http://sabredav.org/ns}elem1',
+                    'value' => 'foobar',
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
     /**
      * @expectedException \LogicException
      */
-    function testMappedElementBadClass() {
-
+    public function testMappedElementBadClass()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -206,7 +197,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => new \StdClass()
+            '{http://sabredav.org/ns}elem1' => new \StdClass(),
         ];
         $reader->xml($input);
 
@@ -216,8 +207,8 @@ BLA;
     /**
      * @depends testMappedElement
      */
-    function testMappedElementCallBack() {
-
+    public function testMappedElementCallBack()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -227,37 +218,36 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+            '{http://sabredav.org/ns}elem1' => function (Reader $reader) {
                 $reader->next();
+
                 return 'foobar';
-            }
+            },
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => 'foobar',
+                    'name' => '{http://sabredav.org/ns}elem1',
+                    'value' => 'foobar',
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
     /**
      * @depends testMappedElementCallBack
      */
-    function testMappedElementCallBackNoNamespace() {
-
+    public function testMappedElementCallBackNoNamespace()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root>
@@ -267,37 +257,36 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            'elem1' => function(Reader $reader) {
+            'elem1' => function (Reader $reader) {
                 $reader->next();
+
                 return 'foobar';
-            }
+            },
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{}root',
+            'name' => '{}root',
             'value' => [
                 [
-                    'name'       => '{}elem1',
-                    'value'      => 'foobar',
+                    'name' => '{}elem1',
+                    'value' => 'foobar',
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
     /**
      * @depends testMappedElementCallBack
      */
-    function testReadText() {
-
+    public function testReadText()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -310,33 +299,31 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+            '{http://sabredav.org/ns}elem1' => function (Reader $reader) {
                 return $reader->readText();
-            }
+            },
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => 'hello world',
+                    'name' => '{http://sabredav.org/ns}elem1',
+                    'value' => 'hello world',
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
-    function testParseProblem() {
-
+    public function testParseProblem()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -344,7 +331,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock',
         ];
         $reader->xml($input);
 
@@ -352,18 +339,15 @@ BLA;
             $output = $reader->parse();
             $this->fail('We expected a ParseException to be thrown');
         } catch (LibXMLException $e) {
-
             $this->assertInternalType('array', $e->getErrors());
-
         }
-
     }
 
     /**
      * @expectedException \Sabre\Xml\ParseException
      */
-    function testBrokenParserClass() {
-
+    public function testBrokenParserClass()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -373,21 +357,19 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Eater'
+            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Eater',
         ];
         $reader->xml($input);
         $reader->parse();
-
-
     }
 
     /**
      * Test was added for Issue #10.
      *
-     * @expectedException Sabre\Xml\LibXMLException
+     * @expectedException \Sabre\Xml\LibXMLException
      */
-    function testBrokenXml() {
-
+    public function testBrokenXml()
+    {
         $input = <<<BLA
 <test>
 <hello>
@@ -398,16 +380,15 @@ BLA;
         $reader = new Reader();
         $reader->xml($input);
         $reader->parse();
-
     }
 
     /**
      * Test was added for Issue #45.
      *
-     * @expectedException Sabre\Xml\LibXMLException
+     * @expectedException \Sabre\Xml\LibXMLException
      */
-    function testBrokenXml2() {
-
+    public function testBrokenXml2()
+    {
         $input = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions>
@@ -424,15 +405,13 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->parse();
-
     }
-
 
     /**
      * @depends testMappedElement
      */
-    function testParseInnerTree() {
-
+    public function testParseInnerTree()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -444,48 +423,46 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
-
-                $innerTree = $reader->parseInnerTree(['{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+            '{http://sabredav.org/ns}elem1' => function (Reader $reader) {
+                $innerTree = $reader->parseInnerTree(['{http://sabredav.org/ns}elem1' => function (Reader $reader) {
                     $reader->next();
-                    return "foobar";
+
+                    return 'foobar';
                 }]);
 
                 return $innerTree;
-            }
+            },
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'  => '{http://sabredav.org/ns}elem1',
+                    'name' => '{http://sabredav.org/ns}elem1',
                     'value' => [
                         [
-                            'name'       => '{http://sabredav.org/ns}elem1',
-                            'value'      => 'foobar',
+                            'name' => '{http://sabredav.org/ns}elem1',
+                            'value' => 'foobar',
                             'attributes' => [],
-                        ]
+                        ],
                     ],
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
     /**
      * @depends testParseInnerTree
      */
-    function testParseGetElements() {
-
+    public function testParseGetElements()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -497,48 +474,46 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
-
-                $innerTree = $reader->parseGetElements(['{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+            '{http://sabredav.org/ns}elem1' => function (Reader $reader) {
+                $innerTree = $reader->parseGetElements(['{http://sabredav.org/ns}elem1' => function (Reader $reader) {
                     $reader->next();
-                    return "foobar";
+
+                    return 'foobar';
                 }]);
 
                 return $innerTree;
-            }
+            },
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'  => '{http://sabredav.org/ns}elem1',
+                    'name' => '{http://sabredav.org/ns}elem1',
                     'value' => [
                         [
-                            'name'       => '{http://sabredav.org/ns}elem1',
-                            'value'      => 'foobar',
+                            'name' => '{http://sabredav.org/ns}elem1',
+                            'value' => 'foobar',
                             'attributes' => [],
-                        ]
+                        ],
                     ],
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
 
     /**
      * @depends testParseInnerTree
      */
-    function testParseGetElementsNoElements() {
-
+    public function testParseGetElementsNoElements()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -550,36 +525,32 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => function(Reader $reader) {
-
-                $innerTree = $reader->parseGetElements(['{http://sabredav.org/ns}elem1' => function(Reader $reader) {
+            '{http://sabredav.org/ns}elem1' => function (Reader $reader) {
+                $innerTree = $reader->parseGetElements(['{http://sabredav.org/ns}elem1' => function (Reader $reader) {
                     $reader->next();
-                    return "foobar";
+
+                    return 'foobar';
                 }]);
 
                 return $innerTree;
-            }
+            },
         ];
         $reader->xml($input);
 
         $output = $reader->parse();
 
         $expected = [
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}elem1',
-                    'value'      => [],
+                    'name' => '{http://sabredav.org/ns}elem1',
+                    'value' => [],
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
-
         ];
 
         $this->assertEquals($expected, $output);
-
     }
-
-
 }

@@ -1,4 +1,6 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml;
 
@@ -10,8 +12,8 @@ namespace Sabre\Xml;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-interface XmlSerializable {
-
+interface XmlSerializable
+{
     /**
      * The xmlSerialize method is called during xml writing.
      *
@@ -27,9 +29,6 @@ interface XmlSerializable {
      * This allows serializers to be re-used for different element names.
      *
      * If you are opening new elements, you must also close them again.
-     *
-     * @return void
      */
-    function xmlSerialize(Writer $writer);
-
+    public function xmlSerialize(Writer $writer);
 }

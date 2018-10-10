@@ -1,14 +1,16 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
 use
     Sabre\Xml\Reader;
 
-class ValueObjectTest extends \PHPUnit\Framework\TestCase {
-
-    function testDeserializeValueObject() {
-
+class ValueObjectTest extends \PHPUnit\Framework\TestCase
+{
+    public function testDeserializeValueObject()
+    {
         $input = <<<XML
 <?xml version="1.0"?>
 <foo xmlns="urn:foo">
@@ -20,9 +22,9 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function(Reader $reader) {
+            '{urn:foo}foo' => function (Reader $reader) {
                 return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            }
+            },
         ];
 
         $output = $reader->parse();
@@ -32,20 +34,19 @@ XML;
         $vo->lastName = 'Turtle';
 
         $expected = [
-            'name'       => '{urn:foo}foo',
-            'value'      => $vo,
-            'attributes' => []
+            'name' => '{urn:foo}foo',
+            'value' => $vo,
+            'attributes' => [],
         ];
 
         $this->assertEquals(
             $expected,
             $output
         );
-
     }
 
-    function testDeserializeValueObjectIgnoredElement() {
-
+    public function testDeserializeValueObjectIgnoredElement()
+    {
         $input = <<<XML
 <?xml version="1.0"?>
 <foo xmlns="urn:foo">
@@ -58,9 +59,9 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function(Reader $reader) {
+            '{urn:foo}foo' => function (Reader $reader) {
                 return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            }
+            },
         ];
 
         $output = $reader->parse();
@@ -70,20 +71,19 @@ XML;
         $vo->lastName = 'Turtle';
 
         $expected = [
-            'name'       => '{urn:foo}foo',
-            'value'      => $vo,
-            'attributes' => []
+            'name' => '{urn:foo}foo',
+            'value' => $vo,
+            'attributes' => [],
         ];
 
         $this->assertEquals(
             $expected,
             $output
         );
-
     }
 
-    function testDeserializeValueObjectAutoArray() {
-
+    public function testDeserializeValueObjectAutoArray()
+    {
         $input = <<<XML
 <?xml version="1.0"?>
 <foo xmlns="urn:foo">
@@ -97,9 +97,9 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function(Reader $reader) {
+            '{urn:foo}foo' => function (Reader $reader) {
                 return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            }
+            },
         ];
 
         $output = $reader->parse();
@@ -112,21 +112,20 @@ XML;
             'http://example.net/',
         ];
 
-
         $expected = [
-            'name'       => '{urn:foo}foo',
-            'value'      => $vo,
-            'attributes' => []
+            'name' => '{urn:foo}foo',
+            'value' => $vo,
+            'attributes' => [],
         ];
 
         $this->assertEquals(
             $expected,
             $output
         );
-
     }
-    function testDeserializeValueObjectEmpty() {
 
+    public function testDeserializeValueObjectEmpty()
+    {
         $input = <<<XML
 <?xml version="1.0"?>
 <foo xmlns="urn:foo" />
@@ -135,9 +134,9 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function(Reader $reader) {
+            '{urn:foo}foo' => function (Reader $reader) {
                 return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            }
+            },
         ];
 
         $output = $reader->parse();
@@ -145,25 +144,22 @@ XML;
         $vo = new TestVo();
 
         $expected = [
-            'name'       => '{urn:foo}foo',
-            'value'      => $vo,
-            'attributes' => []
+            'name' => '{urn:foo}foo',
+            'value' => $vo,
+            'attributes' => [],
         ];
 
         $this->assertEquals(
             $expected,
             $output
         );
-
     }
-
 }
 
-class TestVo {
-
+class TestVo
+{
     public $firstName;
     public $lastName;
 
     public $link = [];
-
 }

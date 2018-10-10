@@ -1,15 +1,17 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
 use Sabre\Xml\Service;
 
-class RepeatingElementsTest extends \PHPUnit\Framework\TestCase {
-
-    function testRead() {
-
+class RepeatingElementsTest extends \PHPUnit\Framework\TestCase
+{
+    public function testRead()
+    {
         $service = new Service();
-        $service->elementMap['{urn:test}collection'] = function($reader) {
+        $service->elementMap['{urn:test}collection'] = function ($reader) {
             return repeatingElements($reader, '{urn:test}item');
         };
 
@@ -29,7 +31,5 @@ XML;
         ];
 
         $this->assertEquals($expected, $result);
-
     }
-
 }

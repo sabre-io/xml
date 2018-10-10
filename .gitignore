@@ -5,5 +5,5 @@ tests/cov
 
 # Composer binaries
 bin/phpunit
-bin/php-cs-fixer
-bin/sabre-cs-fixer
+
+.php_cs.cache
