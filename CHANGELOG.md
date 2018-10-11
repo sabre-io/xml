@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+2.2.2 (xxxx-xx-xx)
+------------------
+
+* #144: Added a new `functionCaller` deserializer function for executing a callable when reading a XML
+element (@vsouz4)
+
 2.1.1 (2018-10-09)
 ------------------
 
