@@ -1,14 +1,16 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
 use
     Sabre\Xml\Reader;
 
-class FunctionCallerTest extends \PHPUnit\Framework\TestCase {
-
-    function testDeserializeFunctionCaller() {
-
+class FunctionCallerTest extends \PHPUnit\Framework\TestCase
+{
+    public function testDeserializeFunctionCaller()
+    {
         $input = <<<XML
 <?xml version="1.0"?>
 <person xmlns="urn:foo">
@@ -34,16 +36,16 @@ XML;
 
         $reader = new Reader();
         $reader->xml($input);
-        $reader->elementMap['{urn:foo}person'] = function(Reader $reader) {
+        $reader->elementMap['{urn:foo}person'] = function (Reader $reader) {
             return functionCaller($reader, [Person::class, 'fromXml'], 'urn:foo');
         };
-        $reader->elementMap['{urn:foo}address'] = function(Reader $reader) {
+        $reader->elementMap['{urn:foo}address'] = function (Reader $reader) {
             return functionCaller($reader, [Address::class, 'fromXml'], 'urn:foo');
         };
-        $reader->elementMap['{urn:foo}language'] = function(Reader $reader) {
+        $reader->elementMap['{urn:foo}language'] = function (Reader $reader) {
             return functionCaller($reader, [Language::class, 'fromXml'], 'urn:foo');
         };
-        $reader->elementMap['{urn:foo}languages'] = function(Reader $reader) {
+        $reader->elementMap['{urn:foo}languages'] = function (Reader $reader) {
             return repeatingElements($reader, '{urn:foo}language');
         };
 
@@ -57,9 +59,9 @@ XML;
         );
 
         $expected = [
-            'name'       => '{urn:foo}person',
-            'value'      => $person,
-            'attributes' => []
+            'name' => '{urn:foo}person',
+            'value' => $person,
+            'attributes' => [],
         ];
 
         $this->assertEquals(
@@ -68,8 +70,8 @@ XML;
         );
     }
 
-    function testDeserializeFunctionCallerWithDifferentTypesOfCallable() {
-
+    public function testDeserializeFunctionCallerWithDifferentTypesOfCallable()
+    {
         $input = <<<XML
 <?xml version="1.0"?>
 <person xmlns="urn:foo">
@@ -89,24 +91,25 @@ XML;
   <language>
    <value>German</value>
   </language>
+ <language />
  </languages>
 </person>
 XML;
 
         $reader = new Reader();
         $reader->xml($input);
-        $reader->elementMap['{urn:foo}person'] = function(Reader $reader) {
-            return functionCaller($reader, Person::class . '::fromXml', 'urn:foo');
+        $reader->elementMap['{urn:foo}person'] = function (Reader $reader) {
+            return functionCaller($reader, Person::class.'::fromXml', 'urn:foo');
         };
-        $reader->elementMap['{urn:foo}address'] = function(Reader $reader) {
-            return functionCaller($reader, __NAMESPACE__ . '\newAddressFromXml', 'urn:foo');
+        $reader->elementMap['{urn:foo}address'] = function (Reader $reader) {
+            return functionCaller($reader, __NAMESPACE__.'\newAddressFromXml', 'urn:foo');
         };
-        $reader->elementMap['{urn:foo}language'] = function(Reader $reader) {
-            return functionCaller($reader, function(string $value) : Language {
+        $reader->elementMap['{urn:foo}language'] = function (Reader $reader) {
+            return functionCaller($reader, function (string $value): Language {
                 return new Language($value);
             }, 'urn:foo');
         };
-        $reader->elementMap['{urn:foo}languages'] = function(Reader $reader) {
+        $reader->elementMap['{urn:foo}languages'] = function (Reader $reader) {
             return repeatingElements($reader, '{urn:foo}language');
         };
 
@@ -116,13 +119,13 @@ XML;
             'John',
             18,
             new Address('X', 12),
-            [new Language('English'), new Language('Portuguese'), new Language('German')]
+            [new Language('English'), new Language('Portuguese'), new Language('German'), null]
         );
 
         $expected = [
-            'name'       => '{urn:foo}person',
-            'value'      => $person,
-            'attributes' => []
+            'name' => '{urn:foo}person',
+            'value' => $person,
+            'attributes' => [],
         ];
 
         $this->assertEquals(
@@ -138,30 +141,36 @@ final class Person
     private $age;
     private $address;
     private $languages = [];
-    function __construct(string $name, int $age, Address $address, array $languages)
+
+    public function __construct(string $name, int $age, Address $address, array $languages)
     {
         $this->name = $name;
         $this->age = $age;
         $this->address = $address;
         $this->languages = $languages;
     }
-    static function fromXml(string $name, string $age, Address $address, array $languages): self
+
+    public static function fromXml(string $name, string $age, Address $address, array $languages): self
     {
-        return new self($name, (int)$age, $address, $languages);
+        return new self($name, (int) $age, $address, $languages);
     }
-    function getName(): string
+
+    public function getName(): string
     {
         return $this->name;
     }
-    function getAge(): int
+
+    public function getAge(): int
     {
         return $this->age;
     }
-    function getAddress(): Address
+
+    public function getAddress(): Address
     {
         return $this->address;
     }
-    function getLanguages(): array
+
+    public function getLanguages(): array
     {
         return $this->languages;
     }
@@ -170,20 +179,24 @@ final class Address
 {
     private $street;
     private $number;
-    function __construct(string $street, int $number)
+
+    public function __construct(string $street, int $number)
     {
         $this->street = $street;
         $this->number = $number;
     }
-    static function fromXml(string $street, string $number): self
+
+    public static function fromXml(string $street, string $number): self
     {
-        return new self($street, (int)$number);
+        return new self($street, (int) $number);
     }
-    function getStreet(): string
+
+    public function getStreet(): string
     {
         return $this->street;
     }
-    function getNumber(): int
+
+    public function getNumber(): int
     {
         return $this->number;
     }
@@ -191,15 +204,18 @@ final class Address
 final class Language
 {
     private $value;
-    function __construct(string $value)
+
+    public function __construct(string $value)
     {
         $this->value = $value;
     }
-    static function fromXml(string $value): self
+
+    public static function fromXml(string $value): self
     {
         return new self($value);
     }
-    function getValue(): string
+
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -207,5 +223,5 @@ final class Language
 
 function newAddressFromXml(string $street, string $number): Address
 {
-    return new Address($street, (int)$number);
+    return new Address($street, (int) $number);
 }
