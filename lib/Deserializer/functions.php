@@ -300,10 +300,12 @@ function mixedContent(Reader $reader): array
  *
  * @return mixed
  */
-function functionCaller(Reader $reader, callable $func, string $namespace) {
+function functionCaller(Reader $reader, callable $func, string $namespace)
+{
     if ($reader->isEmptyElement) {
         $reader->next();
-        return [];
+
+        return null;
     }
 
     $funcArgs = [];
@@ -315,7 +317,7 @@ function functionCaller(Reader $reader, callable $func, string $namespace) {
 
     $reader->read();
     do {
-        if ($reader->nodeType === Reader::ELEMENT && $reader->namespaceURI == $namespace) {
+        if (Reader::ELEMENT === $reader->nodeType && $reader->namespaceURI == $namespace) {
             if (array_key_exists($reader->localName, $funcArgs)) {
                 $funcArgs[$reader->localName] = $reader->parseCurrentElement()['value'];
             } else {
@@ -325,7 +327,7 @@ function functionCaller(Reader $reader, callable $func, string $namespace) {
         } else {
             $reader->read();
         }
-    } while ($reader->nodeType !== Reader::END_ELEMENT);
+    } while (Reader::END_ELEMENT !== $reader->nodeType);
     $reader->read();
 
     return $func(...array_values($funcArgs));
