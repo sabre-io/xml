@@ -1,17 +1,10 @@
 language: php
 sudo: required
-dist: xenial
 php:
   - 7.0
   - 7.1
   - 7.2
-  - 7.3snapshot
-
-addons:
-  apt:
-    packages:
-    # required for php7.3
-    - libzip4
+  - 7.3
 
 matrix:
   fast_finish: true
