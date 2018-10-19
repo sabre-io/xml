@@ -150,7 +150,7 @@ function enum(Reader $reader, string $namespace = null): array
         if (!is_null($namespace) && $namespace === $reader->namespaceURI) {
             $values[] = $reader->localName;
         } else {
-            $values[] = $reader->getClark();
+            $values[] = (string) $reader->getClark();
         }
     } while ($reader->depth >= $currentDepth && $reader->next());
 

@@ -91,7 +91,7 @@ class Uri implements Xml\Element
     {
         return new self(
             \Sabre\Uri\resolve(
-                $reader->contextUri,
+                (string) $reader->contextUri,
                 $reader->readText()
             )
         );
