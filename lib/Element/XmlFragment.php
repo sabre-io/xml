@@ -85,7 +85,7 @@ XML;
             switch ($reader->nodeType) {
                 case Reader::ELEMENT:
                     $writer->startElement(
-                        $reader->getClark()
+                        (string) $reader->getClark()
                     );
                     $empty = $reader->isEmptyElement;
                     while ($reader->moveToNextAttribute()) {
@@ -97,7 +97,7 @@ XML;
                                 // Skip namespace declarations
                                 break;
                             default:
-                                $writer->writeAttribute($reader->getClark(), $reader->value);
+                                $writer->writeAttribute((string) $reader->getClark(), $reader->value);
                                 break;
                         }
                     }

@@ -45,7 +45,7 @@ trait ContextStackTrait
      * common use-case for parsing XML documents, it's added here as a
      * convenience.
      *
-     * @var string
+     * @var string|null
      */
     public $contextUri;
 

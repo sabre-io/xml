@@ -118,7 +118,7 @@ class Reader extends XMLReader
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @return array|string
+     * @return array|string|null
      */
     public function parseInnerTree(array $elementMap = null)
     {
@@ -223,7 +223,7 @@ class Reader extends XMLReader
         }
 
         $value = call_user_func(
-            $this->getDeserializerForElementName($name),
+            $this->getDeserializerForElementName((string) $name),
             $this
         );
 
