@@ -64,9 +64,20 @@ function keyValue(Reader $reader, string $namespace = null): array
         return [];
     }
 
+    if (!$reader->read()) {
+        $reader->next();
+
+        return [];
+    }
+
+    if (Reader::END_ELEMENT === $reader->nodeType) {
+        $reader->next();
+
+        return [];
+    }
+
     $values = [];
 
-    $reader->read();
     do {
         if (Reader::ELEMENT === $reader->nodeType) {
             if (null !== $namespace && $reader->namespaceURI === $namespace) {
@@ -76,7 +87,9 @@ function keyValue(Reader $reader, string $namespace = null): array
                 $values[$clark] = $reader->parseCurrentElement()['value'];
             }
         } else {
-            $reader->read();
+            if (!$reader->read()) {
+                break;
+            }
         }
     } while (Reader::END_ELEMENT !== $reader->nodeType);
 
@@ -139,7 +152,17 @@ function enum(Reader $reader, string $namespace = null): array
 
         return [];
     }
-    $reader->read();
+    if (!$reader->read()) {
+        $reader->next();
+
+        return [];
+    }
+
+    if (Reader::END_ELEMENT === $reader->nodeType) {
+        $reader->next();
+
+        return [];
+    }
     $currentDepth = $reader->depth;
 
     $values = [];
@@ -193,7 +216,9 @@ function valueObject(Reader $reader, string $className, string $namespace)
                 $reader->next();
             }
         } else {
-            $reader->read();
+            if (!$reader->read()) {
+                break;
+            }
         }
     } while (Reader::END_ELEMENT !== $reader->nodeType);
 
