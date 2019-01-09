@@ -55,4 +55,31 @@ XML;
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testEmptyEnum()
+    {
+        $service = new Service();
+        $service->elementMap['{urn:test}enum'] = 'Sabre\Xml\Deserializer\enum';
+
+        $xml = <<<XML
+<?xml version="1.0"?>
+<root xmlns="urn:test">
+<inner>
+  <enum></enum>
+</inner>
+</root>
+XML;
+
+        $result = $service->parse($xml);
+
+        $this->assertEquals([[
+            'name' => '{urn:test}inner',
+            'value' => [[
+                'name' => '{urn:test}enum',
+                'value' => [],
+                'attributes' => [],
+            ]],
+            'attributes' => [],
+        ]], $result);
+    }
 }

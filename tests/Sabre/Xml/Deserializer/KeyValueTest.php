@@ -21,6 +21,7 @@ class KeyValueTest extends \PHPUnit\Framework\TestCase
        <elem4>foo</elem4>
        <elem5>foo &amp; bar</elem5>
     </elem3>
+    <elem6></elem6>
   </struct>
 </root>
 BLA;
@@ -54,6 +55,7 @@ BLA;
                                 'attributes' => [],
                             ],
                         ],
+                        'elem6' => null,
                     ],
                     'attributes' => [],
                 ],
@@ -106,5 +108,45 @@ BLA;
         ];
 
         $reader->parse();
+    }
+
+    public function testEmptyKeyValue()
+    {
+        // the nested structure below is necessary to detect if one of the deserialization functions eats to much elements
+        $input = <<<BLA
+<?xml version="1.0"?>
+<root xmlns="http://sabredav.org/ns">
+  <inner>
+    <struct></struct>
+  </inner>
+</root>
+BLA;
+
+        $reader = new Reader();
+        $reader->elementMap = [
+            '{http://sabredav.org/ns}struct' => function (Reader $reader) {
+                return keyValue($reader, 'http://sabredav.org/ns');
+            },
+        ];
+        $reader->xml($input);
+        $output = $reader->parse();
+
+        $this->assertEquals([
+            'name' => '{http://sabredav.org/ns}root',
+            'value' => [
+                [
+                    'name' => '{http://sabredav.org/ns}inner',
+                    'value' => [
+                        [
+                            'name' => '{http://sabredav.org/ns}struct',
+                            'value' => [],
+                            'attributes' => [],
+                        ],
+                    ],
+                    'attributes' => [],
+                ],
+            ],
+            'attributes' => [],
+        ], $output);
     }
 }
