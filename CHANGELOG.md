@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+1.5.1 (2019-01-09)
+------------------
+
+* #161: Prevent infinite loop on empty xml elements
+
+
 1.5.0 (2016-10-09)
 ------------------
 

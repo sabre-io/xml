@@ -2,6 +2,8 @@
 
 namespace Sabre\Xml;
 
+use Sabre\Xml\Element\KeyValue;
+
 class ServiceTest extends \PHPUnit_Framework_TestCase {
 
     function testGetReader() {
@@ -121,6 +123,40 @@ XML;
             $expected,
             $result
         );
+    }
+
+    /**
+     * @expectedException \Sabre\Xml\LibXMLException
+     */
+    function testInvalidNameSpace()
+    {
+        $xml = '<D:propfind xmlns:D="DAV:"><D:prop><bar:foo xmlns:bar=""/></D:prop></D:propfind>';
+
+        $util = new Service();
+        $util->elementMap = [
+            '{DAV:}propfind' => PropFindTestAsset::class,
+        ];
+        $util->namespaceMap = [
+            'http://sabre.io/ns' => 's',
+        ];
+        $result = $util->expect('{DAV:}propfind', $xml);
+    }
+
+    /**
+     * @dataProvider providesEmptyPropfinds
+     */
+    function testEmptyPropfind($xml)
+    {
+        $util = new Service();
+        $util->elementMap = [
+            '{DAV:}propfind' => PropFindTestAsset::class,
+        ];
+        $util->namespaceMap = [
+            'http://sabre.io/ns' => 's',
+        ];
+        $result = $util->expect('{DAV:}propfind', $xml);
+        $this->assertEquals(false, $result->allProp);
+        $this->assertEquals([], $result->properties);
     }
 
     /**
@@ -303,6 +339,16 @@ XML;
 
     }
 
+    function providesEmptyPropfinds()
+    {
+        return [
+            ['<D:propfind xmlns:D="DAV:"><D:prop></D:prop></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop xmlns:s="http://sabredav.org/ns"></D:prop></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop/></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop xmlns:s="http://sabredav.org/ns"/></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop>     </D:prop></D:propfind>'],
+        ];
+    }
 }
 
 /**
@@ -325,4 +371,39 @@ class Order {
 class OrderStatus {
     public $id;
     public $label;
+}
+
+
+/**
+ * asset for testInvalidNameSpace.
+ *
+ * @internal
+ */
+class PropFindTestAsset implements XmlDeserializable
+{
+    public $allProp = false;
+
+    public $properties;
+
+    static function xmlDeserialize(Reader $reader)
+    {
+        $self = new self();
+
+        $reader->pushContext();
+        $reader->elementMap['{DAV:}prop'] = 'Sabre\Xml\Element\Elements';
+
+        foreach (KeyValue::xmlDeserialize($reader) as $k => $v) {
+            switch ($k) {
+                case '{DAV:}prop':
+                    $self->properties = $v;
+                    break;
+                case '{DAV:}allprop':
+                    $self->allProp = true;
+            }
+        }
+
+        $reader->popContext();
+
+        return $self;
+    }
 }
