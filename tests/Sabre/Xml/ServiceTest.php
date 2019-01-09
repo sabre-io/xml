@@ -140,9 +140,24 @@ XML;
             'http://sabre.io/ns' => 's',
         ];
         $result = $util->expect('{DAV:}propfind', $xml);
-
     }
 
+    /**
+     * @dataProvider providesEmptyPropfinds
+     */
+    function testEmptyPropfind($xml)
+    {
+        $util = new Service();
+        $util->elementMap = [
+            '{DAV:}propfind' => PropFindTestAsset::class,
+        ];
+        $util->namespaceMap = [
+            'http://sabre.io/ns' => 's',
+        ];
+        $result = $util->expect('{DAV:}propfind', $xml);
+        $this->assertEquals(false, $result->allProp);
+        $this->assertEquals([], $result->properties);
+    }
 
     /**
      * @depends testGetReader
@@ -324,6 +339,16 @@ XML;
 
     }
 
+    function providesEmptyPropfinds()
+    {
+        return [
+            ['<D:propfind xmlns:D="DAV:"><D:prop></D:prop></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop xmlns:s="http://sabredav.org/ns"></D:prop></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop/></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop xmlns:s="http://sabredav.org/ns"/></D:propfind>'],
+            ['<D:propfind xmlns:D="DAV:"><D:prop>     </D:prop></D:propfind>'],
+        ];
+    }
 }
 
 /**
