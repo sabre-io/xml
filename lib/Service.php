@@ -61,6 +61,12 @@ class Service
     public $classMap = [];
 
     /**
+     * A bitmask of the LIBXML_* constants.
+     * @var integer
+     */
+    public $options = 0;
+
+    /**
      * Returns a fresh XML Reader.
      */
     public function getReader(): Reader
@@ -111,7 +117,7 @@ class Service
         }
         $r = $this->getReader();
         $r->contextUri = $contextUri;
-        $r->XML($input);
+        $r->XML($input, null, $this->options);
 
         $result = $r->parse();
         $rootElementName = $result['name'];
@@ -150,7 +156,7 @@ class Service
         }
         $r = $this->getReader();
         $r->contextUri = $contextUri;
-        $r->XML($input);
+        $r->XML($input, null, $this->options);
 
         $rootElementName = (array) $rootElementName;
 
