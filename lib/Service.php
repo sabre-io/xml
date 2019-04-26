@@ -62,6 +62,7 @@ class Service
 
     /**
      * A bitmask of the LIBXML_* constants.
+     * 
      * @var integer
      */
     public $options = 0;
