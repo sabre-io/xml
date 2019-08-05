@@ -108,6 +108,11 @@ class Service
             // Unfortunately the XMLReader doesn't support streams. When it
             // does, we can optimize this.
             $input = stream_get_contents($input);
+
+            // If input is an empty string, then its safe to throw exception
+            if ('' === $input) {
+                throw new ParseException('The input element to parse is empty. Do not attempt to parse');
+            }
         }
         $r = $this->getReader();
         $r->contextUri = $contextUri;
@@ -147,6 +152,11 @@ class Service
             // Unfortunately the XMLReader doesn't support streams. When it
             // does, we can optimize this.
             $input = stream_get_contents($input);
+
+            // If input is empty string, then its safe to throw exception
+            if ('' === $input) {
+                throw new ParseException('The input element to parse is empty. Do not attempt to parse');
+            }
         }
         $r = $this->getReader();
         $r->contextUri = $contextUri;

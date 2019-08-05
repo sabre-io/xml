@@ -36,6 +36,15 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($ns, $writer->namespaceMap);
     }
 
+    public function testEmptyInputParse()
+    {
+        $resource = fopen('php://input', 'r');
+        $util = new Service();
+        $this->expectException('\Sabre\Xml\ParseException');
+        $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
+        $util->parse($resource, '/sabre.io/ns');
+    }
+
     /**
      * @depends testGetReader
      */
@@ -94,6 +103,16 @@ XML;
             $expected,
             $result
         );
+    }
+
+    public function testEmptyInputExpect()
+    {
+        //$resource = \fopen('')
+        $resource = fopen('php://input', 'r');
+        $util = new Service();
+        $this->expectException('\Sabre\Xml\ParseException');
+        $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
+        $util->expect('foo', $resource, '/sabre.io/ns');
     }
 
     /**
