@@ -1,16 +1,18 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Serializer;
 
 use Sabre\Xml\Service;
 
-class RepeatingElementsTest extends \PHPUnit\Framework\TestCase {
-
-    function testSerialize() {
-
+class RepeatingElementsTest extends \PHPUnit\Framework\TestCase
+{
+    public function testSerialize()
+    {
         $service = new Service();
         $service->namespaceMap['urn:test'] = null;
-        $xml = $service->write('{urn:test}collection', function($writer) {
+        $xml = $service->write('{urn:test}collection', function ($writer) {
             repeatingElements($writer, [
                 'foo',
                 'bar',
@@ -25,11 +27,6 @@ class RepeatingElementsTest extends \PHPUnit\Framework\TestCase {
 </collection>
 XML;
 
-
         $this->assertXmlStringEqualsXmlString($expected, $xml);
-
-
     }
-
-
 }

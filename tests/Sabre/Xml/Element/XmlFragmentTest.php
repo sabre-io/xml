@@ -1,17 +1,19 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class XmlFragmentTest extends \PHPUnit\Framework\TestCase {
-
+class XmlFragmentTest extends \PHPUnit\Framework\TestCase
+{
     /**
      * @dataProvider xmlProvider
      */
-    function testDeserialize($input, $expected) {
-
+    public function testDeserialize($input, $expected)
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -28,17 +30,16 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'       => '{http://sabredav.org/ns}fragment',
-                    'value'      => new XmlFragment($expected),
+                    'name' => '{http://sabredav.org/ns}fragment',
+                    'value' => new XmlFragment($expected),
                     'attributes' => [],
                 ],
             ],
             'attributes' => [],
         ], $output);
-
     }
 
     /**
@@ -51,11 +52,9 @@ BLA;
      * 3. Expected output after serializing that value again.
      *
      * If 3 is not set, use 1 for 3.
-     *
-     * @return void
      */
-    function xmlProvider() {
-
+    public function xmlProvider()
+    {
         return [
             [
                 'hello',
@@ -63,15 +62,15 @@ BLA;
             ],
             [
                 '<element>hello</element>',
-                '<element xmlns="http://sabredav.org/ns">hello</element>'
+                '<element xmlns="http://sabredav.org/ns">hello</element>',
             ],
             [
                 '<element foo="bar">hello</element>',
-                '<element xmlns="http://sabredav.org/ns" foo="bar">hello</element>'
+                '<element xmlns="http://sabredav.org/ns" foo="bar">hello</element>',
             ],
             [
                 '<element x1:foo="bar" xmlns:x1="http://example.org/ns">hello</element>',
-                '<element xmlns:x1="http://example.org/ns" xmlns="http://sabredav.org/ns" x1:foo="bar">hello</element>'
+                '<element xmlns:x1="http://example.org/ns" xmlns="http://sabredav.org/ns" x1:foo="bar">hello</element>',
             ],
             [
                 '<element xmlns="http://example.org/ns">hello</element>',
@@ -104,21 +103,20 @@ BLA;
                 '<x1:element xmlns:x1="http://example.org/ns"><child a="b"/></x1:element>',
             ],
         ];
-
     }
 
     /**
      * @dataProvider xmlProvider
      */
-    function testSerialize($expectedFallback, $input, $expected = null) {
-
+    public function testSerialize($expectedFallback, $input, $expected = null)
+    {
         if (is_null($expected)) {
             $expected = $expectedFallback;
         }
 
         $writer = new Writer();
         $writer->namespaceMap = [
-            'http://sabredav.org/ns' => null
+            'http://sabredav.org/ns' => null,
         ];
         $writer->openMemory();
         $writer->startDocument('1.0');
@@ -137,7 +135,5 @@ BLA;
 XML;
 
         $this->assertEquals($expected, $output);
-
     }
-
 }

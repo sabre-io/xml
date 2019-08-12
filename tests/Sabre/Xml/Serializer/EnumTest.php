@@ -1,17 +1,19 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Serializer;
 
 use Sabre\Xml\Service;
 
-class EnumTest extends \PHPUnit\Framework\TestCase {
-
-    function testSerialize() {
-
+class EnumTest extends \PHPUnit\Framework\TestCase
+{
+    public function testSerialize()
+    {
         $service = new Service();
         $service->namespaceMap['urn:test'] = null;
 
-        $xml = $service->write('{urn:test}root', function($writer) {
+        $xml = $service->write('{urn:test}root', function ($writer) {
             enum($writer, [
                 '{urn:test}foo1',
                 '{urn:test}foo2',
@@ -26,11 +28,6 @@ class EnumTest extends \PHPUnit\Framework\TestCase {
 </root>
 XML;
 
-
         $this->assertXmlStringEqualsXmlString($expected, $xml);
-
-
     }
-
-
 }

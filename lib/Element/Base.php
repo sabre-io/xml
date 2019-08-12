@@ -1,4 +1,6 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
@@ -15,8 +17,8 @@ use Sabre\Xml;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Base implements Xml\Element {
-
+class Base implements Xml\Element
+{
     /**
      * PHP value to serialize.
      *
@@ -25,12 +27,11 @@ class Base implements Xml\Element {
     protected $value;
 
     /**
-     * Constructor
+     * Constructor.
      */
-    function __construct($value = null) {
-
+    public function __construct($value = null)
+    {
         $this->value = $value;
-
     }
 
     /**
@@ -48,13 +49,10 @@ class Base implements Xml\Element {
      * This allows serializers to be re-used for different element names.
      *
      * If you are opening new elements, you must also close them again.
-     *
-     * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
-
+    public function xmlSerialize(Xml\Writer $writer)
+    {
         $writer->write($this->value);
-
     }
 
     /**
@@ -77,11 +75,10 @@ class Base implements Xml\Element {
      *
      * @return mixed
      */
-    static function xmlDeserialize(Xml\Reader $reader) {
-
+    public static function xmlDeserialize(Xml\Reader $reader)
+    {
         $subTree = $reader->parseInnerTree();
+
         return $subTree;
-
     }
-
 }

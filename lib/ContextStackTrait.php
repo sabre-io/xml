@@ -1,9 +1,11 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml;
 
 /**
- * Context Stack
+ * Context Stack.
  *
  * The Context maintains information about a document during either reading or
  * writing.
@@ -19,8 +21,8 @@ namespace Sabre\Xml;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-trait ContextStackTrait {
-
+trait ContextStackTrait
+{
     /**
      * This is the element map. It contains a list of XML elements (in clark
      * notation) as keys and PHP class names as values.
@@ -90,34 +92,27 @@ trait ContextStackTrait {
      * This allows you to safely modify the elementMap, contextUri or
      * namespaceMap. After you're done, you can restore the old data again
      * with popContext.
-     *
-     * @return void
      */
-    function pushContext() {
-
+    public function pushContext()
+    {
         $this->contextStack[] = [
             $this->elementMap,
             $this->contextUri,
             $this->namespaceMap,
-            $this->classMap
+            $this->classMap,
         ];
-
     }
 
     /**
      * Restore the previous "context".
-     *
-     * @return void
      */
-    function popContext() {
-
+    public function popContext()
+    {
         list(
             $this->elementMap,
             $this->contextUri,
             $this->namespaceMap,
             $this->classMap
         ) = array_pop($this->contextStack);
-
     }
-
 }
