@@ -1,4 +1,6 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml;
 
@@ -9,11 +11,10 @@ namespace Sabre\Xml;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/
  */
-class Version {
-
+class Version
+{
     /**
-     * Full version number
+     * Full version number.
      */
     const VERSION = '2.1.1';
-
 }

@@ -1,4 +1,6 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml;
 
@@ -28,8 +30,8 @@ use XMLWriter;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Writer extends XMLWriter {
-
+class Writer extends XMLWriter
+{
     use ContextStackTrait;
 
     /**
@@ -93,12 +95,10 @@ class Writer extends XMLWriter {
      * ]
      *
      * @param mixed $value
-     * @return void
      */
-    function write($value) {
-
+    public function write($value)
+    {
         Serializer\standardSerializer($this, $value);
-
     }
 
     /**
@@ -120,49 +120,43 @@ class Writer extends XMLWriter {
      *
      * @param string $name
      */
-    function startElement($name) : bool {
-
-        if ($name[0] === '{') {
-
+    public function startElement($name): bool
+    {
+        if ('{' === $name[0]) {
             list($namespace, $localName) =
                 Service::parseClarkNotation($name);
 
             if (array_key_exists($namespace, $this->namespaceMap)) {
                 $result = $this->startElementNS(
-                    $this->namespaceMap[$namespace] === '' ? null : $this->namespaceMap[$namespace],
+                    '' === $this->namespaceMap[$namespace] ? null : $this->namespaceMap[$namespace],
                     $localName,
                     null
                 );
             } else {
-
                 // An empty namespace means it's the global namespace. This is
                 // allowed, but it mustn't get a prefix.
-                if ($namespace === "" || $namespace === null) {
+                if ('' === $namespace || null === $namespace) {
                     $result = $this->startElement($localName);
                     $this->writeAttribute('xmlns', '');
                 } else {
                     if (!isset($this->adhocNamespaces[$namespace])) {
-                        $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces) + 1);
+                        $this->adhocNamespaces[$namespace] = 'x'.(count($this->adhocNamespaces) + 1);
                     }
                     $result = $this->startElementNS($this->adhocNamespaces[$namespace], $localName, $namespace);
                 }
             }
-
         } else {
             $result = parent::startElement($name);
         }
 
         if (!$this->namespacesWritten) {
-
             foreach ($this->namespaceMap as $namespace => $prefix) {
-                $this->writeAttribute(($prefix ? 'xmlns:' . $prefix : 'xmlns'), $namespace);
+                $this->writeAttribute(($prefix ? 'xmlns:'.$prefix : 'xmlns'), $namespace);
             }
             $this->namespacesWritten = true;
-
         }
 
         return $result;
-
     }
 
     /**
@@ -188,10 +182,11 @@ class Writer extends XMLWriter {
      * XMLWriter::startElement doesn't either.
      *
      * @param array|string|object|null $content
+     *
      * @return bool
      */
-    function writeElement($name, $content = null) : bool {
-
+    public function writeElement($name, $content = null): bool
+    {
         $this->startElement($name);
         if (!is_null($content)) {
             $this->write($content);
@@ -199,7 +194,6 @@ class Writer extends XMLWriter {
         $this->endElement();
 
         return true;
-
     }
 
     /**
@@ -210,15 +204,12 @@ class Writer extends XMLWriter {
      * The key is an attribute name. If the key is a 'localName', the current
      * xml namespace is assumed. If it's a 'clark notation key', this namespace
      * will be used instead.
-     *
-     * @return void
      */
-    function writeAttributes(array $attributes) {
-
+    public function writeAttributes(array $attributes)
+    {
         foreach ($attributes as $name => $value) {
             $this->writeAttribute($name, $value);
         }
-
     }
 
     /**
@@ -234,9 +225,9 @@ class Writer extends XMLWriter {
      * @param string $name
      * @param string $value
      */
-    function writeAttribute($name, $value) : bool {
-
-        if ($name[0] !== '{') {
+    public function writeAttribute($name, $value): bool
+    {
+        if ('{' !== $name[0]) {
             return parent::writeAttribute($name, $value);
         }
 
@@ -248,23 +239,21 @@ class Writer extends XMLWriter {
         if (array_key_exists($namespace, $this->namespaceMap)) {
             // It's an attribute with a namespace we know
             return $this->writeAttribute(
-                $this->namespaceMap[$namespace] . ':' . $localName,
+                $this->namespaceMap[$namespace].':'.$localName,
                 $value
             );
-
         }
 
         // We don't know the namespace, we must add it in-line
         if (!isset($this->adhocNamespaces[$namespace])) {
-            $this->adhocNamespaces[$namespace] = 'x' . (count($this->adhocNamespaces) + 1);
+            $this->adhocNamespaces[$namespace] = 'x'.(count($this->adhocNamespaces) + 1);
         }
+
         return $this->writeAttributeNS(
             $this->adhocNamespaces[$namespace],
             $localName,
             $namespace,
             $value
         );
-
     }
-
 }

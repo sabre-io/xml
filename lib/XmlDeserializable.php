@@ -1,4 +1,6 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml;
 
@@ -10,8 +12,8 @@ namespace Sabre\Xml;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-interface XmlDeserializable {
-
+interface XmlDeserializable
+{
     /**
      * The deserialize method is called during xml parsing.
      *
@@ -32,6 +34,5 @@ interface XmlDeserializable {
      *
      * @return mixed
      */
-    static function xmlDeserialize(Reader $reader);
-
+    public static function xmlDeserialize(Reader $reader);
 }

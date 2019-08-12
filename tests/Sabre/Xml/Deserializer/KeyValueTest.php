@@ -1,14 +1,15 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
-use
-    Sabre\Xml\Reader;
+use Sabre\Xml\Reader;
 
-class KeyValueTest extends \PHPUnit\Framework\TestCase {
-
-    function testKeyValue() {
-
+class KeyValueTest extends \PHPUnit\Framework\TestCase
+{
+    public function testKeyValue()
+    {
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -26,37 +27,37 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}struct' => function(Reader $reader) {
+            '{http://sabredav.org/ns}struct' => function (Reader $reader) {
                 return keyValue($reader, 'http://sabredav.org/ns');
-            }
+            },
         ];
         $reader->xml($input);
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'  => '{http://sabredav.org/ns}struct',
+                    'name' => '{http://sabredav.org/ns}struct',
                     'value' => [
-                        'elem1'                                 => null,
-                        'elem2'                                 => 'hi',
+                        'elem1' => null,
+                        'elem2' => 'hi',
                         '{http://sabredav.org/another-ns}elem3' => [
                             [
-                                'name'       => '{http://sabredav.org/another-ns}elem4',
-                                'value'      => 'foo',
+                                'name' => '{http://sabredav.org/another-ns}elem4',
+                                'value' => 'foo',
                                 'attributes' => [],
                             ],
                             [
-                                'name'       => '{http://sabredav.org/another-ns}elem5',
-                                'value'      => 'foo & bar',
+                                'name' => '{http://sabredav.org/another-ns}elem5',
+                                'value' => 'foo & bar',
                                 'attributes' => [],
                             ],
                         ],
                         'elem6' => null,
                     ],
                     'attributes' => [],
-                ]
+                ],
             ],
             'attributes' => [],
         ], $output);
@@ -65,8 +66,8 @@ BLA;
     /**
      * @expectedException \Sabre\Xml\LibXMLException
      */
-    function testKeyValueLoop() {
-
+    public function testKeyValueLoop()
+    {
         /**
          * This bug is a weird one, because it triggers an infinite loop, but
          * only if the XML document is a certain size (in bytes). Removing one
@@ -92,13 +93,12 @@ BLA;
 
         $reader->xml($invalid_xml);
         $reader->elementMap = [
-
-            '{}Package' => function($reader) {
+            '{}Package' => function ($reader) {
                 $recipient = [];
                 // Borrowing a parser from the KeyValue class.
                 $keyValue = keyValue($reader);
 
-                if (isset($keyValue['{}WeightOz'])){
+                if (isset($keyValue['{}WeightOz'])) {
                     $recipient['referenceId'] = $keyValue['{}WeightOz'];
                 }
 
@@ -107,11 +107,9 @@ BLA;
         ];
 
         $reader->parse();
-
-
     }
 
-    function testEmptyKeyValue()
+    public function testEmptyKeyValue()
     {
         // the nested structure below is necessary to detect if one of the deserialization functions eats to much elements
         $input = <<<BLA
@@ -125,7 +123,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}struct' => function(Reader $reader) {
+            '{http://sabredav.org/ns}struct' => function (Reader $reader) {
                 return keyValue($reader, 'http://sabredav.org/ns');
             },
         ];
@@ -133,14 +131,14 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name'  => '{http://sabredav.org/ns}root',
+            'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name'  => '{http://sabredav.org/ns}inner',
+                    'name' => '{http://sabredav.org/ns}inner',
                     'value' => [
                         [
-                            'name'       => '{http://sabredav.org/ns}struct',
-                            'value'      => [],
+                            'name' => '{http://sabredav.org/ns}struct',
+                            'value' => [],
                             'attributes' => [],
                         ],
                     ],

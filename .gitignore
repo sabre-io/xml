@@ -2,6 +2,7 @@ vendor
 composer.lock
 tests/cov
 .*.swp
+.php_cs.cache
 
 # Composer binaries
 bin/phpunit

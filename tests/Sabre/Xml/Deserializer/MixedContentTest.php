@@ -1,12 +1,15 @@
-<?php declare (strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
 use Sabre\Xml\Service;
 
-class MixedContentTest extends \PHPUnit\Framework\TestCase {
-    function testDeserialize() {
-
+class MixedContentTest extends \PHPUnit\Framework\TestCase
+{
+    public function testDeserialize()
+    {
         $service = new Service();
         $service->elementMap['{}p'] = 'Sabre\Xml\Deserializer\mixedContent';
 
@@ -20,11 +23,11 @@ XML;
         $expected = [
             'This is some text ',
             [
-                'name'       => '{}extref',
-                'value'      => 'and a inline tag',
-                'attributes' => []
+                'name' => '{}extref',
+                'value' => 'and a inline tag',
+                'attributes' => [],
             ],
-            'and even more text'
+            'and even more text',
         ];
 
         $this->assertEquals($expected, $result);
