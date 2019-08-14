@@ -7,6 +7,19 @@ ChangeLog
 * #144: Added a new `functionCaller` deserializer function for executing a callable when reading a XML
 element (@vsouz4)
 
+
+2.1.3 (2019-08-14)
+------------------
+
+* #166: Throw exception when empty inputs found
+
+
+2.1.2 (2019-01-09)
+------------------
+
+* #161: Prevent infinite loop on empty xml elements
+
+
 2.1.1 (2018-10-09)
 ------------------
 
