@@ -147,7 +147,9 @@ class Reader extends XMLReader
                 throw new ParseException('This should never happen (famous last words)');
             }
 
-            while (true) {
+            $keepOnParsing = true;
+
+            while ($keepOnParsing) {
                 if (!$this->isValid()) {
                     $errors = libxml_get_errors();
 
@@ -169,7 +171,8 @@ class Reader extends XMLReader
                     case self::END_ELEMENT:
                         // Ensuring we are moving the cursor after the end element.
                         $this->read();
-                        break 2;
+                        $keepOnParsing = false;
+                        break;
                     case self::NONE:
                         throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
                     default:
