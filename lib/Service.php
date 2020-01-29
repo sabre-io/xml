@@ -147,7 +147,6 @@ class Service
      *
      * @param string|string[] $rootElementName
      * @param string|resource $input
-     * @param string|null     $contextUri
      *
      * @throws ParseException
      *

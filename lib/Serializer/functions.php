@@ -148,7 +148,6 @@ function repeatingElements(Writer $writer, array $items, string $childElementNam
  *
  * You can even mix the two array syntaxes.
  *
- * @param Writer                             $writer
  * @param string|int|float|bool|array|object $value
  */
 function standardSerializer(Writer $writer, $value)
