@@ -164,8 +164,6 @@ function standardSerializer(Writer $writer, $value)
     } elseif (is_callable($value)) {
         // A callback
         $value($writer);
-    } elseif (is_null($value)) {
-        // nothing!
     } elseif (is_array($value) && array_key_exists('name', $value)) {
         // if the array had a 'name' element, we assume that this array
         // describes a 'name' and optionally 'attributes' and 'value'.
@@ -204,7 +202,7 @@ function standardSerializer(Writer $writer, $value)
         }
     } elseif (is_object($value)) {
         throw new InvalidArgumentException('The writer cannot serialize objects of class: '.get_class($value));
-    } else {
+    } elseif (!is_null($value)) {
         throw new InvalidArgumentException('The writer cannot serialize values of type: '.gettype($value));
     }
 }
