@@ -4,10 +4,14 @@
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
+  beStrictAboutTestsThatDoNotTestAnything="true"
+  beStrictAboutOutputDuringTests="true"
   >
-  <testsuite name="Sabre_XML">
-    <directory>Sabre/</directory>
-  </testsuite>
+  <testsuites>
+    <testsuite name="Sabre_XML">
+      <directory>Sabre/</directory>
+    </testsuite>
+  </testsuites>
 
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true">
