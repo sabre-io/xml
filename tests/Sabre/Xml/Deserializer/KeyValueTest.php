@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use Sabre\Xml\LibXMLException;
 use
     Sabre\Xml\Reader;
 
@@ -64,11 +65,9 @@ BLA;
         ], $output);
     }
 
-    /**
-     * @expectedException \Sabre\Xml\LibXMLException
-     */
     public function testKeyValueLoop()
     {
+        $this->expectException(LibXMLException::class);
         /**
          * This bug is a weird one, because it triggers an infinite loop, but
          * only if the XML document is a certain size (in bytes). Removing one

@@ -183,11 +183,9 @@ BLA;
         $this->assertEquals($expected, $output);
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testMappedElementBadClass()
     {
+        $this->expectException(\LogicException::class);
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -339,15 +337,13 @@ BLA;
             $output = $reader->parse();
             $this->fail('We expected a ParseException to be thrown');
         } catch (LibXMLException $e) {
-            $this->assertInternalType('array', $e->getErrors());
+            $this->assertIsArray($e->getErrors());
         }
     }
 
-    /**
-     * @expectedException \Sabre\Xml\ParseException
-     */
     public function testBrokenParserClass()
     {
+        $this->expectException(ParseException::class);
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -365,11 +361,10 @@ BLA;
 
     /**
      * Test was added for Issue #10.
-     *
-     * @expectedException \Sabre\Xml\LibXMLException
      */
     public function testBrokenXml()
     {
+        $this->expectException(LibXMLException::class);
         $input = <<<BLA
 <test>
 <hello>
@@ -384,11 +379,10 @@ BLA;
 
     /**
      * Test was added for Issue #45.
-     *
-     * @expectedException \Sabre\Xml\LibXMLException
      */
     public function testBrokenXml2()
     {
+        $this->expectException(LibXMLException::class);
         $input = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions>
