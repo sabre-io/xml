@@ -19,8 +19,6 @@ class Mock implements Xml\Element
      *
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
-     *
-     * @param Xml\Writer $writer
      */
     public function xmlSerialize(Xml\Writer $writer)
     {
@@ -46,8 +44,6 @@ class Mock implements Xml\Element
      *
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
-     *
-     * @param Xml\Reader $reader
      *
      * @return mixed
      */

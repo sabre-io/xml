@@ -182,8 +182,6 @@ class Writer extends XMLWriter
      * XMLWriter::startElement doesn't either.
      *
      * @param array|string|object|null $content
-     *
-     * @return bool
      */
     public function writeElement($name, $content = null): bool
     {
