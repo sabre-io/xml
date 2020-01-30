@@ -9,11 +9,9 @@ use Sabre\Xml\Writer;
 
 class CDataTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @expectedException \LogicException
-     */
     public function testDeserialize()
     {
+        $this->expectException(\LogicException::class);
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">

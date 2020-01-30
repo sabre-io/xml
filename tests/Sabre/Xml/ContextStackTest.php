@@ -13,7 +13,7 @@ namespace Sabre\Xml;
  */
 class ContextStackTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->stack = $this->getMockForTrait('Sabre\\Xml\\ContextStackTrait');
     }

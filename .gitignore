@@ -4,6 +4,7 @@ composer.lock
 
 # Tests
 tests/cov
+tests/.phpunit.result.cache
 .*.swp
 
 # Composer binaries

@@ -8,7 +8,7 @@ class WriterTest extends \PHPUnit\Framework\TestCase
 {
     protected $writer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->writer = new Writer();
         $this->writer->namespaceMap = [
@@ -337,11 +337,9 @@ HI;
         $this->assertEquals($output, $this->writer->outputMemory());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testWriteBadObject()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->writer->write(new \StdClass());
     }
 
@@ -373,11 +371,9 @@ HI
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testResource()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->compare([
             '{http://sabredav.org/ns}root' => fopen('php://memory', 'r'),
         ], <<<HI

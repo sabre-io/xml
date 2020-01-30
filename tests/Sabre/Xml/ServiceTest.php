@@ -142,11 +142,9 @@ XML;
         );
     }
 
-    /**
-     * @expectedException \Sabre\Xml\LibXMLException
-     */
     public function testInvalidNameSpace()
     {
+        $this->expectException(LibXMLException::class);
         $xml = '<D:propfind xmlns:D="DAV:"><D:prop><bar:foo xmlns:bar=""/></D:prop></D:propfind>';
 
         $util = new Service();
@@ -210,10 +208,10 @@ XML;
 
     /**
      * @depends testGetReader
-     * @expectedException \Sabre\Xml\ParseException
      */
     public function testExpectWrong()
     {
+        $this->expectException(ParseException::class);
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
   <child>value</child>
@@ -326,11 +324,9 @@ XML;
         $this->assertEquals($input, $writtenXml);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testWriteVoNotFound()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $service = new Service();
         $service->writeValueObject(new \StdClass());
     }
@@ -343,11 +339,9 @@ XML;
         ], Service::parseClarkNotation('{http://sabredav.org/ns}elem'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testParseClarkNotationFail()
     {
+        $this->expectException(\InvalidArgumentException::class);
         Service::parseClarkNotation('http://sabredav.org/ns}elem');
     }
 
