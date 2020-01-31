@@ -1,9 +1,12 @@
 ChangeLog
 =========
 
-2.2.0 (2018-xx-xx)
+2.2.0 (2020-01-31)
 ------------------
 
+* #171: Added Support for PHP 7.4, dropped Support for PHP 7.0 (@staabm, @phil-davis)
+* #174: Update testsuite to phpunit8 (@phil-davis)
+* Added phpstan coverage (@phil-davis)
 * #144: Added a new `functionCaller` deserializer function for executing a callable when reading a XML
 element (@vsouz4)
 
