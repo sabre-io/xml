@@ -9,11 +9,14 @@ php:
 env:
   global:
     - RUN_PHPSTAN="FALSE"
+  matrix:
+    - PREFER_LOWEST="" WITH_COVERAGE="--coverage-clover=coverage.xml"
+    - PREFER_LOWEST="--prefer-lowest" $WITH_COVERAGE=""
 
 matrix:
   include:
     - name: 'PHPStan'
-      php: 7.2
+      php: 7.4
       env: RUN_PHPSTAN="TRUE"
   fast_finish: true
 
@@ -21,16 +24,13 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-install:
-  - if [ $RUN_PHPSTAN == "TRUE"  ]; then composer require --dev phpstan/phpstan:^0.12; fi
-
 before_script:
-  - composer install
+  - composer update --prefer-source $PREFER_LOWEST
 
 script:
-  - if [ $RUN_PHPSTAN == "FALSE"  ]; then ./bin/php-cs-fixer  fix --dry-run --diff; fi
-  - if [ $RUN_PHPSTAN == "FALSE"  ]; then ./bin/phpunit --configuration tests/phpunit.xml  --coverage-clover=coverage.xml; fi
-  - if [ $RUN_PHPSTAN == "TRUE"  ]; then php ./bin/phpstan analyse -c phpstan.neon lib; fi
+  - if [ $RUN_PHPSTAN == "FALSE" ]; then php vendor/bin/php-cs-fixer fix --dry-run --diff; fi
+  - if [ $RUN_PHPSTAN == "FALSE" ]; then php vendor/bin/phpunit --configuration tests/phpunit.xml $WITH_COVERAGE; fi
+  - if [ $RUN_PHPSTAN == "TRUE" ]; then php vendor/bin/phpstan analyse -c phpstan.neon lib tests; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
