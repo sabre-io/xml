@@ -5,18 +5,4 @@ composer.lock
 # Tests
 tests/cov
 tests/.phpunit.result.cache
-.*.swp
-
-# Composer binaries
-bin/phpunit
-bin/php-cs-fixer
-bin/phpstan
-bin/phpstan.phar
-
-# Vim
-.*.swp
-
-# IDEs
-/.idea
-
 .php_cs.cache

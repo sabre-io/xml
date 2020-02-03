@@ -45,9 +45,23 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.16.1",
-        "phpunit/phpunit" : "^7 || ^8"
+        "phpstan/phpstan": "^0.12",
+        "phpunit/phpunit" : "^7.5 || ^8.5"
     },
-    "config" : {
-        "bin-dir" : "bin/"
+    "scripts": {
+        "phpstan": [
+            "@php vendor/bin/phpstan analyse lib tests"
+        ],
+        "cs-fixer": [
+            "@php vendor/bin/php-cs-fixer fix"
+        ],
+        "phpunit": [
+            "@php vendor/bin/phpunit --configuration tests/phpunit.xml"
+        ],
+        "test": [
+            "composer phpstan",
+            "composer cs-fixer",
+            "composer phpunit"
+        ]
     }
 }

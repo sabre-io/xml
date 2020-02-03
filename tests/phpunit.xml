@@ -9,7 +9,7 @@
   >
   <testsuites>
     <testsuite name="Sabre_XML">
-      <directory>Sabre/</directory>
+      <directory>.</directory>
     </testsuite>
   </testsuites>
 

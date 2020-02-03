@@ -169,7 +169,12 @@ XML;
         $util->namespaceMap = [
             'http://sabre.io/ns' => 's',
         ];
+        /**
+         * @var PropFindTestAsset
+         */
         $result = $util->expect('{DAV:}propfind', $xml);
+        $this->assertIsObject($result);
+        $this->assertInstanceOf(PropFindTestAsset::class, $result);
         $this->assertEquals(false, $result->allProp);
         $this->assertEquals([], $result->properties);
     }
