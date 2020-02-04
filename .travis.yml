@@ -25,7 +25,7 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - composer update --prefer-source $PREFER_LOWEST
+  - composer update $PREFER_LOWEST
 
 script:
   - if [ $RUN_PHPSTAN == "FALSE" ]; then php vendor/bin/php-cs-fixer fix --dry-run --diff; fi
