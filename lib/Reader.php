@@ -39,6 +39,10 @@ class Reader extends XMLReader
             return null;
         }
 
+        if (is_null($this->namespaceURI) || empty($this->namespaceURI)) {
+            return $this->localName;;
+        }
+
         return '{'.$this->namespaceURI.'}'.$this->localName;
     }
 
