@@ -36,13 +36,18 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($ns, $writer->namespaceMap);
     }
 
-    public function testEmptyInputParse()
+    /**
+     * @dataProvider providesEmptyInput
+     *
+     * @param string|resource $input
+     */
+    public function testEmptyInputParse($input)
     {
-        $resource = fopen('php://input', 'r');
-        $util = new Service();
         $this->expectException('\Sabre\Xml\ParseException');
         $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
-        $util->parse($resource, '/sabre.io/ns');
+
+        $util = new Service();
+        $util->parse($input, '/sabre.io/ns');
     }
 
     /**
@@ -105,14 +110,18 @@ XML;
         );
     }
 
-    public function testEmptyInputExpect()
+    /**
+     * @dataProvider providesEmptyInput
+     *
+     * @param string|resource $input
+     */
+    public function testEmptyInputExpect($input)
     {
-        //$resource = \fopen('')
-        $resource = fopen('php://input', 'r');
-        $util = new Service();
         $this->expectException('\Sabre\Xml\ParseException');
         $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
-        $util->expect('foo', $resource, '/sabre.io/ns');
+
+        $util = new Service();
+        $util->expect('foo', $input, '/sabre.io/ns');
     }
 
     /**
@@ -348,6 +357,15 @@ XML;
     {
         $this->expectException(\InvalidArgumentException::class);
         Service::parseClarkNotation('http://sabredav.org/ns}elem');
+    }
+
+    public function providesEmptyInput()
+    {
+        $emptyResource = fopen('php://input', 'r');
+        $data[] = [$emptyResource];
+        $data[] = [''];
+
+        return $data;
     }
 
     public function providesEmptyPropfinds()
