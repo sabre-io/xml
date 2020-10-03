@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+2.2.2 (2020-10-03)
+------------------
+* #190: adjust libxml_disable_entity_loader calls ready for PHP 8.0 (@phil-davis)
+
 2.2.1 (2020-05-11)
 ------------------
 
