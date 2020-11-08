@@ -5,6 +5,8 @@ sabre/xml
 
 The sabre/xml library is a specialized XML reader and writer.
 
+Trigger CI
+
 Documentation
 -------------
 
