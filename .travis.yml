@@ -37,7 +37,7 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - if [ $RUN_PHPCSFIXER == "FALSE" ]; then composer remove --dev friendsofphp/php-cs-fixer; fi
+  - if [ $RUN_PHPCSFIXER == "FALSE" ]; then composer remove --no-update --dev friendsofphp/php-cs-fixer; fi
   - composer update $PREFER_LOWEST
 
 script:
