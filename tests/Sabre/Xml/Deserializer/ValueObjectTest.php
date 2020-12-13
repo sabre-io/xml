@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
-use
-    Sabre\Xml\Reader;
+use Sabre\Xml\Reader;
 
 class ValueObjectTest extends \PHPUnit\Framework\TestCase
 {
