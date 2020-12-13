@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Sabre\Xml\Deserializer;
 
 use Sabre\Xml\LibXMLException;
-use
-    Sabre\Xml\Reader;
+use Sabre\Xml\Reader;
 
 class KeyValueTest extends \PHPUnit\Framework\TestCase
 {
