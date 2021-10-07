@@ -56,7 +56,7 @@ class Reader extends XMLReader
     public function parse(): array
     {
         $previousEntityState = null;
-        $shouldCallLibxmlDisableEntityLoader = (\PHP_VERSION_ID < 80000);
+        $shouldCallLibxmlDisableEntityLoader = (\LIBXML_VERSION < 20900);
         if ($shouldCallLibxmlDisableEntityLoader) {
             $previousEntityState = libxml_disable_entity_loader(true);
         }
