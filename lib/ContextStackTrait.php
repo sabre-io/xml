@@ -10,7 +10,7 @@ namespace Sabre\Xml;
  * The Context maintains information about a document during either reading or
  * writing.
  *
- * During this process, it may be neccesary to override this context
+ * During this process, it may be necessary to override this context
  * information.
  *
  * This trait allows easy access to the context, and allows the end-user to

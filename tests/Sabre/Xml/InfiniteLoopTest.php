@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
-class InfiteLoopTest extends \PHPUnit\Framework\TestCase
+class InfiniteLoopTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * This particular xml body caused the parser to go into an infinite loop.

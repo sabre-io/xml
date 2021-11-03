@@ -92,11 +92,11 @@ class Reader extends XMLReader
 
     /**
      * parseGetElements parses everything in the current sub-tree,
-     * and returns a an array of elements.
+     * and returns an array of elements.
      *
      * Each element has a 'name', 'value' and 'attributes' key.
      *
-     * If the the element didn't contain sub-elements, an empty array is always
+     * If the element didn't contain sub-elements, an empty array is always
      * returned. If there was any text inside the element, it will be
      * discarded.
      *
@@ -249,7 +249,7 @@ class Reader extends XMLReader
      *
      * If the attributes are part of the same namespace, they will simply be
      * short keys. If they are defined on a different namespace, the attribute
-     * name will be retured in clark-notation.
+     * name will be returned in clark-notation.
      */
     public function parseAttributes(): array
     {
@@ -275,7 +275,7 @@ class Reader extends XMLReader
 
     /**
      * Returns the function that should be used to parse the element identified
-     * by it's clark-notation name.
+     * by its clark-notation name.
      */
     public function getDeserializerForElementName(string $name): callable
     {
