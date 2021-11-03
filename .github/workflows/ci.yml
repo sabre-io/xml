@@ -44,19 +44,20 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer dependencies
+      - name: Install composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Code Analysis(PHP CS-Fixer)
+      - name: Code Analysis (PHP CS-Fixer)
         if: matrix.code-analysis == 'yes'
         run: php vendor/bin/php-cs-fixer fix --dry-run --diff
 
-      - name: Code Analysis(PHPStan)
+      - name: Code Analysis (PHPStan)
         if: matrix.code-analysis == 'yes'
         run: composer phpstan
 
       - name: Test with phpunit
         run: vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-clover clover.xml
 
-      - uses: codecov/codecov-action@v2
+      - name: Code Coverage
+        uses: codecov/codecov-action@v2
         if: matrix.coverage != 'none'
