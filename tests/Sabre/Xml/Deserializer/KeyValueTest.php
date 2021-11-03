@@ -110,7 +110,7 @@ BLA;
 
     public function testEmptyKeyValue()
     {
-        // the nested structure below is necessary to detect if one of the deserialization functions eats to much elements
+        // the nested structure below is necessary to detect if one of the deserialization functions eats too many elements
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">

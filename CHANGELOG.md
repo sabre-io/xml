@@ -13,7 +13,7 @@ ChangeLog
 ------------------
 
 * #183: fixed warning 'xml cannot be empty while reading', which might lead to a infinite-loop (@mrow4a)
-* #179, #178, #177 #176: several build/continous integration related improvements (@phil-davis)
+* #179, #178, #177 #176: several build/continuous integration related improvements (@phil-davis)
 
 2.2.0 (2020-01-31)
 ------------------

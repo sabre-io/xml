@@ -7,7 +7,7 @@ namespace Sabre\Xml;
 /**
  * XML parsing and writing service.
  *
- * You are encouraged to make a instance of this for your application and
+ * You are encouraged to make an instance of this for your application and
  * potentially extend it, as a central API point for dealing with xml and
  * configuring the reader and writer.
  *
@@ -117,7 +117,7 @@ class Service
             $input = (string) stream_get_contents($input);
         }
 
-        // If input is empty, then its safe to throw exception
+        // If input is empty, then it's safe to throw an exception
         if (empty($input)) {
             throw new ParseException('The input element to parse is empty. Do not attempt to parse');
         }
@@ -161,7 +161,7 @@ class Service
             $input = (string) stream_get_contents($input);
         }
 
-        // If input is empty, then its safe to throw exception
+        // If input is empty, then it's safe to throw an exception
         if (empty($input)) {
             throw new ParseException('The input element to parse is empty. Do not attempt to parse');
         }
@@ -217,9 +217,9 @@ class Service
     }
 
     /**
-     * Map an xml element to a PHP class.
+     * Map an XML element to a PHP class.
      *
-     * Calling this function will automatically setup the Reader and Writer
+     * Calling this function will automatically set up the Reader and Writer
      * classes to turn a specific XML element to a PHP class.
      *
      * For example, given a class such as :
