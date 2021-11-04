@@ -1,7 +1,11 @@
 ChangeLog
 =========
 
-2.2.4 (2020-11-04)
+2.2.5 (2021-11-04)
+------------------
+* #210 version bump that was missed in 2.2.4 ( @phil-davis )
+
+2.2.4 (2021-11-04)
 ------------------
 * #204 Use libxml version instead of PHP version before calling libxml_disable_entity_loader ( @CarlSchwan )
 
