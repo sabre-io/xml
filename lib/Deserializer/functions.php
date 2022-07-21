@@ -189,6 +189,10 @@ function enum(Reader $reader, string $namespace = null): array
  * This is primarily used by the mapValueObject function from the Service
  * class, but it can also easily be used for more specific situations.
  *
+ * @template C class-string
+ * @param C $className
+ * @phpstan-return C
+ *
  * @return object
  */
 function valueObject(Reader $reader, string $className, string $namespace)
@@ -268,7 +272,7 @@ function repeatingElements(Reader $reader, string $childElementName): array
 }
 
 /**
- * This deserializer helps you to deserialize structures which contain mixed content like this:.
+ * This deserializer helps you to deserialize structures which contain mixed content.
  *
  * <p>some text <extref>and a inline tag</extref>and even more text</p>
  *
@@ -322,6 +326,10 @@ function mixedContent(Reader $reader): array
  *
  * You can use, e.g., a named constructor (factory method) to create an object using
  * this function.
+ *
+ * @template R
+ * @param callable():R
+ * @phpstan-return R
  *
  * @return mixed
  */
