@@ -145,6 +145,7 @@ function keyValue(Reader $reader, string $namespace = null): array
  * ];
  *
  * @return string[]
+ * @phpstan-return list<string>
  */
 function enum(Reader $reader, string $namespace = null): array
 {
