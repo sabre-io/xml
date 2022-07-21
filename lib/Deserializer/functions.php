@@ -257,6 +257,8 @@ function valueObject(Reader $reader, string $className, string $namespace)
  *
  * $childElementName must either be a a clark-notation element name, or if no
  * namespace is used, the bare element name.
+ *
+ * @phpstan-return list<mixed>
  */
 function repeatingElements(Reader $reader, string $childElementName): array
 {
