@@ -54,6 +54,8 @@ use Sabre\Xml\Reader;
  *
  * Attributes will be removed from the top-level elements. If elements with
  * the same name appear twice in the list, only the last one will be kept.
+ *
+ * @phpstan-return array<string, mixed>
  */
 function keyValue(Reader $reader, string $namespace = null): array
 {
