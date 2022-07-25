@@ -246,11 +246,6 @@ parameters:
 			path: lib/Writer.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and non\\-empty\\-string will always evaluate to false\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\XmlSerializable\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/XmlSerializable.php

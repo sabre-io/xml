@@ -291,7 +291,7 @@ class Service
      *
      * @throws \InvalidArgumentException
      *
-     * @return array{string, string}
+     * @return array{string|null, string}
      */
     public static function parseClarkNotation(string $str): array
     {
