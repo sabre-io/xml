@@ -192,8 +192,8 @@ function enum(Reader $reader, string $namespace = null): array
  * This is primarily used by the mapValueObject function from the Service
  * class, but it can also easily be used for more specific situations.
  *
- * @template C class-string
- * @param C $className
+ * @template C
+ * @param class-string<C> $className
  * @phpstan-return C
  *
  * @return object
@@ -294,6 +294,8 @@ function repeatingElements(Reader $reader, string $childElementName): array
  * ]
  *
  * In strict XML documents you wont find this kind of markup but in html this is a quite common pattern.
+ *
+ * @return array<mixed>
  */
 function mixedContent(Reader $reader): array
 {
@@ -333,8 +335,8 @@ function mixedContent(Reader $reader): array
  * this function.
  *
  * @template R
- * @param callable():R
- * @phpstan-return R
+ * @param callable():R $func
+ * @return R
  *
  * @return mixed
  */
