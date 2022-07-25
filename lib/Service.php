@@ -26,7 +26,7 @@ class Service
      * Values may also be a callable. In that case the function will be called
      * directly.
      *
-     * @var array
+     * @var array<string, class-string|callable>
      */
     public $elementMap = [];
 
@@ -36,7 +36,7 @@ class Service
      * You must make sure you create this entire list before starting to write.
      * They should be registered on the root element.
      *
-     * @var array
+     * @var array<string, class-string>
      */
     public $namespaceMap = [];
 
@@ -56,7 +56,7 @@ class Service
      *
      * function (Writer $writer, object $value)
      *
-     * @var array
+     * @var array<class-string, callable>
      */
     public $classMap = [];
 
@@ -239,6 +239,10 @@ class Service
      * These can easily be mapped by calling:
      *
      * $service->mapValueObject('{http://example.org}author', 'Author');
+     *
+     * @param class-string $className
+     *
+     * @return void
      */
     public function mapValueObject(string $elementName, string $className)
     {
@@ -286,6 +290,8 @@ class Service
      * If the string was invalid, it will throw an InvalidArgumentException.
      *
      * @throws \InvalidArgumentException
+     *
+     * @return array{string, string}
      */
     public static function parseClarkNotation(string $str): array
     {
@@ -307,6 +313,8 @@ class Service
 
     /**
      * A list of classes and which XML elements they map to.
+     *
+     * @var array<class-string, string>
      */
     protected $valueObjectMap = [];
 }
