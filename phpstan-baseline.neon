@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: lib/Deserializer/functions.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: lib/Deserializer/functions.php
