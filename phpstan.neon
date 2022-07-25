@@ -1,6 +1,9 @@
+includes:
+    - phpstan-baseline.neon
+
 parameters:
-  level: 5
-  ignoreErrors:
-    -
-      message: '!Parameter #3 \$namespace of method XMLWriter::startElementNs\(\) expects string, null given.!'
-      path: lib/Writer.php
+  level: 6
+  phpVersion: 70234 # PHP 7.2.34
+  paths:
+    - lib
+    - tests
