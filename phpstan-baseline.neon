@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\keyValue\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\mixedContent\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\repeatingElements\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
 			message: "#^Negated boolean expression is always false\\.$#"
 			count: 1
 			path: lib/Deserializer/functions.php
@@ -186,17 +171,7 @@ parameters:
 			path: lib/Service.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:mapValueObject\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:parseClarkNotation\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Service.php
 
@@ -207,26 +182,6 @@ parameters:
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:writeValueObject\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$valueObjectMap has no type specified\\.$#"
 			count: 1
 			path: lib/Service.php
 
@@ -291,6 +246,11 @@ parameters:
 			path: lib/Writer.php
 
 		-
+			message: "#^Strict comparison using \\=\\=\\= between null and non\\-empty\\-string will always evaluate to false\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
 			message: "#^Method Sabre\\\\Xml\\\\XmlSerializable\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/XmlSerializable.php
@@ -342,6 +302,36 @@ parameters:
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:getLanguages\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Address, 'Sabre\\\\\\\\Xml…' given\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Address, array\\{'Sabre\\\\\\\\Xml\\\\\\\\Deserializer\\\\\\\\Address', 'fromXml'\\} given\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Language, Closure\\(string\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Language given\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Language, array\\{'Sabre\\\\\\\\Xml\\\\\\\\Deserializer\\\\\\\\Language', 'fromXml'\\} given\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Person, 'Sabre\\\\\\\\Xml…' given\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Person, array\\{'Sabre\\\\\\\\Xml\\\\\\\\Deserializer\\\\\\\\Person', 'fromXml'\\} given\\.$#"
 			count: 1
 			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
 
@@ -793,6 +783,16 @@ parameters:
 		-
 			message: "#^Property Sabre\\\\Xml\\\\PropFindTestAsset\\:\\:\\$properties has no type specified\\.$#"
 			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$elementMap \\(array\\<string, \\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\) does not accept array\\{\\{http\\://sabre\\.io/ns\\}test\\: 'Test\\!'\\}\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$namespaceMap \\(array\\<string, class\\-string\\>\\) does not accept array\\<string, string\\>\\.$#"
+			count: 4
 			path: tests/Sabre/Xml/ServiceTest.php
 
 		-
