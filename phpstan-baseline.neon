@@ -1,6 +1,21 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\keyValue\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Deserializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\mixedContent\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Deserializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\repeatingElements\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Deserializer/functions.php
+
+		-
 			message: "#^Negated boolean expression is always false\\.$#"
 			count: 1
 			path: lib/Deserializer/functions.php
@@ -9,3 +24,898 @@ parameters:
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: lib/Deserializer/functions.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Base\\:\\:__construct\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: lib/Element/Base.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Base\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Element/Base.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Cdata\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Element/Cdata.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Elements\\:\\:__construct\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Element/Elements.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Elements\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Element/Elements.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Element\\\\Elements\\:\\:\\$value type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Element/Elements.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValue\\:\\:__construct\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Element/KeyValue.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValue\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Element/KeyValue.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Element\\\\KeyValue\\:\\:\\$value type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Element/KeyValue.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Uri\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Element/Uri.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragment\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Element/XmlFragment.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\LibXMLException\\:\\:getErrors\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/LibXMLException.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parseAttributes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parseCurrentElement\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parseGetElements\\(\\) has parameter \\$elementMap with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parseGetElements\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parseInnerTree\\(\\) has parameter \\$elementMap with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:parseInnerTree\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:popContext\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:pushContext\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$contextStack type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\enum\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\repeatingElements\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\repeatingElements\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\standardSerializer\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\standardSerializer\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\valueObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:expect\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:mapValueObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:parseClarkNotation\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:write\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:writeValueObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$valueObjectMap has no type specified\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:popContext\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:pushContext\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:write\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeAttributes\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeAttributes\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeElement\\(\\) has parameter \\$content with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$adhocNamespaces type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$contextStack type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\XmlSerializable\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/XmlSerializable.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ContextStackTest\\:\\:testPushAndPull\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ContextStackTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\ContextStackTest\\:\\:\\$stack has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ContextStackTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\EnumTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/EnumTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\EnumTest\\:\\:testDeserializeDefaultNamespace\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/EnumTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\EnumTest\\:\\:testEmptyEnum\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/EnumTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\FunctionCallerTest\\:\\:testDeserializeFunctionCaller\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\FunctionCallerTest\\:\\:testDeserializeFunctionCallerWithDifferentTypesOfCallable\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:__construct\\(\\) has parameter \\$languages with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:fromXml\\(\\) has parameter \\$languages with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:getLanguages\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Address\\:\\:\\$number has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Address\\:\\:\\$street has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Language\\:\\:\\$value has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:\\$address has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:\\$age has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:\\$languages has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Person\\:\\:\\$name has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\KeyValueTest\\:\\:testEmptyKeyValue\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\KeyValueTest\\:\\:testKeyValue\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\KeyValueTest\\:\\:testKeyValueLoop\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\MixedContentTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/MixedContentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\RepeatingElementsTest\\:\\:testRead\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/RepeatingElementsTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\ValueObjectTest\\:\\:testDeserializeValueObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\ValueObjectTest\\:\\:testDeserializeValueObjectAutoArray\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\ValueObjectTest\\:\\:testDeserializeValueObjectEmpty\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Deserializer\\\\ValueObjectTest\\:\\:testDeserializeValueObjectIgnoredElement\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\TestVo\\:\\:\\$firstName has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\TestVo\\:\\:\\$lastName has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\TestVo\\:\\:\\$link has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Deserializer/ValueObjectTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\CDataTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/CDataTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\CDataTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/CDataTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Eater\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/Eater.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\ElementsTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/ElementsTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\ElementsTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/ElementsTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValueTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValueTest\\:\\:testElementEater\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValueTest\\:\\:testElementSkipProblem\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValueTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/KeyValueTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Mock\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/Mock.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\UriTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/UriTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\UriTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/UriTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testDeserialize\\(\\) has parameter \\$expected with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testDeserialize\\(\\) has parameter \\$input with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testSerialize\\(\\) has parameter \\$expected with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testSerialize\\(\\) has parameter \\$expectedFallback with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:testSerialize\\(\\) has parameter \\$input with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragmentTest\\:\\:xmlProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Element/XmlFragmentTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\InfiniteLoopTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/InfiniteLoopTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testBrokenParserClass\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testBrokenXml\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testBrokenXml2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testCDATA\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testGetClark\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testGetClarkNoNS\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testGetClarkNotOnAnElement\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testMappedElement\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testMappedElementBadClass\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testMappedElementCallBack\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testMappedElementCallBackNoNamespace\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testParseGetElements\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testParseGetElementsNoElements\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testParseInnerTree\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testParseProblem\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testReadText\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testSimple\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ReaderTest\\:\\:testSimpleNamespacedAttribute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ReaderTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Serializer\\\\EnumTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Serializer/EnumTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Serializer\\\\RepeatingElementsTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/Serializer/RepeatingElementsTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:providesEmptyInput\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:providesEmptyPropfinds\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testEmptyInputExpect\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testEmptyInputParse\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testEmptyPropfind\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testEmptyPropfind\\(\\) has parameter \\$xml with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testExpect\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testExpectStream\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testExpectWrong\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testGetReader\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testGetWriter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testInvalidNameSpace\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testMapValueObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testMapValueObjectArrayProperty\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testParse\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testParseClarkNotation\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testParseClarkNotationFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testParseStream\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testWrite\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\ServiceTest\\:\\:testWriteVoNotFound\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Order\\:\\:\\$amount has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Order\\:\\:\\$description has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Order\\:\\:\\$empty has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Order\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Order\\:\\:\\$link has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Order\\:\\:\\$status has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\OrderStatus\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\OrderStatus\\:\\:\\$label has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\PropFindTestAsset\\:\\:\\$allProp has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\PropFindTestAsset\\:\\:\\$properties has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/ServiceTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:compare\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:compare\\(\\) has parameter \\$input with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:compare\\(\\) has parameter \\$output with no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testArrayFormat2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testArrayFormat2NoValue\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testArrayOfValues\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testAttributes\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testBaseElement\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testCallback\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testClassMap\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testCustomNamespace\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testElementObj\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testEmptyNamespace\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testEmptyNamespacePrefix\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testEmptyNamespacePrefixEmptyString\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testMixedSyntax\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testNull\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testResource\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testSimple\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testSimpleAttributes\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testSimpleQuotes\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testStartElementSimple\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testWriteBadObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testWriteElement\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:testWriteElementComplex\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\WriterTest\\:\\:\\$writer has no type specified\\.$#"
+			count: 1
+			path: tests/Sabre/Xml/WriterTest.php
