@@ -27,6 +27,7 @@ class Service
      * directly.
      *
      * @phpstan-var array<string, class-string|callable|object>
+     *
      * @var array
      */
     public $elementMap = [];
@@ -38,6 +39,7 @@ class Service
      * They should be registered on the root element.
      *
      * @phpstan-var array<string, class-string|string|null>
+     *
      * @var array
      */
     public $namespaceMap = [];
@@ -59,6 +61,7 @@ class Service
      * function (Writer $writer, object $value)
      *
      * @phpstan-var array<class-string, callable(Writer, object):mixed>
+     *
      * @var array
      */
     public $classMap = [];
