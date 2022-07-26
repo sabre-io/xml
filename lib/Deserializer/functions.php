@@ -193,6 +193,7 @@ function enum(Reader $reader, string $namespace = null): array
  * class, but it can also easily be used for more specific situations.
  *
  * @template C
+ *
  * @param class-string<C> $className
  * @phpstan-return C
  *
@@ -335,9 +336,10 @@ function mixedContent(Reader $reader): array
  * this function.
  *
  * @template R
- * @param callable():R $func
- * @return R
  *
+ * @param callable():R $func
+ *
+ * @return R
  * @return mixed
  */
 function functionCaller(Reader $reader, callable $func, string $namespace)
