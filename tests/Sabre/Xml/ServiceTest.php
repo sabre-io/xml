@@ -11,7 +11,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
     public function testGetReader()
     {
         $elems = [
-            '{http://sabre.io/ns}test' => 'Test!',
+            '{http://sabre.io/ns}test' => 'stdClass',
         ];
 
         $util = new Service();
@@ -25,7 +25,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
     public function testGetWriter()
     {
         $ns = [
-            'http://sabre.io/ns' => 's',
+            'http://sabre.io/ns' => 'stdClass',
         ];
 
         $util = new Service();
@@ -161,7 +161,7 @@ XML;
             '{DAV:}propfind' => PropFindTestAsset::class,
         ];
         $util->namespaceMap = [
-            'http://sabre.io/ns' => 's',
+            'http://sabre.io/ns' => 'stdClass',
         ];
         $result = $util->expect('{DAV:}propfind', $xml);
     }
@@ -176,7 +176,7 @@ XML;
             '{DAV:}propfind' => PropFindTestAsset::class,
         ];
         $util->namespaceMap = [
-            'http://sabre.io/ns' => 's',
+            'http://sabre.io/ns' => 'stdClass',
         ];
         /**
          * @var PropFindTestAsset
@@ -242,7 +242,7 @@ XML;
     {
         $util = new Service();
         $util->namespaceMap = [
-            'http://sabre.io/ns' => 's',
+            'http://sabre.io/ns' => 'stdClass',
         ];
         $result = $util->write('{http://sabre.io/ns}root', [
             '{http://sabre.io/ns}child' => 'value',
@@ -250,9 +250,9 @@ XML;
 
         $expected = <<<XML
 <?xml version="1.0"?>
-<s:root xmlns:s="http://sabre.io/ns">
- <s:child>value</s:child>
-</s:root>
+<stdClass:root xmlns:stdClass="http://sabre.io/ns">
+ <stdClass:child>value</stdClass:child>
+</stdClass:root>
 
 XML;
         $this->assertEquals(
