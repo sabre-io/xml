@@ -781,16 +781,6 @@ parameters:
 			path: tests/Sabre/Xml/ServiceTest.php
 
 		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$elementMap \\(array\\<string, \\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\) does not accept array\\{\\{http\\://sabre\\.io/ns\\}test\\: 'Test\\!'\\}\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/ServiceTest.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$namespaceMap \\(array\\<string, class\\-string\\>\\) does not accept array\\<string, string\\>\\.$#"
-			count: 4
-			path: tests/Sabre/Xml/ServiceTest.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\WriterTest\\:\\:compare\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/Sabre/Xml/WriterTest.php
