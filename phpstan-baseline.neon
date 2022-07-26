@@ -16,22 +16,7 @@ parameters:
 			path: lib/Element/Base.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Base\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Element/Base.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Cdata\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Element/Cdata.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Elements\\:\\:__construct\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Element/Elements.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Elements\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/Element/Elements.php
 
@@ -46,24 +31,9 @@ parameters:
 			path: lib/Element/KeyValue.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValue\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Element/KeyValue.php
-
-		-
 			message: "#^Property Sabre\\\\Xml\\\\Element\\\\KeyValue\\:\\:\\$value type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Element/KeyValue.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Uri\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Element/Uri.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\XmlFragment\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Element/XmlFragment.php
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\LibXMLException\\:\\:getErrors\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -106,12 +76,7 @@ parameters:
 			path: lib/Reader.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:popContext\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Reader.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:pushContext\\(\\) has no return type specified\\.$#"
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Reader.php
 
@@ -121,12 +86,42 @@ parameters:
 			path: lib/Reader.php
 
 		-
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Reader.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\enum\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\repeatingElements\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
 			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\repeatingElements\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Serializer/functions.php
 
 		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\standardSerializer\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
 			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\standardSerializer\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Serializer/functions.php
+
+		-
+			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\valueObject\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/Serializer/functions.php
 
@@ -146,12 +141,22 @@ parameters:
 			path: lib/Service.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:popContext\\(\\) has no return type specified\\.$#"
+			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:writeValueObject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Service.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:write\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/Writer.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:pushContext\\(\\) has no return type specified\\.$#"
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeAttributes\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
+			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeAttributes\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Writer.php
 
@@ -171,14 +176,24 @@ parameters:
 			path: lib/Writer.php
 
 		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
+
+		-
 			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$contextStack type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Writer.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\XmlSerializable\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: lib/XmlSerializable.php
+			path: lib/Writer.php
+
+		-
+			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Writer.php
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\ContextStackTest\\:\\:testPushAndPull\\(\\) has no return type specified\\.$#"
@@ -336,11 +351,6 @@ parameters:
 			path: tests/Sabre/Xml/Element/CDataTest.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Eater\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Element/Eater.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\Element\\\\ElementsTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/Sabre/Xml/Element/ElementsTest.php
@@ -369,11 +379,6 @@ parameters:
 			message: "#^Method Sabre\\\\Xml\\\\Element\\\\KeyValueTest\\:\\:testSerialize\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/Sabre/Xml/Element/KeyValueTest.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Element\\\\Mock\\:\\:xmlSerialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Element/Mock.php
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\Element\\\\UriTest\\:\\:testDeserialize\\(\\) has no return type specified\\.$#"

@@ -98,6 +98,8 @@ trait ContextStackTrait
      * This allows you to safely modify the elementMap, contextUri or
      * namespaceMap. After you're done, you can restore the old data again
      * with popContext.
+     *
+     * @return void
      */
     public function pushContext()
     {
@@ -111,6 +113,8 @@ trait ContextStackTrait
 
     /**
      * Restore the previous "context".
+     *
+     * @return void
      */
     public function popContext()
     {
