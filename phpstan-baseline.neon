@@ -76,16 +76,6 @@ parameters:
 			path: lib/Reader.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:popContext\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Reader.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Reader\\:\\:pushContext\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Reader.php
-
-		-
 			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Reader.php
@@ -154,16 +144,6 @@ parameters:
 			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:writeValueObject\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/Service.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:popContext\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:pushContext\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Writer.php
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:write\\(\\) has no return type specified\\.$#"
