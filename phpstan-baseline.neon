@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\keyValue\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\mixedContent\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Deserializer\\\\repeatingElements\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
 			message: "#^Negated boolean expression is always false\\.$#"
 			count: 1
 			path: lib/Deserializer/functions.php
@@ -186,17 +171,7 @@ parameters:
 			path: lib/Service.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:mapValueObject\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:parseClarkNotation\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Service.php
 
@@ -207,26 +182,6 @@ parameters:
 
 		-
 			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:writeValueObject\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Service\\:\\:\\$valueObjectMap has no type specified\\.$#"
 			count: 1
 			path: lib/Service.php
 
