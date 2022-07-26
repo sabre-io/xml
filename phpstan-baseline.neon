@@ -301,36 +301,6 @@ parameters:
 			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
 
 		-
-			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Address, 'Sabre\\\\\\\\Xml…' given\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
-
-		-
-			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Address, array\\{'Sabre\\\\\\\\Xml\\\\\\\\Deserializer\\\\\\\\Address', 'fromXml'\\} given\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
-
-		-
-			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Language, Closure\\(string\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Language given\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
-
-		-
-			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Language, array\\{'Sabre\\\\\\\\Xml\\\\\\\\Deserializer\\\\\\\\Language', 'fromXml'\\} given\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
-
-		-
-			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Person, 'Sabre\\\\\\\\Xml…' given\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
-
-		-
-			message: "#^Parameter \\#2 \\$func of function Sabre\\\\Xml\\\\Deserializer\\\\functionCaller expects callable\\(\\)\\: Sabre\\\\Xml\\\\Deserializer\\\\Person, array\\{'Sabre\\\\\\\\Xml\\\\\\\\Deserializer\\\\\\\\Person', 'fromXml'\\} given\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
-
-		-
 			message: "#^Property Sabre\\\\Xml\\\\Deserializer\\\\Address\\:\\:\\$number has no type specified\\.$#"
 			count: 1
 			path: tests/Sabre/Xml/Deserializer/FunctionCallerTest.php
