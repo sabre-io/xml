@@ -183,8 +183,8 @@ class Writer extends XMLWriter
      * Note: this function doesn't have the string typehint, because PHP's
      * XMLWriter::startElement doesn't either.
      *
+     * @param string $name
      * @param array|string|object|null $content
-     * @param mixed $content
      */
     public function writeElement($name, $content = null): bool
     {
