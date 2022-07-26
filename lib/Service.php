@@ -56,7 +56,7 @@ class Service
      *
      * function (Writer $writer, object $value)
      *
-     * @var array<class-string, callable>
+     * @var array<class-string, callable(Writer, object)>
      */
     public $classMap = [];
 
