@@ -32,6 +32,8 @@ trait ContextStackTrait
      * Values may also be a callable. In that case the function will be called
      * directly.
      *
+     * @phpstan-var array<string, class-string|callable|object>
+     *
      * @var array
      */
     public $elementMap = [];
@@ -55,6 +57,8 @@ trait ContextStackTrait
      * You must make sure you create this entire list before starting to write.
      * They should be registered on the root element.
      *
+     * @phpstan-var array<string, class-string|string|null>
+     *
      * @var array
      */
     public $namespaceMap = [];
@@ -74,6 +78,8 @@ trait ContextStackTrait
      * writer class, and the value that must be written.
      *
      * function (Writer $writer, object $value)
+     *
+     * @phpstan-var array<class-string, callable(Writer, object):mixed>
      *
      * @var array
      */

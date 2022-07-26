@@ -26,7 +26,9 @@ class Service
      * Values may also be a callable. In that case the function will be called
      * directly.
      *
-     * @var array<string, class-string|callable>
+     * @phpstan-var array<string, class-string|callable|object>
+     *
+     * @var array
      */
     public $elementMap = [];
 
@@ -36,7 +38,9 @@ class Service
      * You must make sure you create this entire list before starting to write.
      * They should be registered on the root element.
      *
-     * @var array<string, class-string>
+     * @phpstan-var array<string, class-string|string|null>
+     *
+     * @var array
      */
     public $namespaceMap = [];
 
@@ -56,7 +60,9 @@ class Service
      *
      * function (Writer $writer, object $value)
      *
-     * @var array<class-string, callable(Writer,object):mixed>
+     * @phpstan-var array<class-string, callable(Writer, object):mixed>
+     *
+     * @var array
      */
     public $classMap = [];
 
@@ -252,7 +258,7 @@ class Service
             return \Sabre\Xml\Deserializer\valueObject($reader, $className, $namespace);
         };
         $this->classMap[$className] = function (Writer $writer, $valueObject) use ($namespace) {
-            return \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);
+            \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);
         };
         $this->valueObjectMap[$className] = $elementName;
     }
@@ -269,6 +275,8 @@ class Service
      * @param object $object
      *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     public function writeValueObject($object, string $contextUri = null)
     {

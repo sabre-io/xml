@@ -52,6 +52,8 @@ class Reader extends XMLReader
      *
      * This function will also disable the standard libxml error handler (which
      * usually just results in PHP errors), and throw exceptions instead.
+     *
+     * @return array{name: string, value: mixed, attributes: array}
      */
     public function parse(): array
     {
@@ -102,6 +104,8 @@ class Reader extends XMLReader
      *
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
+     *
+     * @return array{name: string, value: mixed, attributes: array}|array{}
      */
     public function parseGetElements(array $elementMap = null): array
     {
@@ -297,9 +301,9 @@ class Reader extends XMLReader
         }
 
         $type = gettype($deserializer);
-        if ('string' === $type) {
+        if (is_string($deserializer)) {
             $type .= ' ('.$deserializer.')';
-        } elseif ('object' === $type) {
+        } elseif (is_object($deserializer)) {
             $type .= ' ('.get_class($deserializer).')';
         }
         throw new \LogicException('Could not use this type as a deserializer: '.$type.' for element: '.$name);

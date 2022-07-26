@@ -37,6 +37,8 @@ use Sabre\Xml\XmlSerializable;
  * <s:elem5 attr="val" />
  *
  * @param string[] $values
+ *
+ * @return void
  */
 function enum(Writer $writer, array $values)
 {
@@ -55,6 +57,8 @@ function enum(Writer $writer, array $values)
  * serialize empty properties, you must specify them as an empty string.
  *
  * @param object $valueObject
+ *
+ * @return void
  */
 function valueObject(Writer $writer, $valueObject, string $namespace)
 {
@@ -85,6 +89,8 @@ function valueObject(Writer $writer, $valueObject, string $namespace)
  * and this could be called like this:
  *
  * repeatingElements($writer, $items, '{}item');
+ *
+ * @return void
  */
 function repeatingElements(Writer $writer, array $items, string $childElementName)
 {
@@ -149,6 +155,8 @@ function repeatingElements(Writer $writer, array $items, string $childElementNam
  * You can even mix the two array syntaxes.
  *
  * @param string|int|float|bool|array|object $value
+ *
+ * @return void
  */
 function standardSerializer(Writer $writer, $value)
 {
