@@ -76,34 +76,9 @@ parameters:
 			path: lib/Reader.php
 
 		-
-			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Reader.php
-
-		-
 			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$contextStack type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Reader.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Reader.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Reader\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Reader.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\enum\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Serializer/functions.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\repeatingElements\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Serializer/functions.php
 
 		-
 			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\repeatingElements\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
@@ -111,17 +86,7 @@ parameters:
 			path: lib/Serializer/functions.php
 
 		-
-			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\standardSerializer\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Serializer/functions.php
-
-		-
 			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\standardSerializer\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Serializer/functions.php
-
-		-
-			message: "#^Function Sabre\\\\Xml\\\\Serializer\\\\valueObject\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: lib/Serializer/functions.php
 
@@ -141,26 +106,6 @@ parameters:
 			path: lib/Service.php
 
 		-
-			message: "#^Method Sabre\\\\Xml\\\\Service\\:\\:writeValueObject\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Service.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:write\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeAttributes\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
-			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeAttributes\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
 			message: "#^Method Sabre\\\\Xml\\\\Writer\\:\\:writeElement\\(\\) has parameter \\$content with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Writer.php
@@ -176,22 +121,7 @@ parameters:
 			path: lib/Writer.php
 
 		-
-			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$classMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
 			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$contextStack type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$elementMap type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: lib/Writer.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\Writer\\:\\:\\$namespaceMap type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: lib/Writer.php
 
