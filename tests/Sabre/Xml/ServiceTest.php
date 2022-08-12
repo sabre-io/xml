@@ -342,7 +342,7 @@ XML;
     {
         $this->expectException(\InvalidArgumentException::class);
         $service = new Service();
-        $service->writeValueObject(new \StdClass());
+        $service->writeValueObject(new \stdClass());
     }
 
     public function testParseClarkNotation()

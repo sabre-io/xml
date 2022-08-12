@@ -195,7 +195,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => new \StdClass(),
+            '{http://sabredav.org/ns}elem1' => new \stdClass(),
         ];
         $reader->xml($input);
 
