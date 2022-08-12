@@ -192,14 +192,12 @@ function enum(Reader $reader, string $namespace = null): array
  * This is primarily used by the mapValueObject function from the Service
  * class, but it can also easily be used for more specific situations.
  *
- * @template C
+ * @template C of object
  *
  * @param class-string<C> $className
  * @phpstan-return C
- *
- * @return object
  */
-function valueObject(Reader $reader, string $className, string $namespace)
+function valueObject(Reader $reader, string $className, string $namespace): object
 {
     $valueObject = new $className();
     if ($reader->isEmptyElement) {

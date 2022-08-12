@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class UriTest extends \PHPUnit\Framework\TestCase
+class UriTest extends TestCase
 {
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -43,7 +44,7 @@ BLA;
         );
     }
 
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $writer = new Writer();
         $writer->namespaceMap = [

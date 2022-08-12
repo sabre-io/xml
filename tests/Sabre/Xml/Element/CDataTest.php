@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class CDataTest extends \PHPUnit\Framework\TestCase
+class CDataTest extends TestCase
 {
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $this->expectException(\LogicException::class);
         $input = <<<BLA
@@ -28,7 +29,7 @@ BLA;
         $output = $reader->parse();
     }
 
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $writer = new Writer();
         $writer->namespaceMap = [

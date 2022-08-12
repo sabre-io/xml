@@ -40,20 +40,16 @@ class Writer extends XMLWriter
      * Any of these elements will get a new namespace definition *every single
      * time* they are used, but this array allows the writer to make sure that
      * the prefixes are consistent anyway.
-     *
-     * @var array
      */
-    protected $adhocNamespaces = [];
+    protected array $adhocNamespaces = [];
 
     /**
      * When the first element is written, this flag is set to true.
      *
      * This ensures that the namespaces in the namespaces map are only written
      * once.
-     *
-     * @var bool
      */
-    protected $namespacesWritten = false;
+    protected bool $namespacesWritten = false;
 
     /**
      * Writes a value to the output stream.
@@ -95,10 +91,8 @@ class Writer extends XMLWriter
      * ]
      *
      * @param mixed $value
-     *
-     * @return void
      */
-    public function write($value)
+    public function write($value): void
     {
         Serializer\standardSerializer($this, $value);
     }
@@ -106,7 +100,7 @@ class Writer extends XMLWriter
     /**
      * Opens a new element.
      *
-     * You can either just use a local elementname, or you can use clark-
+     * You can either just use a local element name, or you can use clark-
      * notation to start a new element.
      *
      * Example:
@@ -119,6 +113,7 @@ class Writer extends XMLWriter
      *
      * Note: this function doesn't have the string typehint, because PHP's
      * XMLWriter::startElement doesn't either.
+     * From PHP 8.0 the typehint exists, so it can be added here after PHP 7.4 is dropped.
      *
      * @param string $name
      */
@@ -182,6 +177,7 @@ class Writer extends XMLWriter
      *
      * Note: this function doesn't have the string typehint, because PHP's
      * XMLWriter::startElement doesn't either.
+     * From PHP 8.0 the typehint exists, so it can be added here after PHP 7.4 is dropped.
      *
      * @param string                   $name
      * @param array|string|object|null $content
@@ -207,10 +203,8 @@ class Writer extends XMLWriter
      * will be used instead.
      *
      * @param array<string, string> $attributes
-     *
-     * @return void
      */
-    public function writeAttributes(array $attributes)
+    public function writeAttributes(array $attributes): void
     {
         foreach ($attributes as $name => $value) {
             $this->writeAttribute($name, $value);
@@ -226,6 +220,7 @@ class Writer extends XMLWriter
      *
      * Note: this function doesn't have typehints, because for some reason
      * PHP's XMLWriter::writeAttribute doesn't either.
+     * From PHP 8.0 the typehint exists, so it can be added here after PHP 7.4 is dropped.
      *
      * @param string $name
      * @param string $value

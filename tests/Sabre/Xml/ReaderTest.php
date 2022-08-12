@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
-class ReaderTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class ReaderTest extends TestCase
 {
-    public function testGetClark()
+    public function testGetClark(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -20,7 +22,7 @@ BLA;
         $this->assertEquals('{http://sabredav.org/ns}root', $reader->getClark());
     }
 
-    public function testGetClarkNoNS()
+    public function testGetClarkNoNS(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -34,7 +36,7 @@ BLA;
         $this->assertEquals('{}root', $reader->getClark());
     }
 
-    public function testGetClarkNotOnAnElement()
+    public function testGetClarkNotOnAnElement(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -46,7 +48,7 @@ BLA;
         $this->assertNull($reader->getClark());
     }
 
-    public function testSimple()
+    public function testSimple(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -91,7 +93,7 @@ BLA;
         $this->assertEquals($expected, $output);
     }
 
-    public function testCDATA()
+    public function testCDATA(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -120,7 +122,7 @@ BLA;
         $this->assertEquals($expected, $output);
     }
 
-    public function testSimpleNamespacedAttribute()
+    public function testSimpleNamespacedAttribute(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -151,7 +153,7 @@ BLA;
         $this->assertEquals($expected, $output);
     }
 
-    public function testMappedElement()
+    public function testMappedElement(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -183,7 +185,7 @@ BLA;
         $this->assertEquals($expected, $output);
     }
 
-    public function testMappedElementBadClass()
+    public function testMappedElementBadClass(): void
     {
         $this->expectException(\LogicException::class);
         $input = <<<BLA
@@ -205,7 +207,7 @@ BLA;
     /**
      * @depends testMappedElement
      */
-    public function testMappedElementCallBack()
+    public function testMappedElementCallBack(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -244,7 +246,7 @@ BLA;
     /**
      * @depends testMappedElementCallBack
      */
-    public function testMappedElementCallBackNoNamespace()
+    public function testMappedElementCallBackNoNamespace(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -283,7 +285,7 @@ BLA;
     /**
      * @depends testMappedElementCallBack
      */
-    public function testReadText()
+    public function testReadText(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -320,7 +322,7 @@ BLA;
         $this->assertEquals($expected, $output);
     }
 
-    public function testParseProblem()
+    public function testParseProblem(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -341,7 +343,7 @@ BLA;
         }
     }
 
-    public function testBrokenParserClass()
+    public function testBrokenParserClass(): void
     {
         $this->expectException(ParseException::class);
         $input = <<<BLA
@@ -362,7 +364,7 @@ BLA;
     /**
      * Test was added for Issue #10.
      */
-    public function testBrokenXml()
+    public function testBrokenXml(): void
     {
         $this->expectException(LibXMLException::class);
         $input = <<<BLA
@@ -380,7 +382,7 @@ BLA;
     /**
      * Test was added for Issue #45.
      */
-    public function testBrokenXml2()
+    public function testBrokenXml2(): void
     {
         $this->expectException(LibXMLException::class);
         $input = <<<XML
@@ -404,7 +406,7 @@ XML;
     /**
      * @depends testMappedElement
      */
-    public function testParseInnerTree()
+    public function testParseInnerTree(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -455,7 +457,7 @@ BLA;
     /**
      * @depends testParseInnerTree
      */
-    public function testParseGetElements()
+    public function testParseGetElements(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -506,7 +508,7 @@ BLA;
     /**
      * @depends testParseInnerTree
      */
-    public function testParseGetElementsNoElements()
+    public function testParseGetElementsNoElements(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>

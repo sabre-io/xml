@@ -30,10 +30,8 @@ class Reader extends XMLReader
      * Or if no namespace is defined: "{}feed".
      *
      * This method returns null if we're not currently on an element.
-     *
-     * @return string|null
      */
-    public function getClark()
+    public function getClark(): ?string
     {
         if (!$this->localName) {
             return null;
@@ -197,7 +195,7 @@ class Reader extends XMLReader
             }
         }
 
-        return $elements ? $elements : $text;
+        return $elements ?: $text;
     }
 
     /**

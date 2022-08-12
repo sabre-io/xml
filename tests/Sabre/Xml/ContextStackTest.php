@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the ContextStackTrait.
  *
@@ -11,7 +13,7 @@ namespace Sabre\Xml;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class ContextStackTest extends \PHPUnit\Framework\TestCase
+class ContextStackTest extends TestCase
 {
     private $stack;
 
@@ -20,7 +22,7 @@ class ContextStackTest extends \PHPUnit\Framework\TestCase
         $this->stack = $this->getMockForTrait('Sabre\\Xml\\ContextStackTrait');
     }
 
-    public function testPushAndPull()
+    public function testPushAndPull(): void
     {
         $this->stack->contextUri = '/foo/bar';
         $this->stack->elementMap['{DAV:}foo'] = 'Bar';

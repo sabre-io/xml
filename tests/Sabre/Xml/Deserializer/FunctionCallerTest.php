@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 
-class FunctionCallerTest extends \PHPUnit\Framework\TestCase
+class FunctionCallerTest extends TestCase
 {
-    public function testDeserializeFunctionCaller()
+    public function testDeserializeFunctionCaller(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -69,7 +70,7 @@ XML;
         );
     }
 
-    public function testDeserializeFunctionCallerWithDifferentTypesOfCallable()
+    public function testDeserializeFunctionCallerWithDifferentTypesOfCallable(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -136,11 +137,18 @@ XML;
 
 final class Person
 {
-    private $name;
-    private $age;
-    private $address;
-    private $languages = [];
+    private string $name;
+    private int $age;
+    private Address $address;
 
+    /**
+     * @var array<int, Language|null>
+     */
+    private array $languages;
+
+    /**
+     * @param array<int, Language|null> $languages
+     */
     public function __construct(string $name, int $age, Address $address, array $languages)
     {
         $this->name = $name;
@@ -149,6 +157,9 @@ final class Person
         $this->languages = $languages;
     }
 
+    /**
+     * @param array<int, Language|null> $languages
+     */
     public static function fromXml(string $name, string $age, Address $address, array $languages): self
     {
         return new self($name, (int) $age, $address, $languages);
@@ -169,6 +180,9 @@ final class Person
         return $this->address;
     }
 
+    /**
+     * @return array<int, Language|null>
+     */
     public function getLanguages(): array
     {
         return $this->languages;
@@ -176,8 +190,8 @@ final class Person
 }
 final class Address
 {
-    private $street;
-    private $number;
+    private string $street;
+    private int $number;
 
     public function __construct(string $street, int $number)
     {
@@ -202,7 +216,7 @@ final class Address
 }
 final class Language
 {
-    private $value;
+    private string $value;
 
     public function __construct(string $value)
     {

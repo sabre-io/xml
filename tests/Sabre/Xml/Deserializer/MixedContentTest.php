@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Service;
 
-class MixedContentTest extends \PHPUnit\Framework\TestCase
+class MixedContentTest extends TestCase
 {
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $service = new Service();
         $service->elementMap['{}p'] = 'Sabre\Xml\Deserializer\mixedContent';

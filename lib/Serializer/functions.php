@@ -37,10 +37,8 @@ use Sabre\Xml\XmlSerializable;
  * <s:elem5 attr="val" />
  *
  * @param string[] $values
- *
- * @return void
  */
-function enum(Writer $writer, array $values)
+function enum(Writer $writer, array $values): void
 {
     foreach ($values as $value) {
         $writer->writeElement($value);
@@ -55,12 +53,8 @@ function enum(Writer $writer, array $values)
  *
  * Values that are set to null or an empty array are not serialized. To
  * serialize empty properties, you must specify them as an empty string.
- *
- * @param object $valueObject
- *
- * @return void
  */
-function valueObject(Writer $writer, $valueObject, string $namespace)
+function valueObject(Writer $writer, object $valueObject, string $namespace): void
 {
     foreach (get_object_vars($valueObject) as $key => $val) {
         if (is_array($val)) {
@@ -89,10 +83,8 @@ function valueObject(Writer $writer, $valueObject, string $namespace)
  * and this could be called like this:
  *
  * repeatingElements($writer, $items, '{}item');
- *
- * @return void
  */
-function repeatingElements(Writer $writer, array $items, string $childElementName)
+function repeatingElements(Writer $writer, array $items, string $childElementName): void
 {
     foreach ($items as $item) {
         $writer->writeElement($childElementName, $item);
@@ -110,7 +102,7 @@ function repeatingElements(Writer $writer, array $items, string $childElementNam
  *    calls it's xmlSerialize() method.
  * $value may be a PHP callback/function/closure, in case we call the callback
  *    and give it the Writer as an argument.
- * $value may be a an object, and if it's in the classMap we automatically call
+ * $value may be an object, and if it's in the classMap we automatically call
  *    the correct serializer for it.
  * $value may be null, in which case we do nothing.
  *
@@ -155,10 +147,8 @@ function repeatingElements(Writer $writer, array $items, string $childElementNam
  * You can even mix the two array syntaxes.
  *
  * @param string|int|float|bool|array|object $value
- *
- * @return void
  */
-function standardSerializer(Writer $writer, $value)
+function standardSerializer(Writer $writer, $value): void
 {
     if (is_scalar($value)) {
         // String, integer, float, boolean
