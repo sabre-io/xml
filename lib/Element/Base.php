@@ -28,6 +28,8 @@ class Base implements Xml\Element
 
     /**
      * Constructor.
+     *
+     * @param mixed $value
      */
     public function __construct($value = null)
     {

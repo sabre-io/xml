@@ -51,7 +51,7 @@ class Reader extends XMLReader
      * This function will also disable the standard libxml error handler (which
      * usually just results in PHP errors), and throw exceptions instead.
      *
-     * @return array{name: string, value: mixed, attributes: array}
+     * @return array<string, mixed>
      */
     public function parse(): array
     {
@@ -103,7 +103,9 @@ class Reader extends XMLReader
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @return array{name: string, value: mixed, attributes: array}|array{}
+     * @param array<string, mixed>|null $elementMap
+     *
+     * @return array<string, mixed>
      */
     public function parseGetElements(array $elementMap = null): array
     {
@@ -126,7 +128,9 @@ class Reader extends XMLReader
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @return array|string|null
+     * @param array<string, mixed>|null $elementMap
+     *
+     * @return array<string, mixed>|string|null
      */
     public function parseInnerTree(array $elementMap = null)
     {
@@ -222,6 +226,8 @@ class Reader extends XMLReader
      *   * name - A clark-notation XML element name.
      *   * value - The parsed value.
      *   * attributes - A key-value list of attributes.
+     *
+     * @return array <string, mixed>
      */
     public function parseCurrentElement(): array
     {
@@ -252,6 +258,8 @@ class Reader extends XMLReader
      * If the attributes are part of the same namespace, they will simply be
      * short keys. If they are defined on a different namespace, the attribute
      * name will be returned in clark-notation.
+     *
+     * @return array<string, mixed>
      */
     public function parseAttributes(): array
     {

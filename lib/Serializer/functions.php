@@ -83,6 +83,8 @@ function valueObject(Writer $writer, object $valueObject, string $namespace): vo
  * and this could be called like this:
  *
  * repeatingElements($writer, $items, '{}item');
+ *
+ * @param array<int,mixed> $items
  */
 function repeatingElements(Writer $writer, array $items, string $childElementName): void
 {
@@ -146,7 +148,7 @@ function repeatingElements(Writer $writer, array $items, string $childElementNam
  *
  * You can even mix the two array syntaxes.
  *
- * @param string|int|float|bool|array|object $value
+ * @param string|int|float|bool|array<int|string, mixed>|object $value
  */
 function standardSerializer(Writer $writer, $value): void
 {

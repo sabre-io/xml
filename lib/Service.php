@@ -105,7 +105,7 @@ class Service
      *
      * @throws ParseException
      *
-     * @return array|object|string
+     * @return array<string, mixed>|object|string
      */
     public function parse($input, string $contextUri = null, string &$rootElementName = null)
     {
@@ -149,7 +149,7 @@ class Service
      *
      * @throws ParseException
      *
-     * @return array|object|string
+     * @return array<string, mixed>|object|string
      */
     public function expect($rootElementName, $input, string $contextUri = null)
     {
@@ -198,7 +198,7 @@ class Service
      * This allows an implementor to easily create URI's relative to the root
      * of the domain.
      *
-     * @param string|array|object|XmlSerializable $value
+     * @param string|array<string, mixed>|object|XmlSerializable $value
      */
     public function write(string $rootElementName, $value, string $contextUri = null): string
     {

@@ -40,6 +40,8 @@ class Writer extends XMLWriter
      * Any of these elements will get a new namespace definition *every single
      * time* they are used, but this array allows the writer to make sure that
      * the prefixes are consistent anyway.
+     *
+     * @var array<string, string>
      */
     protected array $adhocNamespaces = [];
 
@@ -179,8 +181,8 @@ class Writer extends XMLWriter
      * XMLWriter::startElement doesn't either.
      * From PHP 8.0 the typehint exists, so it can be added here after PHP 7.4 is dropped.
      *
-     * @param string                   $name
-     * @param array|string|object|null $content
+     * @param string                                      $name
+     * @param array<int|string, mixed>|string|object|null $content
      */
     public function writeElement($name, $content = null): bool
     {
