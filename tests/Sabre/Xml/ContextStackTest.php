@@ -15,11 +15,11 @@ use PHPUnit\Framework\TestCase;
  */
 class ContextStackTest extends TestCase
 {
-    private $stack;
+    private ContextStack $stack;
 
     public function setUp(): void
     {
-        $this->stack = $this->getMockForTrait('Sabre\\Xml\\ContextStackTrait');
+        $this->stack = new ContextStack();
     }
 
     public function testPushAndPull(): void

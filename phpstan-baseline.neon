@@ -14,8 +14,3 @@ parameters:
 			message: "#^Parameter \\#3 \\$namespace of method XMLWriter\\:\\:startElementNs\\(\\) expects string, null given\\.$#"
 			count: 1
 			path: lib/Writer.php
-
-		-
-			message: "#^Property Sabre\\\\Xml\\\\ContextStackTest\\:\\:\\$stack has no type specified\\.$#"
-			count: 1
-			path: tests/Sabre/Xml/ContextStackTest.php
