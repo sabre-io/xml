@@ -13,6 +13,7 @@ Documentation
 * [Reading XML](http://sabre.io/xml/reading/).
 * [Writing XML](http://sabre.io/xml/writing/).
 
+Major version 3 implements type declarations for input parameters, function returns, variables etc. It supports PHP 7.4 and PHP 8. When you upgrade to major version 3, if you extend classes etc., then you will need to make similar type declarations in your code.
 
 Support
 -------
