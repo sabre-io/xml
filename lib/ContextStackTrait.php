@@ -80,7 +80,7 @@ trait ContextStackTrait
     /**
      * Backups of previous contexts.
      *
-     * @var array<int, mixed>
+     * @var list<mixed>
      */
     protected array $contextStack = [];
 
