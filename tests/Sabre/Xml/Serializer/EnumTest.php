@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Serializer;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Service;
 
-class EnumTest extends \PHPUnit\Framework\TestCase
+class EnumTest extends TestCase
 {
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $service = new Service();
         $service->namespaceMap['urn:test'] = null;

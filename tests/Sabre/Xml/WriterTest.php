@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
-class WriterTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class WriterTest extends TestCase
 {
-    protected $writer;
+    protected Writer $writer;
 
     public function setUp(): void
     {
@@ -19,13 +21,16 @@ class WriterTest extends \PHPUnit\Framework\TestCase
         $this->writer->startDocument();
     }
 
-    public function compare($input, $output)
+    /**
+     * @param array<string, mixed> $input
+     */
+    public function compare(array $input, string $output): void
     {
         $this->writer->write($input);
         $this->assertEquals($output, $this->writer->outputMemory());
     }
 
-    public function testSimple()
+    public function testSimple(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => 'text',
@@ -40,7 +45,7 @@ HI
     /**
      * @depends testSimple
      */
-    public function testSimpleQuotes()
+    public function testSimpleQuotes(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => '"text"',
@@ -52,7 +57,7 @@ HI
         );
     }
 
-    public function testSimpleAttributes()
+    public function testSimpleAttributes(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -69,7 +74,7 @@ HI
         );
     }
 
-    public function testMixedSyntax()
+    public function testMixedSyntax(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -115,7 +120,7 @@ HI
         );
     }
 
-    public function testNull()
+    public function testNull(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => null,
@@ -127,7 +132,7 @@ HI
         );
     }
 
-    public function testArrayFormat2()
+    public function testArrayFormat2(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -149,7 +154,7 @@ HI
         );
     }
 
-    public function testArrayOfValues()
+    public function testArrayOfValues(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -175,7 +180,7 @@ HI
     /**
      * @depends testArrayFormat2
      */
-    public function testArrayFormat2NoValue()
+    public function testArrayFormat2NoValue(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -196,7 +201,7 @@ HI
         );
     }
 
-    public function testCustomNamespace()
+    public function testCustomNamespace(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -212,7 +217,7 @@ HI
         );
     }
 
-    public function testEmptyNamespace()
+    public function testEmptyNamespace(): void
     {
         // Empty namespaces are allowed, so we should support this.
         $this->compare([
@@ -229,7 +234,7 @@ HI
         );
     }
 
-    public function testAttributes()
+    public function testAttributes(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -253,7 +258,7 @@ HI
         );
     }
 
-    public function testBaseElement()
+    public function testBaseElement(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => new Element\Base('hello'),
@@ -265,7 +270,7 @@ HI
         );
     }
 
-    public function testElementObj()
+    public function testElementObj(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => new Element\Mock(),
@@ -279,7 +284,7 @@ HI
         );
     }
 
-    public function testEmptyNamespacePrefix()
+    public function testEmptyNamespacePrefix(): void
     {
         $this->writer->namespaceMap['http://sabredav.org/ns'] = null;
         $this->compare([
@@ -294,7 +299,7 @@ HI
         );
     }
 
-    public function testEmptyNamespacePrefixEmptyString()
+    public function testEmptyNamespacePrefixEmptyString(): void
     {
         $this->writer->namespaceMap['http://sabredav.org/ns'] = '';
         $this->compare([
@@ -309,7 +314,7 @@ HI
         );
     }
 
-    public function testWriteElement()
+    public function testWriteElement(): void
     {
         $this->writer->writeElement('{http://sabredav.org/ns}foo', 'content');
 
@@ -322,7 +327,7 @@ HI;
         $this->assertEquals($output, $this->writer->outputMemory());
     }
 
-    public function testWriteElementComplex()
+    public function testWriteElementComplex(): void
     {
         $this->writer->writeElement('{http://sabredav.org/ns}foo', new Element\KeyValue(['{http://sabredav.org/ns}bar' => 'test']));
 
@@ -337,13 +342,13 @@ HI;
         $this->assertEquals($output, $this->writer->outputMemory());
     }
 
-    public function testWriteBadObject()
+    public function testWriteBadObject(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->writer->write(new \StdClass());
+        $this->writer->write(new \stdClass());
     }
 
-    public function testStartElementSimple()
+    public function testStartElementSimple(): void
     {
         $this->writer->startElement('foo');
         $this->writer->endElement();
@@ -357,7 +362,7 @@ HI;
         $this->assertEquals($output, $this->writer->outputMemory());
     }
 
-    public function testCallback()
+    public function testCallback(): void
     {
         $this->compare([
             '{http://sabredav.org/ns}root' => function (Writer $writer) {
@@ -371,7 +376,7 @@ HI
         );
     }
 
-    public function testResource()
+    public function testResource(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->compare([
@@ -384,7 +389,7 @@ HI
         );
     }
 
-    public function testClassMap()
+    public function testClassMap(): void
     {
         $obj = (object) [
             'key1' => 'value1',

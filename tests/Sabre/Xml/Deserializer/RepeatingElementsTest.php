@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Service;
 
-class RepeatingElementsTest extends \PHPUnit\Framework\TestCase
+class RepeatingElementsTest extends TestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $service = new Service();
         $service->elementMap['{urn:test}collection'] = function ($reader) {

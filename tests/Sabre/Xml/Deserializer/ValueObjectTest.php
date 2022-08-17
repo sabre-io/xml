@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 
-class ValueObjectTest extends \PHPUnit\Framework\TestCase
+class ValueObjectTest extends TestCase
 {
-    public function testDeserializeValueObject()
+    public function testDeserializeValueObject(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -44,7 +45,7 @@ XML;
         );
     }
 
-    public function testDeserializeValueObjectIgnoredElement()
+    public function testDeserializeValueObjectIgnoredElement(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -81,7 +82,7 @@ XML;
         );
     }
 
-    public function testDeserializeValueObjectAutoArray()
+    public function testDeserializeValueObjectAutoArray(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -123,7 +124,7 @@ XML;
         );
     }
 
-    public function testDeserializeValueObjectEmpty()
+    public function testDeserializeValueObjectEmpty(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -157,8 +158,11 @@ XML;
 
 class TestVo
 {
-    public $firstName;
-    public $lastName;
+    public string $firstName;
+    public string $lastName;
 
-    public $link = [];
+    /**
+     * @var array<int, string>
+     */
+    public array $link = [];
 }

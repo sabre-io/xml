@@ -33,10 +33,8 @@ trait ContextStackTrait
      * directly.
      *
      * @phpstan-var array<string, class-string|callable|object>
-     *
-     * @var array
      */
-    public $elementMap = [];
+    public array $elementMap = [];
 
     /**
      * A contextUri pointing to the document being parsed / written.
@@ -46,10 +44,8 @@ trait ContextStackTrait
      * The reader and writer don't use this property, but as it's an extremely
      * common use-case for parsing XML documents, it's added here as a
      * convenience.
-     *
-     * @var string|null
      */
-    public $contextUri;
+    public ?string $contextUri = null;
 
     /**
      * This is a list of namespaces that you want to give default prefixes.
@@ -58,10 +54,8 @@ trait ContextStackTrait
      * They should be registered on the root element.
      *
      * @phpstan-var array<string, class-string|string|null>
-     *
-     * @var array
      */
-    public $namespaceMap = [];
+    public array $namespaceMap = [];
 
     /**
      * This is a list of custom serializers for specific classes.
@@ -80,17 +74,15 @@ trait ContextStackTrait
      * function (Writer $writer, object $value)
      *
      * @phpstan-var array<class-string, callable(Writer, object):mixed>
-     *
-     * @var array
      */
-    public $classMap = [];
+    public array $classMap = [];
 
     /**
      * Backups of previous contexts.
      *
-     * @var array
+     * @var list<mixed>
      */
-    protected $contextStack = [];
+    protected array $contextStack = [];
 
     /**
      * Create a new "context".
@@ -98,10 +90,8 @@ trait ContextStackTrait
      * This allows you to safely modify the elementMap, contextUri or
      * namespaceMap. After you're done, you can restore the old data again
      * with popContext.
-     *
-     * @return void
      */
-    public function pushContext()
+    public function pushContext(): void
     {
         $this->contextStack[] = [
             $this->elementMap,
@@ -113,10 +103,8 @@ trait ContextStackTrait
 
     /**
      * Restore the previous "context".
-     *
-     * @return void
      */
-    public function popContext()
+    public function popContext(): void
     {
         list(
             $this->elementMap,

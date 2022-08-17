@@ -20,7 +20,7 @@ class Mock implements Xml\Element
      * Important note 2: If you are writing any new elements, you are also
      * responsible for closing them.
      */
-    public function xmlSerialize(Xml\Writer $writer)
+    public function xmlSerialize(Xml\Writer $writer): void
     {
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');

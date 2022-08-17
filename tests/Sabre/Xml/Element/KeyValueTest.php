@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class KeyValueTest extends \PHPUnit\Framework\TestCase
+class KeyValueTest extends TestCase
 {
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -87,7 +88,7 @@ BLA;
      * This test was added to find out why an element gets eaten by the
      * SabreDAV MKCOL parser.
      */
-    public function testElementEater()
+    public function testElementEater(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -131,7 +132,7 @@ BLA;
         $this->assertEquals($expected, $reader->parse());
     }
 
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $value = [
             '{http://sabredav.org/ns}elem1' => null,
@@ -177,7 +178,7 @@ XML;
      * I discovered that when there's no whitespace between elements, elements
      * can get skipped.
      */
-    public function testElementSkipProblem()
+    public function testElementSkipProblem(): void
     {
         $input = <<<BLA
 <?xml version="1.0" encoding="utf-8"?>

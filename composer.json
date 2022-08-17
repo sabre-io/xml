@@ -5,7 +5,7 @@
     "homepage" : "https://sabre.io/xml/",
     "license" : "BSD-3-Clause",
     "require" : {
-        "php" : "^7.1 || ^8.0",
+        "php" : "^7.4 || ^8.0",
         "ext-xmlwriter" : "*",
         "ext-xmlreader" : "*",
         "ext-dom" : "*",
@@ -44,9 +44,9 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.17.1",
-        "phpstan/phpstan": "^1",
-        "phpunit/phpunit" : "^7.5 || ^8.5 || ^9.0"
+        "friendsofphp/php-cs-fixer": "^3.9",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit" : "^9.0"
     },
     "scripts": {
         "phpstan": [

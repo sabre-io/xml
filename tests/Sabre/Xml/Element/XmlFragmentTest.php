@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class XmlFragmentTest extends \PHPUnit\Framework\TestCase
+class XmlFragmentTest extends TestCase
 {
     /**
      * @dataProvider xmlProvider
      */
-    public function testDeserialize($input, $expected)
+    public function testDeserialize(string $input, string $expected): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -52,8 +53,10 @@ BLA;
      * 3. Expected output after serializing that value again.
      *
      * If 3 is not set, use 1 for 3.
+     *
+     * @return array<int, array<int, string>>
      */
-    public function xmlProvider()
+    public function xmlProvider(): array
     {
         return [
             [
@@ -108,7 +111,7 @@ BLA;
     /**
      * @dataProvider xmlProvider
      */
-    public function testSerialize($expectedFallback, $input, $expected = null)
+    public function testSerialize(string $expectedFallback, string $input, ?string $expected = null): void
     {
         if (is_null($expected)) {
             $expected = $expectedFallback;
@@ -120,7 +123,7 @@ BLA;
         ];
         $writer->openMemory();
         $writer->startDocument('1.0');
-        //$writer->setIndent(true);
+        // $writer->setIndent(true);
         $writer->write([
             '{http://sabredav.org/ns}root' => [
                 '{http://sabredav.org/ns}fragment' => new XmlFragment($input),

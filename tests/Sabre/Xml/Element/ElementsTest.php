@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class ElementsTest extends \PHPUnit\Framework\TestCase
+class ElementsTest extends TestCase
 {
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -85,7 +86,7 @@ BLA;
         ], $output);
     }
 
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $value = [
             '{http://sabredav.org/ns}elem1',

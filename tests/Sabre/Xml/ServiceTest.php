@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Element\KeyValue;
 
-class ServiceTest extends \PHPUnit\Framework\TestCase
+class ServiceTest extends TestCase
 {
-    public function testGetReader()
+    public function testGetReader(): void
     {
         $elems = [
             '{http://sabre.io/ns}test' => 'stdClass',
@@ -22,7 +23,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($elems, $reader->elementMap);
     }
 
-    public function testGetWriter()
+    public function testGetWriter(): void
     {
         $ns = [
             'http://sabre.io/ns' => 'stdClass',
@@ -41,7 +42,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
      *
      * @param string|resource $input
      */
-    public function testEmptyInputParse($input)
+    public function testEmptyInputParse($input): void
     {
         $this->expectException('\Sabre\Xml\ParseException');
         $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
@@ -53,7 +54,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
     /**
      * @depends testGetReader
      */
-    public function testParse()
+    public function testParse(): void
     {
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -81,7 +82,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    public function testParseStream()
+    public function testParseStream(): void
     {
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -115,7 +116,7 @@ XML;
      *
      * @param string|resource $input
      */
-    public function testEmptyInputExpect($input)
+    public function testEmptyInputExpect($input): void
     {
         $this->expectException('\Sabre\Xml\ParseException');
         $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
@@ -127,7 +128,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    public function testExpect()
+    public function testExpect(): void
     {
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -151,7 +152,7 @@ XML;
         );
     }
 
-    public function testInvalidNameSpace()
+    public function testInvalidNameSpace(): void
     {
         $this->expectException(LibXMLException::class);
         $xml = '<D:propfind xmlns:D="DAV:"><D:prop><bar:foo xmlns:bar=""/></D:prop></D:propfind>';
@@ -169,7 +170,7 @@ XML;
     /**
      * @dataProvider providesEmptyPropfinds
      */
-    public function testEmptyPropfind($xml)
+    public function testEmptyPropfind(string $xml): void
     {
         $util = new Service();
         $util->elementMap = [
@@ -191,7 +192,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    public function testExpectStream()
+    public function testExpectStream(): void
     {
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -223,7 +224,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    public function testExpectWrong()
+    public function testExpectWrong(): void
     {
         $this->expectException(ParseException::class);
         $xml = <<<XML
@@ -238,7 +239,7 @@ XML;
     /**
      * @depends testGetWriter
      */
-    public function testWrite()
+    public function testWrite(): void
     {
         $util = new Service();
         $util->namespaceMap = [
@@ -261,7 +262,7 @@ XML;
         );
     }
 
-    public function testMapValueObject()
+    public function testMapValueObject(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -298,7 +299,7 @@ XML;
         $this->assertEquals($input, $writtenXml);
     }
 
-    public function testMapValueObjectArrayProperty()
+    public function testMapValueObjectArrayProperty(): void
     {
         $input = <<<XML
 <?xml version="1.0"?>
@@ -338,14 +339,14 @@ XML;
         $this->assertEquals($input, $writtenXml);
     }
 
-    public function testWriteVoNotFound()
+    public function testWriteVoNotFound(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $service = new Service();
-        $service->writeValueObject(new \StdClass());
+        $service->writeValueObject(new \stdClass());
     }
 
-    public function testParseClarkNotation()
+    public function testParseClarkNotation(): void
     {
         $this->assertEquals([
             'http://sabredav.org/ns',
@@ -353,13 +354,16 @@ XML;
         ], Service::parseClarkNotation('{http://sabredav.org/ns}elem'));
     }
 
-    public function testParseClarkNotationFail()
+    public function testParseClarkNotationFail(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         Service::parseClarkNotation('http://sabredav.org/ns}elem');
     }
 
-    public function providesEmptyInput()
+    /**
+     * @return array<int, array<int, string|resource|false>>
+     */
+    public function providesEmptyInput(): array
     {
         $emptyResource = fopen('php://input', 'r');
         $data[] = [$emptyResource];
@@ -368,7 +372,10 @@ XML;
         return $data;
     }
 
-    public function providesEmptyPropfinds()
+    /**
+     * @return array<int, array<int, string>>
+     */
+    public function providesEmptyPropfinds(): array
     {
         return [
             ['<D:propfind xmlns:D="DAV:"><D:prop></D:prop></D:propfind>'],
@@ -387,12 +394,22 @@ XML;
  */
 class Order
 {
+    /**
+     * @var int|string
+     */
     public $id;
+
+    /**
+     * @var float|string
+     */
     public $amount;
-    public $description;
-    public $status;
-    public $empty;
-    public $link = [];
+    public string $description;
+    public OrderStatus $status;
+    public string $empty;
+    /**
+     * @var array<int, string>
+     */
+    public array $link = [];
 }
 
 /**
@@ -402,7 +419,13 @@ class Order
  */
 class OrderStatus
 {
+    /**
+     * @var int|string
+     */
     public $id;
+    /**
+     * @var int|string
+     */
     public $label;
 }
 
@@ -413,11 +436,14 @@ class OrderStatus
  */
 class PropFindTestAsset implements XmlDeserializable
 {
-    public $allProp = false;
+    public bool $allProp = false;
 
-    public $properties;
+    /**
+     * @var array<int, mixed>
+     */
+    public array $properties;
 
-    public static function xmlDeserialize(Reader $reader)
+    public static function xmlDeserialize(Reader $reader): self
     {
         $self = new self();
 

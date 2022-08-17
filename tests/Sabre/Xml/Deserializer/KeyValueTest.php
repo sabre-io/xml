@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use PHPUnit\Framework\TestCase;
 use Sabre\Xml\LibXMLException;
 use Sabre\Xml\Reader;
 
-class KeyValueTest extends \PHPUnit\Framework\TestCase
+class KeyValueTest extends TestCase
 {
-    public function testKeyValue()
+    public function testKeyValue(): void
     {
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -64,7 +65,7 @@ BLA;
         ], $output);
     }
 
-    public function testKeyValueLoop()
+    public function testKeyValueLoop(): void
     {
         $this->expectException(LibXMLException::class);
         /**
@@ -108,7 +109,7 @@ BLA;
         $reader->parse();
     }
 
-    public function testEmptyKeyValue()
+    public function testEmptyKeyValue(): void
     {
         // the nested structure below is necessary to detect if one of the deserialization functions eats too many elements
         $input = <<<BLA
