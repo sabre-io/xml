@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+3.0.0 (2022-08-17)
+------------------
+* #220 Set minimum PHP to 7.4 and declare types ( @phil-davis )
+* #219 Update .gitattributes ( @cedric-anne )
+* #217 Declare types ( @staabm )
+* #213 added phpstan types to deserializer functions ( @staabm )
+* #214 update phpstan 1.x ( @staabm )
+
 2.2.5 (2021-11-04)
 ------------------
 * #210 version bump that was missed in 2.2.4 ( @phil-davis )
