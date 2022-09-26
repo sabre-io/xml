@@ -28,7 +28,7 @@ ChangeLog
 2.2.1 (2020-05-11)
 ------------------
 
-* #183: fixed warning 'xml cannot be empty while reading', which might lead to a infinite-loop (@mrow4a)
+* #183: fixed warning 'xml cannot be empty while reading', which might lead to an infinite-loop (@mrow4a)
 * #179, #178, #177 #176: several build/continuous integration related improvements (@phil-davis)
 
 2.2.0 (2020-01-31)
@@ -37,7 +37,7 @@ ChangeLog
 * #171: Added Support for PHP 7.4, dropped Support for PHP 7.0 (@staabm, @phil-davis)
 * #174: Update testsuite to phpunit8 (@phil-davis)
 * Added phpstan coverage (@phil-davis)
-* #144: Added a new `functionCaller` deserializer function for executing a callable when reading a XML
+* #144: Added a new `functionCaller` deserializer function for executing a callable when reading an XML
 element (@vsouz4)
 
 
@@ -237,7 +237,7 @@ element (@vsouz4)
 ------------------
 
 * #16: Added ability to override `elementMap`, `namespaceMap` and `baseUri` for
-  a fragment of a document during reading an writing using `pushContext` and
+  a fragment of a document during reading and writing using `pushContext` and
   `popContext`.
 * Removed: `Writer::$context` and `Reader::$context`.
 * #15: Added `Reader::$baseUri` to match `Writer::$baseUri`.

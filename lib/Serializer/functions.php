@@ -48,7 +48,7 @@ function enum(Writer $writer, array $values): void
 /**
  * The valueObject serializer turns a simple PHP object into a classname.
  *
- * Every public property will be encoded as an xml element with the same
+ * Every public property will be encoded as an XML element with the same
  * name, in the XML namespace as specified.
  *
  * Values that are set to null or an empty array are not serialized. To
