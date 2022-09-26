@@ -10,7 +10,7 @@
         "ext-xmlreader" : "*",
         "ext-dom" : "*",
         "lib-libxml" : ">=2.6.20",
-        "sabre/uri" : ">=1.0,<4.0.0"
+        "sabre/uri" : ">=2.0,<4.0.0"
     },
     "authors" : [
         {
