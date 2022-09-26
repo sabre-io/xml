@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+4.0.0 (2022-09-26)
+------------------
+* #226 Allow sabre/uri major version 3 ( @phil-davis )
+
 3.0.0 (2022-08-17)
 ------------------
 * #220 Set minimum PHP to 7.4 and declare types ( @phil-davis )
