@@ -187,7 +187,7 @@ function enum(Reader $reader, string $namespace = null): array
 }
 
 /**
- * The valueObject deserializer turns an xml element into a PHP object of
+ * The valueObject deserializer turns an XML element into a PHP object of
  * a specific class.
  *
  * This is primarily used by the mapValueObject function from the Service
@@ -256,7 +256,7 @@ function valueObject(Reader $reader, string $className, string $namespace): obje
  *
  * The repeatingElements deserializer simply returns everything as an array.
  *
- * $childElementName must either be a a clark-notation element name, or if no
+ * $childElementName must either be a clark-notation element name, or if no
  * namespace is used, the bare element name.
  *
  * @phpstan-return list<mixed>
@@ -280,7 +280,7 @@ function repeatingElements(Reader $reader, string $childElementName): array
 /**
  * This deserializer helps you to deserialize structures which contain mixed content.
  *
- * <p>some text <extref>and a inline tag</extref>and even more text</p>
+ * <p>some text <extref>and an inline tag</extref>and even more text</p>
  *
  * The above example will return
  *
@@ -288,13 +288,13 @@ function repeatingElements(Reader $reader, string $childElementName): array
  *     'some text',
  *     [
  *         'name'       => '{}extref',
- *         'value'      => 'and a inline tag',
+ *         'value'      => 'and an inline tag',
  *         'attributes' => []
  *     ],
  *     'and even more text'
  * ]
  *
- * In strict XML documents you wont find this kind of markup but in html this is a quite common pattern.
+ * In strict XML documents you won't find this kind of markup but in html this is a quite common pattern.
  *
  * @return array<mixed>
  */
@@ -330,7 +330,7 @@ function mixedContent(Reader $reader): array
 }
 
 /**
- * The functionCaller deserializer turns an xml element into whatever your callable return.
+ * The functionCaller deserializer turns an XML element into whatever your callable return.
  *
  * You can use, e.g., a named constructor (factory method) to create an object using
  * this function.
