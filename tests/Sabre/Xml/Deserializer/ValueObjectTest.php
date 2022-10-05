@@ -153,6 +153,39 @@ XML;
             $output
         );
     }
+
+    public function testDeserializeValueObjectEmptyString(): void
+    {
+        $input = <<<XML
+<?xml version="1.0"?>
+<doc>
+<foo xmlns="urn:foo"></foo>
+</doc>
+XML;
+
+        $reader = new Reader();
+        $reader->xml($input);
+        $reader->elementMap = [
+            '{urn:foo}foo' => function (Reader $reader) {
+                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
+            },
+        ];
+
+        $output = $reader->parse();
+
+        $vo = new TestVo();
+
+        $expected = [
+            'name' => '{urn:foo}foo',
+            'value' => $vo,
+            'attributes' => [],
+        ];
+
+        $this->assertEquals(
+            $expected,
+            $output['value'][0]
+        );
+    }
 }
 
 class TestVo
