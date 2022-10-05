@@ -222,7 +222,7 @@ function valueObject(Reader $reader, string $className, string $namespace): obje
                 $reader->next();
             }
         } else {
-            if (!$reader->read()) {
+            if (Reader::END_ELEMENT !== $reader->nodeType && !$reader->read()) {
                 break;
             }
         }
