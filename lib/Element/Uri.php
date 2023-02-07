@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Element;
 
-use function Sabre\Uri\resolve;
-
 use Sabre\Xml;
+
+use function Sabre\Uri\resolve;
 
 /**
  * Uri element.
