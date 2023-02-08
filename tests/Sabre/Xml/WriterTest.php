@@ -27,7 +27,7 @@ class WriterTest extends TestCase
     public function compare(array $input, string $output): void
     {
         $this->writer->write($input);
-        $this->assertEquals($output, $this->writer->outputMemory());
+        self::assertEquals($output, $this->writer->outputMemory());
     }
 
     public function testSimple(): void
@@ -324,7 +324,7 @@ HI
 
 HI;
 
-        $this->assertEquals($output, $this->writer->outputMemory());
+        self::assertEquals($output, $this->writer->outputMemory());
     }
 
     public function testWriteElementComplex(): void
@@ -339,7 +339,7 @@ HI;
 
 HI;
 
-        $this->assertEquals($output, $this->writer->outputMemory());
+        self::assertEquals($output, $this->writer->outputMemory());
     }
 
     public function testWriteBadObject(): void
@@ -359,7 +359,7 @@ HI;
 
 HI;
 
-        $this->assertEquals($output, $this->writer->outputMemory());
+        self::assertEquals($output, $this->writer->outputMemory());
     }
 
     public function testCallback(): void

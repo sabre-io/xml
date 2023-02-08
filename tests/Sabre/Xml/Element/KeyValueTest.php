@@ -39,7 +39,7 @@ BLA;
 
         $output = $reader->parse();
 
-        $this->assertEquals([
+        self::assertEquals([
             'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
@@ -129,7 +129,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $reader->parse());
+        self::assertEquals($expected, $reader->parse());
     }
 
     public function testSerialize(): void
@@ -171,7 +171,7 @@ BLA;
 
 XML;
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     /**
@@ -194,7 +194,7 @@ BLA;
 
         $output = $reader->parse();
 
-        $this->assertEquals([
+        self::assertEquals([
             'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 '{http://sabredav.org/ns}elem3' => 'val3',
