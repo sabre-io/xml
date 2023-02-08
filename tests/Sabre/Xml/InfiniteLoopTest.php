@@ -28,7 +28,7 @@ class InfiniteLoopTest extends TestCase
 
         $output = $reader->parse();
 
-        $this->assertEquals([
+        self::assertEquals([
             'name' => '{DAV:}propertyupdate',
             'value' => [
                 [

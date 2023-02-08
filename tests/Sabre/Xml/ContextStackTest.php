@@ -30,9 +30,9 @@ class ContextStackTest extends TestCase
 
         $this->stack->pushContext();
 
-        $this->assertEquals('/foo/bar', $this->stack->contextUri);
-        $this->assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
-        $this->assertEquals('d', $this->stack->namespaceMap['DAV:']);
+        self::assertEquals('/foo/bar', $this->stack->contextUri);
+        self::assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
+        self::assertEquals('d', $this->stack->namespaceMap['DAV:']);
 
         $this->stack->contextUri = '/gir/zim';
         $this->stack->elementMap['{DAV:}foo'] = 'newBar';
@@ -40,8 +40,8 @@ class ContextStackTest extends TestCase
 
         $this->stack->popContext();
 
-        $this->assertEquals('/foo/bar', $this->stack->contextUri);
-        $this->assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
-        $this->assertEquals('d', $this->stack->namespaceMap['DAV:']);
+        self::assertEquals('/foo/bar', $this->stack->contextUri);
+        self::assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
+        self::assertEquals('d', $this->stack->namespaceMap['DAV:']);
     }
 }

@@ -19,8 +19,8 @@ class ServiceTest extends TestCase
         $util->elementMap = $elems;
 
         $reader = $util->getReader();
-        $this->assertInstanceOf('Sabre\\Xml\\Reader', $reader);
-        $this->assertEquals($elems, $reader->elementMap);
+        self::assertInstanceOf('Sabre\\Xml\\Reader', $reader);
+        self::assertEquals($elems, $reader->elementMap);
     }
 
     public function testGetWriter(): void
@@ -33,8 +33,8 @@ class ServiceTest extends TestCase
         $util->namespaceMap = $ns;
 
         $writer = $util->getWriter();
-        $this->assertInstanceOf('Sabre\\Xml\\Writer', $writer);
-        $this->assertEquals($ns, $writer->namespaceMap);
+        self::assertInstanceOf('Sabre\\Xml\\Writer', $writer);
+        self::assertEquals($ns, $writer->namespaceMap);
     }
 
     /**
@@ -63,7 +63,7 @@ class ServiceTest extends TestCase
 XML;
         $util = new Service();
         $result = $util->parse($xml, null, $rootElement);
-        $this->assertEquals('{http://sabre.io/ns}root', $rootElement);
+        self::assertEquals('{http://sabre.io/ns}root', $rootElement);
 
         $expected = [
             [
@@ -73,7 +73,7 @@ XML;
             ],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $result
         );
@@ -95,7 +95,7 @@ XML;
 
         $util = new Service();
         $result = $util->parse($stream, null, $rootElement);
-        $this->assertEquals('{http://sabre.io/ns}root', $rootElement);
+        self::assertEquals('{http://sabre.io/ns}root', $rootElement);
 
         $expected = [
             [
@@ -105,7 +105,7 @@ XML;
             ],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $result
         );
@@ -146,7 +146,7 @@ XML;
             ],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $result
         );
@@ -183,10 +183,10 @@ XML;
          * @var PropFindTestAsset
          */
         $result = $util->expect('{DAV:}propfind', $xml);
-        $this->assertIsObject($result);
-        $this->assertInstanceOf(PropFindTestAsset::class, $result);
-        $this->assertEquals(false, $result->allProp);
-        $this->assertEquals([], $result->properties);
+        self::assertIsObject($result);
+        self::assertInstanceOf(PropFindTestAsset::class, $result);
+        self::assertEquals(false, $result->allProp);
+        self::assertEquals([], $result->properties);
     }
 
     /**
@@ -215,7 +215,7 @@ XML;
             ],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $result
         );
@@ -256,7 +256,7 @@ XML;
 </stdClass:root>
 
 XML;
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $result
         );
@@ -293,10 +293,10 @@ XML;
         $expected->status->id = 5;
         $expected->status->label = 'processed';
 
-        $this->assertEquals($expected, $order);
+        self::assertEquals($expected, $order);
 
         $writtenXml = $orderService->writeValueObject($order);
-        $this->assertEquals($input, $writtenXml);
+        self::assertEquals($input, $writtenXml);
     }
 
     public function testMapValueObjectArrayProperty(): void
@@ -333,10 +333,10 @@ XML;
         $expected->status->label = 'processed';
         $expected->link = ['http://example.org/', 'http://example.com/'];
 
-        $this->assertEquals($expected, $order);
+        self::assertEquals($expected, $order);
 
         $writtenXml = $orderService->writeValueObject($order);
-        $this->assertEquals($input, $writtenXml);
+        self::assertEquals($input, $writtenXml);
     }
 
     public function testWriteVoNotFound(): void
@@ -348,7 +348,7 @@ XML;
 
     public function testParseClarkNotation(): void
     {
-        $this->assertEquals([
+        self::assertEquals([
             'http://sabredav.org/ns',
             'elem',
         ], Service::parseClarkNotation('{http://sabredav.org/ns}elem'));

@@ -29,6 +29,6 @@ class EnumTest extends TestCase
 </root>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $xml);
+        self::assertXmlStringEqualsXmlString($expected, $xml);
     }
 }

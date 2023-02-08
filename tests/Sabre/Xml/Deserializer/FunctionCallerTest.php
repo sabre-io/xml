@@ -64,7 +64,7 @@ XML;
             'attributes' => [],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $output
         );
@@ -128,7 +128,7 @@ XML;
             'attributes' => [],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $output
         );
