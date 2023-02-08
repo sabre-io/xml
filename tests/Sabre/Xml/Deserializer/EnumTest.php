@@ -29,7 +29,7 @@ XML;
             '{urn:test}foo2',
         ];
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     public function testDeserializeDefaultNamespace(): void
@@ -54,7 +54,7 @@ XML;
             'foo2',
         ];
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     public function testEmptyEnum(): void
@@ -73,7 +73,7 @@ XML;
 
         $result = $service->parse($xml);
 
-        $this->assertEquals([[
+        self::assertEquals([[
             'name' => '{urn:test}inner',
             'value' => [[
                 'name' => '{urn:test}enum',

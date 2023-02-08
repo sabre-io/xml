@@ -30,7 +30,7 @@ BLA;
 
         $output = $reader->parse();
 
-        $this->assertEquals([
+        self::assertEquals([
             'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
@@ -137,6 +137,6 @@ BLA;
 <root xmlns="http://sabredav.org/ns"><fragment>$expected</fragment></root>
 XML;
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 }

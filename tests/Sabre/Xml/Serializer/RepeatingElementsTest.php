@@ -28,6 +28,6 @@ class RepeatingElementsTest extends TestCase
 </collection>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $xml);
+        self::assertXmlStringEqualsXmlString($expected, $xml);
     }
 }
