@@ -44,9 +44,9 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.9",
-        "phpstan/phpstan": "^1.8",
-        "phpunit/phpunit" : "^9.0"
+        "friendsofphp/php-cs-fixer": "^3.17",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit" : "^9.6"
     },
     "scripts": {
         "phpstan": [
