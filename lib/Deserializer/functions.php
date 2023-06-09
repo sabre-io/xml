@@ -328,12 +328,12 @@ function mixedContent(Reader $reader): array
 }
 
 /**
- * The functionCaller deserializer turns an xml element into whatever your callable return.
+ * The functionCaller deserializer turns an XML element into whatever your callable returns.
  *
  * You can use, e.g., a named constructor (factory method) to create an object using
  * this function.
  *
- * @return mixed
+ * @return mixed whatever the 'func' callable returns
  */
 function functionCaller(Reader $reader, callable $func, string $namespace)
 {

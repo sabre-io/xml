@@ -44,8 +44,6 @@ class Mock implements Xml\Element
      *
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
-     *
-     * @return mixed
      */
     public static function xmlDeserialize(Xml\Reader $reader)
     {

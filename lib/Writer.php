@@ -92,7 +92,7 @@ class Writer extends XMLWriter
      *    ]
      * ]
      *
-     * @param mixed $value
+     * @param mixed $value PHP value to be written
      */
     public function write($value): void
     {
