@@ -260,7 +260,7 @@ class Service
      * The ValueObject must have been previously registered using
      * mapValueObject().
      *
-     *@throws \InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function writeValueObject(object $object, string $contextUri = null): string
     {
