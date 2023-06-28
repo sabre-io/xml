@@ -1,16 +1,2 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Negated boolean expression is always false\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: lib/Deserializer/functions.php
-
-		-
-			message: "#^Parameter \\#3 \\$namespace of method XMLWriter\\:\\:startElementNs\\(\\) expects string, null given\\.$#"
-			count: 1
-			path: lib/Writer.php

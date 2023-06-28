@@ -31,6 +31,6 @@ XML;
             'and even more text',
         ];
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 }

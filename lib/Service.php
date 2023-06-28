@@ -103,9 +103,9 @@ class Service
      *
      * @param string|resource $input
      *
-     * @throws ParseException
-     *
      * @return array<string, mixed>|object|string
+     *
+     * @throws ParseException
      */
     public function parse($input, string $contextUri = null, string &$rootElementName = null)
     {
@@ -147,9 +147,9 @@ class Service
      * @param string|string[] $rootElementName
      * @param string|resource $input
      *
-     * @throws ParseException
-     *
      * @return array<string, mixed>|object|string
+     *
+     * @throws ParseException
      */
     public function expect($rootElementName, $input, string $contextUri = null)
     {
@@ -260,7 +260,7 @@ class Service
      * The ValueObject must have been previously registered using
      * mapValueObject().
      *
-     *@throws \InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function writeValueObject(object $object, string $contextUri = null): string
     {
@@ -281,9 +281,9 @@ class Service
      *
      * If the string was invalid, it will throw an InvalidArgumentException.
      *
-     * @throws \InvalidArgumentException
-     *
      * @return array{string|null, string}
+     *
+     * @throws \InvalidArgumentException
      */
     public static function parseClarkNotation(string $str): array
     {

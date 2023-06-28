@@ -50,6 +50,6 @@ BLA;
 
 XML;
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 }

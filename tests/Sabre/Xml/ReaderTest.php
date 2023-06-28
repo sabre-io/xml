@@ -19,7 +19,7 @@ BLA;
 
         $reader->next();
 
-        $this->assertEquals('{http://sabredav.org/ns}root', $reader->getClark());
+        self::assertEquals('{http://sabredav.org/ns}root', $reader->getClark());
     }
 
     public function testGetClarkNoNS(): void
@@ -33,7 +33,7 @@ BLA;
 
         $reader->next();
 
-        $this->assertEquals('{}root', $reader->getClark());
+        self::assertEquals('{}root', $reader->getClark());
     }
 
     public function testGetClarkNotOnAnElement(): void
@@ -45,7 +45,7 @@ BLA;
         $reader = new Reader();
         $reader->xml($input);
 
-        $this->assertNull($reader->getClark());
+        self::assertNull($reader->getClark());
     }
 
     public function testSimple(): void
@@ -90,7 +90,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     public function testCDATA(): void
@@ -119,7 +119,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     public function testSimpleNamespacedAttribute(): void
@@ -150,7 +150,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     public function testMappedElement(): void
@@ -182,7 +182,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     public function testMappedElementBadClass(): void
@@ -240,7 +240,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     /**
@@ -279,7 +279,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     /**
@@ -319,7 +319,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     public function testParseProblem(): void
@@ -339,7 +339,7 @@ BLA;
             $output = $reader->parse();
             $this->fail('We expected a ParseException to be thrown');
         } catch (LibXMLException $e) {
-            $this->assertIsArray($e->getErrors());
+            self::assertIsArray($e->getErrors());
         }
     }
 
@@ -451,7 +451,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     /**
@@ -502,7 +502,7 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 
     /**
@@ -547,6 +547,6 @@ BLA;
             'attributes' => [],
         ];
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 }

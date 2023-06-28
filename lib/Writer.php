@@ -30,7 +30,7 @@ use XMLWriter;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Writer extends XMLWriter
+class Writer extends \XMLWriter
 {
     use ContextStackTrait;
 
@@ -92,7 +92,7 @@ class Writer extends XMLWriter
      *    ]
      * ]
      *
-     * @param mixed $value
+     * @param mixed $value PHP value to be written
      */
     public function write($value): void
     {

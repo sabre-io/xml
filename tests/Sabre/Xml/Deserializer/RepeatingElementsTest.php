@@ -31,6 +31,6 @@ XML;
             'bar',
         ];
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 }

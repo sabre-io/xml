@@ -30,7 +30,7 @@ BLA;
 
         $output = $reader->parse();
 
-        $this->assertEquals([
+        self::assertEquals([
             'name' => '{http://sabredav.org/ns}root',
             'value' => [
                 [
@@ -111,7 +111,7 @@ BLA;
     /**
      * @dataProvider xmlProvider
      */
-    public function testSerialize(string $expectedFallback, string $input, ?string $expected = null): void
+    public function testSerialize(string $expectedFallback, string $input, string $expected = null): void
     {
         if (is_null($expected)) {
             $expected = $expectedFallback;
@@ -137,6 +137,6 @@ BLA;
 <root xmlns="http://sabredav.org/ns"><fragment>$expected</fragment></root>
 XML;
 
-        $this->assertEquals($expected, $output);
+        self::assertEquals($expected, $output);
     }
 }
