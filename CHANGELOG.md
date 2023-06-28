@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+3.0.2 (2023-06-28)
+------------------
+* #247 Enhance PHPdoc of Service write value parameter ( @phil-davis )
+
 3.0.1 (2023-06-28)
 ------------------
 * #229 Fixed error where valueobject has eaten too much ( @mrbig )
