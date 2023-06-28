@@ -1,9 +1,21 @@
 ChangeLog
 =========
 
+4.0.1 (2023-06-28)
+------------------
+* #229 Fixed error where valueobject has eaten too much ( @mrbig )
+* #238 cs-fixer and CI updates ( @phil-davis )
+* #234 Call static assert functions with self:: tests-only ( @phil-davis )
+* #231 Adjust code style to meet current php-cs-fixer ( @phil-davis )
+
 4.0.0 (2022-09-26)
 ------------------
 * #226 Allow sabre/uri major version 3 ( @phil-davis )
+
+3.0.1 (2023-06-28)
+------------------
+* #229 Fixed error where valueobject has eaten too much ( @mrbig )
+* #239 cs-fixer and CI updates ( @phil-davis )
 
 3.0.0 (2022-08-17)
 ------------------
@@ -12,6 +24,10 @@ ChangeLog
 * #217 Declare types ( @staabm )
 * #213 added phpstan types to deserializer functions ( @staabm )
 * #214 update phpstan 1.x ( @staabm )
+
+2.2.6 (2023-06-28)
+------------------
+* #229 Fixed error where valueobject has eaten too much ( @mrbig )
 
 2.2.5 (2021-11-04)
 ------------------
