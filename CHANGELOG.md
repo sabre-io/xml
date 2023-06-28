@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+3.0.1 (2023-06-28)
+------------------
+* #229 Fixed error where valueobject has eaten too much ( @mrbig )
+* #239 cs-fixer and CI updates ( @phil-davis )
+
 3.0.0 (2022-08-17)
 ------------------
 * #220 Set minimum PHP to 7.4 and declare types ( @phil-davis )
@@ -8,6 +13,10 @@ ChangeLog
 * #217 Declare types ( @staabm )
 * #213 added phpstan types to deserializer functions ( @staabm )
 * #214 update phpstan 1.x ( @staabm )
+
+2.2.6 (2023-06-28)
+------------------
+* #229 Fixed error where valueobject has eaten too much ( @mrbig )
 
 2.2.5 (2021-11-04)
 ------------------
