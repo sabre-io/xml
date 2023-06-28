@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+2.2.6 (2023-06-28)
+------------------
+* #229 Fixed error where valueobject has eaten too much ( @mrbig )
+
 2.2.5 (2021-11-04)
 ------------------
 * #210 version bump that was missed in 2.2.4 ( @phil-davis )
