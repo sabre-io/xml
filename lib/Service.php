@@ -198,7 +198,7 @@ class Service
      * This allows an implementor to easily create URI's relative to the root
      * of the domain.
      *
-     * @param string|array<string, mixed>|object|XmlSerializable $value
+     * @param string|array<int|string, mixed>|object|XmlSerializable $value
      */
     public function write(string $rootElementName, $value, string $contextUri = null): string
     {
