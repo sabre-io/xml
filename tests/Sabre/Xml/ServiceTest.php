@@ -7,6 +7,8 @@ namespace Sabre\Xml;
 use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Element\KeyValue;
 
+use function PHPUnit\Framework\assertIsResource;
+
 class ServiceTest extends TestCase
 {
     public function testGetReader(): void
@@ -90,6 +92,7 @@ XML;
 </root>
 XML;
         $stream = fopen('php://memory', 'r+');
+        self:assertIsResource($stream);
         fwrite($stream, $xml);
         rewind($stream);
 
@@ -201,6 +204,7 @@ XML;
 XML;
 
         $stream = fopen('php://memory', 'r+');
+        self:assertIsResource($stream);
         fwrite($stream, $xml);
         rewind($stream);
 
@@ -285,6 +289,7 @@ XML;
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
+        self::assertIsObject($order);
         $expected = new Order();
         $expected->id = 1234;
         $expected->amount = 99.99;
@@ -324,6 +329,7 @@ XML;
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
+        self::assertIsObject($order);
         $expected = new Order();
         $expected->id = 1234;
         $expected->amount = 99.99;
