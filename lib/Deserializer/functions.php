@@ -346,6 +346,13 @@ function functionCaller(Reader $reader, callable $func, string $namespace)
     }
 
     $funcArgs = [];
+    /**
+     * Even if $func gets "exploded" into an array, that array is still "callable"
+     * It should have elements that are the class and the function/method in the class.
+     * The declaration here helps phpstan to understand.
+     *
+     * @var (array<int,string>&callable():mixed)|\Closure|callable-string $func
+     */
     $func = is_string($func) && false !== strpos($func, '::') ? explode('::', $func) : $func;
     $ref = is_array($func) ? new \ReflectionMethod($func[0], $func[1]) : new \ReflectionFunction($func);
     foreach ($ref->getParameters() as $parameter) {
