@@ -25,23 +25,30 @@ class ContextStackTest extends TestCase
     public function testPushAndPull(): void
     {
         $this->stack->contextUri = '/foo/bar';
-        $this->stack->elementMap['{DAV:}foo'] = 'Bar';
+        // Use a class that exists so that phpstan will be happy that the value of the elementMap
+        // element is a class-string. That is a type that is expected for elementMap in ContextStackTrait.
+        $testClass = 'Sabre\Xml\ContextStack';
+        if (class_exists($testClass)) {
+            $this->stack->elementMap['{DAV:}foo'] = $testClass;
+        } else {
+            self:self::fail("$testClass not found");
+        }
         $this->stack->namespaceMap['DAV:'] = 'd';
 
         $this->stack->pushContext();
 
         self::assertEquals('/foo/bar', $this->stack->contextUri);
-        self::assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
+        self::assertEquals($testClass, $this->stack->elementMap['{DAV:}foo']);
         self::assertEquals('d', $this->stack->namespaceMap['DAV:']);
 
         $this->stack->contextUri = '/gir/zim';
-        $this->stack->elementMap['{DAV:}foo'] = 'newBar';
+        $this->stack->elementMap['{DAV:}foo'] = 'stdClass';
         $this->stack->namespaceMap['DAV:'] = 'dd';
 
         $this->stack->popContext();
 
         self::assertEquals('/foo/bar', $this->stack->contextUri);
-        self::assertEquals('Bar', $this->stack->elementMap['{DAV:}foo']);
+        self::assertEquals($testClass, $this->stack->elementMap['{DAV:}foo']);
         self::assertEquals('d', $this->stack->namespaceMap['DAV:']);
     }
 }
