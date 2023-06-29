@@ -59,7 +59,7 @@ class Uri implements Xml\Element
     {
         $writer->text(
             resolve(
-                $writer->contextUri,
+                $writer->contextUri ?? '',
                 $this->value
             )
         );
