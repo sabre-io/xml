@@ -336,6 +336,8 @@ function mixedContent(Reader $reader): array
  * this function.
  *
  * @return mixed whatever the 'func' callable returns
+ *
+ * @throws \InvalidArgumentException
  */
 function functionCaller(Reader $reader, callable $func, string $namespace)
 {
@@ -350,11 +352,28 @@ function functionCaller(Reader $reader, callable $func, string $namespace)
      * Even if $func gets "exploded" into an array, that array is still "callable"
      * It should have elements that are the class and the function/method in the class.
      * The declaration here helps phpstan to understand.
+     * We check that the class/method/function exists before passing $func to create the Reflection objects.
      *
-     * @var (array<int,string>&callable():mixed)|\Closure|callable-string $func
+     * @var callable $func
      */
     $func = is_string($func) && false !== strpos($func, '::') ? explode('::', $func) : $func;
-    $ref = is_array($func) ? new \ReflectionMethod($func[0], $func[1]) : new \ReflectionFunction($func);
+    if (is_array($func)) {
+        if (\class_exists($func[0]) && \method_exists($func[0], $func[1])) {
+            $ref = new \ReflectionMethod($func[0], $func[1]);
+        } else {
+            throw new \InvalidArgumentException(__METHOD__." class '".$func[0]."' with method '".$func[1]."' does not exist.");
+        }
+    } else {
+        if (($func instanceof \Closure) || (is_string($func) && function_exists($func))) {
+            $ref = new \ReflectionFunction($func);
+        } else {
+            if (is_string($func)) {
+                throw new \InvalidArgumentException(__METHOD__." function '$func' does not exist.");
+            } else {
+                throw new \InvalidArgumentException(__METHOD__.' function passed in is not a valid Closure.');
+            }
+        }
+    }
     foreach ($ref->getParameters() as $parameter) {
         $funcArgs[$parameter->getName()] = null;
     }
