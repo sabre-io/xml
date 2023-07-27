@@ -105,7 +105,7 @@ class Reader extends \XMLReader
      *
      * @param array<string, mixed>|null $elementMap
      *
-     * @return array<string, mixed>
+     * @return array<int,array<string, mixed>>
      */
     public function parseGetElements(array $elementMap = null): array
     {
@@ -130,7 +130,7 @@ class Reader extends \XMLReader
      *
      * @param array<string, mixed>|null $elementMap
      *
-     * @return array<string, mixed>|string|null
+     * @return array<int,array<string, mixed>>|string|null
      */
     public function parseInnerTree(array $elementMap = null)
     {
@@ -298,12 +298,12 @@ class Reader extends \XMLReader
         }
 
         $deserializer = $this->elementMap[$name];
-        if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
-            return [$deserializer, 'xmlDeserialize'];
-        }
-
         if (is_callable($deserializer)) {
             return $deserializer;
+        }
+
+        if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
+            return [$deserializer, 'xmlDeserialize'];
         }
 
         $type = gettype($deserializer);

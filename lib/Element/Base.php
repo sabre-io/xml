@@ -73,7 +73,7 @@ class Base implements Xml\Element
      * $reader->parseInnerTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @return array<string, mixed>|string|null
+     * @return array<int,array<string, mixed>>|string|null
      */
     public static function xmlDeserialize(Xml\Reader $reader)
     {

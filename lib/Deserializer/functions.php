@@ -336,6 +336,8 @@ function mixedContent(Reader $reader): array
  * this function.
  *
  * @return mixed whatever the 'func' callable returns
+ *
+ * @throws \InvalidArgumentException|\ReflectionException
  */
 function functionCaller(Reader $reader, callable $func, string $namespace)
 {
@@ -346,8 +348,20 @@ function functionCaller(Reader $reader, callable $func, string $namespace)
     }
 
     $funcArgs = [];
-    $func = is_string($func) && false !== strpos($func, '::') ? explode('::', $func) : $func;
-    $ref = is_array($func) ? new \ReflectionMethod($func[0], $func[1]) : new \ReflectionFunction($func);
+    if (is_array($func)) {
+        $ref = new \ReflectionMethod($func[0], $func[1]);
+    } elseif (is_string($func) && false !== strpos($func, '::')) {
+        // We have a string that should refer to a method that exists, like "MyClass::someMethod"
+        // ReflectionMethod knows how to handle that as-is
+        $ref = new \ReflectionMethod($func);
+    } elseif ($func instanceof \Closure || is_string($func)) {
+        // We have an actual Closure (a real function) or a string that is the name of a function
+        // ReflectionFunction can take either of those
+        $ref = new \ReflectionFunction($func);
+    } else {
+        throw new \InvalidArgumentException(__METHOD__.' unable to use func parameter with ReflectionMethod or ReflectionFunction.');
+    }
+
     foreach ($ref->getParameters() as $parameter) {
         $funcArgs[$parameter->getName()] = null;
     }
