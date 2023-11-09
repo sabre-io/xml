@@ -1,4 +1,6 @@
+<?xml version="1.0"?>
 <phpunit
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   colors="true"
   bootstrap="../vendor/autoload.php"
   convertErrorsToExceptions="true"
@@ -6,16 +8,16 @@
   convertWarningsToExceptions="true"
   beStrictAboutTestsThatDoNotTestAnything="true"
   beStrictAboutOutputDuringTests="true"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
   >
+  <coverage includeUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">../lib/</directory>
+    </include>
+  </coverage>
   <testsuites>
     <testsuite name="Sabre_XML">
       <directory>.</directory>
     </testsuite>
   </testsuites>
-
-  <filter>
-    <whitelist addUncoveredFilesFromWhitelist="true">
-       <directory suffix=".php">../lib/</directory>
-    </whitelist>
-  </filter>
 </phpunit>
