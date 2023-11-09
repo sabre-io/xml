@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+4.0.4 (2023-11-09)
+------------------
+* #260 fix: more return type declarations on xmlDeserialize ( @DeepDiver1975 )
+
 4.0.3 (2023-11-09)
 ------------------
 * #258 fix: return type of XmlFragment::xmlDeserialize to match base declaration ( @DeepDiver1975 )
