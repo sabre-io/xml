@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+3.0.3 (2023-11-09)
+------------------
+* #262 Backport fix: return type of XmlFragment::xmlDeserialize to match base declaration ( @phil-davis )
+
 3.0.2 (2023-06-28)
 ------------------
 * #247 Enhance PHPdoc of Service write value parameter ( @phil-davis )
