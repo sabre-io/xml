@@ -95,7 +95,7 @@ class KeyValue implements Xml\Element
      *
      * @return array<string, mixed>
      */
-    public static function xmlDeserialize(Xml\Reader $reader): array
+    public static function xmlDeserialize(Xml\Reader $reader)
     {
         return Deserializer\keyValue($reader);
     }
