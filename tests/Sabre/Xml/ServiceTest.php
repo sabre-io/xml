@@ -449,7 +449,7 @@ class PropFindTestAsset implements XmlDeserializable
      */
     public array $properties;
 
-    public static function xmlDeserialize(Reader $reader): self
+    public static function xmlDeserialize(Reader $reader)
     {
         $self = new self();
 
