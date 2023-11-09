@@ -83,7 +83,7 @@ class Uri implements Xml\Element
      * $reader->parseSubTree() will parse the entire sub-tree, and advance to
      * the next element.
      */
-    public static function xmlDeserialize(Xml\Reader $reader): Uri
+    public static function xmlDeserialize(Xml\Reader $reader)
     {
         return new self(
             resolve(
