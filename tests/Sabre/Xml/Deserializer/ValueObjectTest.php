@@ -81,6 +81,44 @@ XML;
         );
     }
 
+    public function testDeserializeValueObjectIgnoredNamespace()
+    {
+        $input = <<<XML
+<?xml version="1.0"?>
+<foo xmlns="urn:foo" xmlns:alien="urn:example.com">
+   <firstName>Harry</firstName>
+   <alien:email>harry@example.org</alien:email>
+   <lastName>Turtle</lastName>
+</foo>
+XML;
+
+        $reader = new Reader();
+        $reader->xml($input);
+        $reader->elementMap = [
+            '{urn:foo}foo' => function (Reader $reader) {
+                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
+            },
+        ];
+
+        $output = $reader->parse();
+
+        $vo = new TestVo();
+        $vo->firstName = 'Harry';
+        $vo->lastName = 'Turtle';
+
+        $expected = [
+            'name' => '{urn:foo}foo',
+            'value' => $vo,
+            'attributes' => [],
+        ];
+
+        $this->assertEquals(
+            $expected,
+            $output
+        );
+    }
+
+
     public function testDeserializeValueObjectAutoArray()
     {
         $input = <<<XML
