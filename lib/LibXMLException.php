@@ -31,7 +31,7 @@ class LibXMLException extends ParseException
      *
      * @param \LibXMLError[] $errors
      */
-    public function __construct(array $errors, int $code = 0, \Throwable $previousException = null)
+    public function __construct(array $errors, int $code = 0, ?\Throwable $previousException = null)
     {
         $this->errors = $errors;
         parent::__construct($errors[0]->message.' on line '.$errors[0]->line.', column '.$errors[0]->column, $code, $previousException);

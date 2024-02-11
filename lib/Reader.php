@@ -107,7 +107,7 @@ class Reader extends \XMLReader
      *
      * @return array<int,array<string, mixed>>
      */
-    public function parseGetElements(array $elementMap = null): array
+    public function parseGetElements(?array $elementMap = null): array
     {
         $result = $this->parseInnerTree($elementMap);
         if (!is_array($result)) {
@@ -132,7 +132,7 @@ class Reader extends \XMLReader
      *
      * @return array<int,array<string, mixed>>|string|null
      */
-    public function parseInnerTree(array $elementMap = null)
+    public function parseInnerTree(?array $elementMap = null)
     {
         $text = null;
         $elements = [];
