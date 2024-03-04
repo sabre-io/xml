@@ -57,7 +57,7 @@ use Sabre\Xml\Reader;
  *
  * @phpstan-return array<string, mixed>
  */
-function keyValue(Reader $reader, string $namespace = null): array
+function keyValue(Reader $reader, ?string $namespace = null): array
 {
     // If there's no children, we don't do anything.
     if ($reader->isEmptyElement) {
@@ -148,7 +148,7 @@ function keyValue(Reader $reader, string $namespace = null): array
  *
  * @phpstan-return list<string>
  */
-function enum(Reader $reader, string $namespace = null): array
+function enum(Reader $reader, ?string $namespace = null): array
 {
     // If there's no children, we don't do anything.
     if ($reader->isEmptyElement) {
