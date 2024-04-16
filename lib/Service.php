@@ -281,7 +281,7 @@ class Service
      *
      * If the string was invalid, it will throw an InvalidArgumentException.
      *
-     * @return array{string|null, string}
+     * @return array{string, string}
      *
      * @throws \InvalidArgumentException
      */
