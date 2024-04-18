@@ -111,7 +111,7 @@ BLA;
     /**
      * @dataProvider xmlProvider
      */
-    public function testSerialize(string $expectedFallback, string $input, string $expected = null): void
+    public function testSerialize(string $expectedFallback, string $input, ?string $expected = null): void
     {
         if (is_null($expected)) {
             $expected = $expectedFallback;
