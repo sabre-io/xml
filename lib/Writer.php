@@ -134,7 +134,7 @@ class Writer extends \XMLWriter
             } else {
                 // An empty namespace means it's the global namespace. This is
                 // allowed, but it mustn't get a prefix.
-                if ('' === $namespace || null === $namespace) {
+                if ('' === $namespace) {
                     $result = $this->startElement($localName);
                     $this->writeAttribute('xmlns', '');
                 } else {
