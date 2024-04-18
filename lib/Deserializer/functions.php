@@ -223,6 +223,9 @@ function valueObject(Reader $reader, string $className, string $namespace): obje
                 // Ignore property
                 $reader->next();
             }
+        } elseif (Reader::ELEMENT === $reader->nodeType) {
+            // Skipping element from different namespace
+            $reader->next();
         } else {
             if (Reader::END_ELEMENT !== $reader->nodeType && !$reader->read()) {
                 break;
