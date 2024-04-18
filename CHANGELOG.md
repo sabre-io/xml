@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+2.2.7 (2024-04-18)
+------------------
+* #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
+
 2.2.6 (2023-06-28)
 ------------------
 * #229 Fixed error where valueobject has eaten too much ( @mrbig )
