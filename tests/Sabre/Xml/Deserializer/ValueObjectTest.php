@@ -118,7 +118,6 @@ XML;
         );
     }
 
-
     public function testDeserializeValueObjectAutoArray()
     {
         $input = <<<XML
