@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+4.0.5 (2024-04-18)
+------------------
+* #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
+* #271 Code format changes for php-cs-fixer 3.51 ( @phil-davis )
+* #272 More precise parseClarkNotation return type ( @staabm )
+
 4.0.4 (2023-11-09)
 ------------------
 * #260 fix: more return type declarations on xmlDeserialize ( @DeepDiver1975 )
@@ -24,6 +30,15 @@ ChangeLog
 ------------------
 * #226 Allow sabre/uri major version 3 ( @phil-davis )
 
+3.0.4 (2024-04-18)
+------------------
+* #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
+* #272 More precise parseClarkNotation return type ( @staabm )
+
+3.0.3 (2023-11-09)
+------------------
+* #262 Backport fix: return type of XmlFragment::xmlDeserialize to match base declaration ( @phil-davis )
+
 3.0.2 (2023-06-28)
 ------------------
 * #247 Enhance PHPdoc of Service write value parameter ( @phil-davis )
@@ -40,6 +55,10 @@ ChangeLog
 * #217 Declare types ( @staabm )
 * #213 added phpstan types to deserializer functions ( @staabm )
 * #214 update phpstan 1.x ( @staabm )
+
+2.2.7 (2024-04-18)
+------------------
+* #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
 
 2.2.6 (2023-06-28)
 ------------------
