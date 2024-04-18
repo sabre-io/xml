@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+3.0.4 (2024-04-18)
+------------------
+* #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
+* #272 More precise parseClarkNotation return type ( @staabm )
+
 3.0.3 (2023-11-09)
 ------------------
 * #262 Backport fix: return type of XmlFragment::xmlDeserialize to match base declaration ( @phil-davis )
@@ -21,6 +26,10 @@ ChangeLog
 * #217 Declare types ( @staabm )
 * #213 added phpstan types to deserializer functions ( @staabm )
 * #214 update phpstan 1.x ( @staabm )
+
+2.2.7 (2024-04-18)
+------------------
+* #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
 
 2.2.6 (2023-06-28)
 ------------------
