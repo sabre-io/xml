@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+2.2.8 (2024-07-25)
+------------------
+* #284 Add PHP 8.2 and 8.3 to CI for 2.2 branch (@phil-davis)
+* #285 PHP 8.4 compliance (@phil-davis)
+
 2.2.7 (2024-04-18)
 ------------------
 * #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
