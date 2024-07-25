@@ -1,5 +1,6 @@
 parameters:
   level: 5
+  reportUnmatchedIgnoredErrors: false
   ignoreErrors:
     -
       message: '!Parameter #3 \$namespace of method XMLWriter::startElementNs\(\) expects string, null given.!'
