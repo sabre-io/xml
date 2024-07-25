@@ -109,7 +109,7 @@ class Service
      *
      * @return array|object|string
      */
-    public function parse($input, string $contextUri = null, string &$rootElementName = null)
+    public function parse($input, ?string $contextUri = null, ?string &$rootElementName = null)
     {
         if (is_resource($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
@@ -153,7 +153,7 @@ class Service
      *
      * @return array|object|string
      */
-    public function expect($rootElementName, $input, string $contextUri = null)
+    public function expect($rootElementName, $input, ?string $contextUri = null)
     {
         if (is_resource($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
@@ -204,7 +204,7 @@ class Service
      *
      * @return string
      */
-    public function write(string $rootElementName, $value, string $contextUri = null)
+    public function write(string $rootElementName, $value, ?string $contextUri = null)
     {
         $w = $this->getWriter();
         $w->openMemory();
@@ -266,7 +266,7 @@ class Service
      *
      * @throws \InvalidArgumentException
      */
-    public function writeValueObject($object, string $contextUri = null)
+    public function writeValueObject($object, ?string $contextUri = null)
     {
         if (!isset($this->valueObjectMap[get_class($object)])) {
             throw new \InvalidArgumentException('"'.get_class($object).'" is not a registered value object class. Register your class with mapValueObject.');

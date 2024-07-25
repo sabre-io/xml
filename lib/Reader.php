@@ -103,7 +103,7 @@ class Reader extends XMLReader
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      */
-    public function parseGetElements(array $elementMap = null): array
+    public function parseGetElements(?array $elementMap = null): array
     {
         $result = $this->parseInnerTree($elementMap);
         if (!is_array($result)) {
@@ -126,7 +126,7 @@ class Reader extends XMLReader
      *
      * @return array|string|null
      */
-    public function parseInnerTree(array $elementMap = null)
+    public function parseInnerTree(?array $elementMap = null)
     {
         $text = null;
         $elements = [];
