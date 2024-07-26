@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+2.2.9 (2024-07-26)
+------------------
+* #287 Explicitly mark nullable parameter (@cedric-anne)
+
 2.2.8 (2024-07-25)
 ------------------
 * #284 Add PHP 8.2 and 8.3 to CI for 2.2 branch (@phil-davis)
