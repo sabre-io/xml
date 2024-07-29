@@ -23,7 +23,7 @@ jobs:
             code-analysis: 'yes'
           - php-versions: '8.4'
             coverage: 'pcov'
-            code-style: 'no'
+            code-style: 'yes'
             code-analysis: 'yes'
     steps:
       - name: Checkout

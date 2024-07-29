@@ -19,7 +19,7 @@ use XMLReader;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Reader extends XMLReader
+class Reader extends \XMLReader
 {
     use ContextStackTrait;
 
@@ -205,7 +205,7 @@ class Reader extends XMLReader
         $previousDepth = $this->depth;
 
         while ($this->read() && $this->depth != $previousDepth) {
-            if (in_array($this->nodeType, [XMLReader::TEXT, XMLReader::CDATA, XMLReader::WHITESPACE])) {
+            if (in_array($this->nodeType, [\XMLReader::TEXT, \XMLReader::CDATA, \XMLReader::WHITESPACE])) {
                 $result .= $this->value;
             }
         }

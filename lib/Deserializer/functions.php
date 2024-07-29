@@ -325,8 +325,6 @@ function mixedContent(Reader $reader): array
  *
  * You can use, e.g., a named constructor (factory method) to create an object using
  * this function.
- *
- * @return mixed
  */
 function functionCaller(Reader $reader, callable $func, string $namespace)
 {

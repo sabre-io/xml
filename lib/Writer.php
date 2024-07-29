@@ -30,7 +30,7 @@ use XMLWriter;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Writer extends XMLWriter
+class Writer extends \XMLWriter
 {
     use ContextStackTrait;
 
@@ -93,8 +93,6 @@ class Writer extends XMLWriter
      *      ]
      *    ]
      * ]
-     *
-     * @param mixed $value
      */
     public function write($value)
     {
@@ -151,7 +149,7 @@ class Writer extends XMLWriter
 
         if (!$this->namespacesWritten) {
             foreach ($this->namespaceMap as $namespace => $prefix) {
-                $this->writeAttribute(($prefix ? 'xmlns:'.$prefix : 'xmlns'), $namespace);
+                $this->writeAttribute($prefix ? 'xmlns:'.$prefix : 'xmlns', $namespace);
             }
             $this->namespacesWritten = true;
         }

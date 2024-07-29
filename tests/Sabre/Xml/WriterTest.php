@@ -340,7 +340,7 @@ HI;
     public function testWriteBadObject()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->writer->write(new \StdClass());
+        $this->writer->write(new \stdClass());
     }
 
     public function testStartElementSimple()
