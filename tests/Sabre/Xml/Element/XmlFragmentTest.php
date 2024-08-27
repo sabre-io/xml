@@ -120,7 +120,7 @@ BLA;
         ];
         $writer->openMemory();
         $writer->startDocument('1.0');
-        //$writer->setIndent(true);
+        // $writer->setIndent(true);
         $writer->write([
             '{http://sabredav.org/ns}root' => [
                 '{http://sabredav.org/ns}fragment' => new XmlFragment($input),

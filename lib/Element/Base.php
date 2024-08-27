@@ -21,8 +21,6 @@ class Base implements Xml\Element
 {
     /**
      * PHP value to serialize.
-     *
-     * @var mixed
      */
     protected $value;
 
@@ -72,8 +70,6 @@ class Base implements Xml\Element
      *
      * $reader->parseInnerTree() will parse the entire sub-tree, and advance to
      * the next element.
-     *
-     * @return mixed
      */
     public static function xmlDeserialize(Xml\Reader $reader)
     {

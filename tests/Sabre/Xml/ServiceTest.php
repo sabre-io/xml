@@ -278,7 +278,7 @@ XML;
 XML;
 
         $ns = 'http://sabredav.org/ns';
-        $orderService = new \Sabre\Xml\Service();
+        $orderService = new Service();
         $orderService->mapValueObject('{'.$ns.'}order', 'Sabre\Xml\Order');
         $orderService->mapValueObject('{'.$ns.'}status', 'Sabre\Xml\OrderStatus');
         $orderService->namespaceMap[$ns] = null;
@@ -317,7 +317,7 @@ XML;
 XML;
 
         $ns = 'http://sabredav.org/ns';
-        $orderService = new \Sabre\Xml\Service();
+        $orderService = new Service();
         $orderService->mapValueObject('{'.$ns.'}order', 'Sabre\Xml\Order');
         $orderService->mapValueObject('{'.$ns.'}status', 'Sabre\Xml\OrderStatus');
         $orderService->namespaceMap[$ns] = null;
@@ -342,7 +342,7 @@ XML;
     {
         $this->expectException(\InvalidArgumentException::class);
         $service = new Service();
-        $service->writeValueObject(new \StdClass());
+        $service->writeValueObject(new \stdClass());
     }
 
     public function testParseClarkNotation()

@@ -105,9 +105,9 @@ class Service
      *
      * @param string|resource $input
      *
-     * @throws ParseException
-     *
      * @return array|object|string
+     *
+     * @throws ParseException
      */
     public function parse($input, ?string $contextUri = null, ?string &$rootElementName = null)
     {
@@ -149,9 +149,9 @@ class Service
      * @param string|string[] $rootElementName
      * @param string|resource $input
      *
-     * @throws ParseException
-     *
      * @return array|object|string
+     *
+     * @throws ParseException
      */
     public function expect($rootElementName, $input, ?string $contextUri = null)
     {
