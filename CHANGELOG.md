@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+2.2.10 (2024-08-27)
+------------------
+* #290 add cs-fixer v3 (@phil-davis)
+
 2.2.9 (2024-07-26)
 ------------------
 * #287 Explicitly mark nullable parameter (@cedric-anne)

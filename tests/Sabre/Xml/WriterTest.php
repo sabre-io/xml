@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
+use Sabre\Xml\Element\KeyValue;
+
 class WriterTest extends \PHPUnit\Framework\TestCase
 {
     protected $writer;
@@ -324,7 +326,7 @@ HI;
 
     public function testWriteElementComplex()
     {
-        $this->writer->writeElement('{http://sabredav.org/ns}foo', new Element\KeyValue(['{http://sabredav.org/ns}bar' => 'test']));
+        $this->writer->writeElement('{http://sabredav.org/ns}foo', new KeyValue(['{http://sabredav.org/ns}bar' => 'test']));
 
         $output = <<<HI
 <?xml version="1.0"?>
