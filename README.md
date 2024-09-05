@@ -4,6 +4,7 @@ sabre/xml
 [![Build Status](https://secure.travis-ci.org/sabre-io/xml.svg?branch=master)](http://travis-ci.org/sabre-io/xml)
 
 The sabre/xml library is a specialized XML reader and writer.
+Check CI.
 
 Documentation
 -------------
