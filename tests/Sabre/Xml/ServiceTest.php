@@ -382,6 +382,19 @@ XML;
         $data[] = [$emptyResource];
         $data[] = [''];
 
+        // Also test trying to parse a resource stream that has already been closed.
+        $xml = <<<XML
+<root xmlns="http://sabre.io/ns">
+  <child>value</child>
+</root>
+XML;
+        $stream = fopen('php://memory', 'r+');
+        self:assertIsResource($stream);
+        fwrite($stream, $xml);
+        rewind($stream);
+        fclose($stream);
+        $data[] = [$stream];
+
         return $data;
     }
 
