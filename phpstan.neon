@@ -5,3 +5,6 @@ parameters:
     -
       message: '!Parameter #3 \$namespace of method XMLWriter::startElementNs\(\) expects string, null given.!'
       path: lib/Writer.php
+    -
+      message: '!Else branch is unreachable because previous condition is always true.!'
+      path: lib/Service.php
