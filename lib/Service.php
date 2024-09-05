@@ -114,7 +114,14 @@ class Service
         if (!is_string($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
             // does, we can optimize this.
-            $input = (string) stream_get_contents($input);
+            if (is_resource($input)) {
+                $input = (string) stream_get_contents($input);
+            } else {
+                // Input is not a string and not a resource.
+                // Therefore, it has to be a closed resource.
+                // Effectively empty input has been passed in.
+                $input = '';
+            }
         }
 
         // If input is empty, then it's safe to throw an exception
@@ -158,7 +165,14 @@ class Service
         if (!is_string($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
             // does, we can optimize this.
-            $input = (string) stream_get_contents($input);
+            if (is_resource($input)) {
+                $input = (string) stream_get_contents($input);
+            } else {
+                // Input is not a string and not a resource.
+                // Therefore, it has to be a closed resource.
+                // Effectively empty input has been passed in.
+                $input = '';
+            }
         }
 
         // If input is empty, then it's safe to throw an exception
