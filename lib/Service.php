@@ -109,7 +109,7 @@ class Service
      */
     public function parse($input, ?string $contextUri = null, ?string &$rootElementName = null)
     {
-        if (is_resource($input)) {
+        if (!is_string($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
             // does, we can optimize this.
             $input = (string) stream_get_contents($input);
@@ -153,7 +153,7 @@ class Service
      */
     public function expect($rootElementName, $input, ?string $contextUri = null)
     {
-        if (is_resource($input)) {
+        if (!is_string($input)) {
             // Unfortunately the XMLReader doesn't support streams. When it
             // does, we can optimize this.
             $input = (string) stream_get_contents($input);
