@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+3.0.6 (2024-09-06)
+------------------
+* #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
+
 3.0.5 (2024-09-05)
 ------------------
 * #294 Add PHP 8.4 compliance for v3 branch ( @phil-davis )
@@ -30,6 +34,10 @@ ChangeLog
 * #217 Declare types ( @staabm )
 * #213 added phpstan types to deserializer functions ( @staabm )
 * #214 update phpstan 1.x ( @staabm )
+
+2.2.11 (2024-09-06)
+------------------
+* #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
 
 2.2.10 (2024-08-27)
 ------------------
