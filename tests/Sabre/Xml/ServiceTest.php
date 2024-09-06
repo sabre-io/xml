@@ -389,7 +389,6 @@ XML;
 </root>
 XML;
         $stream = fopen('php://memory', 'r+');
-        self:assertIsResource($stream);
         fwrite($stream, $xml);
         rewind($stream);
         fclose($stream);
