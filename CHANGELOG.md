@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+4.0.6 (2024-09-06)
+------------------
+* #281 delete unused bin directory ( @szepeviktor )
+* #282 stop exporting php-cs-fixer config ( @szepeviktor )
+* #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
+
 4.0.5 (2024-04-18)
 ------------------
 * #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
@@ -30,6 +36,14 @@ ChangeLog
 ------------------
 * #226 Allow sabre/uri major version 3 ( @phil-davis )
 
+3.0.6 (2024-09-06)
+------------------
+* #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
+
+3.0.5 (2024-09-05)
+------------------
+* #294 Add PHP 8.4 compliance for v3 branch ( @phil-davis )
+
 3.0.4 (2024-04-18)
 ------------------
 * #270 Fixed handling of elements from foreign namespaces in values object ( @mrbig )
@@ -55,6 +69,23 @@ ChangeLog
 * #217 Declare types ( @staabm )
 * #213 added phpstan types to deserializer functions ( @staabm )
 * #214 update phpstan 1.x ( @staabm )
+
+2.2.11 (2024-09-06)
+------------------
+* #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
+
+2.2.10 (2024-08-27)
+------------------
+* #290 add cs-fixer v3 (@phil-davis)
+
+2.2.9 (2024-07-26)
+------------------
+* #287 Explicitly mark nullable parameter (@cedric-anne)
+
+2.2.8 (2024-07-25)
+------------------
+* #284 Add PHP 8.2 and 8.3 to CI for 2.2 branch (@phil-davis)
+* #285 PHP 8.4 compliance (@phil-davis)
 
 2.2.7 (2024-04-18)
 ------------------
