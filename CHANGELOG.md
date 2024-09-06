@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+2.2.11 (2024-09-06)
+------------------
+* #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
+
 2.2.10 (2024-08-27)
 ------------------
 * #290 add cs-fixer v3 (@phil-davis)
