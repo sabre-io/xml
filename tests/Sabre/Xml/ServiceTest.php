@@ -179,9 +179,6 @@ XML;
         $util->namespaceMap = [
             'http://sabre.io/ns' => 'stdClass',
         ];
-        /**
-         * @var PropFindTestAsset
-         */
         $result = $util->expect('{DAV:}propfind', $xml);
         self::assertIsObject($result);
         self::assertInstanceOf(PropFindTestAsset::class, $result);
