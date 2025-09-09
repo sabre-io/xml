@@ -27,7 +27,7 @@ jobs:
             code-analysis: 'yes'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
@@ -65,5 +65,5 @@ jobs:
         run: vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-clover clover.xml
 
       - name: Code Coverage
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: matrix.coverage != 'none'
