@@ -339,7 +339,7 @@ BLA;
             $output = $reader->parse();
             $this->fail('We expected a ParseException to be thrown');
         } catch (LibXMLException $e) {
-            self::assertIsArray($e->getErrors());
+            self::assertNotEmpty($e->getErrors());
         }
     }
 
