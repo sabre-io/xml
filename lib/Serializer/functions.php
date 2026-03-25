@@ -181,7 +181,7 @@ function standardSerializer(Writer $writer, $value): void
                 // This item has a numeric index. We just loop through the
                 // array and throw it back in the writer.
                 standardSerializer($writer, $item);
-            } elseif (is_string($name) && is_array($item) && isset($item['attributes'])) {
+            } elseif (is_array($item) && isset($item['attributes'])) {
                 // The key is used for a name, but $item has 'attributes' and
                 // possibly 'value'
                 $writer->startElement($name);
@@ -190,18 +190,16 @@ function standardSerializer(Writer $writer, $value): void
                     $writer->write($item['value']);
                 }
                 $writer->endElement();
-            } elseif (is_string($name)) {
+            } else {
                 // This was a plain key-value array.
                 $writer->startElement($name);
                 $writer->write($item);
                 $writer->endElement();
-            } else {
-                throw new \InvalidArgumentException('The writer does not know how to serialize arrays with keys of type: '.gettype($name));
             }
         }
-    } elseif (is_object($value)) {
+    } elseif (is_object($value)) { // @phpstan-ignore function.alreadyNarrowedType
         throw new \InvalidArgumentException('The writer cannot serialize objects of class: '.get_class($value));
-    } elseif (!is_null($value)) {
+    } elseif (!is_null($value)) { // @phpstan-ignore function.alreadyNarrowedType
         throw new \InvalidArgumentException('The writer cannot serialize values of type: '.gettype($value));
     }
 }

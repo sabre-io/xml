@@ -334,13 +334,8 @@ BLA;
             '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock',
         ];
         $reader->xml($input);
-
-        try {
-            $output = $reader->parse();
-            $this->fail('We expected a ParseException to be thrown');
-        } catch (LibXMLException $e) {
-            self::assertIsArray($e->getErrors());
-        }
+        $this->expectException(LibXMLException::class);
+        $output = $reader->parse();
     }
 
     public function testBrokenParserClass(): void
