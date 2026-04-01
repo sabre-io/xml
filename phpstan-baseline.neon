@@ -1,2 +1,6 @@
 parameters:
-	ignoreErrors:
+  ignoreErrors:
+  -
+    message: "#^Call to function is_null\\(\\) with null will always evaluate to true\\.$#"
+    path: lib/Serializer/functions.php
+    count: 1
