@@ -21,7 +21,7 @@ class ServiceTest extends TestCase
         $util->elementMap = $elems;
 
         $reader = $util->getReader();
-        self::assertInstanceOf('Sabre\\Xml\\Reader', $reader);
+        self::assertInstanceOf(Reader::class, $reader);
         self::assertEquals($elems, $reader->elementMap);
     }
 
@@ -35,7 +35,7 @@ class ServiceTest extends TestCase
         $util->namespaceMap = $ns;
 
         $writer = $util->getWriter();
-        self::assertInstanceOf('Sabre\\Xml\\Writer', $writer);
+        self::assertInstanceOf(Writer::class, $writer);
         self::assertEquals($ns, $writer->namespaceMap);
     }
 
@@ -46,7 +46,7 @@ class ServiceTest extends TestCase
      */
     public function testEmptyInputParse($input): void
     {
-        $this->expectException('\Sabre\Xml\ParseException');
+        $this->expectException(ParseException::class);
         $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
 
         $util = new Service();
@@ -121,7 +121,7 @@ XML;
      */
     public function testEmptyInputExpect($input): void
     {
-        $this->expectException('\Sabre\Xml\ParseException');
+        $this->expectException(ParseException::class);
         $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
 
         $util = new Service();
@@ -281,8 +281,8 @@ XML;
 
         $ns = 'http://sabredav.org/ns';
         $orderService = new Service();
-        $orderService->mapValueObject('{'.$ns.'}order', 'Sabre\Xml\Order');
-        $orderService->mapValueObject('{'.$ns.'}status', 'Sabre\Xml\OrderStatus');
+        $orderService->mapValueObject('{'.$ns.'}order', Order::class);
+        $orderService->mapValueObject('{'.$ns.'}status', OrderStatus::class);
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
@@ -321,8 +321,8 @@ XML;
 
         $ns = 'http://sabredav.org/ns';
         $orderService = new Service();
-        $orderService->mapValueObject('{'.$ns.'}order', 'Sabre\Xml\Order');
-        $orderService->mapValueObject('{'.$ns.'}status', 'Sabre\Xml\OrderStatus');
+        $orderService->mapValueObject('{'.$ns.'}order', Order::class);
+        $orderService->mapValueObject('{'.$ns.'}status', OrderStatus::class);
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
@@ -476,7 +476,7 @@ class PropFindTestAsset implements XmlDeserializable
         $self = new self();
 
         $reader->pushContext();
-        $reader->elementMap['{DAV:}prop'] = 'Sabre\Xml\Element\Elements';
+        $reader->elementMap['{DAV:}prop'] = Element\Elements::class;
 
         foreach (KeyValue::xmlDeserialize($reader) as $k => $v) {
             switch ($k) {

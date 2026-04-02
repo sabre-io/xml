@@ -29,9 +29,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}struct' => function (Reader $reader) {
-                return keyValue($reader, 'http://sabredav.org/ns');
-            },
+            '{http://sabredav.org/ns}struct' => fn (Reader $reader) => keyValue($reader, 'http://sabredav.org/ns'),
         ];
         $reader->xml($input);
         $output = $reader->parse();
@@ -123,9 +121,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}struct' => function (Reader $reader) {
-                return keyValue($reader, 'http://sabredav.org/ns');
-            },
+            '{http://sabredav.org/ns}struct' => fn (Reader $reader) => keyValue($reader, 'http://sabredav.org/ns'),
         ];
         $reader->xml($input);
         $output = $reader->parse();

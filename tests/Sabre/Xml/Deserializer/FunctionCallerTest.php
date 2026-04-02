@@ -36,18 +36,10 @@ XML;
 
         $reader = new Reader();
         $reader->xml($input);
-        $reader->elementMap['{urn:foo}person'] = function (Reader $reader) {
-            return functionCaller($reader, [Person::class, 'fromXml'], 'urn:foo');
-        };
-        $reader->elementMap['{urn:foo}address'] = function (Reader $reader) {
-            return functionCaller($reader, [Address::class, 'fromXml'], 'urn:foo');
-        };
-        $reader->elementMap['{urn:foo}language'] = function (Reader $reader) {
-            return functionCaller($reader, [Language::class, 'fromXml'], 'urn:foo');
-        };
-        $reader->elementMap['{urn:foo}languages'] = function (Reader $reader) {
-            return repeatingElements($reader, '{urn:foo}language');
-        };
+        $reader->elementMap['{urn:foo}person'] = (fn (Reader $reader) => functionCaller($reader, [Person::class, 'fromXml'], 'urn:foo'));
+        $reader->elementMap['{urn:foo}address'] = (fn (Reader $reader) => functionCaller($reader, [Address::class, 'fromXml'], 'urn:foo'));
+        $reader->elementMap['{urn:foo}language'] = (fn (Reader $reader) => functionCaller($reader, [Language::class, 'fromXml'], 'urn:foo'));
+        $reader->elementMap['{urn:foo}languages'] = (fn (Reader $reader) => repeatingElements($reader, '{urn:foo}language'));
 
         $output = $reader->parse();
 
@@ -98,20 +90,10 @@ XML;
 
         $reader = new Reader();
         $reader->xml($input);
-        $reader->elementMap['{urn:foo}person'] = function (Reader $reader) {
-            return functionCaller($reader, Person::class.'::fromXml', 'urn:foo');
-        };
-        $reader->elementMap['{urn:foo}address'] = function (Reader $reader) {
-            return functionCaller($reader, __NAMESPACE__.'\newAddressFromXml', 'urn:foo');
-        };
-        $reader->elementMap['{urn:foo}language'] = function (Reader $reader) {
-            return functionCaller($reader, function (string $value): Language {
-                return new Language($value);
-            }, 'urn:foo');
-        };
-        $reader->elementMap['{urn:foo}languages'] = function (Reader $reader) {
-            return repeatingElements($reader, '{urn:foo}language');
-        };
+        $reader->elementMap['{urn:foo}person'] = (fn (Reader $reader) => functionCaller($reader, Person::class.'::fromXml', 'urn:foo'));
+        $reader->elementMap['{urn:foo}address'] = (fn (Reader $reader) => functionCaller($reader, __NAMESPACE__.'\newAddressFromXml', 'urn:foo'));
+        $reader->elementMap['{urn:foo}language'] = (fn (Reader $reader) => functionCaller($reader, fn (string $value): Language => new Language($value), 'urn:foo'));
+        $reader->elementMap['{urn:foo}languages'] = (fn (Reader $reader) => repeatingElements($reader, '{urn:foo}language'));
 
         $output = $reader->parse();
 

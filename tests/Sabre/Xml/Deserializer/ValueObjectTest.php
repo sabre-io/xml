@@ -22,9 +22,7 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function (Reader $reader) {
-                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            },
+            '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
 
         $output = $reader->parse();
@@ -59,9 +57,7 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function (Reader $reader) {
-                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            },
+            '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
 
         $output = $reader->parse();
@@ -96,9 +92,7 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function (Reader $reader) {
-                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            },
+            '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
 
         $output = $reader->parse();
@@ -134,9 +128,7 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function (Reader $reader) {
-                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            },
+            '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
 
         $output = $reader->parse();
@@ -171,9 +163,7 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function (Reader $reader) {
-                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            },
+            '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
 
         $output = $reader->parse();
@@ -204,9 +194,7 @@ XML;
         $reader = new Reader();
         $reader->xml($input);
         $reader->elementMap = [
-            '{urn:foo}foo' => function (Reader $reader) {
-                return valueObject($reader, 'Sabre\\Xml\\Deserializer\\TestVo', 'urn:foo');
-            },
+            '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
 
         $output = $reader->parse();

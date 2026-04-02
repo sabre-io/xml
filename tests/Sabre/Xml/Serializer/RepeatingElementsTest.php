@@ -13,7 +13,7 @@ class RepeatingElementsTest extends TestCase
     {
         $service = new Service();
         $service->namespaceMap['urn:test'] = null;
-        $xml = $service->write('{urn:test}collection', function ($writer) {
+        $xml = $service->write('{urn:test}collection', function ($writer): void {
             repeatingElements($writer, [
                 'foo',
                 'bar',
