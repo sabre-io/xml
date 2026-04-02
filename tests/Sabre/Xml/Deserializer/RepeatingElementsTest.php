@@ -12,9 +12,7 @@ class RepeatingElementsTest extends TestCase
     public function testRead(): void
     {
         $service = new Service();
-        $service->elementMap['{urn:test}collection'] = function ($reader) {
-            return repeatingElements($reader, '{urn:test}item');
-        };
+        $service->elementMap['{urn:test}collection'] = (fn ($reader) => repeatingElements($reader, '{urn:test}item'));
 
         $xml = <<<XML
 <?xml version="1.0"?>

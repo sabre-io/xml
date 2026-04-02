@@ -122,7 +122,7 @@ class Writer extends \XMLWriter
     public function startElement($name): bool
     {
         if ('{' === $name[0]) {
-            list($namespace, $localName) =
+            [$namespace, $localName] =
                 Service::parseClarkNotation($name);
 
             if (array_key_exists($namespace, $this->namespaceMap)) {

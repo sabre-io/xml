@@ -46,7 +46,8 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
-        "phpunit/phpunit" : "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "rector/rector": "^2.3"
     },
     "scripts": {
         "phpstan": [
@@ -57,6 +58,12 @@
         ],
         "cs-fixer": [
             "PHP_CS_FIXER_IGNORE_ENV=true php-cs-fixer fix"
+        ],
+        "rector-check": [
+            "rector process --dry-run"
+        ],
+        "rector-fix": [
+            "rector process"
         ],
         "phpunit": [
             "phpunit --configuration tests/phpunit.xml"

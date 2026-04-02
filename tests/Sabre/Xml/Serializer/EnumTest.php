@@ -14,7 +14,7 @@ class EnumTest extends TestCase
         $service = new Service();
         $service->namespaceMap['urn:test'] = null;
 
-        $xml = $service->write('{urn:test}root', function ($writer) {
+        $xml = $service->write('{urn:test}root', function ($writer): void {
             enum($writer, [
                 '{urn:test}foo1',
                 '{urn:test}foo2',

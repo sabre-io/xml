@@ -164,7 +164,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock',
+            '{http://sabredav.org/ns}elem1' => Element\Mock::class,
         ];
         $reader->xml($input);
 
@@ -299,9 +299,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => function (Reader $reader) {
-                return $reader->readText();
-            },
+            '{http://sabredav.org/ns}elem1' => fn (Reader $reader) => $reader->readText(),
         ];
         $reader->xml($input);
 
@@ -331,7 +329,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Mock',
+            '{http://sabredav.org/ns}elem1' => Element\Mock::class,
         ];
         $reader->xml($input);
 
@@ -355,7 +353,7 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{http://sabredav.org/ns}elem1' => 'Sabre\\Xml\\Element\\Eater',
+            '{http://sabredav.org/ns}elem1' => Element\Eater::class,
         ];
         $reader->xml($input);
         $reader->parse();

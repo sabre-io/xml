@@ -27,7 +27,7 @@ class ContextStackTest extends TestCase
         $this->stack->contextUri = '/foo/bar';
         // Use a class that exists so that phpstan will be happy that the value of the elementMap
         // element is a class-string. That is a type that is expected for elementMap in ContextStackTrait.
-        $testClass = 'Sabre\Xml\ContextStack';
+        $testClass = ContextStack::class;
         if (class_exists($testClass)) {
             $this->stack->elementMap['{DAV:}foo'] = $testClass;
         } else {

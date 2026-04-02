@@ -168,8 +168,8 @@ function standardSerializer(Writer $writer, $value): void
         // describes a 'name' and optionally 'attributes' and 'value'.
 
         $name = $value['name'];
-        $attributes = isset($value['attributes']) ? $value['attributes'] : [];
-        $value = isset($value['value']) ? $value['value'] : null;
+        $attributes = $value['attributes'] ?? [];
+        $value = $value['value'] ?? null;
 
         $writer->startElement($name);
         $writer->writeAttributes($attributes);
