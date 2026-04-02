@@ -16,15 +16,18 @@ jobs:
         coverage: ['pcov']
         code-style: ['no']
         code-analysis: ['no']
+        rector-check: ['no']
         include:
           - php-versions: '7.4'
             coverage: 'none'
             code-style: 'yes'
             code-analysis: 'yes'
+            rector-check: 'no'
           - php-versions: '8.5'
             coverage: 'pcov'
             code-style: 'no'
             code-analysis: 'yes'
+            rector-check: 'yes'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -60,6 +63,10 @@ jobs:
       - name: Code Analysis (PHPStan)
         if: matrix.code-analysis == 'yes'
         run: composer phpstan
+
+      - name: Code Refactoring (rector)
+        if: matrix.rector-check == 'yes'
+        run: composer rector-check
 
       - name: Test with phpunit
         run: vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-clover clover.xml

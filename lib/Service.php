@@ -254,12 +254,10 @@ class Service
      */
     public function mapValueObject(string $elementName, string $className): void
     {
-        list($namespace) = self::parseClarkNotation($elementName);
+        [$namespace] = self::parseClarkNotation($elementName);
 
-        $this->elementMap[$elementName] = function (Reader $reader) use ($className, $namespace) {
-            return \Sabre\Xml\Deserializer\valueObject($reader, $className, $namespace);
-        };
-        $this->classMap[$className] = function (Writer $writer, $valueObject) use ($namespace) {
+        $this->elementMap[$elementName] = (fn (Reader $reader) => \Sabre\Xml\Deserializer\valueObject($reader, $className, $namespace));
+        $this->classMap[$className] = function (Writer $writer, $valueObject) use ($namespace): void {
             \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);
         };
         $this->valueObjectMap[$className] = $elementName;
