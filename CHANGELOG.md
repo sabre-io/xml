@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+3.0.7 (2026-04-02)
+------------------
+* #318 phpstan major version 2 (@phil-davis)
+* *320 add rector and run in CI (@phil-davis)
+
 3.0.6 (2024-09-06)
 ------------------
 * #298 fix for passing a closed resource to Service parse or expect (@phil-davis)
