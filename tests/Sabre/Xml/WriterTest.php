@@ -365,7 +365,7 @@ HI;
     public function testCallback(): void
     {
         $this->compare([
-            '{http://sabredav.org/ns}root' => function (Writer $writer) {
+            '{http://sabredav.org/ns}root' => function (Writer $writer): void {
                 $writer->text('deferred writer');
             },
         ], <<<HI
@@ -396,7 +396,7 @@ HI
             'key2' => 'value2',
         ];
 
-        $this->writer->classMap['stdClass'] = function (Writer $writer, $value) {
+        $this->writer->classMap['stdClass'] = function (Writer $writer, $value): void {
             foreach (get_object_vars($value) as $key => $val) {
                 $writer->writeElement('{http://sabredav.org/ns}'.$key, $val);
             }

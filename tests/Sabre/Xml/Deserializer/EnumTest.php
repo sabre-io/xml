@@ -35,9 +35,7 @@ XML;
     public function testDeserializeDefaultNamespace(): void
     {
         $service = new Service();
-        $service->elementMap['{urn:test}root'] = function ($reader) {
-            return enum($reader, 'urn:test');
-        };
+        $service->elementMap['{urn:test}root'] = (fn ($reader) => enum($reader, 'urn:test'));
 
         $xml = <<<XML
 <?xml version="1.0"?>

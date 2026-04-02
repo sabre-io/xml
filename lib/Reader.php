@@ -293,12 +293,13 @@ class Reader extends \XMLReader
             if ('{}' == substr($name, 0, 2) && array_key_exists(substr($name, 2), $this->elementMap)) {
                 $name = substr($name, 2);
             } else {
-                return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
+                return [Element\Base::class, 'xmlDeserialize'];
             }
         }
 
         $deserializer = $this->elementMap[$name];
-        if (is_subclass_of($deserializer, 'Sabre\\Xml\\XmlDeserializable')) {
+
+        if (is_subclass_of($deserializer, XmlDeserializable::class)) {
             return [$deserializer, 'xmlDeserialize'];
         }
 
