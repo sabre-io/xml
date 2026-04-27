@@ -353,7 +353,7 @@ function functionCaller(Reader $reader, callable $func, string $namespace)
     $funcArgs = [];
     if (is_array($func)) {
         $ref = new \ReflectionMethod($func[0], $func[1]);
-    } elseif (is_string($func) && false !== strpos($func, '::')) {
+    } elseif (is_string($func) && str_contains($func, '::')) {
         // We have a string that should refer to a method that exists, like "MyClass::someMethod"
         // ReflectionMethod knows how to handle that as-is
         $ref = new \ReflectionMethod($func);

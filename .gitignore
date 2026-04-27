@@ -4,6 +4,7 @@ composer.lock
 
 # Tests
 tests/cov
+tests/.phpunit.cache
 tests/.phpunit.result.cache
 .php_cs.cache
 .php-cs-fixer.cache

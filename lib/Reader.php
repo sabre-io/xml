@@ -290,7 +290,7 @@ class Reader extends \XMLReader
     public function getDeserializerForElementName(string $name): callable
     {
         if (!array_key_exists($name, $this->elementMap)) {
-            if ('{}' == substr($name, 0, 2) && array_key_exists(substr($name, 2), $this->elementMap)) {
+            if (str_starts_with($name, '{}') && array_key_exists(substr($name, 2), $this->elementMap)) {
                 $name = substr($name, 2);
             } else {
                 return [Element\Base::class, 'xmlDeserialize'];
@@ -303,7 +303,7 @@ class Reader extends \XMLReader
         }
 
         if (is_subclass_of($deserializer, XmlDeserializable::class)) {
-            return [$deserializer, 'xmlDeserialize'];
+            return fn (Reader $reader) => $deserializer::xmlDeserialize($reader);
         }
 
         $type = gettype($deserializer);
