@@ -20,7 +20,7 @@ class ValueObjectTest extends TestCase
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader::XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -55,7 +55,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader::XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -90,7 +90,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader::XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -107,7 +107,7 @@ XML;
             'attributes' => [],
         ];
 
-        $this->assertEquals(
+        $this::assertEquals(
             $expected,
             $output
         );
@@ -126,7 +126,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader::XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -161,7 +161,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader::XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -192,7 +192,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader::XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -207,7 +207,7 @@ XML;
             'attributes' => [],
         ];
 
-        $this->assertEquals(
+        $this::assertEquals(
             $expected,
             $output['value'][0]
         );

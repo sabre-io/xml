@@ -24,7 +24,7 @@ class InfiniteLoopTest extends TestCase
         $reader->elementMap = [
             '{DAV:}set' => Element\KeyValue::class,
         ];
-        $reader->xml($body);
+        $reader::XML($body);
 
         $output = $reader->parse();
 

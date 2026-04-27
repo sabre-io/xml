@@ -25,16 +25,14 @@ use Sabre\Xml\Writer;
 class XmlFragment implements Element
 {
     /**
-     * The inner XML value.
-     */
-    protected string $xml;
-
-    /**
      * Constructor.
      */
-    public function __construct(string $xml)
-    {
-        $this->xml = $xml;
+    public function __construct(
+        /**
+         * The inner XML value.
+         */
+        protected string $xml,
+    ) {
     }
 
     /**
@@ -63,8 +61,6 @@ class XmlFragment implements Element
      */
     public function xmlSerialize(Writer $writer): void
     {
-        $reader = new Reader();
-
         // Wrapping the xml in a container, so root-less values can still be
         // parsed.
         $xml = <<<XML
@@ -72,7 +68,10 @@ class XmlFragment implements Element
 <xml-fragment xmlns="http://sabre.io/ns">{$this->getXml()}</xml-fragment>
 XML;
 
-        $reader->xml($xml);
+        $reader = Reader::XML($xml);
+        if (!$reader instanceof Reader) {
+            throw new \InvalidArgumentException('Invalid XML string');
+        }
 
         while ($reader->read()) {
             if ($reader->depth < 1) {

@@ -23,6 +23,21 @@ class Reader extends \XMLReader
 {
     use ContextStackTrait;
 
+    public static function XML(string $source, ?string $encoding = null, int $flags = 0): false|Reader
+    {
+        $xmlReader = parent::XML($source, $encoding, $flags);
+        $reader = new Reader();
+        if ($xmlReader instanceof \XMLReader) {
+            foreach (get_object_vars($xmlReader) as $key => $value) {
+                $reader->{$key} = $value; // @phpstan-ignore property.dynamicName
+            }
+
+            return $reader;
+        }
+
+        return false;
+    }
+
     /**
      * Returns the current nodename in clark-notation.
      *
@@ -33,7 +48,7 @@ class Reader extends \XMLReader
      */
     public function getClark(): ?string
     {
-        if (!$this->localName) {
+        if ('' === $this->localName) {
             return null;
         }
 
@@ -67,7 +82,7 @@ class Reader extends \XMLReader
                 if (!$this->read()) {
                     $errors = libxml_get_errors();
                     libxml_clear_errors();
-                    if ($errors) {
+                    if (count($errors) > 0) {
                         throw new LibXMLException($errors);
                     }
                 }
@@ -77,7 +92,7 @@ class Reader extends \XMLReader
             // last line of defense in case errors did occur above
             $errors = libxml_get_errors();
             libxml_clear_errors();
-            if ($errors) {
+            if (count($errors) > 0) {
                 throw new LibXMLException($errors);
             }
         } finally {
@@ -153,7 +168,7 @@ class Reader extends \XMLReader
             if (!$this->read()) {
                 $errors = libxml_get_errors();
                 libxml_clear_errors();
-                if ($errors) {
+                if (count($errors) > 0) {
                     throw new LibXMLException($errors);
                 }
                 throw new ParseException('This should never happen (famous last words)');
@@ -165,7 +180,7 @@ class Reader extends \XMLReader
                 if (!$this->isValid()) {
                     $errors = libxml_get_errors();
 
-                    if ($errors) {
+                    if (count($errors) > 0) {
                         libxml_clear_errors();
                         throw new LibXMLException($errors);
                     }
@@ -199,7 +214,7 @@ class Reader extends \XMLReader
             }
         }
 
-        return $elements ?: $text;
+        return count($elements) > 0 ? $elements : $text;
     }
 
     /**
@@ -210,8 +225,8 @@ class Reader extends \XMLReader
         $result = '';
         $previousDepth = $this->depth;
 
-        while ($this->read() && $this->depth != $previousDepth) {
-            if (in_array($this->nodeType, [\XMLReader::TEXT, \XMLReader::CDATA, \XMLReader::WHITESPACE])) {
+        while ($this->read() && $this->depth !== $previousDepth) {
+            if (in_array($this->nodeType, [\XMLReader::TEXT, \XMLReader::CDATA, \XMLReader::WHITESPACE], true)) {
                 $result .= $this->value;
             }
         }
@@ -222,12 +237,12 @@ class Reader extends \XMLReader
     /**
      * Parses the current XML element.
      *
-     * This method returns arn array with 3 properties:
+     * This method returns an array with 3 properties:
      *   * name - A clark-notation XML element name.
      *   * value - The parsed value.
      *   * attributes - A key-value list of attributes.
      *
-     * @return array <string, mixed>
+     * @return array{'name': string|null, 'value': mixed, 'attributes': array<string, mixed>}
      */
     public function parseCurrentElement(): array
     {
@@ -266,7 +281,7 @@ class Reader extends \XMLReader
         $attributes = [];
 
         while ($this->moveToNextAttribute()) {
-            if ($this->namespaceURI) {
+            if ('' !== $this->namespaceURI) {
                 // Ignoring 'xmlns', it doesn't make any sense.
                 if ('http://www.w3.org/2000/xmlns/' === $this->namespaceURI) {
                     continue;
@@ -290,10 +305,10 @@ class Reader extends \XMLReader
     public function getDeserializerForElementName(string $name): callable
     {
         if (!array_key_exists($name, $this->elementMap)) {
-            if ('{}' == substr($name, 0, 2) && array_key_exists(substr($name, 2), $this->elementMap)) {
+            if (str_starts_with($name, '{}') && array_key_exists(substr($name, 2), $this->elementMap)) {
                 $name = substr($name, 2);
             } else {
-                return [Element\Base::class, 'xmlDeserialize'];
+                return Element\Base::xmlDeserialize(...);
             }
         }
 
@@ -303,14 +318,14 @@ class Reader extends \XMLReader
         }
 
         if (is_subclass_of($deserializer, XmlDeserializable::class)) {
-            return [$deserializer, 'xmlDeserialize'];
+            return fn (Reader $reader) => $deserializer::xmlDeserialize($reader);
         }
 
         $type = gettype($deserializer);
         if (is_string($deserializer)) {
             $type .= ' ('.$deserializer.')';
         } elseif (is_object($deserializer)) {
-            $type .= ' ('.get_class($deserializer).')';
+            $type .= ' ('.$deserializer::class.')';
         }
         throw new \LogicException('Could not use this type as a deserializer: '.$type.' for element: '.$name);
     }

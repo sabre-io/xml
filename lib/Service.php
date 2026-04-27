@@ -123,13 +123,15 @@ class Service
         }
 
         // If input is empty, then it's safe to throw an exception
-        if (empty($input)) {
+        if ('' === $input) {
             throw new ParseException('The input element to parse is empty. Do not attempt to parse');
         }
 
-        $r = $this->getReader();
+        $r = Reader::XML($input, null, $this->options);
+        if (!$r instanceof Reader) {
+            throw new ParseException('The input element to parse is invalid. Do not attempt to parse');
+        }
         $r->contextUri = $contextUri;
-        $r->XML($input, null, $this->options);
 
         $result = $r->parse();
         $rootElementName = $result['name'];
@@ -174,13 +176,15 @@ class Service
         }
 
         // If input is empty, then it's safe to throw an exception
-        if (empty($input)) {
+        if ('' === $input) {
             throw new ParseException('The input element to parse is empty. Do not attempt to parse');
         }
 
-        $r = $this->getReader();
+        $r = Reader::XML($input, null, $this->options);
+        if (!$r instanceof Reader) {
+            throw new ParseException('The input element to parse is invalid. Do not attempt to parse');
+        }
         $r->contextUri = $contextUri;
-        $r->XML($input, null, $this->options);
 
         $rootElementName = (array) $rootElementName;
 
@@ -276,12 +280,12 @@ class Service
      */
     public function writeValueObject(object $object, ?string $contextUri = null): string
     {
-        if (!isset($this->valueObjectMap[get_class($object)])) {
-            throw new \InvalidArgumentException('"'.get_class($object).'" is not a registered value object class. Register your class with mapValueObject.');
+        if (!isset($this->valueObjectMap[$object::class])) {
+            throw new \InvalidArgumentException('"'.$object::class.'" is not a registered value object class. Register your class with mapValueObject.');
         }
 
         return $this->write(
-            $this->valueObjectMap[get_class($object)],
+            $this->valueObjectMap[$object::class],
             $object,
             $contextUri
         );
@@ -302,7 +306,7 @@ class Service
         static $cache = [];
 
         if (!isset($cache[$str])) {
-            if (!preg_match('/^{([^}]*)}(.*)$/', $str, $matches)) {
+            if (1 !== preg_match('/^{([^}]*)}(.*)$/', $str, $matches)) {
                 throw new \InvalidArgumentException('\''.$str.'\' is not a valid clark-notation formatted string');
             }
 
