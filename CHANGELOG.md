@@ -1,10 +1,15 @@
 ChangeLog
 =========
 
+4.1.0 (2026-04-27)
+------------------
+* #325 chore: support PHP 8.2 and up ( @phil-davis )
+* *326 chore: remove phpVersion from phpstan.neon ( @phil-davis )
+
 4.0.7 (2026-04-02)
 ------------------
-* #305 phpstan major version 2 (@phil-davis)
-* *317 add rector and run in CI (@phil-davis)
+* #305 phpstan major version 2 ( @phil-davis )
+* *317 add rector and run in CI ( @phil-davis )
 
 4.0.6 (2024-09-06)
 ------------------
