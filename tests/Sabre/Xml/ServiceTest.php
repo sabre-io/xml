@@ -380,6 +380,7 @@ XML;
     public function providesEmptyInput(): array
     {
         $emptyResource = fopen('php://input', 'r');
+        $data = [];
         $data[] = [$emptyResource];
         $data[] = [''];
 

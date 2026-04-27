@@ -212,11 +212,13 @@ function valueObject(Reader $reader, string $className, string $namespace): obje
 
     $reader->read();
     do {
-        if (Reader::ELEMENT === $reader->nodeType && $reader->namespaceURI == $namespace) {
+        if (Reader::ELEMENT === $reader->nodeType && $reader->namespaceURI === $namespace) {
             if (property_exists($valueObject, $reader->localName)) {
                 if (is_array($defaultProperties[$reader->localName])) {
+                    // @phpstan-ignore property.dynamicName
                     $valueObject->{$reader->localName}[] = $reader->parseCurrentElement()['value'];
                 } else {
+                    // @phpstan-ignore property.dynamicName
                     $valueObject->{$reader->localName} = $reader->parseCurrentElement()['value'];
                 }
             } else {
@@ -315,12 +317,12 @@ function mixedContent(Reader $reader): array
     $content = [];
     $reader->read();
     while (true) {
-        if (Reader::ELEMENT == $reader->nodeType) {
+        if (Reader::ELEMENT === $reader->nodeType) {
             $content[] = $reader->parseCurrentElement();
-        } elseif ($reader->depth >= $previousDepth && in_array($reader->nodeType, [Reader::TEXT, Reader::CDATA, Reader::WHITESPACE])) {
+        } elseif ($reader->depth >= $previousDepth && in_array($reader->nodeType, [Reader::TEXT, Reader::CDATA, Reader::WHITESPACE], true)) {
             $content[] = $reader->value;
             $reader->read();
-        } elseif (Reader::END_ELEMENT == $reader->nodeType) {
+        } elseif (Reader::END_ELEMENT === $reader->nodeType) {
             // Ensuring we are moving the cursor after the end element.
             $reader->read();
             break;
@@ -371,7 +373,7 @@ function functionCaller(Reader $reader, callable $func, string $namespace)
 
     $reader->read();
     do {
-        if (Reader::ELEMENT === $reader->nodeType && $reader->namespaceURI == $namespace) {
+        if (Reader::ELEMENT === $reader->nodeType && $reader->namespaceURI === $namespace) {
             if (array_key_exists($reader->localName, $funcArgs)) {
                 $funcArgs[$reader->localName] = $reader->parseCurrentElement()['value'];
             } else {

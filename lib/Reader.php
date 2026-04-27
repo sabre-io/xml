@@ -33,7 +33,7 @@ class Reader extends \XMLReader
      */
     public function getClark(): ?string
     {
-        if (!$this->localName) {
+        if ('' === $this->localName) {
             return null;
         }
 
@@ -67,7 +67,7 @@ class Reader extends \XMLReader
                 if (!$this->read()) {
                     $errors = libxml_get_errors();
                     libxml_clear_errors();
-                    if ($errors) {
+                    if (count($errors) > 0) {
                         throw new LibXMLException($errors);
                     }
                 }
@@ -77,7 +77,7 @@ class Reader extends \XMLReader
             // last line of defense in case errors did occur above
             $errors = libxml_get_errors();
             libxml_clear_errors();
-            if ($errors) {
+            if (count($errors) > 0) {
                 throw new LibXMLException($errors);
             }
         } finally {
@@ -153,7 +153,7 @@ class Reader extends \XMLReader
             if (!$this->read()) {
                 $errors = libxml_get_errors();
                 libxml_clear_errors();
-                if ($errors) {
+                if (count($errors) > 0) {
                     throw new LibXMLException($errors);
                 }
                 throw new ParseException('This should never happen (famous last words)');
@@ -165,7 +165,7 @@ class Reader extends \XMLReader
                 if (!$this->isValid()) {
                     $errors = libxml_get_errors();
 
-                    if ($errors) {
+                    if (count($errors) > 0) {
                         libxml_clear_errors();
                         throw new LibXMLException($errors);
                     }
@@ -199,7 +199,7 @@ class Reader extends \XMLReader
             }
         }
 
-        return $elements ?: $text;
+        return count($elements) > 0 ? $elements : $text;
     }
 
     /**
@@ -210,8 +210,8 @@ class Reader extends \XMLReader
         $result = '';
         $previousDepth = $this->depth;
 
-        while ($this->read() && $this->depth != $previousDepth) {
-            if (in_array($this->nodeType, [\XMLReader::TEXT, \XMLReader::CDATA, \XMLReader::WHITESPACE])) {
+        while ($this->read() && $this->depth !== $previousDepth) {
+            if (in_array($this->nodeType, [\XMLReader::TEXT, \XMLReader::CDATA, \XMLReader::WHITESPACE], true)) {
                 $result .= $this->value;
             }
         }
@@ -266,7 +266,7 @@ class Reader extends \XMLReader
         $attributes = [];
 
         while ($this->moveToNextAttribute()) {
-            if ($this->namespaceURI) {
+            if ('' !== $this->namespaceURI) {
                 // Ignoring 'xmlns', it doesn't make any sense.
                 if ('http://www.w3.org/2000/xmlns/' === $this->namespaceURI) {
                     continue;
@@ -293,7 +293,7 @@ class Reader extends \XMLReader
             if (str_starts_with($name, '{}') && array_key_exists(substr($name, 2), $this->elementMap)) {
                 $name = substr($name, 2);
             } else {
-                return [Element\Base::class, 'xmlDeserialize'];
+                return Element\Base::xmlDeserialize(...);
             }
         }
 
@@ -310,7 +310,7 @@ class Reader extends \XMLReader
         if (is_string($deserializer)) {
             $type .= ' ('.$deserializer.')';
         } elseif (is_object($deserializer)) {
-            $type .= ' ('.get_class($deserializer).')';
+            $type .= ' ('.$deserializer::class.')';
         }
         throw new \LogicException('Could not use this type as a deserializer: '.$type.' for element: '.$name);
     }

@@ -24,7 +24,7 @@ BLA;
         $reader->elementMap = [
             '{http://sabredav.org/ns}blabla' => Cdata::class,
         ];
-        $reader->xml($input);
+        $reader->XML($input);
 
         $output = $reader->parse();
     }

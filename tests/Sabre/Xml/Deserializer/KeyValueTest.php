@@ -31,7 +31,7 @@ BLA;
         $reader->elementMap = [
             '{http://sabredav.org/ns}struct' => fn (Reader $reader) => keyValue($reader, 'http://sabredav.org/ns'),
         ];
-        $reader->xml($input);
+        $reader->XML($input);
         $output = $reader->parse();
 
         self::assertEquals([
@@ -89,7 +89,7 @@ BLA;
         </foo>';
         $reader = new Reader();
 
-        $reader->xml($invalid_xml);
+        $reader->XML($invalid_xml);
         $reader->elementMap = [
             '{}Package' => function ($reader) {
                 $recipient = [];
@@ -123,7 +123,7 @@ BLA;
         $reader->elementMap = [
             '{http://sabredav.org/ns}struct' => fn (Reader $reader) => keyValue($reader, 'http://sabredav.org/ns'),
         ];
-        $reader->xml($input);
+        $reader->XML($input);
         $output = $reader->parse();
 
         self::assertEquals([
