@@ -46,6 +46,8 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95",
         "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/extension-installer": "^1.4",
         "phpunit/phpunit": "^10.5",
         "rector/rector": "^2.4"
     },
@@ -73,5 +75,13 @@
             "composer cs-fixer",
             "composer phpunit"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        },
+        "platform": {
+            "php": "8.2"
+        }
     }
 }
