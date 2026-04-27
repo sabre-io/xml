@@ -26,7 +26,7 @@ BLA;
         $reader->elementMap = [
             '{http://sabredav.org/ns}fragment' => XmlFragment::class,
         ];
-        $reader->xml($input);
+        $reader->XML($input);
 
         $output = $reader->parse();
 

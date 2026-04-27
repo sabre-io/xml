@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sabre\Xml\Deserializer;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Reader;
 
@@ -20,7 +21,7 @@ class ValueObjectTest extends TestCase
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -55,7 +56,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -90,7 +91,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -107,7 +108,7 @@ XML;
             'attributes' => [],
         ];
 
-        $this->assertEquals(
+        Assert::assertEquals(
             $expected,
             $output
         );
@@ -126,7 +127,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -161,7 +162,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -192,7 +193,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap = [
             '{urn:foo}foo' => fn (Reader $reader) => valueObject($reader, TestVo::class, 'urn:foo'),
         ];
@@ -207,7 +208,7 @@ XML;
             'attributes' => [],
         ];
 
-        $this->assertEquals(
+        Assert::assertEquals(
             $expected,
             $output['value'][0]
         );

@@ -24,7 +24,7 @@ BLA;
         $reader->elementMap = [
             '{http://sabredav.org/ns}uri' => Uri::class,
         ];
-        $reader->xml($input);
+        $reader->XML($input);
 
         $output = $reader->parse();
 

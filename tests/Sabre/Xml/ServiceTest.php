@@ -21,7 +21,6 @@ class ServiceTest extends TestCase
         $util->elementMap = $elems;
 
         $reader = $util->getReader();
-        self::assertInstanceOf(Reader::class, $reader);
         self::assertEquals($elems, $reader->elementMap);
     }
 
@@ -35,7 +34,6 @@ class ServiceTest extends TestCase
         $util->namespaceMap = $ns;
 
         $writer = $util->getWriter();
-        self::assertInstanceOf(Writer::class, $writer);
         self::assertEquals($ns, $writer->namespaceMap);
     }
 
@@ -382,6 +380,7 @@ XML;
     public function providesEmptyInput(): array
     {
         $emptyResource = fopen('php://input', 'r');
+        $data = [];
         $data[] = [$emptyResource];
         $data[] = [''];
 

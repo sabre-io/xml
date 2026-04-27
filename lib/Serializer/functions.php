@@ -157,9 +157,9 @@ function standardSerializer(Writer $writer, $value): void
     } elseif ($value instanceof XmlSerializable) {
         // XmlSerializable classes or Element classes.
         $value->xmlSerialize($writer);
-    } elseif (is_object($value) && isset($writer->classMap[get_class($value)])) {
+    } elseif (is_object($value) && isset($writer->classMap[$value::class])) {
         // It's an object which class appears in the classmap.
-        $writer->classMap[get_class($value)]($writer, $value);
+        $writer->classMap[$value::class]($writer, $value);
     } elseif (is_callable($value)) {
         // A callback
         $value($writer);
@@ -200,7 +200,7 @@ function standardSerializer(Writer $writer, $value): void
             }
         }
     } elseif (is_object($value)) {
-        throw new \InvalidArgumentException('The writer cannot serialize objects of class: '.get_class($value));
+        throw new \InvalidArgumentException('The writer cannot serialize objects of class: '.$value::class);
     } elseif (!is_null($value)) {
         throw new \InvalidArgumentException('The writer cannot serialize values of type: '.gettype($value));
     }

@@ -35,7 +35,7 @@ class FunctionCallerTest extends TestCase
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap['{urn:foo}person'] = (fn (Reader $reader) => functionCaller($reader, [Person::class, 'fromXml'], 'urn:foo'));
         $reader->elementMap['{urn:foo}address'] = (fn (Reader $reader) => functionCaller($reader, [Address::class, 'fromXml'], 'urn:foo'));
         $reader->elementMap['{urn:foo}language'] = (fn (Reader $reader) => functionCaller($reader, [Language::class, 'fromXml'], 'urn:foo'));
@@ -89,7 +89,7 @@ XML;
 XML;
 
         $reader = new Reader();
-        $reader->xml($input);
+        $reader->XML($input);
         $reader->elementMap['{urn:foo}person'] = (fn (Reader $reader) => functionCaller($reader, Person::class.'::fromXml', 'urn:foo'));
         $reader->elementMap['{urn:foo}address'] = (fn (Reader $reader) => functionCaller($reader, __NAMESPACE__.'\newAddressFromXml', 'urn:foo'));
         $reader->elementMap['{urn:foo}language'] = (fn (Reader $reader) => functionCaller($reader, fn (string $value): Language => new Language($value), 'urn:foo'));
@@ -117,26 +117,13 @@ XML;
     }
 }
 
-final class Person
+final readonly class Person
 {
-    private string $name;
-    private int $age;
-    private Address $address;
-
-    /**
-     * @var array<int, Language|null>
-     */
-    private array $languages;
-
     /**
      * @param array<int, Language|null> $languages
      */
-    public function __construct(string $name, int $age, Address $address, array $languages)
+    public function __construct(private string $name, private int $age, private Address $address, private array $languages)
     {
-        $this->name = $name;
-        $this->age = $age;
-        $this->address = $address;
-        $this->languages = $languages;
     }
 
     /**
@@ -170,15 +157,10 @@ final class Person
         return $this->languages;
     }
 }
-final class Address
+final readonly class Address
 {
-    private string $street;
-    private int $number;
-
-    public function __construct(string $street, int $number)
+    public function __construct(private string $street, private int $number)
     {
-        $this->street = $street;
-        $this->number = $number;
     }
 
     public static function fromXml(string $street, string $number): self
@@ -196,13 +178,10 @@ final class Address
         return $this->number;
     }
 }
-final class Language
+final readonly class Language
 {
-    private string $value;
-
-    public function __construct(string $value)
+    public function __construct(private string $value)
     {
-        $this->value = $value;
     }
 
     public static function fromXml(string $value): self

@@ -126,7 +126,7 @@ class Writer extends \XMLWriter
                 Service::parseClarkNotation($name);
 
             if (array_key_exists($namespace, $this->namespaceMap)) {
-                $result = $this->startElementNS(
+                $result = $this->startElementNs(
                     '' === $this->namespaceMap[$namespace] ? null : $this->namespaceMap[$namespace],
                     $localName,
                     null
@@ -141,7 +141,7 @@ class Writer extends \XMLWriter
                     if (!isset($this->adhocNamespaces[$namespace])) {
                         $this->adhocNamespaces[$namespace] = 'x'.(count($this->adhocNamespaces) + 1);
                     }
-                    $result = $this->startElementNS($this->adhocNamespaces[$namespace], $localName, $namespace);
+                    $result = $this->startElementNs($this->adhocNamespaces[$namespace], $localName, $namespace);
                 }
             }
         } else {
@@ -150,7 +150,7 @@ class Writer extends \XMLWriter
 
         if (!$this->namespacesWritten) {
             foreach ($this->namespaceMap as $namespace => $prefix) {
-                $this->writeAttribute($prefix ? 'xmlns:'.$prefix : 'xmlns', $namespace);
+                $this->writeAttribute(is_string($prefix) && '' !== $prefix ? 'xmlns:'.$prefix : 'xmlns', $namespace);
             }
             $this->namespacesWritten = true;
         }
@@ -251,7 +251,7 @@ class Writer extends \XMLWriter
             $this->adhocNamespaces[$namespace] = 'x'.(count($this->adhocNamespaces) + 1);
         }
 
-        return $this->writeAttributeNS(
+        return $this->writeAttributeNs(
             $this->adhocNamespaces[$namespace],
             $localName,
             $namespace,
