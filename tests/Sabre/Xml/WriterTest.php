@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
@@ -42,9 +43,7 @@ HI
         );
     }
 
-    /**
-     * @depends testSimple
-     */
+    #[Depends('testSimple')]
     public function testSimpleQuotes(): void
     {
         $this->compare([
@@ -177,9 +176,7 @@ HI
         );
     }
 
-    /**
-     * @depends testArrayFormat2
-     */
+    #[Depends('testArrayFormat2')]
     public function testArrayFormat2NoValue(): void
     {
         $this->compare([
