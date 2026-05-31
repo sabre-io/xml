@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Sabre\Xml;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Sabre\Xml\Element\KeyValue;
 
@@ -38,10 +40,9 @@ class ServiceTest extends TestCase
     }
 
     /**
-     * @dataProvider providesEmptyInput
-     *
      * @param string|resource $input
      */
+    #[DataProvider('providesEmptyInput')]
     public function testEmptyInputParse($input): void
     {
         $this->expectException(ParseException::class);
@@ -51,9 +52,7 @@ class ServiceTest extends TestCase
         $util->parse($input, '/sabre.io/ns');
     }
 
-    /**
-     * @depends testGetReader
-     */
+    #[Depends('testGetReader')]
     public function testParse(): void
     {
         $xml = <<<XML
@@ -79,9 +78,7 @@ XML;
         );
     }
 
-    /**
-     * @depends testGetReader
-     */
+    #[Depends('testGetReader')]
     public function testParseStream(): void
     {
         $xml = <<<XML
@@ -113,10 +110,9 @@ XML;
     }
 
     /**
-     * @dataProvider providesEmptyInput
-     *
      * @param string|resource $input
      */
+    #[DataProvider('providesEmptyInput')]
     public function testEmptyInputExpect($input): void
     {
         $this->expectException(ParseException::class);
@@ -126,9 +122,7 @@ XML;
         $util->expect('foo', $input, '/sabre.io/ns');
     }
 
-    /**
-     * @depends testGetReader
-     */
+    #[Depends('testGetReader')]
     public function testExpect(): void
     {
         $xml = <<<XML
@@ -168,9 +162,7 @@ XML;
         $result = $util->expect('{DAV:}propfind', $xml);
     }
 
-    /**
-     * @dataProvider providesEmptyPropfinds
-     */
+    #[DataProvider('providesEmptyPropfinds')]
     public function testEmptyPropfind(string $xml): void
     {
         $util = new Service();
@@ -187,9 +179,7 @@ XML;
         self::assertEquals([], $result->properties);
     }
 
-    /**
-     * @depends testGetReader
-     */
+    #[Depends('testGetReader')]
     public function testExpectStream(): void
     {
         $xml = <<<XML
@@ -220,9 +210,7 @@ XML;
         );
     }
 
-    /**
-     * @depends testGetReader
-     */
+    #[Depends('testGetReader')]
     public function testExpectWrong(): void
     {
         $this->expectException(ParseException::class);
@@ -235,9 +223,7 @@ XML;
         $util->expect('{http://sabre.io/ns}error', $xml);
     }
 
-    /**
-     * @depends testGetWriter
-     */
+    #[Depends('testGetWriter')]
     public function testWrite(): void
     {
         $util = new Service();
@@ -349,9 +335,8 @@ XML;
 
     /**
      * @param array<string> $expected
-     *
-     * @dataProvider provideParseClarkNotationInput
      */
+    #[DataProvider('provideParseClarkNotationInput')]
     public function testParseClarkNotation(string $clark, array $expected): void
     {
         self::assertEquals($expected, Service::parseClarkNotation($clark));

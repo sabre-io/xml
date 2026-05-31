@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Sabre\Xml;
 
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 class ReaderTest extends TestCase
@@ -205,9 +206,7 @@ BLA;
         $reader->parse();
     }
 
-    /**
-     * @depends testMappedElement
-     */
+    #[Depends('testMappedElement')]
     public function testMappedElementCallBack(): void
     {
         $input = <<<BLA
@@ -244,9 +243,7 @@ BLA;
         self::assertEquals($expected, $output);
     }
 
-    /**
-     * @depends testMappedElementCallBack
-     */
+    #[Depends('testMappedElementCallBack')]
     public function testMappedElementCallBackNoNamespace(): void
     {
         $input = <<<BLA
@@ -283,9 +280,7 @@ BLA;
         self::assertEquals($expected, $output);
     }
 
-    /**
-     * @depends testMappedElementCallBack
-     */
+    #[Depends('testMappedElementCallBack')]
     public function testReadText(): void
     {
         $input = <<<BLA
@@ -402,9 +397,7 @@ XML;
         $reader->parse();
     }
 
-    /**
-     * @depends testMappedElement
-     */
+    #[Depends('testMappedElement')]
     public function testParseInnerTree(): void
     {
         $input = <<<BLA
@@ -453,9 +446,7 @@ BLA;
         self::assertEquals($expected, $output);
     }
 
-    /**
-     * @depends testParseInnerTree
-     */
+    #[Depends('testParseInnerTree')]
     public function testParseGetElements(): void
     {
         $input = <<<BLA
@@ -504,9 +495,7 @@ BLA;
         self::assertEquals($expected, $output);
     }
 
-    /**
-     * @depends testParseInnerTree
-     */
+    #[Depends('testParseInnerTree')]
     public function testParseGetElementsNoElements(): void
     {
         $input = <<<BLA
