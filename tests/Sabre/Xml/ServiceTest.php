@@ -366,7 +366,7 @@ XML;
     /**
      * @return array<int, list{string, array<string>}>
      */
-    public function provideParseClarkNotationInput(): iterable
+    public static function provideParseClarkNotationInput(): iterable
     {
         return [
             ['{http://sabredav.org/ns}elem', ['http://sabredav.org/ns', 'elem']],
@@ -377,7 +377,7 @@ XML;
     /**
      * @return array<int, array<int, string|resource|false>>
      */
-    public function providesEmptyInput(): array
+    public static function providesEmptyInput(): array
     {
         $emptyResource = fopen('php://input', 'r');
         $data = [];
@@ -403,7 +403,7 @@ XML;
     /**
      * @return array<int, array<int, string>>
      */
-    public function providesEmptyPropfinds(): array
+    public static function providesEmptyPropfinds(): array
     {
         return [
             ['<D:propfind xmlns:D="DAV:"><D:prop></D:prop></D:propfind>'],

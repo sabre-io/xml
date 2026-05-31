@@ -1,24 +1,13 @@
 <?xml version="1.0"?>
-<phpunit
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  colors="true"
-  bootstrap="../vendor/autoload.php"
-  convertErrorsToExceptions="true"
-  convertNoticesToExceptions="true"
-  convertWarningsToExceptions="true"
-  convertDeprecationsToExceptions="true"
-  beStrictAboutTestsThatDoNotTestAnything="true"
-  beStrictAboutOutputDuringTests="true"
-  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
-  >
-  <coverage includeUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">../lib/</directory>
-    </include>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" bootstrap="../vendor/autoload.php" beStrictAboutTestsThatDoNotTestAnything="true" beStrictAboutOutputDuringTests="true" failOnRisky="true" failOnWarning="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
   <testsuites>
     <testsuite name="Sabre_XML">
       <directory>.</directory>
     </testsuite>
   </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">../lib/</directory>
+    </include>
+  </source>
 </phpunit>

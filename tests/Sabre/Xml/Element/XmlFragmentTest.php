@@ -56,7 +56,7 @@ BLA;
      *
      * @return array<int, array<int, string>>
      */
-    public function xmlProvider(): array
+    public static function xmlProvider(): array
     {
         return [
             [
