@@ -109,27 +109,42 @@ class Service
      */
     public function parse($input, ?string $contextUri = null, ?string &$rootElementName = null)
     {
-        if (!is_string($input)) {
-            // Unfortunately the XMLReader doesn't support streams. When it
-            // does, we can optimize this.
+        if (PHP_VERSION_ID >= 80400) {
             if (is_resource($input)) {
-                $input = (string) stream_get_contents($input);
+                $r = Reader::fromStream($input, null, $this->options);
+            } elseif (is_string($input)) {
+                if ('' === $input) {
+                    throw new ParseException('The input element to parse is empty. Do not attempt to parse');
+                }
+                $r = Reader::fromString($input, null, $this->options);
             } else {
-                // Input is not a string and not a resource.
-                // Therefore, it has to be a closed resource.
-                // Effectively empty input has been passed in.
-                $input = '';
+                throw new ParseException('The input element to parse is empty. Do not attempt to parse');
             }
-        }
 
-        // If input is empty, then it's safe to throw an exception
-        if ('' === $input) {
-            throw new ParseException('The input element to parse is empty. Do not attempt to parse');
-        }
+            $r->elementMap = $this->elementMap;
+            $r->contextUri = $contextUri;
+        } else {
+            if (!is_string($input)) {
+                // Unfortunately the XMLReader doesn't support streams. When it
+                // does, we can optimize this.
+                if (is_resource($input)) {
+                    $input = (string) stream_get_contents($input);
+                } else {
+                    // Input is not a string and not a resource.
+                    // Therefore, it has to be a closed resource.
+                    // Effectively empty input has been passed in.
+                    $input = '';
+                }
+            }
+            // If input is empty, then it's safe to throw an exception
+            if ('' === $input) {
+                throw new ParseException('The input element to parse is empty. Do not attempt to parse');
+            }
 
-        $r = $this->getReader();
-        $r->contextUri = $contextUri;
-        $r->XML($input, null, $this->options);
+            $r = $this->getReader();
+            $r->contextUri = $contextUri;
+            $r->XML($input, null, $this->options);
+        }
 
         $result = $r->parse();
         $rootElementName = $result['name'];

@@ -364,9 +364,11 @@ XML;
      */
     public static function providesEmptyInput(): array
     {
-        $emptyResource = fopen('php://input', 'r');
         $data = [];
-        $data[] = [$emptyResource];
+        if (PHP_VERSION_ID < 80400) {
+            $emptyResource = fopen('php://input', 'r');
+            $data[] = [$emptyResource];
+        }
         $data[] = [''];
 
         // Also test trying to parse a resource stream that has already been closed.

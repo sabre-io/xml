@@ -1,5 +1,6 @@
 includes:
     - phpstan-baseline.neon
+    - phpstan.conditional.php
 
 parameters:
   level: 8
