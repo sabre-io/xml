@@ -4,3 +4,5 @@ parameters:
     message: "#^Call to function is_null\\(\\) with null will always evaluate to true\\.$#"
     path: lib/Serializer/functions.php
     count: 1
+  - message: '#Dynamic call to static method PHPUnit\\Framework\\Assert::.*\(\).#'
+    path: tests/Sabre/Xml/ServiceTest.php

@@ -147,6 +147,7 @@ class Service
         }
 
         $result = $r->parse();
+
         $rootElementName = $result['name'];
 
         return $result['value'];

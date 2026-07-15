@@ -52,6 +52,21 @@ class ServiceTest extends TestCase
         $util->parse($input, '/sabre.io/ns');
     }
 
+    public function testEmptyStream(): void
+    {
+        if (PHP_VERSION_ID < 80400) {
+            $this->markTestSkipped('This test requires PHP 8.4.');
+        }
+
+        $this->expectException(LibXMLException::class);
+        $this->expectExceptionMessage('Document is empty on line 1, column 1');
+
+        $emptyResource = fopen('php://input', 'r');
+        $this->assertNotFalse($emptyResource);
+        $util = new Service();
+        $util->parse($emptyResource, '/sabre.io/ns');
+    }
+
     #[Depends('testGetReader')]
     public function testParse(): void
     {
