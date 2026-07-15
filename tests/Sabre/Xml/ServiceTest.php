@@ -247,6 +247,39 @@ XML;
         );
     }
 
+    #[Depends('testGetWriter')]
+    public function testWriteStream(): void
+    {
+        if (PHP_VERSION_ID < 80400) {
+            $this->markTestSkipped('Requires PHP 8.4 or higher');
+        }
+        $util = new Service();
+        $util->namespaceMap = [
+            'http://sabre.io/ns' => 'stdClass',
+        ];
+
+        $stream = fopen('php://temp', 'w+');
+        $this->assertNotFalse($stream);
+        $util->writeStream($stream, '{http://sabre.io/ns}root', [
+            '{http://sabre.io/ns}child' => 'value',
+        ]);
+
+        rewind($stream);
+        $result = stream_get_contents($stream);
+
+        $expected = <<<XML
+<?xml version="1.0"?>
+<stdClass:root xmlns:stdClass="http://sabre.io/ns">
+ <stdClass:child>value</stdClass:child>
+</stdClass:root>
+
+XML;
+        self::assertEquals(
+            $expected,
+            $result
+        );
+    }
+
     public function testMapValueObject(): void
     {
         $input = <<<XML
