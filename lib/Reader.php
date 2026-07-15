@@ -273,7 +273,9 @@ class Reader extends \XMLReader
                 }
 
                 $name = $this->getClark();
-                $attributes[$name] = $this->value;
+                if (null !== $name) {
+                    $attributes[$name] = $this->value;
+                }
             } else {
                 $attributes[$this->localName] = $this->value;
             }
