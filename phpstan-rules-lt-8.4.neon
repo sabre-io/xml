@@ -1,0 +1,10 @@
+parameters:
+  ignoreErrors:
+  -
+    rawMessage: 'Call to an undefined static method Sabre\Xml\Reader::fromStream().'
+    path: lib/Service.php
+    count: 1
+  -
+    rawMessage: 'Call to an undefined static method Sabre\Xml\Reader::fromString().'
+    path: lib/Service.php
+    count: 1
