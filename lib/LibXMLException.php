@@ -29,7 +29,7 @@ class LibXMLException extends ParseException
      */
         protected array $errors, int $code = 0, ?\Throwable $previousException = null)
     {
-        parent::__construct($this->errors[0]->message.' on line '.$this->errors[0]->line.', column '.$this->errors[0]->column, $code, $previousException);
+        parent::__construct(trim($this->errors[0]->message).' on line '.$this->errors[0]->line.', column '.$this->errors[0]->column, $code, $previousException);
     }
 
     /**
