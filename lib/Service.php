@@ -78,10 +78,22 @@ class Service
 
     /**
      * Returns a fresh xml writer.
+     *
+     * @param ?resource $streamOutput Only available with PHP >= 8.4
      */
-    public function getWriter(): Writer
+    public function getWriter($streamOutput = null): Writer
     {
-        $w = new Writer();
+        if (null !== $streamOutput) {
+            if (!is_resource($streamOutput)) {
+                throw new \InvalidArgumentException('$streamOutput must be a resource');
+            }
+            if (PHP_VERSION_ID < 80400) {
+                throw new \RuntimeException('Service::getWriter() requires PHP 8.4 or higher');
+            }
+            $w = Writer::toStream($streamOutput);
+        } else {
+            $w = new Writer();
+        }
         $w->namespaceMap = $this->namespaceMap;
         $w->classMap = $this->classMap;
 
@@ -224,6 +236,38 @@ class Service
         $w->writeElement($rootElementName, $value);
 
         return $w->outputMemory();
+    }
+
+    /**
+     * Generates an XML document in one go.
+     *
+     * The $rootElement must be specified in clark notation.
+     * The value must be a string, an array or an object implementing
+     * XmlSerializable. Basically, anything that's supported by the Writer
+     * object.
+     *
+     * $contextUri can be used to specify a sort of 'root' of the PHP application,
+     * in case the xml document is used as a http response.
+     *
+     * This allows an implementor to easily create URI's relative to the root
+     * of the domain.
+     *
+     * @param resource                                               $outputStream
+     * @param string|array<int|string, mixed>|object|XmlSerializable $value
+     *
+     * @warning Only available with > PHP 8.4
+     */
+    public function writeStream($outputStream, string $rootElementName, $value, ?string $contextUri = null): void
+    {
+        if (PHP_VERSION_ID < 80400) {
+            throw new \RuntimeException('Service::writeStream() requires PHP 8.4 or higher');
+        }
+
+        $w = $this->getWriter($outputStream);
+        $w->contextUri = $contextUri;
+        $w->setIndent(true);
+        $w->startDocument();
+        $w->writeElement($rootElementName, $value);
     }
 
     /**
